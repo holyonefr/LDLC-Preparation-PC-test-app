@@ -41,9 +41,9 @@ jobs:
           ./tools/Test-LDLCRelease.ps1
           Import-Module ./tools/experimental/motherboard/MotherboardExperiment.psm1 -Force
           Write-MbxEvidence -Kind 'beta_release' -Data @{Status='passed';Suite='Test-LDLCRelease.ps1';VendorInstallerExecuted=$false}
-      - name: Verify live GCC download and real Desktop shortcuts in the beta repository
+      - name: Verify live downloads and real Desktop shortcuts for all four vendors
         shell: powershell
-        run: ./tools/experimental/vendor-utility/Test-InstallerShortcut.ps1 -Live -Vendors GIGABYTE -OutputDirectory artifacts/beta-gcc-live
+        run: ./tools/experimental/vendor-utility/Test-InstallerShortcut.ps1 -Live -Vendors ASRock,MSI,ASUS,GIGABYTE -OutputDirectory artifacts/beta-vendors-live
       - name: Open and close the actual beta UI four times
         shell: powershell
         run: |
