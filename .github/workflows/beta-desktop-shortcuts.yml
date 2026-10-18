@@ -2,7 +2,7 @@ name: Beta - four vendor Desktop shortcuts and Windows photo
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   desktop:
     if: github.repository == 'holyonefr/LDLC-Preparation-PC-test-app'
@@ -12,11 +12,30 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           lfs: false
-          persist-credentials: false
+          persist-credentials: true
       - name: Download each official utility twice and verify shortcuts on both Desktops
         timeout-minutes: 16
         shell: powershell
         run: ./tools/experimental/vendor-utility/Test-InstallerShortcut.ps1 -Live -Vendors ASRock,MSI,ASUS,GIGABYTE -CaptureDesktop -OutputDirectory artifacts/desktop-shortcuts
+      - name: Publish the generated Windows photo and test report only to the beta repository
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $origin=git remote get-url origin
+          if(($origin -replace '\.git$','') -cne 'https://github.com/holyonefr/LDLC-Preparation-PC-test-app'){throw 'Wrong photo publication repository'}
+          $report=Get-Content artifacts/desktop-shortcuts/installer-shortcut-tests.json -Raw | ConvertFrom-Json
+          $photo=Get-Content artifacts/desktop-shortcuts/desktop-capture.json -Raw | ConvertFrom-Json
+          if($report.Failures -ne 0 -or $report.Live.Count -ne 8){throw 'Incomplete test evidence'}
+          if((Get-FileHash artifacts/desktop-shortcuts/desktop-shortcuts.png).Hash -cne $photo.ImageSHA256){throw 'Photo checksum mismatch'}
+          New-Item -ItemType Directory beta/evidence/desktop-shortcuts -Force | Out-Null
+          Copy-Item artifacts/desktop-shortcuts/desktop-shortcuts.png,artifacts/desktop-shortcuts/desktop-capture.json,artifacts/desktop-shortcuts/installer-shortcut-tests.json beta/evidence/desktop-shortcuts/ -Force
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- beta/evidence/desktop-shortcuts
+          git commit -m 'Publish real Windows Desktop shortcut photo and four-vendor test evidence'
+          if($LASTEXITCODE -ne 0){throw 'Photo commit failed'}
+          git push origin HEAD:main
+          if($LASTEXITCODE -ne 0){throw 'Photo publication failed'}
       - name: Preserve screenshot and precise test evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
