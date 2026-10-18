@@ -1,6 +1,6 @@
 #requires -Version 5.1
 [CmdletBinding()]
-param([switch]$Live,[ValidateSet('ASRock','MSI','ASUS','GIGABYTE')][string[]]$Vendors=@('ASRock'),[string]$RecordedGigabyteCatalogue,[string]$OutputDirectory=(Join-Path $PSScriptRoot 'reports/installer-shortcut'))
+param([switch]$Live,[ValidateSet('ASRock','MSI','ASUS','GIGABYTE')][string[]]$Vendors=@('ASRock'),[string]$RecordedGigabyteCatalogue,[switch]$CaptureDesktop,[string]$OutputDirectory=(Join-Path $PSScriptRoot 'reports/installer-shortcut'))
 $ErrorActionPreference='Stop'
 Set-StrictMode -Version 2
 $OutputDirectory=[IO.Path]::GetFullPath($OutputDirectory)
@@ -10,6 +10,8 @@ $root=Join-Path $OutputDirectory ('fixtures-'+[guid]::NewGuid().ToString('N'))
 $cases=New-Object 'System.Collections.Generic.List[object]'
 $script:assertions=0
 $script:liveEvidence=@()
+$script:desktopCapture=$null
+$script:photoShortcuts=@()
 function Assert($Value,[string]$Message) { $script:assertions++; if (-not $Value) { throw $Message } }
 function Case([string]$Name,[scriptblock]$Body,[string]$Mode='simulation') {
     try { & $Body; $cases.Add([pscustomobject]@{Name=$Name;Mode=$Mode;Result='passed';Error=''}) }
@@ -174,13 +176,18 @@ public static class VutInstallerKnownFolder {
           & $module {param($v) $script:ShortcutVendor=$v} $liveVendor
           foreach ($desktopMode in @('Bureau','OneDrive - Fixture/Bureau')) {
             Case ('Actual '+$liveVendor+' download and installer shortcut: '+$desktopMode) {
-                $desktop=Join-Path $liveRoot ($liveVendor+'/'+$desktopMode)
+                $desktop=if($CaptureDesktop -and $desktopMode -eq 'Bureau'){$oldDesktop}else{Join-Path $liveRoot ($liveVendor+'/'+$desktopMode)}
                 [void](New-Item -ItemType Directory -Path $desktop -Force)
+                $beforeLinks=@(Get-ChildItem -LiteralPath $desktop -Filter '*.lnk' -File | ForEach-Object FullName)
                 Assert ([VutInstallerKnownFolder]::SHSetKnownFolderPath([ref]$id,0,[IntPtr]::Zero,$desktop) -eq 0) 'Redirection Bureau fixture impossible.'
                 $r=Invoke-VendorUtility
                 Assert ($r.Status -eq 'manual_required' -and -not $r.Installed -and -not $r.InstalledThisRun) ('Statut incorrect : '+$r.Reason)
                 Assert ($r.InstallerShortcut -and (Test-Path -LiteralPath $r.InstallerShortcut -PathType Leaf)) ('Raccourci installateur absent : '+$r.Reason)
                 Assert ((Split-Path -Parent $r.InstallerShortcut) -eq $desktop) 'Mauvais Bureau utilise.'
+                if($CaptureDesktop -and $desktopMode -eq 'Bureau'){
+                    Assert ($r.InstallerShortcut -notin $beforeLinks) 'La capture exige des raccourcis propres a ce test.'
+                    $script:photoShortcuts+=$r.InstallerShortcut
+                }
                 Assert (-not $r.Shortcut -and -not $r.ApplicationVerified) 'Installateur confondu avec application installee.'
                 if ($liveVendor -eq 'GIGABYTE' -and -not $RecordedGigabyteCatalogue) {
                     Assert ($r.DetectionMethod -ceq 'official_gcc_software_update_manifest' -and ([uri]$r.DetectionSource).Host -ceq 'mb.download.gigabyte.com' -and ([uri]$r.InstallerSource).Host -ceq 'mb.download.gigabyte.com') 'La detection GCC live ne provient pas du manifeste logiciel officiel.'
@@ -197,11 +204,15 @@ public static class VutInstallerKnownFolder {
                     $again=& $module {param($p,$v) New-VutInstallerShortcut -Profile (Get-VutProfile $v) -Package $p} $package $liveVendor
                     Assert ($again.Path -eq $r.InstallerPath -and $again.Shortcut -eq $r.InstallerShortcut) 'Relance non idempotente.'
                     # An unrelated shortcut with the same name must be preserved.
-                    $other=Join-Path $desktop 'unrelated.exe'; [IO.File]::WriteAllText($other,'inert; never executed')
+                    $other=Join-Path $desktop ('unrelated-'+[guid]::NewGuid().ToString('N')+'.exe'); [IO.File]::WriteAllText($other,'inert; never executed')
                     $link.TargetPath=$other; $link.Save()
                     $message=''; try { & $module {param($p,$v) New-VutInstallerShortcut -Profile (Get-VutProfile $v) -Package $p} $package $liveVendor | Out-Null } catch { $message=$_.Exception.Message }
                     Assert ($message -match 'autre cible') 'Raccourci tiers ecrase.'
                     Assert ($com.CreateShortcut($r.InstallerShortcut).TargetPath -ieq $other) 'Cible tierce non preservee.'
+                    # Restore our owned shortcut after the conflict test so a
+                    # screenshot shows the actual verified installer target.
+                    $link.TargetPath=$r.InstallerPath;$link.Arguments='';$link.Save()
+                    Remove-Item -LiteralPath $other -Force
                     $script:liveEvidence+=@([pscustomobject]@{
                         Vendor=$liveVendor;HardwareSimulated=$true;DesktopMode=$desktopMode;OfficialDownloadReal=$true;SignatureReal=$true;ShortcutCOMReal=$true
                         CatalogueMode=if($liveVendor -eq 'GIGABYTE' -and $RecordedGigabyteCatalogue){'recorded_official_response_not_live'}else{'live'}
@@ -217,14 +228,27 @@ public static class VutInstallerKnownFolder {
     } finally {
         $hr=[VutInstallerKnownFolder]::SHSetKnownFolderPath([ref]$id,0,[IntPtr]::Zero,$oldDesktop)
         $restored=($hr -eq 0 -and [Environment]::GetFolderPath([Environment+SpecialFolder]::DesktopDirectory) -eq $oldDesktop)
-        if ($restored) { Remove-Item -LiteralPath $liveRoot -Recurse -Force }
+        try {
+            if($CaptureDesktop -and $restored){
+                Case 'Capture verified installer shortcuts on the Windows test Desktop' {
+                    Assert ($script:photoShortcuts.Count -eq $Vendors.Count) 'Capture incomplete : certains fabricants ont echoue.'
+                    $script:desktopCapture=& (Join-Path $PSScriptRoot 'Capture-InstallerDesktop.ps1') -Shortcuts $script:photoShortcuts -OutputDirectory $OutputDirectory
+                    Assert (Test-Path -LiteralPath $script:desktopCapture.ImagePath -PathType Leaf) 'Capture absente.'
+                } 'real_windows_capture_or_explicit_native_preview'
+            }
+        } finally {
+            # Only links created by this run were recorded; never remove a
+            # pre-existing user shortcut. No installer is invoked for the photo.
+            foreach($path in $script:photoShortcuts){Remove-Item -LiteralPath $path -Force -ErrorAction SilentlyContinue}
+            if ($restored) { Remove-Item -LiteralPath $liveRoot -Recurse -Force }
+        }
     }
     Case 'Original Windows Desktop is restored after native tests' { Assert $restored 'Bureau initial non restaure.' } 'real_com'
 }
 $report=[ordered]@{
     Kind='utility_installer_shortcut_tests';Assertions=$script:assertions;Cases=@($cases.ToArray())
     Failures=@($cases.ToArray() | Where-Object Result -eq 'failed').Count
-    VendorInstallerExecuted=$false;ActualVendorInstallations=0;Live=$script:liveEvidence
+    VendorInstallerExecuted=$false;ActualVendorInstallations=0;Live=$script:liveEvidence;DesktopCapture=$script:desktopCapture
 }
 $report | ConvertTo-Json -Depth 10 | Set-Content (Join-Path $OutputDirectory 'installer-shortcut-tests.json') -Encoding UTF8
 Import-Module (Join-Path $PSScriptRoot '../motherboard/MotherboardExperiment.psm1') -Force

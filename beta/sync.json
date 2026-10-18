@@ -16,7 +16,8 @@
     "sync/edition.json",
     "tools/Rebuild-LDLCPreparationPC.ps1",
     "tools/Test-PreparationCompletion.ps1",
-    "tools/experimental/vendor-utility/README.md"
+    "tools/experimental/vendor-utility/README.md",
+    "tools/experimental/vendor-utility/Test-InstallerShortcut.ps1"
   ],
   "PublicationPolicy": "Only beta pushes until explicitly changed by user"
 }
