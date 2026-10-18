@@ -1,0 +1,2171 @@
+{
+  "run": {
+    "id": 39158843568,
+    "head_sha": "3e384afbb977363198ff9f8c5af23734163be8af",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39158843568"
+  },
+  "jobs": [
+    {
+      "id": 117767639928,
+      "name": "beta",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T19:27:27Z",
+          "completed_at": "2026-10-18T19:27:27Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T19:27:28Z",
+          "completed_at": "2026-10-18T19:27:39Z"
+        },
+        {
+          "name": "Compile the standalone beta executable on native Windows",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-18T19:27:39Z",
+          "completed_at": "2026-10-18T19:27:45Z"
+        },
+        {
+          "name": "Check embedded integration, laptop exclusion and error reporting",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-18T19:27:45Z",
+          "completed_at": "2026-10-18T19:27:46Z"
+        },
+        {
+          "name": "Check synchronization preserves beta and never writes to stable",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-18T19:27:46Z",
+          "completed_at": "2026-10-18T19:27:48Z"
+        },
+        {
+          "name": "Verify temporary outages and future releases for every manufacturer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-18T19:27:48Z",
+          "completed_at": "2026-10-18T19:28:16Z"
+        },
+        {
+          "name": "Run the full release regression suite without installing software",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-18T19:28:16Z",
+          "completed_at": "2026-10-18T19:29:01Z"
+        },
+        {
+          "name": "Verify live downloads and real Desktop shortcuts for all four vendors",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-18T19:29:01Z",
+          "completed_at": "2026-10-18T19:30:46Z"
+        },
+        {
+          "name": "Open and close the actual beta UI four times",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-18T19:30:46Z",
+          "completed_at": "2026-10-18T19:30:53Z"
+        },
+        {
+          "name": "Publish only verified beta delivery files",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-18T19:30:53Z",
+          "completed_at": "2026-10-18T19:30:59Z"
+        },
+        {
+          "name": "Preserve test evidence and Windows build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-18T19:30:59Z",
+          "completed_at": "2026-10-18T19:31:00Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-18T19:31:00Z",
+          "completed_at": "2026-10-18T19:31:02Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-18T19:31:02Z",
+          "completed_at": "2026-10-18T19:31:02Z"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "8466a49704334e5bbd844a8268fd7a88",
+          "kind": "beta_delivery",
+          "data": {
+            "DeliveryCommit": "69e63c9f6771c4997562b1eef0ecdde57e816fd6",
+            "TestedSource": "3e384afbb977363198ff9f8c5af23734163be8af",
+            "VendorInstallerExecuted": false,
+            "ExecutableSHA256": "F84E27C13A2373552A6C6883339E1E3FB791838991E6847429454D820E172E45",
+            "Repository": "holyonefr/LDLC-Preparation-PC-test-app"
+          }
+        },
+        {
+          "id": "0759da114e304c1c99eb197b7a31ab89",
+          "kind": "beta_ui_launches",
+          "data": {
+            "Passes": [
+              {
+                "Visible": true,
+                "MillisecondsToPreview": 1298,
+                "WindowWidth": 481,
+                "WindowHeight": 222,
+                "QuitLeft": 417,
+                "QuitTop": 204,
+                "QuitWidth": 50,
+                "QuitHeight": 14,
+                "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+              },
+              {
+                "Visible": true,
+                "MillisecondsToPreview": 1131,
+                "WindowWidth": 481,
+                "WindowHeight": 222,
+                "QuitLeft": 417,
+                "QuitTop": 204,
+                "QuitWidth": 50,
+                "QuitHeight": 14,
+                "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+              },
+              {
+                "Visible": true,
+                "MillisecondsToPreview": 1146,
+                "WindowWidth": 481,
+                "WindowHeight": 222,
+                "QuitLeft": 417,
+                "QuitTop": 204,
+                "QuitWidth": 50,
+                "QuitHeight": 14,
+                "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+              },
+              {
+                "Visible": true,
+                "MillisecondsToPreview": 1128,
+                "WindowWidth": 481,
+                "WindowHeight": 222,
+                "QuitLeft": 417,
+                "QuitTop": 204,
+                "QuitWidth": 50,
+                "QuitHeight": 14,
+                "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+              }
+            ],
+            "Mode": "real_compiled_executable_preview_and_quit_isolated_processes",
+            "VendorInstallerExecuted": false,
+            "Count": 4,
+            "Failures": 0
+          }
+        },
+        {
+          "id": "c42d8286863c4a76835cc8a98dc5aaf4",
+          "kind": "utility_installer_shortcut_tests",
+          "data": {
+            "Kind": "utility_installer_shortcut_tests",
+            "Assertions": 130,
+            "Cases": [
+              {
+                "Name": "Verified ASRock installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Verified MSI installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Verified ASUS installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Verified GIGABYTE installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Repeated preparation reuses the same stable installer target",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Installer target survives removal of the temporary download",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Changed downloaded installer cannot receive a shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid signature prevents any shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Changed persistent installer is rejected without overwrite",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Wrong file version is rejected even if the hash is known",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid version or hash cannot form a cache path",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "GIGABYTE full bundle cannot be offered as a minimal installer shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Inaccessible Desktop reports an explicit error",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual ASRock download and installer shortcut: Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual ASRock download and installer shortcut: OneDrive - Fixture/Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual MSI download and installer shortcut: Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual MSI download and installer shortcut: OneDrive - Fixture/Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual ASUS download and installer shortcut: Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual ASUS download and installer shortcut: OneDrive - Fixture/Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual GIGABYTE download and installer shortcut: Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual GIGABYTE download and installer shortcut: OneDrive - Fixture/Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Original Windows Desktop is restored after native tests",
+                "Mode": "real_com",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Failures": 0,
+            "VendorInstallerExecuted": false,
+            "ActualVendorInstallations": 0,
+            "Live": [
+              {
+                "Vendor": "ASRock",
+                "HardwareSimulated": true,
+                "DesktopMode": "Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "2.0.0.9",
+                "InstallerSHA256": "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+                "Signer": "ASROCK INC.",
+                "DetectionMethod": "official_asrock_model_xml",
+                "DetectionSource": "https://www.asrock.com/support/LiveUpdate.asp?Platform=App&Model=B650M%20Pro%20RS",
+                "InstallerSource": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+                "ShortcutFileName": "Installer ASRock APP Shop 2.0.0.9.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              },
+              {
+                "Vendor": "ASRock",
+                "HardwareSimulated": true,
+                "DesktopMode": "OneDrive - Fixture/Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "2.0.0.9",
+                "InstallerSHA256": "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+                "Signer": "ASROCK INC.",
+                "DetectionMethod": "official_asrock_model_xml",
+                "DetectionSource": "https://www.asrock.com/support/LiveUpdate.asp?Platform=App&Model=B650M%20Pro%20RS",
+                "InstallerSource": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+                "ShortcutFileName": "Installer ASRock APP Shop 2.0.0.9.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              },
+              {
+                "Vendor": "MSI",
+                "HardwareSimulated": true,
+                "DesktopMode": "Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "2.0.74.0",
+                "InstallerSHA256": "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+                "DetectionMethod": "",
+                "DetectionSource": "",
+                "InstallerSource": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+                "ShortcutFileName": "Installer MSI Center 2.0.74.0.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              },
+              {
+                "Vendor": "MSI",
+                "HardwareSimulated": true,
+                "DesktopMode": "OneDrive - Fixture/Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "2.0.74.0",
+                "InstallerSHA256": "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+                "DetectionMethod": "",
+                "DetectionSource": "",
+                "InstallerSource": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+                "ShortcutFileName": "Installer MSI Center 2.0.74.0.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              },
+              {
+                "Vendor": "ASUS",
+                "HardwareSimulated": true,
+                "DesktopMode": "Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "1.0.7.1",
+                "InstallerSHA256": "C52343E16B608359223DF33EDC8D5789E7FEF4D2612986A883D29D915B76FF90",
+                "Signer": "ASUSTeK COMPUTER INC.",
+                "DetectionMethod": "official_asus_json",
+                "DetectionSource": "https://driverhub.asus.com/download/ASUS-DriverHub-Installer.json",
+                "InstallerSource": "https://driverhub.asus.com/download/1.0.7.1/ASUS-DriverHub-Installer.exe",
+                "ShortcutFileName": "Installer ASUS DriverHub 1.0.7.1.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              },
+              {
+                "Vendor": "ASUS",
+                "HardwareSimulated": true,
+                "DesktopMode": "OneDrive - Fixture/Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "1.0.7.1",
+                "InstallerSHA256": "C52343E16B608359223DF33EDC8D5789E7FEF4D2612986A883D29D915B76FF90",
+                "Signer": "ASUSTeK COMPUTER INC.",
+                "DetectionMethod": "official_asus_json",
+                "DetectionSource": "https://driverhub.asus.com/download/ASUS-DriverHub-Installer.json",
+                "InstallerSource": "https://driverhub.asus.com/download/1.0.7.1/ASUS-DriverHub-Installer.exe",
+                "ShortcutFileName": "Installer ASUS DriverHub 1.0.7.1.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              },
+              {
+                "Vendor": "GIGABYTE",
+                "HardwareSimulated": true,
+                "DesktopMode": "Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "26.08.28.01",
+                "InstallerSHA256": "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+                "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+                "DetectionMethod": "official_gcc_software_update_manifest",
+                "DetectionSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+                "InstallerSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+                "ShortcutFileName": "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              },
+              {
+                "Vendor": "GIGABYTE",
+                "HardwareSimulated": true,
+                "DesktopMode": "OneDrive - Fixture/Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "26.08.28.01",
+                "InstallerSHA256": "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+                "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+                "DetectionMethod": "official_gcc_software_update_manifest",
+                "DetectionSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+                "InstallerSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+                "ShortcutFileName": "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              }
+            ],
+            "DesktopCapture": null
+          }
+        },
+        {
+          "id": "cd4195eecbab4ac4b78c742ff9e4f013",
+          "kind": "beta_release",
+          "data": {
+            "Status": "passed",
+            "Suite": "Test-LDLCRelease.ps1",
+            "VendorInstallerExecuted": false
+          }
+        },
+        {
+          "id": "6e4bb43960f54eee9bdfeaa1da410fa2",
+          "kind": "vendor_fallback_tests",
+          "data": {
+            "VendorInstallerExecuted": false,
+            "ActualNetworkRequests": 0,
+            "Kind": "vendor_fallback_tests",
+            "NetworkFailureSimulated": true,
+            "Assertions": 110,
+            "DesktopRestored": true,
+            "Failures": 0,
+            "Mode": "real_url_files_with_simulated_vendor_failures",
+            "NativeWindows": true,
+            "Cases": [
+              {
+                "Result": "passed",
+                "Name": "MSI official fallback on Bureau"
+              },
+              {
+                "Result": "passed",
+                "Name": "MSI fallback preserves Manifeste officiel invalide : format modifie"
+              },
+              {
+                "Result": "passed",
+                "Name": "MSI fallback preserves Signature numerique non valide"
+              },
+              {
+                "Result": "passed",
+                "Name": "MSI fallback preserves Telechargement interrompu : 10 octets recus"
+              },
+              {
+                "Result": "passed",
+                "Name": "MSI fallback preserves Delai de lecture depasse"
+              },
+              {
+                "Result": "passed",
+                "Name": "MSI conflicting web shortcut is preserved"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS official fallback on Bureau"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS fallback preserves Manifeste officiel invalide : format modifie"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS fallback preserves Signature numerique non valide"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS fallback preserves Telechargement interrompu : 10 octets recus"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS fallback preserves Delai de lecture depasse"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS conflicting web shortcut is preserved"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE official fallback on Bureau"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE fallback preserves Manifeste officiel invalide : format modifie"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE fallback preserves Signature numerique non valide"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE fallback preserves Telechargement interrompu : 10 octets recus"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE fallback preserves Delai de lecture depasse"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE conflicting web shortcut is preserved"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock official fallback on Bureau"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock fallback preserves Manifeste officiel invalide : format modifie"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock fallback preserves Signature numerique non valide"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock fallback preserves Telechargement interrompu : 10 octets recus"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock fallback preserves Delai de lecture depasse"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock conflicting web shortcut is preserved"
+              },
+              {
+                "Result": "passed",
+                "Name": "Laptop has no fallback, download or Desktop change on Bureau"
+              },
+              {
+                "Result": "passed",
+                "Name": "MSI official fallback on OneDrive - Fixture/Bureau"
+              },
+              {
+                "Result": "passed",
+                "Name": "MSI fallback preserves Manifeste officiel invalide : format modifie"
+              },
+              {
+                "Result": "passed",
+                "Name": "MSI fallback preserves Signature numerique non valide"
+              },
+              {
+                "Result": "passed",
+                "Name": "MSI fallback preserves Telechargement interrompu : 10 octets recus"
+              },
+              {
+                "Result": "passed",
+                "Name": "MSI fallback preserves Delai de lecture depasse"
+              },
+              {
+                "Result": "passed",
+                "Name": "MSI conflicting web shortcut is preserved"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS official fallback on OneDrive - Fixture/Bureau"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS fallback preserves Manifeste officiel invalide : format modifie"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS fallback preserves Signature numerique non valide"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS fallback preserves Telechargement interrompu : 10 octets recus"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS fallback preserves Delai de lecture depasse"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASUS conflicting web shortcut is preserved"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE official fallback on OneDrive - Fixture/Bureau"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE fallback preserves Manifeste officiel invalide : format modifie"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE fallback preserves Signature numerique non valide"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE fallback preserves Telechargement interrompu : 10 octets recus"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE fallback preserves Delai de lecture depasse"
+              },
+              {
+                "Result": "passed",
+                "Name": "GIGABYTE conflicting web shortcut is preserved"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock official fallback on OneDrive - Fixture/Bureau"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock fallback preserves Manifeste officiel invalide : format modifie"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock fallback preserves Signature numerique non valide"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock fallback preserves Telechargement interrompu : 10 octets recus"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock fallback preserves Delai de lecture depasse"
+              },
+              {
+                "Result": "passed",
+                "Name": "ASRock conflicting web shortcut is preserved"
+              },
+              {
+                "Result": "passed",
+                "Name": "Laptop has no fallback, download or Desktop change on OneDrive - Fixture/Bureau"
+              },
+              {
+                "Result": "passed",
+                "Name": "Plan does not create any fallback or request a download"
+              },
+              {
+                "Result": "passed",
+                "Name": "Untrusted fallback URL cannot create a shortcut"
+              },
+              {
+                "Result": "passed",
+                "Name": "Unavailable Desktop preserves original error and official page"
+              },
+              {
+                "Result": "passed",
+                "Name": "Original Desktop restored after fallback tests"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6f63a4965b3946f4899209f00a3e5868",
+          "kind": "test_report",
+          "data": {
+            "Passage": "transport",
+            "HostPowerShell": "5.1.26100.33438",
+            "LiveRequested": false,
+            "DownloadAuditRequested": false,
+            "SimulatedTransport": true,
+            "Assertions": 142,
+            "Cases": [
+              {
+                "Name": "PowerShell syntax and isolation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated MSI",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated ASUS",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated GIGABYTE",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated ASRock",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unknown and partial SMBIOS",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence Dell Inc.",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence HP",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence LENOVO",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence Acer",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence An OEM not in a lookup table",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Laptop same manufacturer and convertible",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Real runner-like virtual hardware",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing revision and unsupported OS never authorize install",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Exact supplied support evidence is not claimed as live proof",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Numeric version comparison",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Supported driver categories yield candidates only",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Security and commercial apps denied by default",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "BIOS UEFI and firmware separated and never executed",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "GPU excluded and uncertain drivers need manual verification",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official URL allowlist resists host confusion",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Relative entity and direct JavaScript download links",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTPS relative redirects and complete body",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HEAD checks metadata without reading a binary body",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated redirect to outside host blocked before request",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated redirect loop bounded",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 403 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 404 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 429 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 500 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 503 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 206 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated connection error and actual cancellation deadline",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated short download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated interrupt download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated oversize download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Interrupted stream retries from scratch and leaves only the complete file",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Existing file never overwritten",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid PE and unsigned payload rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated invalid signature and valid wrong publisher rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ZIP audit validates signed payload and never executes",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ZIP path traversal refused",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ASUS streamed download with official Content-Disposition",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ASUS HTML download link without evaluating JavaScript",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Live": [],
+            "Failures": 0
+          }
+        },
+        {
+          "id": "128062389ab140df8e25c96eb80cb4da",
+          "kind": "utility_tests",
+          "data": {
+            "Kind": "utility_only_tests",
+            "SimulationCases": true,
+            "ActualVendorInstallations": 0,
+            "Assertions": 80,
+            "Cases": [
+              {
+                "Name": "Syntax and no driver/firmware/update invocations",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify MSI with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify ASUS with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify GIGABYTE with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify ASRock with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported unknown never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported missing_model never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported oem never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported portable never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported virtual never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported server never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported 32bit never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Manual fallback never claims downloaded equals installed",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Portable with an existing app still receives no Desktop shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Network failure precise and non successful",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Installer Desktop error is explicit and never claims a shortcut exists",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Already verified app creates shortcut without download or reinstall",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated supported installation verifies app and shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1603 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1641 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1223 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated 3010 requests manual restart only",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated Timeout fails without shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated Interrupted fails without shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Exit zero but no application fails verification",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Version comparison numeric and stale installation rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unknown package hash and changed installer never execute",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Desktop error never claims complete success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Real native process boundary blocks all vendor installers on GitHub",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe exact registered Store package and declared app target",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects wrong_family",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects developer_mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects unsigned",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects missing_app",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Registry SDK or orphan entry cannot prove MSI Center installed",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Real": [],
+            "Failures": 0
+          }
+        },
+        {
+          "id": "6ee179caad544fb5b15ecc8f606b500a",
+          "kind": "gigabyte_core_download_tests",
+          "data": {
+            "Kind": "gigabyte_core_download_tests",
+            "Assertions": 38,
+            "Cases": [
+              {
+                "Name": "Official software manifest selects only GCC and preserves its version",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "New manifest version changes the filename without a pinned release",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Description cannot overwrite the current version",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Another utility",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Optional bundle",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing version",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Duplicate section",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Duplicate version",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Version URL injection",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Version overflow",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing size",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid size",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Negative size",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Empty payload size",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unbounded payload size",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Empty response",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTML challenge",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Oversized response",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Production path extracts the current core and excludes bundled MB Update and RGB Sync",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Live catalogue HTTP 403",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Live catalogue timeout",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Interrupted download",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTTP transfer incomplete",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Complete HTTP file shorter than manifest",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Ambiguous payload",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Old executable rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Signature failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Modified hash",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Modified file length",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Modified executable version",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Old core inside current update wrapper",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Update wrapper masquerading as core",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Optional module extracted",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Failures": 0,
+            "Mode": "simulated_manifest_download_signature_inert_files",
+            "ActualNetworkRequests": 0,
+            "VendorInstallerExecuted": false
+          }
+        },
+        {
+          "id": "676aa530e8ff47dfaa430518af92f7b0",
+          "kind": "utility_asrock_discovery_tests",
+          "data": {
+            "Kind": "utility_asrock_discovery_tests",
+            "Cases": 53,
+            "Assertions": 109,
+            "Passed": 53,
+            "Failed": 0,
+            "SimulatedCases": 53,
+            "RealCases": 0,
+            "VendorInstallerExecuted": false,
+            "Installed": false,
+            "Results": [
+              {
+                "Name": "PowerShell syntax is valid",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Faithful official XML selects current APP Shop and records provenance",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Model comparison trims and ignores case while retaining canonical name",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Numeric version comparison selects 1.10 over 1.9",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Newest active release wins over older archives regardless of document order",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Commented higher version is ignored by the XML parser",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Newest OS-incompatible version never falls back to an older compatible release",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Same latest release split into OS-specific entries selects only the requested OS",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Supported board may still be unsupported on Windows 11",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unknown board fails before querying a catalog",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Root catalog model mismatch rejects manufacturer-only compatibility",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Fatal1ty alias is not silently invented",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Duplicate identical model records only establish membership",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTTP 200 catalog without APP Shop is not treated as success",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Driver BIOS and advertisement entries cannot become APP Shop candidates",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identical repeated release entries remain deterministic",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Conflicting hashes for the latest release are ambiguous",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid release version rejected: ",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid release version rejected: 2.0.0.9-beta",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid release version rejected: 1.2.3.4.5",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid release version rejected: 2147483648.1",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid release version rejected: ../2.0.0.9",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid SHA256 rejected: 0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid SHA256 rejected: 3",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid SHA256 rejected: 64",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid SHA256 rejected: 63",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid SHA256 rejected: 65",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or inconsistent inner executable rejected: ../APPShopSetup.exe",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or inconsistent inner executable rejected: C:/APPShopSetup.exe",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or inconsistent inner executable rejected: /APPShop(v2.0.0.9)/APPShopSetup(v2.0.0.9).exe",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or inconsistent inner executable rejected: APPShop(v2.0.0.9)/APPShopSetup(v2.0.0.4).exe",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or inconsistent inner executable rejected: APPShop(v2.0.0.9)/other.exe",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: http://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: https://example.invalid/Utility/Others/APPShop(v2.0.0.9).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: https://download.asrock.com.evil.invalid/Utility/Others/APPShop(v2.0.0.9).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: https://download.asrock.com/Utility/Others/APPShop(v2.0.0.4).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip?fallback=old",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: https://user@download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: /Utility/Others/../Others/APPShop(v2.0.0.9).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: /Utility/Others/APPShop%2ev2.0.0.9.zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Absolute official URL and escaped parentheses are accepted",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unexpected installer parameter rejected: /VerySilent /IgnoreChkEZDrv",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unexpected installer parameter rejected: /EZDrvInstaller",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unexpected installer parameter rejected: /silent",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unexpected installer parameter rejected: ",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTTP 503 at request 1 has no historical fallback",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTTP 503 at request 2 has no historical fallback",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Bot protection HTTP 200 rejected at Browser",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed XML rejected at Browser",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Bot protection HTTP 200 rejected at Manifest",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed XML rejected at Manifest",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "DTD and external entities are prohibited",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported OS fails before any network access",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Live": null
+          }
+        },
+        {
+          "id": "1d8682932d264fc5a141d4fb3d149c1b",
+          "kind": "utility_discovery_tests",
+          "data": {
+            "Kind": "utility_discovery_tests",
+            "Cases": 43,
+            "Assertions": 112,
+            "Passed": 43,
+            "Failed": 0,
+            "SimulatedCases": 43,
+            "RealCases": 0,
+            "VendorInstallerExecuted": false,
+            "Installed": false,
+            "Results": [
+              {
+                "Name": "Discovery test syntax is valid on native PowerShell",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASUS profile selects manifest and correct application filename",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official versioned route 1.0.7.1",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official versioned route 1.0.4.8",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official versioned route 1.9.0.0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official versioned route 1.10.0.0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Numeric comparison treats 1.10 as newer than 1.9",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official legacy route is checked against its manifest 1.0.4.7",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official legacy route is checked against its manifest 1.0.4.6",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official legacy route is checked against its manifest 0.9.0.0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Manifest minimum may be absent without inventing an older version",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"1.0.7\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"1.0.7.1-beta\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"1.0.7.1/../../old\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"https://example.invalid/file.exe\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"-1.0.7.1\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"2147483648.0.0.0\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\" 1.0.7.1\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid minimum version rejected: 1.0.8.0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid minimum version rejected: 1.0.7",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid minimum version rejected: 2147483648.0.0.0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid minimum version rejected: 1.0.7.1/old",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid JSON fails with precise reason and no fallback download",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Manifest HTTP 503 is not hidden by an older installer",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Manifest request permits only the official ASUS host",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Package pipeline verifies signature hash version and discovery metadata",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Signed old 1.0.4.8 is rejected when official manifest says 1.0.7.1",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Signed unexpected newer file also fails manifest consistency",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid signed FileVersion is refused: ",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid signed FileVersion is refused: 1.0.7.1-beta",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid signed FileVersion is refused: not-a-version",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Whitespace in signed FileVersion is normalized",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "File replaced after download fails hash verification",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Authenticode validation failure is not reported as success",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Interrupted download propagates without claiming a package",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing or ambiguous executable count 0 is refused",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing or ambiguous executable count 2 is refused",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock profile contains real APP Shop application executable",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock exact and versioned ARP names are accepted without case sensitivity",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock ARP name excludes SDK paths invalid versions suffixes and other vendors",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Discovery and download never invoke a vendor installer",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Live": null
+          }
+        },
+        {
+          "id": "6c371ebe000144ad9cacf55952381c6b",
+          "kind": "vendor_resilience_tests",
+          "data": {
+            "Cases": [
+              {
+                "Result": "passed",
+                "Name": "Immediate success performs no retry"
+              },
+              {
+                "Result": "passed",
+                "Name": "Temporary HTTP 408 then recovery"
+              },
+              {
+                "Result": "passed",
+                "Name": "Temporary HTTP 429 then recovery"
+              },
+              {
+                "Result": "passed",
+                "Name": "Temporary HTTP 500 then recovery"
+              },
+              {
+                "Result": "passed",
+                "Name": "Temporary HTTP 502 then recovery"
+              },
+              {
+                "Result": "passed",
+                "Name": "Temporary HTTP 503 then recovery"
+              },
+              {
+                "Result": "passed",
+                "Name": "Temporary HTTP 504 then recovery"
+              },
+              {
+                "Result": "passed",
+                "Name": "Interrupted network stream is retried"
+              },
+              {
+                "Result": "passed",
+                "Name": "Incomplete byte count is retried from a fresh request"
+              },
+              {
+                "Result": "passed",
+                "Name": "Two temporary failures then recovery use three attempts"
+              },
+              {
+                "Result": "passed",
+                "Name": "Persistent temporary failure stops after three attempts"
+              },
+              {
+                "Result": "passed",
+                "Name": "Permanent error is not hidden by retries: HTTP 403 sur la source officielle."
+              },
+              {
+                "Result": "passed",
+                "Name": "Permanent error is not hidden by retries: HTTP 404 sur la source officielle."
+              },
+              {
+                "Result": "passed",
+                "Name": "Permanent error is not hidden by retries: Destination HTTPS officielle refusee."
+              },
+              {
+                "Result": "passed",
+                "Name": "Permanent error is not hidden by retries: Signature numerique non valide."
+              },
+              {
+                "Result": "passed",
+                "Name": "Permanent error is not hidden by retries: Taille maximale de lecture depassee."
+              },
+              {
+                "Result": "passed",
+                "Name": "Permanent error is not hidden by retries: Fixture disk full"
+              },
+              {
+                "Result": "passed",
+                "Name": "Permanent error is not hidden by retries: tls"
+              },
+              {
+                "Result": "passed",
+                "Name": "Attempt deadlines never increase the original time budget"
+              },
+              {
+                "Result": "passed",
+                "Name": "Future MSI installer version 2.0.75.0 is discovered without a release pin"
+              },
+              {
+                "Result": "passed",
+                "Name": "Future MSI installer version 3.10.0.1 is discovered without a release pin"
+              }
+            ],
+            "ActualNetworkRequests": 0,
+            "VendorInstallerExecuted": false,
+            "Assertions": 27,
+            "Failures": 0,
+            "Kind": "vendor_resilience_tests",
+            "Mode": "simulated_http_failures_and_future_msi_versions"
+          }
+        },
+        {
+          "id": "fedc8e13abe945a08c6b328e192a48e0",
+          "kind": "beta_sync_tests",
+          "data": {
+            "Assertions": 11,
+            "Mode": "local_git_fixtures_no_push_no_network",
+            "Cases": [
+              {
+                "Result": "passed",
+                "Name": "Audit leaves identical files unchanged"
+              },
+              {
+                "Result": "passed",
+                "Name": "Missing stable correction is detected, then copied only into beta"
+              },
+              {
+                "Result": "passed",
+                "Name": "Conflicting beta edit is preserved"
+              },
+              {
+                "Result": "passed",
+                "Name": "Overlay change requires explicit merge and keeps beta integration"
+              },
+              {
+                "Result": "passed",
+                "Name": "Stable deletion is propagated while beta-only files remain"
+              },
+              {
+                "Result": "passed",
+                "Name": "Wrong repository cannot receive a synchronization"
+              }
+            ],
+            "Failures": 0,
+            "Kind": "beta_sync_tests"
+          }
+        },
+        {
+          "id": "94b77fd0fb5e4c43af67399c1af2b61d",
+          "kind": "beta_vendor_integration",
+          "data": {
+            "Cases": [
+              {
+                "Result": "passed",
+                "Name": "Five actual utility sources are embedded with valid hashes"
+              },
+              {
+                "Result": "passed",
+                "Name": "Portable is excluded by the real embedded utility before network and app probe"
+              },
+              {
+                "Result": "passed",
+                "Name": "Changed extracted source is refused before import"
+              },
+              {
+                "Result": "passed",
+                "Name": "Verified installer shortcut is a normal manual result"
+              },
+              {
+                "Result": "passed",
+                "Name": "Official web fallback remains a visible warning, never installer success"
+              },
+              {
+                "Result": "passed",
+                "Name": "Already installed application keeps its verified shortcut"
+              },
+              {
+                "Result": "passed",
+                "Name": "Laptop or unsupported PC is skipped without blocking warning"
+              },
+              {
+                "Result": "passed",
+                "Name": "Real detection/download failure exposes the blocking cause"
+              },
+              {
+                "Result": "passed",
+                "Name": "Module error does not masquerade as installation"
+              },
+              {
+                "Result": "passed",
+                "Name": "Thrown failure is visible and does not abort the base preparation"
+              },
+              {
+                "Result": "passed",
+                "Name": "Quit before this step prevents module/network work"
+              },
+              {
+                "Result": "passed",
+                "Name": "The real workflow calls the beta step exactly once after apps and before defaults"
+              }
+            ],
+            "VendorInstallerExecuted": false,
+            "Assertions": 29,
+            "Failures": 0,
+            "Kind": "beta_vendor_integration",
+            "Mode": "real_embedded_import_with_simulated_hardware_and_adapter_results"
+          }
+        }
+      ],
+      "incomplete": [],
+      "legacy": []
+    }
+  ]
+}

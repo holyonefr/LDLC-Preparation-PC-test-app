@@ -585,3 +585,28 @@ SHA256 EXE C98364BA1221C684DE893D325E5C2F8A394CC68DAC54FF86B4F7EAE8EDE19643,
 verifie apres recuperation Git LFS. Rapport et JSON dans beta/. Aucune installation
 constructeur reelle ; preuve GCC reseau/signature/COM reelle avec materiel simule.
 Les trois refs de production sont restees inchangees, aucun push sur ces depots.
+
+
+## Fiabilite constructeur et capture Bureau — 18 octobre 2026
+
+Deux passages photo reussis 39157346040/39157773796 : 23 scenarios / 136 assertions
+chacun, quatre telechargements par marque au total, vraie capture Windows dans
+beta/evidence/desktop-shortcuts. Nouveau code : requetes courantes sans cache,
+maximum trois reprises dans un budget de temps unique, controles TLS/signature/
+integrite conserves, nouvelles versions des quatre marques testees sans epinglage.
+Repli ajoute vers une page officielle via .url, toujours un avertissement manuel.
+Version avant ce repli poussee en af5d0f3, puis candidat 3e384af, validation native
+complete 39158843568 et livraison Windows 69e63c9. EXE SHA256
+F84E27C13A2373552A6C6883339E1E3FB791838991E6847429454D820E172E45 verifie localement.
+Huit nouveaux telechargements reels et quatre Preview/fermetures reussis ;
+54 scenarios / 110 assertions de repli .url reussis sous Windows, erreurs simulees.
+Aucune installation constructeur executee sur la VM, aucun push des trois productions.
+
+Derniere precision utilisateur : un lien de page officielle ne suffit pas comme
+fallback ; rechercher d'autres sites/liens de telechargement des quatre applications.
+Aucun miroir binaire alternatif valide ni active pour l'instant. MSI Store : fiche
+reelle 200 et identite confirmee, acquisition du paquet non testee. WinGet MSI reste
+2.0.72 et son URL retourne vers MSI ; Chocolatey app-shop 1.0.31 trop ancien ;
+Ninite/Scoop Extras sans correspondance demandee. Les miroirs explores rencontrent
+un refus 403 du tunnel cloud ; autorisations reseau sauvegardees en brouillon,
+publication de l'environnement requise avant verification. Voir beta/REPLI_TELECHARGEMENTS.md.

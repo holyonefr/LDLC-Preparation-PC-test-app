@@ -1,0 +1,12 @@
+{
+  "ObservedAtUtc": "2026-10-18T19:38:22.132200+00:00",
+  "Policy": "Push beta only",
+  "MainRefs": {
+    "holyonefr/LDLC-Preparation": "a2a57ee2d28203fded79802eae2a58883d996c7e",
+    "holyonefr/Numerik-s-Preparation-PC": "1a4dae5039c18634dd1371e7d4813a5135ab3e45",
+    "holyonefr/LDLC-Preparation-Addon": "22ad8128154ef2cf2fb190522962723f37b812a1"
+  },
+  "UnchangedFromStartOfBetaTask": true,
+  "BetaWindowsDeliveryCommit": "69e63c9f6771c4997562b1eef0ecdde57e816fd6",
+  "BetaExecutableSHA256": "F84E27C13A2373552A6C6883339E1E3FB791838991E6847429454D820E172E45"
+}

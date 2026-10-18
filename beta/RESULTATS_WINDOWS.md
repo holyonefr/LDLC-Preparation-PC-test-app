@@ -62,3 +62,80 @@ Le second run reussit et publie uniquement les livraisons de ce depot beta.
 Les deux preuves brutes sont dans `beta/evidence/windows-<run>.json`.
 `production-freeze.json` conserve les trois references de production verifiees
 inchangees. Aucun push ni deploiement Google effectue sur les trois applications.
+
+
+## Raccourcis des quatre marques et vraie capture du Bureau
+
+Runs reussis [39157346040](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39157346040)
+et [39157773796](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39157773796).
+Chaque passage : 23 scenarios / 136 assertions / 0 echec, dont huit vrais
+telechargements, signatures et raccourcis COM (Bureau et redirection OneDrive de test).
+Soit quatre telechargements et creations/verifications de raccourcis par marque
+sur ces deux passages. Carte mere simulee, aucun installateur constructeur execute.
+
+| Application | Version officielle constatee dans les deux passages |
+|---|---|
+| ASRock APP Shop | 2.0.0.9 |
+| MSI Center | 2.0.74.0 |
+| ASUS DriverHub | 1.0.7.1 |
+| GIGABYTE Control Center, coeur seul | 26.08.28.01 |
+
+La [capture Windows reelle](evidence/desktop-shortcuts/desktop-shortcuts.png) est
+issue du second passage, mode `actual_windows_desktop_screenshot`, sans retouche
+ni generation d'image. Les quatre liens sont regroupes pour la demonstration ;
+sur un PC, seule sa marque est selectionnee. Les autres icones sont preinstallees
+sur le runner. Les cibles signees existaient lors de la capture, puis les fichiers
+de test ont ete nettoyes. Les cibles de production sont conservees en stockage local.
+SHA256 image : `946A2F27F69AA4F3A9E4E34DF359EC5CED0120F647BB9E9AED912C0A0F945535`.
+Les deux preuves et les rapports/image sont conserves dans `beta/evidence/`.
+
+Le telechargement de l'artefact Azure du premier passage a ete refuse (HTTP 403)
+par le proxy cloud. Le second passage a regenere la capture sur Windows et l'a
+publiee directement dans le depot beta autorise ; aucune recuperation de l'artefact
+bloque par un relais. Le clic sur Installer ouvre l'installateur local verifie,
+pas un site web ; l'installation reste manuelle et non validee sur cette VM.
+
+
+## Dernier passage : reprises reseau, nouvelles versions et repli manuel
+
+Run [39158843568](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39158843568),
+Windows Server 2025 / PowerShell 5.1 : reussi. Sources `3e384afbb977363198ff9f8c5af23734163be8af`.
+EXE compile/teste puis publie en `69e63c9f6771c4997562b1eef0ecdde57e816fd6`.
+SHA256 recupere et compare au rapport Windows et au manifeste :
+`F84E27C13A2373552A6C6883339E1E3FB791838991E6847429454D820E172E45`.
+
+| Controle | Scenarios | Assertions | Echecs |
+|---|---:|---:|---:|
+| Integration beta, dont repli avertissement et exclusion portable | 12 | 29 | 0 |
+| Synchronisation par depots locaux fictifs | 6 | 11 | 0 |
+| Reprises HTTP et nouvelles versions MSI simulees | 21 | 27 | 0 |
+| Detection ASUS et versions numeriques simulees | 43 | 112 | 0 |
+| Detection ASRock par modele/OS simulee | 53 | 109 | 0 |
+| Detection/extraction GCC simulee | 33 | 38 | 0 |
+| Parcours constructeur simule, aucune installation reelle | 35 | 80 | 0 |
+| Transport HttpClient reel avec reponses/flux simules | 44 | 142 | 0 |
+| Repli officiel .url : vrais fichiers/COM Windows, erreurs simulees | 54 | 110 | 0 |
+| Installateurs et raccourcis, dont huit vrais telechargements | 22 | 130 | 0 |
+
+Suite release existante egalement reussie (35 suites PowerShell, 3 JS et diagnostics
+BootstrapTest/SelfTest/WorkerSmokeTest). Quatre Preview/fermetures dans des processus
+isoles : 1298, 1131, 1146 et 1128 ms depuis l'EntryPoint, hors clic/UAC.
+
+Les nouvelles versions, schema invalide, erreur 403/404, 408/429/5xx, coupure,
+fichier incomplet, certificat invalide, conflits de raccourcis et Bureau inaccessible
+sont des simulations clairement identifiees dans le JSON. La reprise d'un flux
+interrompu recommence a zero et ne laisse aucun fichier .part. Les fichiers .url
+sont relus par COM, les deux redirections du Bureau sont restaurees apres test.
+Ce repli ouvre seulement la page officielle : **ce n'est pas un miroir binaire**.
+L'utilisateur a ensuite demande des sites de telechargement alternatifs : etude
+separee dans [REPLI_TELECHARGEMENTS.md](REPLI_TELECHARGEMENTS.md), aucun miroir
+binaire non verifie ajoute au telechargement automatique.
+
+Les huit telechargements live retrouvent APP Shop 2.0.0.9, MSI Center 2.0.74.0,
+ASUS DriverHub 1.0.7.1 et GCC coeur 26.08.28.01, signatures valides, sans installation.
+Avec les deux passages de capture precedents, cela represente six telechargements
+et verifications de raccourcis par marque (trois Bureau, trois OneDrive-fixture).
+
+Les runs 39158466171 et 39158519116 ont ete annules pendant l'elargissement du
+perimetre, avant la validation finale. Ils ne sont pas comptes comme reussis.
+Seul le depot beta a recu les modifications et la livraison Windows.
