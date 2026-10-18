@@ -1,0 +1,361 @@
+﻿{
+    "Kind":  "utility_installer_shortcut_tests",
+    "Assertions":  136,
+    "Cases":  [
+                  {
+                      "Name":  "Verified ASRock installer becomes a manual Desktop shortcut",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Verified MSI installer becomes a manual Desktop shortcut",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Verified ASUS installer becomes a manual Desktop shortcut",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Verified GIGABYTE installer becomes a manual Desktop shortcut",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Repeated preparation reuses the same stable installer target",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Installer target survives removal of the temporary download",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Changed downloaded installer cannot receive a shortcut",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Invalid signature prevents any shortcut",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Changed persistent installer is rejected without overwrite",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Wrong file version is rejected even if the hash is known",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Invalid version or hash cannot form a cache path",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "GIGABYTE full bundle cannot be offered as a minimal installer shortcut",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Inaccessible Desktop reports an explicit error",
+                      "Mode":  "simulation",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Actual ASRock download and installer shortcut: Bureau",
+                      "Mode":  "real_download_signature_and_com_with_hardware_fixture",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Actual ASRock download and installer shortcut: OneDrive - Fixture/Bureau",
+                      "Mode":  "real_download_signature_and_com_with_hardware_fixture",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Actual MSI download and installer shortcut: Bureau",
+                      "Mode":  "real_download_signature_and_com_with_hardware_fixture",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Actual MSI download and installer shortcut: OneDrive - Fixture/Bureau",
+                      "Mode":  "real_download_signature_and_com_with_hardware_fixture",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Actual ASUS download and installer shortcut: Bureau",
+                      "Mode":  "real_download_signature_and_com_with_hardware_fixture",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Actual ASUS download and installer shortcut: OneDrive - Fixture/Bureau",
+                      "Mode":  "real_download_signature_and_com_with_hardware_fixture",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Actual GIGABYTE download and installer shortcut: Bureau",
+                      "Mode":  "real_download_signature_and_com_with_hardware_fixture",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Actual GIGABYTE download and installer shortcut: OneDrive - Fixture/Bureau",
+                      "Mode":  "real_download_signature_and_com_with_hardware_fixture",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Capture verified installer shortcuts on the Windows test Desktop",
+                      "Mode":  "real_windows_capture_or_explicit_native_preview",
+                      "Result":  "passed",
+                      "Error":  ""
+                  },
+                  {
+                      "Name":  "Original Windows Desktop is restored after native tests",
+                      "Mode":  "real_com",
+                      "Result":  "passed",
+                      "Error":  ""
+                  }
+              ],
+    "Failures":  0,
+    "VendorInstallerExecuted":  false,
+    "ActualVendorInstallations":  0,
+    "Live":  [
+                 {
+                     "Vendor":  "ASRock",
+                     "HardwareSimulated":  true,
+                     "DesktopMode":  "Bureau",
+                     "OfficialDownloadReal":  true,
+                     "SignatureReal":  true,
+                     "ShortcutCOMReal":  true,
+                     "CatalogueMode":  "live",
+                     "InstallerVersion":  "2.0.0.9",
+                     "InstallerSHA256":  "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+                     "Signer":  "ASROCK INC.",
+                     "DetectionMethod":  "official_asrock_model_xml",
+                     "DetectionSource":  "https://www.asrock.com/support/LiveUpdate.asp?Platform=App\u0026Model=B650M%20Pro%20RS",
+                     "InstallerSource":  "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+                     "ShortcutFileName":  "Installer ASRock APP Shop 2.0.0.9.lnk",
+                     "TargetExistedAtCheck":  true,
+                     "Arguments":  "",
+                     "ReusedWithoutDuplicate":  true,
+                     "UnrelatedShortcutPreserved":  true,
+                     "VendorInstallerExecuted":  false,
+                     "Installed":  false
+                 },
+                 {
+                     "Vendor":  "ASRock",
+                     "HardwareSimulated":  true,
+                     "DesktopMode":  "OneDrive - Fixture/Bureau",
+                     "OfficialDownloadReal":  true,
+                     "SignatureReal":  true,
+                     "ShortcutCOMReal":  true,
+                     "CatalogueMode":  "live",
+                     "InstallerVersion":  "2.0.0.9",
+                     "InstallerSHA256":  "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+                     "Signer":  "ASROCK INC.",
+                     "DetectionMethod":  "official_asrock_model_xml",
+                     "DetectionSource":  "https://www.asrock.com/support/LiveUpdate.asp?Platform=App\u0026Model=B650M%20Pro%20RS",
+                     "InstallerSource":  "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+                     "ShortcutFileName":  "Installer ASRock APP Shop 2.0.0.9.lnk",
+                     "TargetExistedAtCheck":  true,
+                     "Arguments":  "",
+                     "ReusedWithoutDuplicate":  true,
+                     "UnrelatedShortcutPreserved":  true,
+                     "VendorInstallerExecuted":  false,
+                     "Installed":  false
+                 },
+                 {
+                     "Vendor":  "MSI",
+                     "HardwareSimulated":  true,
+                     "DesktopMode":  "Bureau",
+                     "OfficialDownloadReal":  true,
+                     "SignatureReal":  true,
+                     "ShortcutCOMReal":  true,
+                     "CatalogueMode":  "live",
+                     "InstallerVersion":  "2.0.74.0",
+                     "InstallerSHA256":  "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                     "Signer":  "MICRO-STAR INTERNATIONAL CO., LTD.",
+                     "DetectionMethod":  "",
+                     "DetectionSource":  "",
+                     "InstallerSource":  "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+                     "ShortcutFileName":  "Installer MSI Center 2.0.74.0.lnk",
+                     "TargetExistedAtCheck":  true,
+                     "Arguments":  "",
+                     "ReusedWithoutDuplicate":  true,
+                     "UnrelatedShortcutPreserved":  true,
+                     "VendorInstallerExecuted":  false,
+                     "Installed":  false
+                 },
+                 {
+                     "Vendor":  "MSI",
+                     "HardwareSimulated":  true,
+                     "DesktopMode":  "OneDrive - Fixture/Bureau",
+                     "OfficialDownloadReal":  true,
+                     "SignatureReal":  true,
+                     "ShortcutCOMReal":  true,
+                     "CatalogueMode":  "live",
+                     "InstallerVersion":  "2.0.74.0",
+                     "InstallerSHA256":  "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                     "Signer":  "MICRO-STAR INTERNATIONAL CO., LTD.",
+                     "DetectionMethod":  "",
+                     "DetectionSource":  "",
+                     "InstallerSource":  "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+                     "ShortcutFileName":  "Installer MSI Center 2.0.74.0.lnk",
+                     "TargetExistedAtCheck":  true,
+                     "Arguments":  "",
+                     "ReusedWithoutDuplicate":  true,
+                     "UnrelatedShortcutPreserved":  true,
+                     "VendorInstallerExecuted":  false,
+                     "Installed":  false
+                 },
+                 {
+                     "Vendor":  "ASUS",
+                     "HardwareSimulated":  true,
+                     "DesktopMode":  "Bureau",
+                     "OfficialDownloadReal":  true,
+                     "SignatureReal":  true,
+                     "ShortcutCOMReal":  true,
+                     "CatalogueMode":  "live",
+                     "InstallerVersion":  "1.0.7.1",
+                     "InstallerSHA256":  "C52343E16B608359223DF33EDC8D5789E7FEF4D2612986A883D29D915B76FF90",
+                     "Signer":  "ASUSTeK COMPUTER INC.",
+                     "DetectionMethod":  "official_asus_json",
+                     "DetectionSource":  "https://driverhub.asus.com/download/ASUS-DriverHub-Installer.json",
+                     "InstallerSource":  "https://driverhub.asus.com/download/1.0.7.1/ASUS-DriverHub-Installer.exe",
+                     "ShortcutFileName":  "Installer ASUS DriverHub 1.0.7.1.lnk",
+                     "TargetExistedAtCheck":  true,
+                     "Arguments":  "",
+                     "ReusedWithoutDuplicate":  true,
+                     "UnrelatedShortcutPreserved":  true,
+                     "VendorInstallerExecuted":  false,
+                     "Installed":  false
+                 },
+                 {
+                     "Vendor":  "ASUS",
+                     "HardwareSimulated":  true,
+                     "DesktopMode":  "OneDrive - Fixture/Bureau",
+                     "OfficialDownloadReal":  true,
+                     "SignatureReal":  true,
+                     "ShortcutCOMReal":  true,
+                     "CatalogueMode":  "live",
+                     "InstallerVersion":  "1.0.7.1",
+                     "InstallerSHA256":  "C52343E16B608359223DF33EDC8D5789E7FEF4D2612986A883D29D915B76FF90",
+                     "Signer":  "ASUSTeK COMPUTER INC.",
+                     "DetectionMethod":  "official_asus_json",
+                     "DetectionSource":  "https://driverhub.asus.com/download/ASUS-DriverHub-Installer.json",
+                     "InstallerSource":  "https://driverhub.asus.com/download/1.0.7.1/ASUS-DriverHub-Installer.exe",
+                     "ShortcutFileName":  "Installer ASUS DriverHub 1.0.7.1.lnk",
+                     "TargetExistedAtCheck":  true,
+                     "Arguments":  "",
+                     "ReusedWithoutDuplicate":  true,
+                     "UnrelatedShortcutPreserved":  true,
+                     "VendorInstallerExecuted":  false,
+                     "Installed":  false
+                 },
+                 {
+                     "Vendor":  "GIGABYTE",
+                     "HardwareSimulated":  true,
+                     "DesktopMode":  "Bureau",
+                     "OfficialDownloadReal":  true,
+                     "SignatureReal":  true,
+                     "ShortcutCOMReal":  true,
+                     "CatalogueMode":  "live",
+                     "InstallerVersion":  "26.08.28.01",
+                     "InstallerSHA256":  "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+                     "Signer":  "GIGA-BYTE TECHNOLOGY CO., LTD.",
+                     "DetectionMethod":  "official_gcc_software_update_manifest",
+                     "DetectionSource":  "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+                     "InstallerSource":  "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+                     "ShortcutFileName":  "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+                     "TargetExistedAtCheck":  true,
+                     "Arguments":  "",
+                     "ReusedWithoutDuplicate":  true,
+                     "UnrelatedShortcutPreserved":  true,
+                     "VendorInstallerExecuted":  false,
+                     "Installed":  false
+                 },
+                 {
+                     "Vendor":  "GIGABYTE",
+                     "HardwareSimulated":  true,
+                     "DesktopMode":  "OneDrive - Fixture/Bureau",
+                     "OfficialDownloadReal":  true,
+                     "SignatureReal":  true,
+                     "ShortcutCOMReal":  true,
+                     "CatalogueMode":  "live",
+                     "InstallerVersion":  "26.08.28.01",
+                     "InstallerSHA256":  "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+                     "Signer":  "GIGA-BYTE TECHNOLOGY CO., LTD.",
+                     "DetectionMethod":  "official_gcc_software_update_manifest",
+                     "DetectionSource":  "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+                     "InstallerSource":  "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+                     "ShortcutFileName":  "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+                     "TargetExistedAtCheck":  true,
+                     "Arguments":  "",
+                     "ReusedWithoutDuplicate":  true,
+                     "UnrelatedShortcutPreserved":  true,
+                     "VendorInstallerExecuted":  false,
+                     "Installed":  false
+                 }
+             ],
+    "DesktopCapture":  {
+                           "Mode":  "actual_windows_desktop_screenshot",
+                           "ImagePath":  "D:\\a\\LDLC-Preparation-PC-test-app\\LDLC-Preparation-PC-test-app\\artifacts\\desktop-shortcuts\\desktop-shortcuts.png",
+                           "ImageFile":  "desktop-shortcuts.png",
+                           "ImageSHA256":  "946A2F27F69AA4F3A9E4E34DF359EC5CED0120F647BB9E9AED912C0A0F945535",
+                           "Shortcuts":  [
+                                             {
+                                                 "Signature":  "Valid",
+                                                 "Name":  "Installer ASRock APP Shop 2.0.0.9.lnk",
+                                                 "SHA256":  "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+                                                 "Installed":  false
+                                             },
+                                             {
+                                                 "Signature":  "Valid",
+                                                 "Name":  "Installer MSI Center 2.0.74.0.lnk",
+                                                 "SHA256":  "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                                                 "Installed":  false
+                                             },
+                                             {
+                                                 "Signature":  "Valid",
+                                                 "Name":  "Installer ASUS DriverHub 1.0.7.1.lnk",
+                                                 "SHA256":  "C52343E16B608359223DF33EDC8D5789E7FEF4D2612986A883D29D915B76FF90",
+                                                 "Installed":  false
+                                             },
+                                             {
+                                                 "Signature":  "Valid",
+                                                 "Name":  "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+                                                 "SHA256":  "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+                                                 "Installed":  false
+                                             }
+                                         ],
+                           "HardwareSimulated":  true,
+                           "VendorInstallerExecuted":  false,
+                           "ActualVendorInstallations":  0,
+                           "ScreenCaptureError":  ""
+                       }
+}

@@ -1,0 +1,36 @@
+﻿{
+    "Mode":  "actual_windows_desktop_screenshot",
+    "ImagePath":  "D:\\a\\LDLC-Preparation-PC-test-app\\LDLC-Preparation-PC-test-app\\artifacts\\desktop-shortcuts\\desktop-shortcuts.png",
+    "ImageFile":  "desktop-shortcuts.png",
+    "ImageSHA256":  "946A2F27F69AA4F3A9E4E34DF359EC5CED0120F647BB9E9AED912C0A0F945535",
+    "Shortcuts":  [
+                      {
+                          "Signature":  "Valid",
+                          "Name":  "Installer ASRock APP Shop 2.0.0.9.lnk",
+                          "SHA256":  "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+                          "Installed":  false
+                      },
+                      {
+                          "Signature":  "Valid",
+                          "Name":  "Installer MSI Center 2.0.74.0.lnk",
+                          "SHA256":  "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                          "Installed":  false
+                      },
+                      {
+                          "Signature":  "Valid",
+                          "Name":  "Installer ASUS DriverHub 1.0.7.1.lnk",
+                          "SHA256":  "C52343E16B608359223DF33EDC8D5789E7FEF4D2612986A883D29D915B76FF90",
+                          "Installed":  false
+                      },
+                      {
+                          "Signature":  "Valid",
+                          "Name":  "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+                          "SHA256":  "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+                          "Installed":  false
+                      }
+                  ],
+    "HardwareSimulated":  true,
+    "VendorInstallerExecuted":  false,
+    "ActualVendorInstallations":  0,
+    "ScreenCaptureError":  ""
+}
