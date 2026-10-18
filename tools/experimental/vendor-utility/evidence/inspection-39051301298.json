@@ -1,0 +1,151 @@
+{
+  "run": {
+    "id": 39051301298,
+    "head_sha": "cbcf45b6c16236b54e1ead0205beca815b1b163f",
+    "status": "completed",
+    "conclusion": "cancelled",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39051301298"
+  },
+  "jobs": [
+    {
+      "id": 117450271542,
+      "name": "utility",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-17T16:52:33Z",
+          "completed_at": "2026-10-17T16:52:35Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-17T16:52:35Z",
+          "completed_at": "2026-10-17T16:52:46Z"
+        },
+        {
+          "name": "Inspect MSI installer without executing it",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "number": 3,
+          "started_at": "2026-10-17T16:52:46Z",
+          "completed_at": "2026-10-17T17:00:15Z"
+        },
+        {
+          "name": "Validate independent utility script with simulated installers",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-10-17T17:00:15Z",
+          "completed_at": "2026-10-17T17:00:15Z"
+        },
+        {
+          "name": "Preserve JSON evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-17T17:00:15Z",
+          "completed_at": "2026-10-17T17:00:17Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-17T17:00:17Z",
+          "completed_at": "2026-10-17T17:00:20Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-17T17:00:20Z",
+          "completed_at": "2026-10-17T17:00:20Z"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "77b04e715f8646e1b70fd05d1283234c",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "ExitCode": 0,
+            "VendorInstallerExecuted": false,
+            "Stage": "static_extract_complete"
+          }
+        },
+        {
+          "id": "a6e03aaad2b240fd9ad8ed1110b58a1a",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "ExitCode": 0,
+            "VendorInstallerExecuted": false,
+            "Stage": "static_list_complete"
+          }
+        },
+        {
+          "id": "fbb25f34824f4f8a8f524cd401770520",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "Stage": "portable_unpacker_verified",
+            "VendorInstallerExecuted": false
+          }
+        },
+        {
+          "id": "b05fd321284945dea37fb3df06763dc7",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "VendorInstallerExecuted": false,
+            "Audit": {
+              "Vendor": "MSI",
+              "Tool": "MSI Center",
+              "Status": "download_and_signed_executables_verified",
+              "RequestedUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "FinalUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "Redirects": [
+                "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip"
+              ],
+              "Bytes": 584849764,
+              "ExpectedBytes": 584849764,
+              "ProgressUpdates": 11,
+              "SHA256": "FBFA35A0CD8B4A71F6F0CAC5090C50A97D082E1F5F93D5B95493526A34032E96",
+              "Payloads": [
+                {
+                  "Status": "Valid",
+                  "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+                  "SHA256": "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                  "Bytes": 584849584,
+                  "FileVersion": "2.0.74.0            "
+                }
+              ],
+              "ReportedExecutableVersion": "2.0.74.0            ",
+              "ArchivePublisherHash": "not_available",
+              "LatestVersion": "not_established",
+              "HardwareCompatibility": "not_established",
+              "Installed": false,
+              "Executed": false,
+              "FirmwareFlashed": false
+            },
+            "Stage": "official_download_verified"
+          }
+        },
+        {
+          "id": "2e0454b16be0425b88865d74682593ed",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "Stage": "official_download_started",
+            "VendorInstallerExecuted": false
+          }
+        }
+      ],
+      "incomplete": [],
+      "legacy": []
+    }
+  ]
+}

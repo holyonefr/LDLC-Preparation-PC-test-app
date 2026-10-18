@@ -1,0 +1,7 @@
+{
+  "SchemaVersion": 1,
+  "Edition": "LDLC",
+  "Repository": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app.git",
+  "UpstreamRepository": "https://github.com/holyonefr/LDLC-Preparation.git",
+  "InitialCoreCommit": "affa8b8742cee2efe65d084b12f743fe18437b15"
+}

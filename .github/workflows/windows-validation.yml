@@ -1,0 +1,66 @@
+name: Validation Windows LDLC
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ldlc-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validation:
+    name: Windows - passage ${{ matrix.passage }} sur 3
+    runs-on: windows-2022
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        passage: [1, 2, 3]
+    env:
+      LDLC_TELEMETRY_DISABLED: '1'
+      NUMERIKS_VALIDATION_PASS: ${{ matrix.passage }}
+    steps:
+      - name: Recuperer le depot et les executables Git LFS
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          lfs: true
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Tester la livraison puis compiler et verifier sous Windows
+        shell: powershell
+        run: ./.github/scripts/Test-WindowsValidation.ps1
+
+      - name: Lire les statuts du dashboard Google sans modifier les donnees
+        if: matrix.passage == 1 && github.repository == 'holyonefr/LDLC-Preparation'
+        shell: powershell
+        run: ./.github/scripts/Read-TelemetrySnapshot.ps1
+
+      - name: Verifier envoi client et dashboard permanent puis nettoyer les seuls essais
+        if: matrix.passage == 1 && github.repository == 'holyonefr/LDLC-Preparation'
+        shell: powershell
+        run: ./tools/Test-PreparationDashboardRoundTrip.ps1
+
+      - name: Conserver les journaux et apercus
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: rapports-windows-passage-${{ matrix.passage }}
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Conserver la compilation Windows si tous les controles passent
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ldlc-validation-passage-${{ matrix.passage }}
+          path: |
+            dist/*.exe
+            dist/*.exe.config
+            dist/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 7

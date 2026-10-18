@@ -1,0 +1,2225 @@
+{
+  "run": {
+    "id": 39127977792,
+    "head_sha": "b950fef3c493b35996b3667268698f810c0c19bb",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39127977792"
+  },
+  "jobs": [
+    {
+      "id": 117677019937,
+      "name": "utility",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T12:36:22Z",
+          "completed_at": "2026-10-18T12:36:23Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T12:36:23Z",
+          "completed_at": "2026-10-18T12:36:35Z"
+        },
+        {
+          "name": "Inspect MSI installer without executing it",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3,
+          "started_at": "2026-10-18T12:36:35Z",
+          "completed_at": "2026-10-18T12:36:35Z"
+        },
+        {
+          "name": "Validate independent utility script with simulated installers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-18T12:36:35Z",
+          "completed_at": "2026-10-18T12:36:53Z"
+        },
+        {
+          "name": "Verify ASUS discovery and signed download without installation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-18T12:36:53Z",
+          "completed_at": "2026-10-18T12:36:55Z"
+        },
+        {
+          "name": "Inspect ASRock signature and Inno actions without installation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-10-18T12:36:55Z",
+          "completed_at": "2026-10-18T12:36:55Z"
+        },
+        {
+          "name": "Verify ASRock model catalogue and current signed download",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-18T12:36:55Z",
+          "completed_at": "2026-10-18T12:36:58Z"
+        },
+        {
+          "name": "Verify GIGABYTE discovery using simulated catalogues",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-18T12:36:58Z",
+          "completed_at": "2026-10-18T12:36:58Z"
+        },
+        {
+          "name": "Audit official GIGABYTE bundle and application signatures without execution",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-18T12:36:58Z",
+          "completed_at": "2026-10-18T12:37:28Z"
+        },
+        {
+          "name": "Verify MSI manifest parser with inert ZIP and XML fixtures",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-18T12:37:28Z",
+          "completed_at": "2026-10-18T12:37:29Z"
+        },
+        {
+          "name": "Read official MSI application manifests without installation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-18T12:37:29Z",
+          "completed_at": "2026-10-18T12:38:23Z"
+        },
+        {
+          "name": "Inspect current ASRock installer actions without execution",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-18T12:38:23Z",
+          "completed_at": "2026-10-18T12:38:25Z"
+        },
+        {
+          "name": "Reject substituted packages and older versions using simulated payloads",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-18T12:38:25Z",
+          "completed_at": "2026-10-18T12:38:26Z"
+        },
+        {
+          "name": "Preserve JSON evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-18T12:38:26Z",
+          "completed_at": "2026-10-18T12:38:29Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-10-18T12:38:29Z",
+          "completed_at": "2026-10-18T12:38:31Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-10-18T12:38:31Z",
+          "completed_at": "2026-10-18T12:38:31Z"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "17ce1c797141475b816a12216afe14de",
+          "kind": "utility_package_verification_tests",
+          "data": {
+            "Kind": "utility_package_verification_tests",
+            "Mode": "simulated_audit_and_signature_real_inert_zip_files",
+            "ActualNetworkRequests": 0,
+            "ActualVendorInstallations": 0,
+            "ActualVendorInstallerExecutions": 0,
+            "Assertions": 72,
+            "Cases": [
+              {
+                "Name": "PowerShell syntax is valid",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Current ASRock package preserves verified version hash and discovery",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock archive SHA256 mismatch blocks before payload verification",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock wrong internal installer path blocks even with valid archive metadata",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock duplicate expected ZIP entries are rejected",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock internal path comparison does not accept differently cased names",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock ZIP Windows separators normalize to the catalog path",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock ZIP entry length must equal audited payload length",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock missing archive fails explicitly",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock multiple archives fail explicitly",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock multiple audited payloads are rejected before signature recheck",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock additional extracted executable is rejected",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing extracted executable is rejected",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual payload mutation after audit changes SHA256 and is rejected",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock older signed file version cannot pass as current catalog version",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock higher unexpected file version also fails catalog equality",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid PE file version cannot become a successful package",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "File version surrounding whitespace is trimmed after verification",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Signature rejection is not converted into a successful download",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Interrupted audit is propagated with no signature verification or fallback",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Current ASUS version matching the official discovery is accepted",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASUS legacy flat installer 1.0.4.8 cannot stand in for current 1.0.7.1",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASUS version comparison rejects 1.9 when discovery requires 1.10",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASUS numeric current version 1.10 is accepted",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASUS multiple extracted installers cannot bypass package selection",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASUS mutated payload is rejected even when the file version matches",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Failures": 0
+          }
+        },
+        {
+          "id": "fb492b9f10dc4acf8d784be350a3efd8",
+          "kind": "utility_inspection",
+          "data": {
+            "Kind": "static_installer_inspection",
+            "Vendor": "ASRock",
+            "VendorInstallerExecuted": false,
+            "Audit": {
+              "Vendor": "ASRock",
+              "Tool": "ASRock APP Shop",
+              "Status": "download_and_signed_executables_verified",
+              "RequestedUrl": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+              "FinalUrl": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+              "Redirects": [
+                "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip"
+              ],
+              "Bytes": 5275382,
+              "ExpectedBytes": 5275382,
+              "ProgressUpdates": 1,
+              "SHA256": "2373443D3C5FAA717937F692B0F3DE5D2DB987197F29B523B305F65C5E9DC7A9",
+              "Payloads": [
+                {
+                  "Status": "Valid",
+                  "Signer": "ASROCK INC.",
+                  "SHA256": "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+                  "Bytes": 5790896,
+                  "FileVersion": "2.0.0.9             "
+                }
+              ],
+              "ReportedExecutableVersion": "2.0.0.9             ",
+              "ArchivePublisherHash": "not_available",
+              "LatestVersion": "not_established",
+              "HardwareCompatibility": "not_established",
+              "Installed": false,
+              "Executed": false,
+              "FirmwareFlashed": false
+            },
+            "PortableUnpackerSHA256": "10FCE27B6344B7674D5625CC34AFCA1C88C12183D957C6D93E401097FA2556CD",
+            "InspectionMode": "current_official_asrock_model",
+            "Discovery": {
+              "Model": "B650M Pro RS",
+              "RequestedModel": "B650M Pro RS",
+              "TargetOs": "Windows 11 64bit",
+              "Version": "2.0.0.9",
+              "ManifestUrl": "https://www.asrock.com/support/LiveUpdate.asp?Platform=App&Model=B650M%20Pro%20RS",
+              "ModelSourceUrl": "https://download.asrock.com/setup/Browser.xml",
+              "DownloadUrl": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+              "ArchiveSHA256": "2373443D3C5FAA717937F692B0F3DE5D2DB987197F29B523B305F65C5E9DC7A9",
+              "InstallerRelativePath": "APPShop(v2.0.0.9)/APPShopSetup(v2.0.0.9).exe",
+              "InstallerParameters": "/VerySilent",
+              "Method": "official_asrock_model_xml"
+            },
+            "DownloadUrl": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+            "ArchiveSHA256": "2373443D3C5FAA717937F692B0F3DE5D2DB987197F29B523B305F65C5E9DC7A9",
+            "InstallerSHA256": "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+            "InstallerFileVersion": "2.0.0.9             ",
+            "SourceClaim": "Current APP Shop release selected from the official model and Windows 11 x64 catalog; download hash, signature and version verified. Installer not executed; physical PC installation and behavior not tested.",
+            "ListExitCode": 0,
+            "ExtractExitCode": 0,
+            "ScriptFiles": 1,
+            "SectionsTruncated": false,
+            "RelevantFiles": [
+              "*innounp* - the Inno Setup Unpacker, version 2.71.2 (2026-10-15)",
+              "Inno Setup archive:           payload-0.exe",
+              "Inno Setup version detected:  6.4.3 (Unicode)",
+              "   1831216  2026-09-30 15:47     {app}\\AppTCs\\AppTCs.exe",
+              "   6854960  2026-09-30 15:46     {app}\\AsrAPPShop.exe",
+              "      1251  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\IMB-148_XpGfxDriver.ini",
+              "   1897224  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\Launcher.exe",
+              "   1172784  2026-08-18 16:46     {tmp}\\RM_AsrDrv.exe",
+              "     25033  2026-10-18 12:38     install_script.iss"
+            ],
+            "Sections": {
+              "CustomMessages": [],
+              "Registry": [
+                "Root: HKCU; Subkey: \"Software\\ASRock\\APP Shop\"; ValueName: \"AutoRun\"; ValueType: Dword; ValueData: \"$0\"; Flags: uninsdeletevalue dontcreatekey ",
+                ""
+              ],
+              "Icons": [
+                "Name: \"{group}\\APP Shop\"; Filename: \"{app}\\AsrAPPShop.exe\"; Parameters: \"app\"; ",
+                "Name: \"{group}\\Uninstall APP Shop\"; Filename: \"{uninstallexe}\"; ",
+                "Name: \"{commondesktop}\\APP Shop\"; Filename: \"{app}\\AsrAPPShop.exe\"; Parameters: \"app\"; ",
+                ""
+              ],
+              "Run": [
+                "Filename: \"{app}\\AsrAPPShop.exe\"; WorkingDir: \"{app}\"; Check: \"Not IsIgnoreEZDrvInstaller\"; Flags: postinstall skipifsilent nowait",
+                "Filename: \"{app}\\AsrAPPShop.exe\"; Parameters: \"/ACTIVEPAGE=2 /SHOWNORMAL\"; WorkingDir: \"{app}\"; Check: \"IsIgnoreEZDrvInstaller\"; Flags: nowait",
+                ""
+              ],
+              "Setup": [
+                "AppName=APP Shop",
+                "AppVerName=APP Shop v2.0.0.9",
+                "AppId={{3B9B2DDC-07B8-4F28-82D9-4092C4LE5B67}",
+                "AppVersion=2.0.0.9",
+                "AppPublisher=ASRock Inc.",
+                "AppPublisherURL=http://www.asrock.com",
+                "AppSupportURL=http://www.asrock.com",
+                "AppUpdatesURL=http://www.asrock.com",
+                "DefaultDirName={pf}\\ASRock Utility\\APP Shop",
+                "DefaultGroupName=ASRock Utility\\APP Shop",
+                "OutputBaseFilename=payload-0",
+                "UninstallDisplayIcon={app}\\AsrAPPShop.exe",
+                "Compression=lzma",
+                "DisableDirPage=auto",
+                "DisableProgramGroupPage=auto",
+                "ChangesAssociations=no",
+                "ShowLanguageDialog=yes",
+                "WizardStyle=classic",
+                "WizardImageFile=embedded\\WizardImage0.bmp",
+                "WizardSmallImageFile=embedded\\WizardSmallImage0.bmp",
+                ""
+              ],
+              "UninstallDelete": [],
+              "Files": [],
+              "Languages": [],
+              "UninstallRun": []
+            },
+            "FileList": [
+              "",
+              "*innounp* - the Inno Setup Unpacker, version 2.71.2 (2026-10-15)",
+              "",
+              "Inno Setup archive:           payload-0.exe",
+              "Inno Setup version detected:  6.4.3 (Unicode)",
+              "",
+              "Size        Date/Time            Filename",
+              "-------------------------------------------------",
+              "      6861  2022-02-24 21:01     {app}\\AppTCs\\ADITCsStrRes.xml",
+              "      7738  2021-12-22 16:18     {app}\\AppTCs\\AppShopTCsStrRes.xml",
+              "   1831216  2026-09-30 15:47     {app}\\AppTCs\\AppTCs.exe",
+              "      6090  2022-02-24 21:01     {app}\\AppTCs\\AppTCs.ini",
+              "     44168  2022-02-24 21:01     {app}\\AppTCs\\DE.htm",
+              "     39429  2022-02-24 21:01     {app}\\AppTCs\\EN.htm",
+              "     42082  2022-02-24 21:01     {app}\\AppTCs\\ES.htm",
+              "     53911  2022-02-24 21:01     {app}\\AppTCs\\FR.htm",
+              "     69280  2022-02-24 21:01     {app}\\AppTCs\\JA.htm",
+              "    285834  2022-02-24 21:01     {app}\\AppTCs\\KR.htm",
+              "     46713  2022-02-24 21:01     {app}\\AppTCs\\PL.htm",
+              "     46550  2022-02-24 21:01     {app}\\AppTCs\\PT.htm",
+              "    126623  2022-02-24 21:01     {app}\\AppTCs\\RU.htm",
+              "     52220  2022-02-24 21:01     {app}\\AppTCs\\SC.htm",
+              "     45589  2022-02-24 21:01     {app}\\AppTCs\\TC.htm",
+              "    287016  2022-02-24 21:01     {tmp}\\AsrLib.dll",
+              "   6854960  2026-09-30 15:46     {app}\\AsrAPPShop.exe",
+              "      6399  2026-05-20 11:22     {app}\\cn.xml",
+              "      5322  2026-05-20 11:22     {app}\\de.xml",
+              "      8464  2026-05-20 11:22     {app}\\en.xml",
+              "      5326  2026-05-20 11:22     {app}\\es.xml",
+              "      5436  2026-05-20 11:22     {app}\\fr.xml",
+              "      8315  2026-05-20 11:22     {app}\\jp.xml",
+              "      6977  2026-05-20 11:22     {app}\\kr.xml",
+              "      5647  2026-05-20 11:23     {app}\\pl.xml",
+              "      5551  2026-05-20 11:23     {app}\\pt.xml",
+              "      9334  2026-05-20 11:23     {app}\\ru.xml",
+              "     70235  2026-06-17 10:27     {app}\\StrRes.xml",
+              "      6655  2026-05-20 11:23     {app}\\tw.xml",
+              "    158103  2021-12-22 16:18     {app}\\ImagesAPP\\AD-pic-killer.png",
+              "     14942  2021-12-22 16:18     {app}\\ImagesAPP\\APP-60.ico",
+              "      7120  2021-12-22 16:18     {app}\\ImagesAPP\\APP-60.png",
+              "      3354  2021-12-22 16:18     {app}\\ImagesAPP\\APP-bar-bg-B.png",
+              "      2836  2021-12-22 16:18     {app}\\ImagesAPP\\APP-bar-bg.png",
+              "      4240  2021-12-22 16:18     {app}\\ImagesAPP\\APP-Manager-2000-AD.png",
+              "    297744  2021-12-22 16:18     {app}\\ImagesAPP\\APP-Manager-2000-bg.jpg",
+              "     10308  2021-12-22 16:18     {app}\\ImagesAPP\\APP-Manager-2000-box.png",
+              "     49404  2021-12-22 16:18     {app}\\ImagesAPP\\APP-Manager_bg.jpg",
+              "     11080  2021-12-22 16:18     {app}\\ImagesAPP\\APP-Manager_botton-bg.jpg",
+              "     15120  2021-12-22 16:18     {app}\\ImagesAPP\\APP-Manager_top.jpg",
+              "      1579  2021-12-22 16:18     {app}\\ImagesAPP\\APP-Manager_top2.jpg",
+              "     13145  2021-12-22 16:18     {app}\\ImagesAPP\\APP-Manager_top3.jpg",
+              "     13997  2021-12-22 16:18     {app}\\ImagesAPP\\APP-Manager_top4.jpg",
+              "      1738  2021-12-22 16:18     {app}\\ImagesAPP\\back_no.png",
+              "      1738  2021-12-22 16:18     {app}\\ImagesAPP\\back_on.png",
+              "      1531  2021-12-22 16:18     {app}\\ImagesAPP\\back_over.png",
+              "      1320  2021-12-22 16:18     {app}\\ImagesAPP\\botton-free.png",
+              "      1709  2021-12-22 16:18     {app}\\ImagesAPP\\botton-Get-bonus-L.png",
+              "      1360  2021-12-22 16:18     {app}\\ImagesAPP\\botton-go.png",
+              "      1364  2021-12-22 16:18     {app}\\ImagesAPP\\botton-ok.png",
+              "      1581  2021-12-22 16:18     {app}\\ImagesAPP\\botton-top-nol.png",
+              "      2843  2021-12-22 16:18     {app}\\ImagesAPP\\botton-top-on.png",
+              "      1551  2021-12-22 16:18     {app}\\ImagesAPP\\botton-top-s-nol.png",
+              "      2654  2021-12-22 16:18     {app}\\ImagesAPP\\botton-top-s-on.png",
+              "      1377  2021-12-22 16:18     {app}\\ImagesAPP\\botton_nol.png",
+              "      1372  2021-12-22 16:18     {app}\\ImagesAPP\\botton_on.png",
+              "      1307  2021-12-22 16:18     {app}\\ImagesAPP\\botton_over.png",
+              "      1348  2021-12-22 16:18     {app}\\ImagesAPP\\Control-Button2+nol.png",
+              "      1367  2021-12-22 16:18     {app}\\ImagesAPP\\Control-Button2+on.png",
+              "      1360  2021-12-22 16:18     {app}\\ImagesAPP\\Control-Button2+over.png",
+              "      1266  2021-12-22 16:18     {app}\\ImagesAPP\\Control-Button2-nol.png",
+              "      1295  2021-12-22 16:18     {app}\\ImagesAPP\\Control-Button2-on.png",
+              "      1298  2021-12-22 16:18     {app}\\ImagesAPP\\Control-Button2-over.png",
+              "      1301  2021-12-22 16:18     {app}\\ImagesAPP\\del-no.png",
+              "      1484  2021-12-22 16:18     {app}\\ImagesAPP\\del-on.png",
+              "      1460  2021-12-22 16:18     {app}\\ImagesAPP\\del-over.png",
+              "      1233  2021-12-22 16:18     {app}\\ImagesAPP\\expand-no.png",
+              "      1408  2021-12-22 16:18     {app}\\ImagesAPP\\expand-on.png",
+              "      1396  2021-12-22 16:18     {app}\\ImagesAPP\\expand-over.png",
+              "      5319  2021-12-22 16:18     {app}\\ImagesAPP\\expand.png",
+              "      1587  2021-12-22 16:18     {app}\\ImagesAPP\\Hook-ok.png",
+              "      1227  2021-12-22 16:18     {app}\\ImagesAPP\\Hook.png",
+              "       615  2021-12-22 16:18     {app}\\ImagesAPP\\HotItemBar.png",
+              "      7115  2021-12-22 16:18     {app}\\ImagesAPP\\icon-s-1.png",
+              "      6086  2021-12-22 16:18     {app}\\ImagesAPP\\icon-s-2.png",
+              "      6032  2021-12-22 16:18     {app}\\ImagesAPP\\icon-s-3.png",
+              "      6852  2021-12-22 16:18     {app}\\ImagesAPP\\icon-s-4.png",
+              "      1257  2021-12-22 16:18     {app}\\ImagesAPP\\icon-s-bios.png",
+              "      1709  2021-12-22 16:18     {app}\\ImagesAPP\\icon-s-detect.png",
+              "      1424  2021-12-22 16:18     {app}\\ImagesAPP\\icon-s-Explanation.png",
+              "      1544  2021-12-22 16:18     {app}\\ImagesAPP\\icon-s-main-app.png",
+              "      1452  2021-12-22 16:18     {app}\\ImagesAPP\\icon-s-setting.png",
+              "      1643  2021-12-22 16:18     {app}\\ImagesAPP\\Language-nol.png",
+              "      1711  2021-12-22 16:18     {app}\\ImagesAPP\\Language-over.png",
+              "       983  2021-12-22 16:18     {app}\\ImagesAPP\\line-430.png",
+              "       979  2021-12-22 16:18     {app}\\ImagesAPP\\line-695.png",
+              "     41167  2021-12-22 16:18     {app}\\ImagesAPP\\Message-Box-B.jpg",
+              "     25107  2021-12-22 16:18     {app}\\ImagesAPP\\Message-Box.jpg",
+              "      3329  2021-12-22 16:18     {app}\\ImagesAPP\\NewVer.png",
+              "      3842  2021-12-22 16:18     {app}\\ImagesAPP\\off-DISABLE.png",
+              "      3846  2021-12-22 16:18     {app}\\ImagesAPP\\off.png",
+              "      4940  2021-12-22 16:18     {app}\\ImagesAPP\\open-DISABLE.png",
+              "      5130  2021-12-22 16:18     {app}\\ImagesAPP\\open.png",
+              "      1644  2021-12-22 16:18     {app}\\ImagesAPP\\pic_lihgt_nol.png",
+              "      1769  2021-12-22 16:18     {app}\\ImagesAPP\\pic_lihgt_on.png",
+              "      1334  2021-12-22 16:18     {app}\\ImagesAPP\\pic_L_nol.png",
+              "      1344  2021-12-22 16:18     {app}\\ImagesAPP\\pic_L_on.png",
+              "      1333  2021-12-22 16:18     {app}\\ImagesAPP\\pic_R_nol.png",
+              "      1339  2021-12-22 16:18     {app}\\ImagesAPP\\pic_R_on.png",
+              "     13858  2021-12-22 16:18     {app}\\ImagesAPP\\Ribbon-B.png",
+              "     10502  2021-12-22 16:18     {app}\\ImagesAPP\\Ribbon-S.png",
+              "      1110  2021-12-22 16:18     {app}\\ImagesAPP\\s-over.png",
+              "     17463  2021-12-22 16:18     {app}\\ImagesAPP\\search.png",
+              "      1060  2021-12-22 16:18     {app}\\ImagesAPP\\s_no.png",
+              "      1120  2021-12-22 16:18     {app}\\ImagesAPP\\s_on.png",
+              "      1759  2021-12-22 16:18     {app}\\ImagesAPP\\trash.png",
+              "      1654  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-1.png",
+              "      1769  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-10.png",
+              "      1683  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-11.png",
+              "      1713  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-12.png",
+              "      1677  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-2.png",
+              "      1665  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-3.png",
+              "      1650  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-4.png",
+              "      1691  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-5.png",
+              "      1747  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-6.png",
+              "      1704  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-7.png",
+              "      1647  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-8.png",
+              "      1709  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-9.png",
+              "      4670  2021-12-22 16:18     {app}\\ImagesAPP\\Loading\\loading-all.png",
+              "      2186  2022-02-24 21:01     {app}\\Setting.ini",
+              "    105022  2022-02-24 21:01     {fonts}\\Neo Sans.TTF",
+              "       327  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\ContinueAnyway.ini",
+              "      1251  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\IMB-148_XpGfxDriver.ini",
+              "   1897224  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\Launcher.exe",
+              "      1540  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\MarvellContinueAnyway.ini",
+              "       357  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\MeContinueAnyway.ini",
+              "       625  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\RealtekCardReader.ini",
+              "       412  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\Russian_Turkish.ini",
+              "       280  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\SecurityAlertLauncher.ini",
+              "       327  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\SwHwContinueAnyway.ini",
+              "       331  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\TXE.ini",
+              "       177  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\WindowsSecurity.ini",
+              "       322  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\WindowsSecurity2.ini",
+              "       465  2022-02-24 21:01     {app}\\AsrAPPShop\\CDResource\\Launcher\\WindowsSecurity3.ini",
+              "    948888  2026-06-12 15:04     {app}\\gcapi_dll.dll",
+              "   1172784  2026-08-18 16:46     {tmp}\\RM_AsrDrv.exe",
+              "     25033  2026-10-18 12:38     install_script.iss",
+              "-------------------------------------------------",
+              ""
+            ],
+            "BaseSetupScript": []
+          }
+        },
+        {
+          "id": "6c7bb0af97d14a33a09c0db5ddc060e3",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "VendorInstallerExecuted": false,
+            "ExtractCharacters": 201,
+            "ListCharacters": 9311,
+            "ScriptFiles": 1,
+            "Stage": "bounded_metadata_started"
+          }
+        },
+        {
+          "id": "611169687b254737a548013b2fe2b648",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "ExitCode": 0,
+            "VendorInstallerExecuted": false,
+            "Stage": "static_extract_complete"
+          }
+        },
+        {
+          "id": "f089f2ca8d3c45ae89433a5e6ab8d87b",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "ExitCode": 0,
+            "VendorInstallerExecuted": false,
+            "Stage": "static_list_complete"
+          }
+        },
+        {
+          "id": "58ad05df14e944a89ec1fe013470dbf4",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "Stage": "portable_unpacker_verified",
+            "VendorInstallerExecuted": false
+          }
+        },
+        {
+          "id": "e6bac05735c2450791db8580f26eebd6",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "VendorInstallerExecuted": false,
+            "Discovery": {
+              "Model": "B650M Pro RS",
+              "RequestedModel": "B650M Pro RS",
+              "TargetOs": "Windows 11 64bit",
+              "Version": "2.0.0.9",
+              "ManifestUrl": "https://www.asrock.com/support/LiveUpdate.asp?Platform=App&Model=B650M%20Pro%20RS",
+              "ModelSourceUrl": "https://download.asrock.com/setup/Browser.xml",
+              "DownloadUrl": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+              "ArchiveSHA256": "2373443D3C5FAA717937F692B0F3DE5D2DB987197F29B523B305F65C5E9DC7A9",
+              "InstallerRelativePath": "APPShop(v2.0.0.9)/APPShopSetup(v2.0.0.9).exe",
+              "InstallerParameters": "/VerySilent",
+              "Method": "official_asrock_model_xml"
+            },
+            "Audit": {
+              "Vendor": "ASRock",
+              "Tool": "ASRock APP Shop",
+              "Status": "download_and_signed_executables_verified",
+              "RequestedUrl": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+              "FinalUrl": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+              "Redirects": [
+                "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip"
+              ],
+              "Bytes": 5275382,
+              "ExpectedBytes": 5275382,
+              "ProgressUpdates": 1,
+              "SHA256": "2373443D3C5FAA717937F692B0F3DE5D2DB987197F29B523B305F65C5E9DC7A9",
+              "Payloads": [
+                {
+                  "Status": "Valid",
+                  "Signer": "ASROCK INC.",
+                  "SHA256": "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+                  "Bytes": 5790896,
+                  "FileVersion": "2.0.0.9             "
+                }
+              ],
+              "ReportedExecutableVersion": "2.0.0.9             ",
+              "ArchivePublisherHash": "not_available",
+              "LatestVersion": "not_established",
+              "HardwareCompatibility": "not_established",
+              "Installed": false,
+              "Executed": false,
+              "FirmwareFlashed": false
+            },
+            "Stage": "official_download_verified"
+          }
+        },
+        {
+          "id": "044ee4be6e014411bc2962a9e7dc8612",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "CurrentAsrockModel": "B650M Pro RS",
+            "Vendor": "ASRock",
+            "VendorInstallerExecuted": false,
+            "Stage": "official_download_started"
+          }
+        },
+        {
+          "id": "ce49f72cc449487cad2929b8c320b030",
+          "kind": "msi_appx_static_metadata",
+          "data": {
+            "Kind": "msi_appx_static_metadata",
+            "Status": "metadata_inspected_signed_packages",
+            "Error": "",
+            "VendorInstallerExecuted": false,
+            "ApplicationExecuted": false,
+            "AppxRegistered": false,
+            "Installed": false,
+            "DriverScanStarted": false,
+            "DriverInstalled": false,
+            "FirmwareFlashed": false,
+            "DesktopShortcutCreated": false,
+            "LatestStoreVersion": "not_established",
+            "BaseOnlyInstallSafety": "not_established",
+            "AutomaticInstallSupported": "not_established",
+            "SourceClaim": "Official MSI archive inspected statically; no Store query, installation, application launch or driver operation.",
+            "OuterAudit": {
+              "Vendor": "MSI",
+              "Tool": "MSI Center",
+              "Status": "download_and_signed_executables_verified",
+              "RequestedUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "FinalUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "Redirects": [
+                "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip"
+              ],
+              "Bytes": 584849764,
+              "ExpectedBytes": 584849764,
+              "ProgressUpdates": 7,
+              "SHA256": "FBFA35A0CD8B4A71F6F0CAC5090C50A97D082E1F5F93D5B95493526A34032E96",
+              "Payloads": [
+                {
+                  "Status": "Valid",
+                  "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+                  "SHA256": "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                  "Bytes": 584849584,
+                  "FileVersion": "2.0.74.0            "
+                }
+              ],
+              "ReportedExecutableVersion": "2.0.74.0            ",
+              "ArchivePublisherHash": "not_available",
+              "LatestVersion": "not_established",
+              "HardwareCompatibility": "not_established",
+              "Installed": false,
+              "Executed": false,
+              "FirmwareFlashed": false
+            },
+            "Bundle": {
+              "FileName": "c54a62653fbb4312b004df3acb7283a3.appxbundle",
+              "Bytes": 583364515,
+              "SHA256": "E73560AE5C1B5F5FFEDDD1356AE5256B296817E181004616C7DAF5F6689E95D8",
+              "Signature": {
+                "State": "valid",
+                "AuthenticodeStatus": "Valid",
+                "Subject": "CN=A225F3B5-240D-4EE9-BCF4-697A07F5E93E",
+                "Issuer": "CN=Microsoft Marketplace CA G 026, OU=EOC, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                "Thumbprint": "12C674A011B721A0FD004CAB24B1278ABF59D134",
+                "Reason": "Signature de ce fichier verifiee par Windows ; aucune deduction depuis la signature externe."
+              },
+              "Identity": {
+                "Name": "9426MICRO-STARINTERNATION.MSICenter",
+                "Publisher": "CN=A225F3B5-240D-4EE9-BCF4-697A07F5E93E",
+                "Version": "2.0.74.0"
+              },
+              "Packages": [
+                {
+                  "Type": "application",
+                  "Version": "2.0.74.0",
+                  "Architecture": "x64",
+                  "FileName": "MSI Center_2.0.74.0_x64.appx",
+                  "Offset": "60",
+                  "Size": "583354219"
+                }
+              ]
+            },
+            "ApplicationPackage": {
+              "OriginalFileName": "MSI Center_2.0.74.0_x64.appx",
+              "ExtractedFileName": "package-x64.appx",
+              "Bytes": 583354219,
+              "SHA256": "7311BCBFD30958A90A68A9D38CD078D827C0D84D1F85A9170418C11F74A41042",
+              "Signature": {
+                "State": "valid",
+                "AuthenticodeStatus": "Valid",
+                "Subject": "CN=A225F3B5-240D-4EE9-BCF4-697A07F5E93E",
+                "Issuer": "CN=Microsoft Marketplace CA G 026, OU=EOC, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                "Thumbprint": "12C674A011B721A0FD004CAB24B1278ABF59D134",
+                "Reason": "Signature de ce fichier verifiee par Windows ; aucune deduction depuis la signature externe."
+              },
+              "Identity": {
+                "Name": "9426MICRO-STARINTERNATION.MSICenter",
+                "Publisher": "CN=A225F3B5-240D-4EE9-BCF4-697A07F5E93E",
+                "Version": "2.0.74.0",
+                "ProcessorArchitecture": "x64"
+              },
+              "Applications": [
+                {
+                  "Id": "App",
+                  "Executable": "DCv2\\DCv2.exe",
+                  "EntryPoint": "Windows.FullTrustApplication"
+                }
+              ],
+              "Dependencies": [
+                {
+                  "Kind": "TargetDeviceFamily",
+                  "Attributes": {
+                    "Name": "Windows.Universal",
+                    "MinVersion": "10.0.17134.0",
+                    "MaxVersionTested": "10.0.22621.0"
+                  }
+                },
+                {
+                  "Kind": "TargetDeviceFamily",
+                  "Attributes": {
+                    "Name": "Windows.Desktop",
+                    "MinVersion": "10.0.17134.0",
+                    "MaxVersionTested": "10.0.22621.0"
+                  }
+                }
+              ],
+              "Extensions": [
+                {
+                  "ApplicationId": "App",
+                  "Attributes": {
+                    "Category": "windows.startupTask",
+                    "Executable": "DCv2\\DCv2_Startup.exe",
+                    "EntryPoint": "Windows.FullTrustApplication"
+                  },
+                  "Children": [
+                    {
+                      "Kind": "StartupTask",
+                      "Namespace": "http://schemas.microsoft.com/appx/manifest/uap/windows10/5",
+                      "Attributes": {
+                        "TaskId": "MSI_Center_UWP",
+                        "Enabled": "true",
+                        "DisplayName": "MSI Center"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "ApplicationId": "App",
+                  "Attributes": {
+                    "Category": "windows.protocol"
+                  },
+                  "Children": [
+                    {
+                      "Kind": "Protocol",
+                      "Namespace": "http://schemas.microsoft.com/appx/manifest/uap/windows10",
+                      "Attributes": {
+                        "Name": "msi-mc"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "StartupTasks": [
+                {
+                  "TaskId": "MSI_Center_UWP",
+                  "Enabled": "true",
+                  "EnabledAttributePresent": true,
+                  "Attributes": {
+                    "TaskId": "MSI_Center_UWP",
+                    "Enabled": "true",
+                    "DisplayName": "MSI Center"
+                  }
+                }
+              ],
+              "Capabilities": [
+                {
+                  "Kind": "Capability",
+                  "Namespace": "http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities",
+                  "Attributes": {
+                    "Name": "runFullTrust"
+                  }
+                }
+              ]
+            },
+            "UnpackerExitCode": 0
+          }
+        },
+        {
+          "id": "8d7cdb6ec7564da3912910ef11298efb",
+          "kind": "utility_inspection",
+          "data": {
+            "Kind": "static_installer_inspection",
+            "Vendor": "MSI",
+            "VendorInstallerExecuted": false,
+            "Audit": {
+              "Vendor": "MSI",
+              "Tool": "MSI Center",
+              "Status": "download_and_signed_executables_verified",
+              "RequestedUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "FinalUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "Redirects": [
+                "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip"
+              ],
+              "Bytes": 584849764,
+              "ExpectedBytes": 584849764,
+              "ProgressUpdates": 7,
+              "SHA256": "FBFA35A0CD8B4A71F6F0CAC5090C50A97D082E1F5F93D5B95493526A34032E96",
+              "Payloads": [
+                {
+                  "Status": "Valid",
+                  "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+                  "SHA256": "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                  "Bytes": 584849584,
+                  "FileVersion": "2.0.74.0            "
+                }
+              ],
+              "ReportedExecutableVersion": "2.0.74.0            ",
+              "ArchivePublisherHash": "not_available",
+              "LatestVersion": "not_established",
+              "HardwareCompatibility": "not_established",
+              "Installed": false,
+              "Executed": false,
+              "FirmwareFlashed": false
+            },
+            "PortableUnpackerSHA256": "10FCE27B6344B7674D5625CC34AFCA1C88C12183D957C6D93E401097FA2556CD",
+            "InspectionMode": "official_msi_archive",
+            "Discovery": null,
+            "DownloadUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+            "ArchiveSHA256": "FBFA35A0CD8B4A71F6F0CAC5090C50A97D082E1F5F93D5B95493526A34032E96",
+            "InstallerSHA256": "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+            "InstallerFileVersion": "2.0.74.0            ",
+            "SourceClaim": "Official archive inspected; latest release and motherboard model compatibility not established by this audit.",
+            "ListExitCode": 0,
+            "ExtractExitCode": 0,
+            "ScriptFiles": 1,
+            "SectionsTruncated": false,
+            "RelevantFiles": [
+              "*innounp* - the Inno Setup Unpacker, version 2.71.2 (2026-10-15)",
+              "Inno Setup archive:           payload-0.exe",
+              "Inno Setup version detected:  5.4.2 (Unicode) (Custom)",
+              " 583364515  2026-09-11 08:31     {app}\\c54a62653fbb4312b004df3acb7283a3.appxbundle",
+              "    267880  2023-10-17 14:30     {app}\\SetAccessRight.exe",
+              "      9024  2026-10-18 12:37     install_script.iss"
+            ],
+            "Sections": {
+              "CustomMessages": [],
+              "Registry": [
+                "Root: HKLM32; Subkey: \"Software\\MSI\\MSI Center\"; ValueName: \"UI Launch\"; ValueType: Dword; ValueData: \"$1\"; ",
+                "Root: HKLM32; Subkey: \"Software\\MSI\\MSI Center\"; ValueName: \"Inno_LANG\"; ValueType: String; ValueData: \"{language}\"; ",
+                "Root: HKLM32; Subkey: \"Software\\MSI\\MSI Center\"; ValueName: \"Build_TimeStamp\"; ValueType: String; ValueData: \"202609110505\"; ",
+                "Root: HKLM32; Subkey: \"Software\\MSI\\MSI Center\"; ValueName: \"Build_Ver\"; ValueType: String; ValueData: \"2.0.74.0\"; ",
+                ""
+              ],
+              "Languages": [],
+              "Run": [
+                "Filename: \"{sys}\\WindowsPowerShell\\v1.0\\powershell.exe\"; Parameters: \"-NoProfile -ExecutionPolicy Bypass -File \"\"{app}\\setup.ps1\"\" -Force\"; WorkingDir: \"{app}\"; ",
+                "Filename: \"{app}\\SetAccessRight.exe\"; Flags: shellexec ",
+                "Filename: \"{sys}\\cmd.exe\"; Parameters: \"/c DISM /Online /Add-ProvisionedAppxPackage /PackagePath:\"\"{sd}\\ProgramData\\MSI\\MSI Center\\AppxProvision\\2.0.74.0\\c54a62653fbb4312b004df3acb7283a3.appxbundle\"\" /LicensePath:\"\"{sd}\\ProgramData\\MSI\\MSI Center\\AppxProvision\\2.0.74.0\\c54a62653fbb4312b004df3acb7283a3_License1.xml\"\" /region=all\"; Flags: shellexec nowait",
+                ""
+              ],
+              "Setup": [
+                "AppName=MSI Center",
+                "AppId={{D2F04384-866D-44E8-863E-165CEEE64591}}",
+                "AppVersion=2.0.74.0",
+                "AppPublisher=MSI",
+                "AppPublisherURL=http://www.msi.com",
+                "AppCopyright=Copyright © 2026 Micro-Star INT'L CO., LTD.",
+                "AppSupportURL=http://www.msi.com",
+                "AppUpdatesURL=http://www.msi.com",
+                "AppMutex=yes",
+                "DefaultDirName={commonappdata}\\MSI\\MSI Center\\AppxProvision\\2.0.74.0",
+                "OutputBaseFilename=payload-0",
+                "Compression=lzma",
+                "ArchitecturesInstallIn64BitMode=x64 ",
+                "Uninstallable=no",
+                "DisableDirPage=yes",
+                "DisableProgramGroupPage=yes",
+                "ChangesAssociations=no",
+                "ShowLanguageDialog=yes",
+                "WizardImageFile=embedded\\WizardImage0.bmp",
+                "WizardSmallImageFile=embedded\\WizardSmallImage0.bmp",
+                ""
+              ],
+              "UninstallDelete": [],
+              "Files": []
+            },
+            "FileList": [
+              "",
+              "*innounp* - the Inno Setup Unpacker, version 2.71.2 (2026-10-15)",
+              "",
+              "Inno Setup archive:           payload-0.exe",
+              "Inno Setup version detected:  5.4.2 (Unicode) (Custom)",
+              "",
+              "Size        Date/Time            Filename",
+              "-------------------------------------------------",
+              "      1212  2026-09-11 17:19     {app}\\setup.ps1",
+              "        55  2026-09-11 08:31     {app}\\AUMIDs.txt",
+              " 583364515  2026-09-11 08:31     {app}\\c54a62653fbb4312b004df3acb7283a3.appxbundle",
+              "      2706  2026-09-11 08:31     {app}\\c54a62653fbb4312b004df3acb7283a3_License1.xml",
+              "         0  2023-07-04 15:26     {app}\\inno_install.dat",
+              "       859  2026-09-11 08:31     {app}\\MPAP_c54a62653fbb4312b004df3acb7283a3_001.provxml",
+              "    267880  2023-10-17 14:30     {app}\\SetAccessRight.exe",
+              "      9024  2026-10-18 12:37     install_script.iss",
+              "-------------------------------------------------",
+              ""
+            ],
+            "BaseSetupScript": [
+              "# Remove non-corporate apps\r\n$AppsList = \"9426MICRO-STARINTERNATION.MSICenter\"\r\n$variable = (get-appxpackage 9426MICRO-STARINTERNATION.MSICenter -verbose).packagefullname \r\n$variable4 = $variable -replace \"x64_\", \"neutral_~\"\r\n$variable5 = \"c54a62653fbb4312b004df3acb7283a3.appxbundle\"\r\n\r\n function aa {\r\n \r\n  Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like \"9426MICRO-STARINTERNATION.MSICenter\" | Remove-AppxProvisionedPackage -Online\r\n  \r\n #if($variable4 -ne \"\")\r\n  #{\r\n   # $variable4| % {DISM /Online /Remove-ProvisionedAppxPackage /PackageName:$_}    \r\n  #} \r\n}\r\n\r\n\r\nfunction ss {\r\n  get-appxpackage 9426MICRO-STARINTERNATION.MSICenter | Remove-appxpackage -verbose\r\n  get-appxpackage 9426MICRO-STARINTERNATION.MSICenter | Remove-appxpackage -AllUsers\r\n\r\n#if($variable -ne \"\")\r\n  #{\r\n    #$variable|  % {Remove-AppxPackage $_}\r\n  #}\r\n}\r\n\r\nss\r\naa\r\n\r\n# kill AppxProvision vesion folder\r\n$currentVersion = Split-Path $PSScriptRoot -Leaf\r\n$provisionDir   = Split-Path $PSScriptRoot -Parent\r\nGet-ChildItem -Path $provisionDir -Directory |\r\n    Where-Object { $_.Name -ne $currentVersion } |\r\n    Remove-Item -Recurse -Force -ErrorAction SilentlyContinue\r\n\r\nAdd-AppxPackage -Path \".\\$variable5\""
+            ]
+          }
+        },
+        {
+          "id": "44bd0979e0a14a66bd28abdc2ad3315d",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "VendorInstallerExecuted": false,
+            "ExtractCharacters": 241,
+            "ListCharacters": 848,
+            "ScriptFiles": 1,
+            "Stage": "bounded_metadata_started"
+          }
+        },
+        {
+          "id": "a04b4ac040d645c0b5ba93bab26e03de",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "ExitCode": 0,
+            "VendorInstallerExecuted": false,
+            "Stage": "static_extract_complete"
+          }
+        },
+        {
+          "id": "6269102c8ecd4f46adaabddf3966e482",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "ExitCode": 0,
+            "VendorInstallerExecuted": false,
+            "Stage": "static_list_complete"
+          }
+        },
+        {
+          "id": "a0a495e9cc7049869d1950916fc6493c",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "Stage": "portable_unpacker_verified",
+            "VendorInstallerExecuted": false
+          }
+        },
+        {
+          "id": "c84bff1b7b2947c9b95b19c033b0af29",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "VendorInstallerExecuted": false,
+            "Discovery": null,
+            "Audit": {
+              "Vendor": "MSI",
+              "Tool": "MSI Center",
+              "Status": "download_and_signed_executables_verified",
+              "RequestedUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "FinalUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "Redirects": [
+                "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip"
+              ],
+              "Bytes": 584849764,
+              "ExpectedBytes": 584849764,
+              "ProgressUpdates": 7,
+              "SHA256": "FBFA35A0CD8B4A71F6F0CAC5090C50A97D082E1F5F93D5B95493526A34032E96",
+              "Payloads": [
+                {
+                  "Status": "Valid",
+                  "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+                  "SHA256": "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                  "Bytes": 584849584,
+                  "FileVersion": "2.0.74.0            "
+                }
+              ],
+              "ReportedExecutableVersion": "2.0.74.0            ",
+              "ArchivePublisherHash": "not_available",
+              "LatestVersion": "not_established",
+              "HardwareCompatibility": "not_established",
+              "Installed": false,
+              "Executed": false,
+              "FirmwareFlashed": false
+            },
+            "Stage": "official_download_verified"
+          }
+        },
+        {
+          "id": "ebb05329c12b49fcb7994e14f7b141ff",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "CurrentAsrockModel": "",
+            "Vendor": "MSI",
+            "VendorInstallerExecuted": false,
+            "Stage": "official_download_started"
+          }
+        },
+        {
+          "id": "0819a94743ed4f73a21d2d820b330eff",
+          "kind": "msi_appx_metadata_tests",
+          "data": {
+            "Kind": "msi_appx_metadata_tests",
+            "Mode": "inert_zip_and_xml_fixtures",
+            "Cases": 16,
+            "Assertions": 35,
+            "Failures": 0,
+            "VendorInstallerExecuted": false
+          }
+        },
+        {
+          "id": "875565c0b5eb40869d8201cf7faf373c",
+          "kind": "gigabyte_core_static_audit",
+          "data": {
+            "Kind": "gigabyte_core_static_audit",
+            "Status": "official_download_and_three_signed_executables_verified",
+            "VendorInstallerExecuted": false,
+            "Installed": false,
+            "CatalogueMode": "recorded_response_2026-10-18_not_live_on_runner",
+            "CatalogueSnapshotSHA256": "B70E0DBE6D07D085FB2765AE71B6D16A9FA0C621498AA953735395BBC75AF602",
+            "Discovery": {
+              "ManifestUrl": "https://www.gigabyte.com/Ajax/SupportFunction/GetUtilityAjax?ClassGroup=2&Page=1&KeyWord=GIGABYTE%20Control%20Center",
+              "BundleVersion": "26.09.10.01",
+              "DownloadUrl": "https://download.gigabyte.com/FileList/Utility/GCC_26.09.10.01.zip?v=bd7c81fc9b9052caa13e7f70b0252f9e",
+              "Method": "recorded_official_gigabyte_utility_html"
+            },
+            "Bundle": {
+              "Vendor": "GIGABYTE",
+              "Tool": "GIGABYTE Control Center",
+              "Status": "download_and_signed_executables_verified",
+              "RequestedUrl": "https://download.gigabyte.com/FileList/Utility/GCC_26.09.10.01.zip?v=bd7c81fc9b9052caa13e7f70b0252f9e",
+              "FinalUrl": "https://download.gigabyte.com/FileList/Utility/GCC_26.09.10.01.zip?v=bd7c81fc9b9052caa13e7f70b0252f9e",
+              "Redirects": [
+                "https://download.gigabyte.com/FileList/Utility/GCC_26.09.10.01.zip?v=bd7c81fc9b9052caa13e7f70b0252f9e"
+              ],
+              "Bytes": 902526290,
+              "ExpectedBytes": 902526290,
+              "ProgressUpdates": 26,
+              "SHA256": "B046A63AD3D53675017EBA4B1F58DEEF3D4297591A59B9A4FB9704D5001F2F1B",
+              "Payloads": [
+                {
+                  "Status": "Valid",
+                  "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+                  "SHA256": "27D401BBC5C2F7D12F8302459EF68128A20FC8AAA2541B69422175BDCF5E295B",
+                  "Bytes": 902526024,
+                  "FileVersion": "26.09.10.01"
+                }
+              ],
+              "ReportedExecutableVersion": "26.09.10.01",
+              "ArchivePublisherHash": "not_available",
+              "LatestVersion": "not_established",
+              "HardwareCompatibility": "not_established",
+              "Installed": false,
+              "Executed": false,
+              "FirmwareFlashed": false
+            },
+            "Core": {
+              "FileName": "GIGABYTE Control Center_26.08.28.01.exe",
+              "Signature": {
+                "Status": "Valid",
+                "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+                "SHA256": "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+                "Bytes": 49095256,
+                "FileVersion": "26.08.28.01"
+              }
+            },
+            "Application": {
+              "FileName": "GCC.exe",
+              "Signature": {
+                "Status": "Valid",
+                "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+                "SHA256": "16060ADA087A376BDCB35D9EA3B4FCCC8C6E865C24BE53879C91E8456A7B3937",
+                "Bytes": 35425448,
+                "FileVersion": "25.09.12.1"
+              },
+              "ProductName": "GCC",
+              "FileDescription": "GCC",
+              "ProductVersion": "25.09.12.1"
+            },
+            "Error": ""
+          }
+        },
+        {
+          "id": "cf94227792a8458088b8f70d0fa4313b",
+          "kind": "gigabyte_discovery_tests",
+          "data": {
+            "Kind": "gigabyte_discovery_tests",
+            "Mode": "simulated_html",
+            "ActualNetworkRequests": 0,
+            "ActualVendorInstallations": 0,
+            "Assertions": 88,
+            "Cases": [
+              {
+                "Name": "Numeric comparison selects 1.10 over 1.9",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Date versions retain all four components and leading zeroes",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Newest candidate is independent of display order and old versions",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Single-quoted href and protocol-relative official link",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTML entities in official download query are decoded",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Duplicate identical URL is harmless",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Distinct links advertising the same newest bundle are ambiguous",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Ambiguous older bundle is not silently accepted as trustworthy metadata",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTTPS default port and case-insensitive official hostname",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid external higher release cannot override valid official release",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTTP link rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Third-party hostname rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Lookalike hostname rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Hostname suffix attack rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "User information in URL rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Nonstandard HTTPS port rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Root-relative www path is not a verified download host",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Relative www path is not a verified download host",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "JavaScript URL rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Executable masquerading as ZIP rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Three-component filename rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Five-component filename rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Filename with arbitrary prefix rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Filename with arbitrary suffix rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Another manufacturer utility rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Filename supplied only by query string rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Version overflow rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Version text without a download anchor is not an installer",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Bot challenge produces an explicit failure without stale fallback",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Empty source fails explicitly",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTTP 503 is preserved rather than returning a cached older release",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Page one with all announced results remains usable",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Incomplete pagination never claims latest release",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unexpected page two never claims latest release",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Inconsistent catalogue item count rejected: -1",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Inconsistent catalogue item count rejected: 0",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Inconsistent catalogue item count rejected: invalid",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Failures": 0
+          }
+        },
+        {
+          "id": "847bb662dcaa45fa8a196577f7b3ea1a",
+          "kind": "utility_asrock_discovery_tests",
+          "data": {
+            "Kind": "utility_asrock_discovery_tests",
+            "Cases": 54,
+            "Assertions": 115,
+            "Passed": 54,
+            "Failed": 0,
+            "SimulatedCases": 53,
+            "RealCases": 1,
+            "VendorInstallerExecuted": false,
+            "Installed": false,
+            "Results": [
+              {
+                "Name": "PowerShell syntax is valid",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Faithful official XML selects current APP Shop and records provenance",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Model comparison trims and ignores case while retaining canonical name",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Numeric version comparison selects 1.10 over 1.9",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Newest active release wins over older archives regardless of document order",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Commented higher version is ignored by the XML parser",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Newest OS-incompatible version never falls back to an older compatible release",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Same latest release split into OS-specific entries selects only the requested OS",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Supported board may still be unsupported on Windows 11",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unknown board fails before querying a catalog",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Root catalog model mismatch rejects manufacturer-only compatibility",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Fatal1ty alias is not silently invented",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Duplicate identical model records only establish membership",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTTP 200 catalog without APP Shop is not treated as success",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Driver BIOS and advertisement entries cannot become APP Shop candidates",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identical repeated release entries remain deterministic",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Conflicting hashes for the latest release are ambiguous",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid release version rejected: ",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid release version rejected: 2.0.0.9-beta",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid release version rejected: 1.2.3.4.5",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid release version rejected: 2147483648.1",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid release version rejected: ../2.0.0.9",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid SHA256 rejected: 0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid SHA256 rejected: 3",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid SHA256 rejected: 64",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid SHA256 rejected: 63",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid SHA256 rejected: 65",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or inconsistent inner executable rejected: ../APPShopSetup.exe",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or inconsistent inner executable rejected: C:/APPShopSetup.exe",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or inconsistent inner executable rejected: /APPShop(v2.0.0.9)/APPShopSetup(v2.0.0.9).exe",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or inconsistent inner executable rejected: APPShop(v2.0.0.9)/APPShopSetup(v2.0.0.4).exe",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or inconsistent inner executable rejected: APPShop(v2.0.0.9)/other.exe",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: http://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: https://example.invalid/Utility/Others/APPShop(v2.0.0.9).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: https://download.asrock.com.evil.invalid/Utility/Others/APPShop(v2.0.0.9).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: https://download.asrock.com/Utility/Others/APPShop(v2.0.0.4).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip?fallback=old",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: https://user@download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: /Utility/Others/../Others/APPShop(v2.0.0.9).zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsafe or old download URL rejected: /Utility/Others/APPShop%2ev2.0.0.9.zip",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Absolute official URL and escaped parentheses are accepted",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unexpected installer parameter rejected: /VerySilent /IgnoreChkEZDrv",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unexpected installer parameter rejected: /EZDrvInstaller",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unexpected installer parameter rejected: /silent",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unexpected installer parameter rejected: ",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTTP 503 at request 1 has no historical fallback",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTTP 503 at request 2 has no historical fallback",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Bot protection HTTP 200 rejected at Browser",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed XML rejected at Browser",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Bot protection HTTP 200 rejected at Manifest",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed XML rejected at Manifest",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "DTD and external entities are prohibited",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported OS fails before any network access",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Real official ASRock model current download SHA256 and Authenticode on Windows 5.1",
+                "Mode": "real",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Live": {
+              "Status": "download_and_signature_verified",
+              "Mode": "real",
+              "Version": "2.0.0.9",
+              "Model": "B650M Pro RS",
+              "TargetOs": "Windows 11 64bit",
+              "SHA256": "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+              "ArchiveSHA256": "2373443D3C5FAA717937F692B0F3DE5D2DB987197F29B523B305F65C5E9DC7A9",
+              "Signer": "ASROCK INC.",
+              "Bytes": 5275382,
+              "ExpectedBytes": 5275382,
+              "ManifestUrl": "https://www.asrock.com/support/LiveUpdate.asp?Platform=App&Model=B650M%20Pro%20RS",
+              "ModelSourceUrl": "https://download.asrock.com/setup/Browser.xml",
+              "DownloadUrl": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+              "FinalUrl": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.9).zip",
+              "Method": "official_asrock_model_xml",
+              "InstallerParameters": "/VerySilent",
+              "Seconds": 1.17,
+              "Installed": false,
+              "VendorInstallerExecuted": false
+            }
+          }
+        },
+        {
+          "id": "d4b5a03808b941189f6540af73defc88",
+          "kind": "utility_discovery_tests",
+          "data": {
+            "Kind": "utility_discovery_tests",
+            "Cases": 44,
+            "Assertions": 116,
+            "Passed": 44,
+            "Failed": 0,
+            "SimulatedCases": 43,
+            "RealCases": 1,
+            "VendorInstallerExecuted": false,
+            "Installed": false,
+            "Results": [
+              {
+                "Name": "Discovery test syntax is valid on native PowerShell",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASUS profile selects manifest and correct application filename",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official versioned route 1.0.7.1",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official versioned route 1.0.4.8",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official versioned route 1.9.0.0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official versioned route 1.10.0.0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Numeric comparison treats 1.10 as newer than 1.9",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official legacy route is checked against its manifest 1.0.4.7",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official legacy route is checked against its manifest 1.0.4.6",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official legacy route is checked against its manifest 0.9.0.0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Manifest minimum may be absent without inventing an older version",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"1.0.7\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"1.0.7.1-beta\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"1.0.7.1/../../old\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"https://example.invalid/file.exe\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"-1.0.7.1\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\"2147483648.0.0.0\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Malformed or unsafe latest version rejected: {\"latestVersion\":\" 1.0.7.1\"}",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid minimum version rejected: 1.0.8.0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid minimum version rejected: 1.0.7",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid minimum version rejected: 2147483648.0.0.0",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid minimum version rejected: 1.0.7.1/old",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid JSON fails with precise reason and no fallback download",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Manifest HTTP 503 is not hidden by an older installer",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Manifest request permits only the official ASUS host",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Package pipeline verifies signature hash version and discovery metadata",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Signed old 1.0.4.8 is rejected when official manifest says 1.0.7.1",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Signed unexpected newer file also fails manifest consistency",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid signed FileVersion is refused: ",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid signed FileVersion is refused: 1.0.7.1-beta",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid signed FileVersion is refused: not-a-version",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Whitespace in signed FileVersion is normalized",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "File replaced after download fails hash verification",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Authenticode validation failure is not reported as success",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Interrupted download propagates without claiming a package",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing or ambiguous executable count 0 is refused",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing or ambiguous executable count 2 is refused",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock profile contains real APP Shop application executable",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock exact and versioned ARP names are accepted without case sensitivity",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "ASRock ARP name excludes SDK paths invalid versions suffixes and other vendors",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Discovery and download never invoke a vendor installer",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Real official ASUS download signature and version on Windows 5.1",
+                "Mode": "real",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Live": {
+              "Status": "download_and_signature_verified",
+              "Mode": "real",
+              "Version": "1.0.7.1",
+              "SHA256": "C52343E16B608359223DF33EDC8D5789E7FEF4D2612986A883D29D915B76FF90",
+              "Signer": "ASUSTeK COMPUTER INC.",
+              "Bytes": 5168024,
+              "ExpectedBytes": 5168024,
+              "ManifestUrl": "https://driverhub.asus.com/download/ASUS-DriverHub-Installer.json",
+              "DownloadUrl": "https://driverhub.asus.com/download/1.0.7.1/ASUS-DriverHub-Installer.exe",
+              "FinalUrl": "https://driverhub.asus.com/download/1.0.7.1/ASUS-DriverHub-Installer.exe",
+              "Method": "official_asus_json",
+              "Seconds": 1.27,
+              "Installed": false,
+              "VendorInstallerExecuted": false
+            }
+          }
+        },
+        {
+          "id": "095dd96af70549188eb1c3274e233a6d",
+          "kind": "utility_tests",
+          "data": {
+            "Kind": "utility_only_tests",
+            "SimulationCases": true,
+            "ActualVendorInstallations": 0,
+            "Assertions": 75,
+            "Cases": [
+              {
+                "Name": "Syntax and no driver/firmware/update invocations",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify MSI with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify ASUS with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify GIGABYTE with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify ASRock with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported unknown never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported missing_model never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported oem never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported portable never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported virtual never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported server never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported 32bit never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Manual fallback never claims downloaded equals installed",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Network failure precise and non successful",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Already verified app creates shortcut without download or reinstall",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated supported installation verifies app and shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1603 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1641 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1223 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated 3010 requests manual restart only",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated Timeout fails without shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated Interrupted fails without shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Exit zero but no application fails verification",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Version comparison numeric and stale installation rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unknown package hash and changed installer never execute",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Desktop error never claims complete success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Real native process boundary blocks all vendor installers on GitHub",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe exact registered Store package and declared app target",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects wrong_family",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects developer_mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects unsigned",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects missing_app",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Registry SDK or orphan entry cannot prove MSI Center installed",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual Windows 5.1 CIM and VM refusal",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual COM shortcuts on redirected user Desktop with restoration",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Real": [
+              {
+                "Kind": "ActualWindowsCim",
+                "Status": "manual_required",
+                "Reason": "Machine virtuelle : aucune installation de logiciel materiel autorisee.",
+                "VendorInstallerExecuted": false
+              },
+              {
+                "Kind": "ActualCOMShortcut",
+                "RedirectedDesktop": true,
+                "Restored": true,
+                "ApplicationExecuted": false
+              }
+            ],
+            "Failures": 0
+          }
+        }
+      ],
+      "incomplete": [],
+      "legacy": []
+    }
+  ]
+}

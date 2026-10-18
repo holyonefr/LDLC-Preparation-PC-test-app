@@ -1,0 +1,13 @@
+# Captures temporaires générées pendant les tests/deploiements Codex
+/*.png
+
+# Sorties de compilation .NET locales
+**/bin/
+**/obj/
+dist/*PreparationPC-*.zip
+
+# Fichiers temporaires Windows / éditeurs
+Thumbs.db
+Desktop.ini
+*.tmp
+*.log

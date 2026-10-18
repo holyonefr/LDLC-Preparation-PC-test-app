@@ -1,0 +1,21 @@
+{
+  "SchemaVersion": 1,
+  "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+  "StableRepository": "holyonefr/LDLC-Preparation",
+  "SourceCommit": "a2a57ee2d28203fded79802eae2a58883d996c7e",
+  "SourceWorkingTreeDirty": false,
+  "OverlayPaths": [
+    ".gitattributes",
+    ".github/workflows/windows-validation.yml",
+    "AGENTS.md",
+    "PASSATION_PROJET.md",
+    "README.md",
+    "SYNCHRONISATION.md",
+    "modules/90.Workflow.ps1",
+    "modules/build-order.txt",
+    "sync/edition.json",
+    "tools/Rebuild-LDLCPreparationPC.ps1",
+    "tools/Test-PreparationCompletion.ps1"
+  ],
+  "PublicationPolicy": "Only beta pushes until explicitly changed by user"
+}

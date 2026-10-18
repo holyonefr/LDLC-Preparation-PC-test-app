@@ -1,0 +1,13 @@
+{
+  "CheckedAtUtc": "2026-10-18T17:45:37.5055669Z",
+  "Environment": "Linux cloud; not Windows",
+  "OfficialSourceReal": true,
+  "Resolution": {
+    "ManifestUrl": "https://www.gigabyte.com/Ajax/SupportFunction/GetUtilityAjax?ClassGroup=2&Page=1&KeyWord=GIGABYTE%20Control%20Center",
+    "BundleVersion": "26.09.10.01",
+    "DownloadUrl": "https://download.gigabyte.com/FileList/Utility/GCC_26.09.10.01.zip?v=bd7c81fc9b9052caa13e7f70b0252f9e",
+    "Method": "official_gigabyte_utility_html",
+    "SourceClient": "default"
+  },
+  "VendorInstallerExecuted": false
+}

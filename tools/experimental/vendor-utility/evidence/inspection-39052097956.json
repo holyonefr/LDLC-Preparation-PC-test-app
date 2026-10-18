@@ -1,0 +1,272 @@
+{
+  "run": {
+    "id": 39052097956,
+    "head_sha": "3bfdde74ff89b051ec89bddc64903b58cd2a7d00",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39052097956"
+  },
+  "jobs": [
+    {
+      "id": 117452614141,
+      "name": "utility",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-17T17:03:52Z",
+          "completed_at": "2026-10-17T17:03:53Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-17T17:03:53Z",
+          "completed_at": "2026-10-17T17:04:01Z"
+        },
+        {
+          "name": "Inspect MSI installer without executing it",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-17T17:04:01Z",
+          "completed_at": "2026-10-17T17:04:24Z"
+        },
+        {
+          "name": "Validate independent utility script with simulated installers",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-10-17T17:04:24Z",
+          "completed_at": "2026-10-17T17:04:24Z"
+        },
+        {
+          "name": "Preserve JSON evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-17T17:04:24Z",
+          "completed_at": "2026-10-17T17:04:25Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-17T17:04:25Z",
+          "completed_at": "2026-10-17T17:04:27Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-17T17:04:27Z",
+          "completed_at": "2026-10-17T17:04:27Z"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "24848632e1b846e993ae0a6eb1f179e1",
+          "kind": "utility_inspection",
+          "data": {
+            "Kind": "static_installer_inspection",
+            "VendorInstallerExecuted": false,
+            "Audit": {
+              "Vendor": "MSI",
+              "Tool": "MSI Center",
+              "Status": "download_and_signed_executables_verified",
+              "RequestedUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "FinalUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "Redirects": [
+                "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip"
+              ],
+              "Bytes": 584849764,
+              "ExpectedBytes": 584849764,
+              "ProgressUpdates": 12,
+              "SHA256": "FBFA35A0CD8B4A71F6F0CAC5090C50A97D082E1F5F93D5B95493526A34032E96",
+              "Payloads": [
+                {
+                  "Status": "Valid",
+                  "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+                  "SHA256": "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                  "Bytes": 584849584,
+                  "FileVersion": "2.0.74.0            "
+                }
+              ],
+              "ReportedExecutableVersion": "2.0.74.0            ",
+              "ArchivePublisherHash": "not_available",
+              "LatestVersion": "not_established",
+              "HardwareCompatibility": "not_established",
+              "Installed": false,
+              "Executed": false,
+              "FirmwareFlashed": false
+            },
+            "PortableUnpackerSHA256": "10FCE27B6344B7674D5625CC34AFCA1C88C12183D957C6D93E401097FA2556CD",
+            "ListExitCode": 0,
+            "ExtractExitCode": 0,
+            "ScriptFiles": 1,
+            "SectionsTruncated": false,
+            "RelevantFiles": [
+              "*innounp* - the Inno Setup Unpacker, version 2.71.2 (2026-10-15)",
+              "Inno Setup archive:           payload-0.exe",
+              "Inno Setup version detected:  5.4.2 (Unicode) (Custom)",
+              " 583364515  2026-09-11 08:31     {app}\\c54a62653fbb4312b004df3acb7283a3.appxbundle",
+              "    267880  2023-10-17 14:30     {app}\\SetAccessRight.exe",
+              "      9024  2026-10-17 17:04     install_script.iss"
+            ],
+            "Sections": {
+              "CustomMessages": [],
+              "Registry": [],
+              "Languages": [],
+              "Run": [
+                "Filename: \"{sys}\\WindowsPowerShell\\v1.0\\powershell.exe\"; Parameters: \"-NoProfile -ExecutionPolicy Bypass -File \"\"{app}\\setup.ps1\"\" -Force\"; WorkingDir: \"{app}\"; ",
+                "Filename: \"{app}\\SetAccessRight.exe\"; Flags: shellexec ",
+                "Filename: \"{sys}\\cmd.exe\"; Parameters: \"/c DISM /Online /Add-ProvisionedAppxPackage /PackagePath:\"\"{sd}\\ProgramData\\MSI\\MSI Center\\AppxProvision\\2.0.74.0\\c54a62653fbb4312b004df3acb7283a3.appxbundle\"\" /LicensePath:\"\"{sd}\\ProgramData\\MSI\\MSI Center\\AppxProvision\\2.0.74.0\\c54a62653fbb4312b004df3acb7283a3_License1.xml\"\" /region=all\"; Flags: shellexec nowait",
+                ""
+              ],
+              "Setup": [
+                "AppName=MSI Center",
+                "AppId={{D2F04384-866D-44E8-863E-165CEEE64591}}",
+                "AppVersion=2.0.74.0",
+                "AppPublisher=MSI",
+                "AppPublisherURL=http://www.msi.com",
+                "AppCopyright=Copyright © 2026 Micro-Star INT'L CO., LTD.",
+                "AppSupportURL=http://www.msi.com",
+                "AppUpdatesURL=http://www.msi.com",
+                "AppMutex=yes",
+                "DefaultDirName={commonappdata}\\MSI\\MSI Center\\AppxProvision\\2.0.74.0",
+                "OutputBaseFilename=payload-0",
+                "Compression=lzma",
+                "ArchitecturesInstallIn64BitMode=x64 ",
+                "Uninstallable=no",
+                "DisableDirPage=yes",
+                "DisableProgramGroupPage=yes",
+                "ChangesAssociations=no",
+                "ShowLanguageDialog=yes",
+                "WizardImageFile=embedded\\WizardImage0.bmp",
+                "WizardSmallImageFile=embedded\\WizardSmallImage0.bmp",
+                ""
+              ],
+              "UninstallDelete": [],
+              "Files": []
+            },
+            "FileList": [
+              "",
+              "*innounp* - the Inno Setup Unpacker, version 2.71.2 (2026-10-15)",
+              "",
+              "Inno Setup archive:           payload-0.exe",
+              "Inno Setup version detected:  5.4.2 (Unicode) (Custom)",
+              "",
+              "Size        Date/Time            Filename",
+              "-------------------------------------------------",
+              "      1212  2026-09-11 17:19     {app}\\setup.ps1",
+              "        55  2026-09-11 08:31     {app}\\AUMIDs.txt",
+              " 583364515  2026-09-11 08:31     {app}\\c54a62653fbb4312b004df3acb7283a3.appxbundle",
+              "      2706  2026-09-11 08:31     {app}\\c54a62653fbb4312b004df3acb7283a3_License1.xml",
+              "         0  2023-07-04 15:26     {app}\\inno_install.dat",
+              "       859  2026-09-11 08:31     {app}\\MPAP_c54a62653fbb4312b004df3acb7283a3_001.provxml",
+              "    267880  2023-10-17 14:30     {app}\\SetAccessRight.exe",
+              "      9024  2026-10-17 17:04     install_script.iss",
+              "-------------------------------------------------",
+              ""
+            ],
+            "BaseSetupScript": [
+              "# Remove non-corporate apps\r\n$AppsList = \"9426MICRO-STARINTERNATION.MSICenter\"\r\n$variable = (get-appxpackage 9426MICRO-STARINTERNATION.MSICenter -verbose).packagefullname \r\n$variable4 = $variable -replace \"x64_\", \"neutral_~\"\r\n$variable5 = \"c54a62653fbb4312b004df3acb7283a3.appxbundle\"\r\n\r\n function aa {\r\n \r\n  Get-AppxProvisionedPackage -Online | Where-Object DisplayName -like \"9426MICRO-STARINTERNATION.MSICenter\" | Remove-AppxProvisionedPackage -Online\r\n  \r\n #if($variable4 -ne \"\")\r\n  #{\r\n   # $variable4| % {DISM /Online /Remove-ProvisionedAppxPackage /PackageName:$_}    \r\n  #} \r\n}\r\n\r\n\r\nfunction ss {\r\n  get-appxpackage 9426MICRO-STARINTERNATION.MSICenter | Remove-appxpackage -verbose\r\n  get-appxpackage 9426MICRO-STARINTERNATION.MSICenter | Remove-appxpackage -AllUsers\r\n\r\n#if($variable -ne \"\")\r\n  #{\r\n    #$variable|  % {Remove-AppxPackage $_}\r\n  #}\r\n}\r\n\r\nss\r\naa\r\n\r\n# kill AppxProvision vesion folder\r\n$currentVersion = Split-Path $PSScriptRoot -Leaf\r\n$provisionDir   = Split-Path $PSScriptRoot -Parent\r\nGet-ChildItem -Path $provisionDir -Directory |\r\n    Where-Object { $_.Name -ne $currentVersion } |\r\n    Remove-Item -Recurse -Force -ErrorAction SilentlyContinue\r\n\r\nAdd-AppxPackage -Path \".\\$variable5\""
+            ]
+          }
+        },
+        {
+          "id": "83cf03a0d0624cdc930956c3937032cb",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "VendorInstallerExecuted": false,
+            "ExtractCharacters": 241,
+            "ListCharacters": 848,
+            "ScriptFiles": 1,
+            "Stage": "bounded_metadata_started"
+          }
+        },
+        {
+          "id": "602547c498f24c92af87bc29529381da",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "ExitCode": 0,
+            "VendorInstallerExecuted": false,
+            "Stage": "static_extract_complete"
+          }
+        },
+        {
+          "id": "a488b930d8384b26bb51de2c93da6988",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "ExitCode": 0,
+            "VendorInstallerExecuted": false,
+            "Stage": "static_list_complete"
+          }
+        },
+        {
+          "id": "be7e4c2171a44f68b6b3a7fe96a64c13",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "Stage": "portable_unpacker_verified",
+            "VendorInstallerExecuted": false
+          }
+        },
+        {
+          "id": "0f24b7c440e54fcd861c72432ef5fbac",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "VendorInstallerExecuted": false,
+            "Audit": {
+              "Vendor": "MSI",
+              "Tool": "MSI Center",
+              "Status": "download_and_signed_executables_verified",
+              "RequestedUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "FinalUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+              "Redirects": [
+                "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip"
+              ],
+              "Bytes": 584849764,
+              "ExpectedBytes": 584849764,
+              "ProgressUpdates": 12,
+              "SHA256": "FBFA35A0CD8B4A71F6F0CAC5090C50A97D082E1F5F93D5B95493526A34032E96",
+              "Payloads": [
+                {
+                  "Status": "Valid",
+                  "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+                  "SHA256": "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                  "Bytes": 584849584,
+                  "FileVersion": "2.0.74.0            "
+                }
+              ],
+              "ReportedExecutableVersion": "2.0.74.0            ",
+              "ArchivePublisherHash": "not_available",
+              "LatestVersion": "not_established",
+              "HardwareCompatibility": "not_established",
+              "Installed": false,
+              "Executed": false,
+              "FirmwareFlashed": false
+            },
+            "Stage": "official_download_verified"
+          }
+        },
+        {
+          "id": "e910109e27734015a577c459329cb6d6",
+          "kind": "utility_inspection_stage",
+          "data": {
+            "Stage": "official_download_started",
+            "VendorInstallerExecuted": false
+          }
+        }
+      ],
+      "incomplete": [],
+      "legacy": []
+    }
+  ]
+}

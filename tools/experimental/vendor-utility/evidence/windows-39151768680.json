@@ -1,0 +1,279 @@
+{
+  "run": {
+    "id": 39151768680,
+    "head_sha": "f98f443502a3926252749c01f0b74a40b739d604",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39151768680"
+  },
+  "jobs": [
+    {
+      "id": 117746708332,
+      "name": "utility",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T17:55:16Z",
+          "completed_at": "2026-10-18T17:55:17Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T17:55:17Z",
+          "completed_at": "2026-10-18T17:55:26Z"
+        },
+        {
+          "name": "Record native Windows and PowerShell environment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-18T17:55:26Z",
+          "completed_at": "2026-10-18T17:55:30Z"
+        },
+        {
+          "name": "Inspect MSI installer without executing it",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-10-18T17:55:30Z",
+          "completed_at": "2026-10-18T17:55:30Z"
+        },
+        {
+          "name": "Compare native HTTP clients against the official GIGABYTE sources",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-18T17:55:30Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Validate independent utility script with simulated installers",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Verify installer shortcuts on Windows Desktop and redirected OneDrive Desktop",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Verify other manufacturers installer shortcuts with real downloads",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Verify ASUS discovery and signed download without installation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Inspect ASRock signature and Inno actions without installation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Verify ASRock model catalogue and current signed download",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Verify GIGABYTE discovery using simulated catalogues",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Verify extraction chooses only the signed GIGABYTE core",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Audit official GIGABYTE bundle and application signatures without execution",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Verify MSI manifest parser with inert ZIP and XML fixtures",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Read official MSI application manifests without installation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Inspect current ASRock installer actions without execution",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 17,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Reject substituted packages and older versions using simulated payloads",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 18,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:32Z"
+        },
+        {
+          "name": "Preserve JSON evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-18T17:55:32Z",
+          "completed_at": "2026-10-18T17:55:33Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38,
+          "started_at": "2026-10-18T17:55:33Z",
+          "completed_at": "2026-10-18T17:55:36Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39,
+          "started_at": "2026-10-18T17:55:36Z",
+          "completed_at": "2026-10-18T17:55:36Z"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "823386a1691547c3b640b870eed0956b",
+          "kind": "gigabyte_live_source_probe",
+          "data": {
+            "Kind": "gigabyte_live_source_probe",
+            "RecordedAtUtc": "2026-10-18T17:55:32.3130066Z",
+            "Results": [
+              {
+                "ExitCode": 0,
+                "BundleVersions": [],
+                "Url": "https://www.gigabyte.com/Ajax/SupportFunction/GetUtilityAjax?ClassGroup=2&Page=1&KeyWord=GIGABYTE%20Control%20Center",
+                "Available": true,
+                "Client": "windows_curl",
+                "HasAccessDenied": true,
+                "Bytes": 416,
+                "HttpStatus": "403"
+              },
+              {
+                "Url": "https://www.gigabyte.com/Ajax/SupportFunction/GetUtilityAjax?ClassGroup=2&Page=1&KeyWord=GIGABYTE%20Control%20Center",
+                "Available": false,
+                "Client": "git_curl"
+              },
+              {
+                "Error": "HTTP 403 sur la source officielle.",
+                "Url": "https://www.gigabyte.com/Ajax/SupportFunction/GetUtilityAjax?ClassGroup=2&Page=1&KeyWord=GIGABYTE%20Control%20Center",
+                "Client": "powershell_http"
+              },
+              {
+                "ExitCode": 0,
+                "BundleVersions": [],
+                "Url": "https://www.gigabyte.com/Support/Utility?kw=GIGABYTE+Control+Center&p=1",
+                "Available": true,
+                "Client": "windows_curl",
+                "HasAccessDenied": true,
+                "Bytes": 392,
+                "HttpStatus": "403"
+              },
+              {
+                "Url": "https://www.gigabyte.com/Support/Utility?kw=GIGABYTE+Control+Center&p=1",
+                "Available": false,
+                "Client": "git_curl"
+              },
+              {
+                "Error": "HTTP 403 sur la source officielle.",
+                "Url": "https://www.gigabyte.com/Support/Utility?kw=GIGABYTE+Control+Center&p=1",
+                "Client": "powershell_http"
+              },
+              {
+                "ExitCode": 0,
+                "BundleVersions": [],
+                "Url": "https://www.gigabyte.com/Consumer/Software/GIGABYTE-Control-Center/global/",
+                "Available": true,
+                "Client": "windows_curl",
+                "HasAccessDenied": true,
+                "Bytes": 443,
+                "HttpStatus": "403"
+              },
+              {
+                "Url": "https://www.gigabyte.com/Consumer/Software/GIGABYTE-Control-Center/global/",
+                "Available": false,
+                "Client": "git_curl"
+              },
+              {
+                "Error": "HTTP 403 sur la source officielle.",
+                "Url": "https://www.gigabyte.com/Consumer/Software/GIGABYTE-Control-Center/global/",
+                "Client": "powershell_http"
+              }
+            ],
+            "VendorInstallerExecuted": false,
+            "InstallerDownloaded": false
+          }
+        },
+        {
+          "id": "d386dd7cf98c4012ad8f41495da39bcb",
+          "kind": "utility_runner_environment",
+          "data": {
+            "Kind": "utility_runner_environment",
+            "RequestedRunner": "windows-2025",
+            "WindowsCaption": "Microsoft Windows Server 2025 Datacenter",
+            "WindowsVersion": "10.0.26100",
+            "PowerShellVersion": "5.1.26100.33438",
+            "DotNetVersion": "4.0.30319.42000",
+            "Is64BitOperatingSystem": true,
+            "RunnerImageOS": "win25-vs2026",
+            "RunnerImageVersion": "20261007.264.1",
+            "VendorInstallerExecuted": false
+          }
+        }
+      ],
+      "incomplete": [],
+      "legacy": []
+    }
+  ]
+}

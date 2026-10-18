@@ -1,0 +1,1189 @@
+{
+  "run": {
+    "id": 39035069864,
+    "head_sha": "e16f234171bcd0d98af8f30976e2b148a1906a7a",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39035069864"
+  },
+  "jobs": [
+    {
+      "id": 117403123520,
+      "name": "experiment",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-17T13:04:36Z",
+          "completed_at": "2026-10-17T13:04:37Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-17T13:04:37Z",
+          "completed_at": "2026-10-17T13:04:46Z"
+        },
+        {
+          "name": "Install isolated PDF research dependency",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-17T13:04:46Z",
+          "completed_at": "2026-10-17T13:04:55Z"
+        },
+        {
+          "name": "Read current official vendor documentation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-17T13:04:55Z",
+          "completed_at": "2026-10-17T13:05:02Z"
+        },
+        {
+          "name": "Validate isolated prototype",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-17T13:05:02Z",
+          "completed_at": "2026-10-17T13:05:32Z"
+        },
+        {
+          "name": "Save evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-17T13:05:32Z",
+          "completed_at": "2026-10-17T13:05:34Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-17T13:05:34Z",
+          "completed_at": "2026-10-17T13:05:36Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-17T13:05:36Z",
+          "completed_at": "2026-10-17T13:05:36Z"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "7a94f6f08c57414e8c670966b6b49376",
+          "kind": "test_report",
+          "data": {
+            "Passage": "validation-3",
+            "HostPowerShell": "5.1.20348.5622",
+            "LiveRequested": true,
+            "DownloadAuditRequested": false,
+            "SimulatedTransport": true,
+            "Assertions": 137,
+            "Cases": [
+              {
+                "Name": "PowerShell syntax and isolation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated MSI",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated ASUS",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated GIGABYTE",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated ASRock",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unknown and partial SMBIOS",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence Dell Inc.",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence HP",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence LENOVO",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence Acer",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence An OEM not in a lookup table",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Laptop same manufacturer and convertible",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Real runner-like virtual hardware",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing revision and unsupported OS never authorize install",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Exact supplied support evidence is not claimed as live proof",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Numeric version comparison",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Supported driver categories yield candidates only",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Security and commercial apps denied by default",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "BIOS UEFI and firmware separated and never executed",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "GPU excluded and uncertain drivers need manual verification",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official URL allowlist resists host confusion",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Relative entity and direct JavaScript download links",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTPS relative redirects and complete body",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HEAD checks metadata without reading a binary body",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated redirect to outside host blocked before request",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated redirect loop bounded",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 403 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 404 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 429 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 500 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 503 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 206 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated connection error and actual cancellation deadline",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated short download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated interrupt download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated oversize download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Existing file never overwritten",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid PE and unsigned payload rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated invalid signature and valid wrong publisher rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ZIP audit validates signed payload and never executes",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ZIP path traversal refused",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ASUS streamed download with official Content-Disposition",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ASUS HTML download link without evaluating JavaScript",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual Windows PowerShell 5.1 CIM and isolated entry point",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Live": [
+              {
+                "Kind": "RealCimInventory",
+                "BaseBoards": 1,
+                "Computers": 1,
+                "BIOS": 1,
+                "Drivers": 59,
+                "PnP": 57,
+                "CimErrors": [],
+                "SelectionStatus": "manual_required",
+                "Reason": "Machine virtuelle : aucun utilitaire de carte mere physique selectionne."
+              }
+            ],
+            "Failures": 0
+          }
+        },
+        {
+          "id": "78f04e44b87c48009bb9f31579600d41",
+          "kind": "real_inventory",
+          "data": {
+            "Kind": "RealCimInventory",
+            "BaseBoards": 1,
+            "Computers": 1,
+            "BIOS": 1,
+            "Drivers": 59,
+            "PnP": 57,
+            "CimErrors": [],
+            "SelectionStatus": "manual_required",
+            "Reason": "Machine virtuelle : aucun utilitaire de carte mere physique selectionne."
+          }
+        },
+        {
+          "id": "810a4af0149e447fb3fae4a324d62791",
+          "kind": "test_report",
+          "data": {
+            "Passage": "validation-2",
+            "HostPowerShell": "5.1.20348.5622",
+            "LiveRequested": true,
+            "DownloadAuditRequested": false,
+            "SimulatedTransport": true,
+            "Assertions": 137,
+            "Cases": [
+              {
+                "Name": "PowerShell syntax and isolation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated MSI",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated ASUS",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated GIGABYTE",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated ASRock",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unknown and partial SMBIOS",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence Dell Inc.",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence HP",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence LENOVO",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence Acer",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence An OEM not in a lookup table",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Laptop same manufacturer and convertible",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Real runner-like virtual hardware",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing revision and unsupported OS never authorize install",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Exact supplied support evidence is not claimed as live proof",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Numeric version comparison",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Supported driver categories yield candidates only",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Security and commercial apps denied by default",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "BIOS UEFI and firmware separated and never executed",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "GPU excluded and uncertain drivers need manual verification",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official URL allowlist resists host confusion",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Relative entity and direct JavaScript download links",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTPS relative redirects and complete body",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HEAD checks metadata without reading a binary body",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated redirect to outside host blocked before request",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated redirect loop bounded",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 403 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 404 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 429 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 500 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 503 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 206 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated connection error and actual cancellation deadline",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated short download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated interrupt download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated oversize download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Existing file never overwritten",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid PE and unsigned payload rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated invalid signature and valid wrong publisher rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ZIP audit validates signed payload and never executes",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ZIP path traversal refused",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ASUS streamed download with official Content-Disposition",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ASUS HTML download link without evaluating JavaScript",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual Windows PowerShell 5.1 CIM and isolated entry point",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Live": [
+              {
+                "Kind": "RealCimInventory",
+                "BaseBoards": 1,
+                "Computers": 1,
+                "BIOS": 1,
+                "Drivers": 59,
+                "PnP": 57,
+                "CimErrors": [],
+                "SelectionStatus": "manual_required",
+                "Reason": "Machine virtuelle : aucun utilitaire de carte mere physique selectionne."
+              }
+            ],
+            "Failures": 0
+          }
+        },
+        {
+          "id": "22ca5d3e76f84f1fab34ccf17e28a279",
+          "kind": "real_inventory",
+          "data": {
+            "Kind": "RealCimInventory",
+            "BaseBoards": 1,
+            "Computers": 1,
+            "BIOS": 1,
+            "Drivers": 59,
+            "PnP": 57,
+            "CimErrors": [],
+            "SelectionStatus": "manual_required",
+            "Reason": "Machine virtuelle : aucun utilitaire de carte mere physique selectionne."
+          }
+        },
+        {
+          "id": "b8d7549a5f414e319f942d395599b99d",
+          "kind": "test_report",
+          "data": {
+            "Passage": "validation-1",
+            "HostPowerShell": "5.1.20348.5622",
+            "LiveRequested": true,
+            "DownloadAuditRequested": true,
+            "SimulatedTransport": true,
+            "Assertions": 139,
+            "Cases": [
+              {
+                "Name": "PowerShell syntax and isolation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated MSI",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated ASUS",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated GIGABYTE",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Selection simulated ASRock",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unknown and partial SMBIOS",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence Dell Inc.",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence HP",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence LENOVO",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence Acer",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "OEM takes precedence An OEM not in a lookup table",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Laptop same manufacturer and convertible",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Real runner-like virtual hardware",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing revision and unsupported OS never authorize install",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Exact supplied support evidence is not claimed as live proof",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Numeric version comparison",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Supported driver categories yield candidates only",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Security and commercial apps denied by default",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "BIOS UEFI and firmware separated and never executed",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "GPU excluded and uncertain drivers need manual verification",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Official URL allowlist resists host confusion",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Relative entity and direct JavaScript download links",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTPS relative redirects and complete body",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HEAD checks metadata without reading a binary body",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated redirect to outside host blocked before request",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated redirect loop bounded",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 403 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 404 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 429 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 500 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 503 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated HTTP 206 remains a failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated connection error and actual cancellation deadline",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated short download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated interrupt download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated oversize download cleans partial files",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Existing file never overwritten",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid PE and unsigned payload rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated invalid signature and valid wrong publisher rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ZIP audit validates signed payload and never executes",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ZIP path traversal refused",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ASUS streamed download with official Content-Disposition",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated ASUS HTML download link without evaluating JavaScript",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual Windows PowerShell 5.1 CIM and isolated entry point",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual official MSI archive download and Authenticode (no execution)",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Live": [
+              {
+                "Kind": "RealCimInventory",
+                "BaseBoards": 1,
+                "Computers": 1,
+                "BIOS": 1,
+                "Drivers": 59,
+                "PnP": 57,
+                "CimErrors": [],
+                "SelectionStatus": "manual_required",
+                "Reason": "Machine virtuelle : aucun utilitaire de carte mere physique selectionne."
+              },
+              {
+                "Vendor": "MSI",
+                "Tool": "MSI Center",
+                "Status": "download_and_signed_executables_verified",
+                "RequestedUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+                "FinalUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+                "Redirects": [
+                  "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip"
+                ],
+                "Bytes": 584849764,
+                "ExpectedBytes": 584849764,
+                "ProgressUpdates": 10,
+                "SHA256": "FBFA35A0CD8B4A71F6F0CAC5090C50A97D082E1F5F93D5B95493526A34032E96",
+                "Payloads": [
+                  {
+                    "Status": "Valid",
+                    "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+                    "SHA256": "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                    "Bytes": 584849584,
+                    "FileVersion": "2.0.74.0            "
+                  }
+                ],
+                "ReportedExecutableVersion": "2.0.74.0            ",
+                "ArchivePublisherHash": "not_available",
+                "LatestVersion": "not_established",
+                "HardwareCompatibility": "not_established",
+                "Installed": false,
+                "Executed": false,
+                "FirmwareFlashed": false
+              },
+              {
+                "Vendor": "ASUS",
+                "Status": "download_audit_failed",
+                "Error": "Reponse vide.",
+                "Executed": false,
+                "Installed": false
+              }
+            ],
+            "Failures": 0
+          }
+        },
+        {
+          "id": "88896598773b4f7c8a2d990ce1a0de67",
+          "kind": "real_download",
+          "data": {
+            "Vendor": "ASUS",
+            "Status": "download_audit_failed",
+            "Error": "Reponse vide.",
+            "Executed": false,
+            "Installed": false
+          }
+        },
+        {
+          "id": "a1e651d8edd540f39e9fc824ba28585e",
+          "kind": "real_download",
+          "data": {
+            "Vendor": "MSI",
+            "Tool": "MSI Center",
+            "Status": "download_and_signed_executables_verified",
+            "RequestedUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+            "FinalUrl": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+            "Redirects": [
+              "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip"
+            ],
+            "Bytes": 584849764,
+            "ExpectedBytes": 584849764,
+            "ProgressUpdates": 10,
+            "SHA256": "FBFA35A0CD8B4A71F6F0CAC5090C50A97D082E1F5F93D5B95493526A34032E96",
+            "Payloads": [
+              {
+                "Status": "Valid",
+                "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+                "SHA256": "95E6BE38ED8F1A0AD5055C9831DAB057F2B0BBA0EB33A25EB60A9486FD0D3EBD",
+                "Bytes": 584849584,
+                "FileVersion": "2.0.74.0            "
+              }
+            ],
+            "ReportedExecutableVersion": "2.0.74.0            ",
+            "ArchivePublisherHash": "not_available",
+            "LatestVersion": "not_established",
+            "HardwareCompatibility": "not_established",
+            "Installed": false,
+            "Executed": false,
+            "FirmwareFlashed": false
+          }
+        },
+        {
+          "id": "d2fadf123f544ecdb99ff7294efe3c0c",
+          "kind": "real_inventory",
+          "data": {
+            "Kind": "RealCimInventory",
+            "BaseBoards": 1,
+            "Computers": 1,
+            "BIOS": 1,
+            "Drivers": 59,
+            "PnP": 57,
+            "CimErrors": [],
+            "SelectionStatus": "manual_required",
+            "Reason": "Machine virtuelle : aucun utilitaire de carte mere physique selectionne."
+          }
+        },
+        {
+          "id": "d2e1be8e09af4b3a8356d58d18501125",
+          "kind": "official_sources",
+          "data": [
+            {
+              "Vendor": "MSI",
+              "Url": "https://www.msi.com/Landing/MSI-Center",
+              "Status": "unavailable",
+              "HttpStatus": 403,
+              "FinalUrl": "",
+              "Links": [],
+              "Excerpts": [],
+              "Error": "HTTP 403 sur la source officielle."
+            },
+            {
+              "Vendor": "MSI",
+              "Url": "https://www.msi.com/Landing/msi-drivers-utility-installer",
+              "Status": "unavailable",
+              "HttpStatus": 403,
+              "FinalUrl": "",
+              "Links": [],
+              "Excerpts": [],
+              "Error": "HTTP 403 sur la source officielle."
+            },
+            {
+              "Vendor": "MSI",
+              "Url": "https://www.msi.com/support/technical_details/MB_SW_MSI_Center",
+              "Status": "unavailable",
+              "HttpStatus": 403,
+              "FinalUrl": "",
+              "Links": [],
+              "Excerpts": [],
+              "Error": "HTTP 403 sur la source officielle."
+            },
+            {
+              "Vendor": "MSI",
+              "Url": "https://download.msi.com/manual/mb/MSICENTER.pdf",
+              "Status": "available",
+              "HttpStatus": 200,
+              "FinalUrl": "https://download-2.msi.com/archive/mnu_exe/mb/MSICENTER.pdf",
+              "Links": [],
+              "Excerpts": [
+                "ration .........................................................................................105 Live Update ........................................................................................................107 System Info ........................................................................................................108 Microsoft APP .......",
+                "nd enjoy a high quality gaming experience. ∙ System performance tuning, you can choose overclock or silent. ∙ Monitor system information. ∙ Adjust the best display settings for your eyes. ∙ Register your MSI products. ∙ Control the LED light effects and synchronize effects to your devices. ∙ Manage network connection settings. ∙ Use utilities to control ",
+                "de in the upper right corner of the screen. 3. Select one mode among Extreme Performance/ Balanced/ Silent/ Customize. 4. Restart your computer to apply the settings. ▪Extreme Performance – A configuration that boosts the highest possible performance for AAA games, and enables overclocking. ▪Balance - MSI recommended settings for most users. ▪Silent - A ",
+                " one fan mode you’d like to apply. ▪Performance - Boost extreme performance with higher fan speed. ▪Silent - Adjust fan speed for best cooling and silence. ▪Customize - Customize fan speed as desired. On/Off the switch On - To use Frozr AI Cooling to control system fans Off - To apply User Scenario Customize settings to control system fans Select one mod",
+                "select one fan mode you’d like to apply. ▪Performance - Enhances the heat dissipation performance. ▪Silent - Adjust fan speed for best cooling and silence. ▪Customize - Customize the performance level and fan speed as desired. Select one mode 40 Cooling Wizard How to customize fan mode for case 1. Go to Features > Cooling Wizard. 2. Click Case Setting ic",
+                "g system fans, choose one fan mode you’d like to apply. ▪Balance - Default setting for most users. ▪Silent - Adjust fan speed for best cooling and silence. ▪Game Mode - Enhances the heat dissipation performance. ▪Customize - Customize the performance level and fan speed as desired. ▪GI Mode - Automatically adjust the fan speed through the AI algorithm. S",
+                "ogle Plus to login. Click Product Registration button and fill in the product registration form. 107Live Update Select which item you want to update. Click to scan the system Utilities and drivers list Click to install Live Update Live Update feature allows you to scan system and download the latest drivers, BIOS and utilities. With Live Update, you don’t nee",
+                "earch the drivers on websites, and don’t need to know the models of motherboard and graphics cards. Live Update will download the appropriate drivers automatically. To use Live Update: 1. Connect your computer to the internet. 2. Go to Support > Live Update. 108 System Info System Info The System Info provides information about your computer drivers, BIOS and",
+                "..............................................................................6 Supported Hardware ..............................................................................................6 Installing MSI Center ..................................................",
+                "............................................................................105 Live Update ........................................................................................................107 System Info ...........................................................",
+                "ity gaming experience. ∙ System performance tuning, you can choose overclock or silent. ∙ Monitor system information. ∙ Adjust the best display settings for your eyes. ∙ Register your MSI products. ∙ Control the LED light effects and synchronize effects to your devi",
+                "gn may vary. 6 Get Started Get Started System Requirements ∙ Operating System: ▪Windows 10/ Windows 11 64-bit Supported Hardware ∙ Motherboard: ▪MSI motherboards ∙ Graphics card: ▪MSI NVIDIA and AMD graphics cards Installing MSI Center 1. Go to MSI Website download M",
+                "for reference only and the actual UI design may vary. Monitor Tab Features Menu Support Menu Feature sets Settings My Device 10 Feature Sets Feature Sets Feature Sets allows you to download, update, or uninstall MSI exclusive features. Therefore, you can choose the f",
+                " list button On/Off Gaming modeOption Settings ⚠Important ∙ Gaming Mode doesn’t support PRO Series Motherboards. ∙ If MSI AI Engine is installed at the same time, Gaming Mode will not be available. ∙ Once Gaming Mode is deleted, it cannot be downloaded and installed ",
+                "rt Priority main switch You can drag and drop to set the priority List software supported by Smart Priority Edit the software list Refresh the software list Add software to the software list User Priority Mode: User-defined software priority. Real-Time Mode: The top ",
+                "level of the windows has best performance. Smart Priority Mode: Automatically prioritize system resources to your most commonly used programs based on AI calculation. Go to Features > Smart Priority. ",
+                "⚠Important ∙ Smart Priority doesn’t support PRO Series Motherboards. ∙ If MSI AI Engine is installed at the same time, Smart Priority will not be available. ∙ Once Smart Priority is deleted, it cannot be downloaded and inst",
+                " displayed if the corresponding control module is installed and the motherboard supports this feature. 18 MSI AI Engine (optional) How to Add Application in MSI AI Engine Users can add applications to the specific mode, enabling AI to automatically improve performanc",
+                "t corner of the screen. 3. Select one mode among Extreme Performance/ Balanced/ Silent/ Customize. 4. Restart your computer to apply the settings. ▪Extreme Performance – A configuration that boosts the highest possible performance for AAA games, and enables overcloc",
+                "king. ▪Balance - MSI recommended settings for most users. ▪Silent - A configuration that allows system to run smoothly with minimum loading. ▪Customize - Customize the performance level and fan speed as desired. 23User Scenario Canceling User Sc",
+                " 1. Click on the selected scenario again. 2. Restart your computer to apply the BIOS settings. How to disable CPU/Fan settings when applying User Scenario 1. Turn off Software Control Mode in the upper right corner of the screen. 2. Select one of the options to ap",
+                " fan settings according to the mode selected by the user in the User Scenario. ▪BIOS Mode: To adjust fan settings by BIOS settings. ▪Customize: To customize fan settings by the user. Select one mode 34 Cooling Wizard How to use the Smart Fan control panel 1. Go to",
+                "emperatures and automatically adjust fan duty of system fans to a proper value. Supported Hardware: ∙ Motherboard: ▪Support PCIe 4.0 slots ∙ Graphics card: ▪MSI NVIDIA 3000 series and AMD 6000 series graphics cards ⚠Important Frozr AI Cooling will be available when t",
+                "like to apply. ▪Performance - Boost extreme performance with higher fan speed. ▪Silent - Adjust fan speed for best cooling and silence. ▪Customize - Customize fan speed as desired. On/Off the switch On - To use Frozr AI Cooling to control system fans Off - To apply ",
+                "you’d like to apply. ▪Performance - Enhances the heat dissipation performance. ▪Silent - Adjust fan speed for best cooling and silence. ▪Customize - Customize the performance level and fan speed as desired. Select one mode 40 Cooling Wizard How to customize fan mode",
+                "e captured videos in your local folder. ⚠Important Game Highlights feature only supports certain series Motherboards. In addition, this function is currently available in Fortnite, League of Legends, Apex Legends, Valorant, PUBG, Overwatch, Heroes of the Storm. Setti",
+                "ng Supported games displayed in the drop-down list Gameplay display zone Game video record listAuto captured event clips Display certain event clips Video timeline 44 Game Highlights Go to F",
+                "ighlights. How to Share Game Highlights to Social Media Game Highlights feature supports uploading videos directly to social media, such as YouTube, Twitter, and Discord. Options to open files in the folder and to directly share clips to social media 45Game Highlight",
+                "I Center Linked to True Color setting in MSI Center Adjust system volume On/Off Windows Keys Adjust mouse sensitivity Pin the window to be always on top 49Game Highlights On Display tab Select the system performance you want to display on the screen Click the setting",
+                "uration, brightness and contrast settings for your eyes. The True Color feature supports games in windowed mode. Select one of screen color settings True Color Preset Options When you click the preset option, the screen settings will be immediately applied to your co",
+                "utton to save the settings. 55LAN Manager LAN Manager LAN Manager is applied to Windows 10 network traffic shaping. It keeps your internet speed stable and faster during heavy uploads/downloads and reduces the ping value of online games. If your motherboard has a Wi-",
+                " your mobile device for traffic shaping. To use LAN Manager: 1. Install the LAN driver. 2. Connect your computer to the internet. 3. Go to Features > LAN Manager. Network Control Menu Other relevant settings on the LAN Manager Control Panel are as follows: ▪Priority",
+                "ghtness. Please note that these functions will only be available if your device supports it. ∙ MEG Z690 GODLIKE ∙ MEG Z690 ACE ∙ MEG Z690 UNIFY ∙ MEG Z690 UNIFY-X ∙ MEG Z690I UNIFY ∙ MPG Z690 CARBON WIFI ∙ MPG Z690 CARBON EK X ∙ MPG Z690 FORCE WIFI ∙ MPG Z690 EDGE WI",
+                "ent Link, you need to follow the instructions below to complete the link setup. Supported Motherboards ∙ MEG Z590 GODLIKE ∙ MEG Z590 ACE ∙ MEG Z590 ACE GOLD EDITION ∙ MEG Z590I UNIFY ∙ MPG Z590 GAMING CARBON WIFI ∙ MPG Z590 CARBON EK X ∙ MPG Z590 GAMING EDGE WIFI ∙ M",
+                "wer light and center is local network Nanoleaf Setup (optional) ∙ The router is compatible with Bonjour (mDNS). ∙ MPG Z390I GAMING EDGE AC ∙ B360I GAMING PRO AC ∙ Creator X299 ∙ MPG X299M GAMING EDGE ∙ MEG X299 CREATION ∙ X299 GAMING M7 ACK ∙ 299 XPOWER GAMING AC ∙ 29",
+                "3Gaming Gear Gaming Gear This panel allows you to control MSI’s gaming gear and supported third-party devices. Go to Features > Gaming Gear. Supported devices will be displayed here. Click buttons to enter the control panel of the device. 74 Gaming Dial (optional) Ga",
+                "d a USB connection from the desktop’s USB port to the monitor’s USB port with a compatible USB cable. Topics 77Gaming Dial (optional) Uploading Your Own Animation Click the Upload icon and select .jpg/ .gif animation files. Setting Shortcut You can add up to 5 applica",
+                "tion/ website shortcuts to the Gaming Dial. Various shortcut formats are supported, including .exe files, web links, Steam games, Uplay games, and Epic Games. Click to upload .jpg/ .gif animation files Click to enter Gaming Mode to modify shortcut Click to del",
+                "tion/website shortcuts to the HMI 2.0 touch panel. Various shortcut formats are supported, including .exe files, web links, Steam games, Uplay games, and Epic Games. Go to Features > Gaming Gear > HMI 2.0, and click Set APP Shortcut. Click to add shortcut to Gaming M",
+                "rmance. Go to Features > Devices Speed Up. Devices Speed Up Options USB BOOST - supports faster data transfer rates of the USB storage devices. STORAGE BOOST - supports faster access speed of storage device. Click here to enable USB BOOST Click here to enable STORAGE",
+                "computer cannot charge your iPad even with power on. The MSI Super Charger is a Windows resident program capable of changing power supply mode of your USB port. Once iPad is connected to your USB port, the Super Charger will send a signal to initiate its charging cir",
+                "remove an image, click the certain image and then click Delete below the image. Supported image format Select default images Select background images Edit text Click Image Click Customize Banner 95Coreliquid (optional) Displaying system clock Select clock style Click",
+                "e one fan mode you’d like to apply. ▪Balance - Default setting for most users. ▪Silent - Adjust fan speed for best cooling and silence. ▪Game Mode - Enhances the heat dissipation performance. ▪Customize - Customize the performance level and fan speed as desired. ▪GI",
+                "ontrol panel fan speed control panel ⚠Important Power Supply Unit features only support MSI PSU with G.I. Port. 102 Power Supply Unit (optional) Switching DC Output (Single-rail / Multi-rail) 1. Go to Features > Power Supply Unit. 2. Select Single-rail or Multi-rail ",
+                "Register your MSI product to get exclusive updates, quicker service and product support. Click here to enter My Device Click here to register your product Display your devices Click here to login 106 Product Registration Login to your MSI account on this My Devices t",
+                "Click Product Registration button and fill in the product registration form. 107Live Update Select which item you want to update. Click to scan the system Utilities and drivers list Click to install Live Update Live Update feature allows you to scan system and download t",
+                "he latest drivers, BIOS and utilities. With Live Update, you don’t need to search the drivers on websites, and don’t need to know the models of motherboard and graphics cards. Live Update will download the appropriate drivers automatic",
+                "ally. To use Live Update: 1. Connect your computer to the internet. 2. Go to Support > Live Update. 108 System Info System Info The System Info provides information about your computer drivers, BIOS and utilities versions. To open System Info: 1. Go to Support > S",
+                "ystem Info. To export system information: 1. Go to Support > System Info. 2. Click Export System Info button in the upper right corner. 3. Browse to the location where you want to save the new text file, and then click Save. Shows drivers",
+                ", BIOS and utilities versions. Click to export system information to a text file. 109Microsoft APP Microsoft APP The Microsoft App feature detects installed drivers and displays a relati",
+                "ve Microsoft application download links. To install Microsoft App: 1. Go to Support > Microsoft App. 2. Click the Get it from Microsoft icon on the right side of the item. 3. Download and install the application from Microsoft Store. Click to install 110 Notices "
+              ],
+              "Error": ""
+            },
+            {
+              "Vendor": "ASUS",
+              "Url": "https://driverhub.asus.com/en",
+              "Status": "available",
+              "HttpStatus": 200,
+              "FinalUrl": "https://driverhub.asus.com/en",
+              "Links": [
+                "/_next/static/chunks/webpack-e6388fc1c4c0b511.js",
+                "/_next/static/chunks/4bd1b696-c023c6e3521b1417.js",
+                "/_next/static/chunks/493-a26bded27de2581a.js",
+                "/_next/static/chunks/main-app-207b798bdc69d2ae.js",
+                "/_next/static/chunks/460-911b845c43a518c5.js",
+                "/_next/static/chunks/176-7740e5addbff6f5d.js",
+                "/_next/static/chunks/179-1bdf9d79d0dc146b.js",
+                "/_next/static/chunks/929-523f51f3ca35204a.js",
+                "/_next/static/chunks/277-7142497bf4d4224b.js",
+                "/_next/static/chunks/app/%5Blang%5D/(main)/page-e0645de93a49b96c.js",
+                "/_next/static/chunks/app/%5Blang%5D/(main)/layout-1ed7a0e20b05eb62.js",
+                "/_next/static/chunks/app/%5Blang%5D/layout-c4f72944ee50018c.js",
+                "/_next/static/chunks/app/%5Blang%5D/not-found-ad4d450dd374eb52.js",
+                "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+                "https://driverhub.asus.com",
+                "https://geo.asus.com/driverhubcn/",
+                "https://geo.asus.com/driverhub/",
+                "https://gc-rog.asus.com:14393/api/V1/Config/GetCountryCodeWithJsonForOP",
+                "https://gc-rog.asus.com.cn:8044/api/V1/Config/GetCountryCodeWithJsonForOP",
+                "https://www.asus.com/support/Download-Center/"
+              ],
+              "Excerpts": [
+                " ASUS DriverHub asus logo ASUS DriverHub scanning Scanning your system… ©ASUSTek Computer Inc. All rights reserved. ",
+                ".titleBlock,children:[(0,s.jsx)(\"h2\",{className:Z().name,children:l}),(a===N.c2.DownloadFail||a===N.c2.InstallFail)&&(0,s.jsx)(ea,{type:a,text:r.row_48})]}),(0,s.jsxs)(\"div\",{className:Z().installingBlock,children:[h&&(0,s.jsx)(_.MT,{disabled:v,size:\"small\",onClick:as",
+                "d((0,u.iV)({Id:t})),await d((0,u.kK)())},children:r.row_43})]})]})}let ei=[N.c2.Downloading,N.c2.Downloaded,N.c2.Installing,N.c2.Installed];function ea(e){let{type:t,text:l}=e;return(0,s.jsxs)(\"div\",{className:Z().installationStatus,children:[(t===N.c2.DownloadFail||t",
+                "n(s.bind(s,7139))},2940:e=>{e.exports={containImage:\"style_containImage__rlv2j\",scanner:\"style_scanner__KgkYT\",\"not-support-title\":\"style_not-support-title__8krxs\",\"old-asus-title\":\"style_old-asus-title__BXaST\"}},3022:e=>{e.exports={toaster:\"style_toaster__Pvy0T\",",
+                "it l();if(null!==e&&_(e))a(e);else{let e=await r(\"https://gc-rog.asus.com:14393/api/V1/Config/GetCountryCodeWithJsonForOP\");if(null!==e&&_(e))a(e);else{let e=await r(\"https://gc-rog.asus.com.cn:8044/api/V1/Config/GetCountryCodeWithJsonForOP\");null!==e&&_(e)?a(e):a",
+                "):h.Rm.error(s.reason),\"fulfilled\"===n.status){var r;let{latestVersion:s,minimumSupportedVersion:l}=null!=(r=n.value)?r:{};if(t((0,_.Kq)(s)),void 0===e)return;let{forceUpdate:a,hasNewUpdate:o}=(0,c.Zy)(e,l,s);return{isForceUpdate:a,showUpdate:o}}h.Rm.error(n.reason)};v",
+                "(\"div\",{className:v(\"update-icon-block\"),children:[(0,n.jsx)(y.s3,{className:v(\"download-icon\")}),(0,n.jsx)(y.LE,{className:v(\"news-icon\")})]})}var k=s(2671),C=s(5050),S=s(4242),P=s.n(S);let I=l().bind(P());function A(){let e=(0,o.Y)(),t=(0,i.d4)(e=>e.system.latestVer",
+                "(0,n.jsx)(T,{imgUrl:\"/img/detect.svg\",text:e.row_10}),(0,n.jsx)(T,{imgUrl:\"/img/download.svg\",text:e.row_11}),(0,n.jsx)(T,{imgUrl:\"/img/updates.svg\",text:e.row_12}),(0,n.jsx)(R,{title:\"\".concat(e.row_13,\" \").concat(e.row_14),subTitle:e.row_15,buttonName:e.row_16,conte",
+                "ntImg:\"/img/download.svg\",onClick:()=>{(0,c.hX)((0,c.oD)(t))}}),(0,n.jsx)(R,{title:\"\".concat(e.row_17,\" \").concat(e.row_18),subTitle:e.row_19,contentImg:\"/img/refresh.svg\"}),(0,n.jsx)(R,{title:\"\".conc",
+                "40),Y=s.n(U);function E(){let e=(0,o.Y)();return(0,n.jsxs)(\"div\",{className:Y().scanner,\"data-testid\":\"not-support-element\",children:[(0,n.jsx)(C.Z,{src:\"/img/unsupported.svg\",alt:\"unsupported\",className:Y().containImage,width:92,height:92}),(0,n.jsx)(\"p\",{classNa",
+                "e.row_8})]})}function V(){let e=(0,o.Y)();return(0,n.jsxs)(\"div\",{className:Y().scanner,\"data-testid\":\"old-asus-board-element\",children:[(0,n.jsx)(C.Z,{src:\"/img/supportsite.svg\",alt:\"unsupported\",className:Y().containImage,width:92,height:92}),(0,n.jsx)(\"p\",{clas",
+                "e.row_6}),(0,n.jsx)(f.$n,{variant:\"outlined\",href:\"https://www.asus.com/support/Download-Center/\",children:e.row_7})]})}let F=e=>{let{isAsus:t}=e;return(0,n.jsx)(n.Fragment,{children:t?(0,n.jsx)(V,{}):(0,n.jsx)(E,{})})};var D=s(9033),q=s.n(D);let O=l().bind(q());funct",
+                "ion Z(){let e=(0,o.Y)();return(0,n.jsxs)(\"div\",{className:O(\"scanner\"),children:[(0,n.jsx)(y.y$,{}),(0,n.jsx)(\"p\",{className:O(\"scanner-title\"),children:e.row_4})]})}let B=e=>{let{children:t}=e,s=(()=>{let e=(0,i.d4)(e=>e.system.status),t=(0,i.d",
+                "\",children:(0,n.jsx)(i.gu,{className:d().logoIcon})})})})}},9033:e=>{e.exports={scanner:\"layout_scanner__deYtr\",\"scanner-title\":\"layout_scanner-title__PzAZ8\",main:\"layout_main__Zy26o\"}},9890:e=>{e.exports={\"agent-update-block\":\"style_agent-update-block__bRfWF\",tex",
+                ":\"style_btn-block__u5sh_\",\"update-icon-block\":\"style_update-icon-block__N_lh4\",\"download-icon\":\"style_download-icon__VNIae\",\"news-icon\":\"style_news-icon__TTnNH\"}}},e=>{e.O(0,[390,102,460,176,179,929,277,441,493,358],()=>e(e.s=750)),_N_E=e.O()}]);"
+              ],
+              "Error": ""
+            },
+            {
+              "Vendor": "ASUS",
+              "Url": "https://geo.asus.com/driverhub/",
+              "Status": "unavailable",
+              "HttpStatus": 0,
+              "FinalUrl": "",
+              "Links": [],
+              "Excerpts": [],
+              "Error": "Reponse vide."
+            },
+            {
+              "Vendor": "GIGABYTE",
+              "Url": "https://www.gigabyte.com/Consumer/Software/GIGABYTE-Control-Center/global/",
+              "Status": "unavailable",
+              "HttpStatus": 403,
+              "FinalUrl": "",
+              "Links": [],
+              "Excerpts": [],
+              "Error": "HTTP 403 sur la source officielle."
+            },
+            {
+              "Vendor": "GIGABYTE",
+              "Url": "https://www.gigabyte.com/Support/Utility/Motherboard",
+              "Status": "unavailable",
+              "HttpStatus": 403,
+              "FinalUrl": "",
+              "Links": [],
+              "Excerpts": [],
+              "Error": "HTTP 403 sur la source officielle."
+            },
+            {
+              "Vendor": "ASRock",
+              "Url": "https://www.asrock.com/feature/AutoDriverInstaller/",
+              "Status": "unavailable",
+              "HttpStatus": 404,
+              "FinalUrl": "",
+              "Links": [],
+              "Excerpts": [],
+              "Error": "HTTP 404 sur la source officielle."
+            },
+            {
+              "Vendor": "ASRock",
+              "Url": "https://www.asrock.com/feature/appshop/",
+              "Status": "available",
+              "HttpStatus": 200,
+              "FinalUrl": "https://www.asrock.com/feature/appshop/",
+              "Links": [
+                "/includes/jquery.min.1.8.3.js",
+                "/includes/jquery.slides.min.js",
+                "images/Download.png",
+                "http://s7.addthis.com/js/250/addthis_widget.js#username=asrock",
+                "//www.google-analytics.com/analytics.js"
+              ],
+              "Excerpts": [
+                "ned for system update and software downloading. It is integrated with a variety of applications and support software. The ASRock APP Shop provides the latest BIOS updates and system upgrade software for users to download. You can easily optimize your system and keep your PC up-to-date with the ASRock APP S",
+                "aming feast on the ASRock APP Shop!! Size Description Download 4.26MB APP Shop ver:2.0.0.4   latest BIOS & Driver download Step 1 Click on “BIOS & Driver” on ASRock APP Shop. Step 2 Click the drivers and driver you wish to update. Step 3 Click update to start.     APP Download Step 1 Click on \"FREE\" to "
+              ],
+              "Error": ""
+            },
+            {
+              "Vendor": "ASRock",
+              "Url": "https://www.asrock.com/",
+              "Status": "available",
+              "HttpStatus": 200,
+              "FinalUrl": "https://www.asrock.com/index.asp",
+              "Links": [
+                "/includes/jquery-1.11.0.min.js",
+                "/includes/jquery.slick.1.8.1.min.js",
+                "https://www.asrock.com/support/index.asp",
+                "/support/index.asp?item=ContactUS",
+                "/support/index.asp",
+                "/support/faq.asp",
+                "/support/forum.asp"
+              ],
+              "Excerpts": [
+                " ASRock ASRock Menu AI Products Campaigns Blog News Support Where to Buy Search All Motherboards Graphics Card Gaming Monitor Power Supply Mini PC AIO Liquid Coolers Industrial PC Server/WS ASRock AMD ONIMUSHA Game Bundle 26Q3 ASRock Intel Gamer Days 2026 ASRock Intel Motherboard Bundle 26Q3 Ta",
+                "ichi 10th Anniversary Website ASRock Intel XMP Identifier Certified Motherboards ASRock White Lab ASRock CoreExperience 2025 ASRock Elite --> Phantom Gaming Official Website Meet ARKY Phantom Gaming Room We use cookies to offer you a more personalized and smoother experience. By",
+                "Organization Corporate Social Responsibility Investor Services   NEWS Press Release Awards Blog     SUPPORT Download FAQ Technical Support COMMUNITY Facebook YouTube Instagram Forum Dealer & Media Zone Wallpaper © 2026 ASRock Inc. All rights reserved. Information published on ASRock.com is subject to chang"
+              ],
+              "Error": ""
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "legacy": []
+    }
+  ]
+}

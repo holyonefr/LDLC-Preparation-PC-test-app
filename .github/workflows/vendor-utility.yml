@@ -1,0 +1,149 @@
+name: Vendor utility only (isolated tests)
+on:
+  workflow_dispatch:
+    inputs:
+      phase:
+        description: 'Simulations or static inspection of official downloads (no vendor installation)'
+        type: choice
+        options: [inspect, validate, research, deep-research, installer-shortcut, other-installer-shortcuts, gigabyte-source, gigabyte-installer-shortcut]
+        default: validate
+      gcc_catalogue:
+        description: 'Live catalogue, or explicit recorded-response audit after Windows HTTP 403'
+        type: choice
+        options: [live, recorded-audit]
+        default: live
+      windows_runner:
+        description: 'Native Windows environment for the isolated audits'
+        type: choice
+        options: [windows-2022, windows-2025]
+        default: windows-2022
+permissions:
+  contents: read
+jobs:
+  utility:
+    runs-on: ${{ inputs.windows_runner || 'windows-2022' }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          lfs: false
+          persist-credentials: false
+      - name: Record native Windows and PowerShell environment
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          Import-Module ./tools/experimental/motherboard/MotherboardExperiment.psm1 -Force
+          $os=Get-CimInstance Win32_OperatingSystem -OperationTimeoutSec 15 -ErrorAction Stop
+          $report=[ordered]@{
+            Kind='utility_runner_environment'
+            RequestedRunner='${{ inputs.windows_runner }}'
+            WindowsCaption=[string]$os.Caption
+            WindowsVersion=[string]$os.Version
+            PowerShellVersion=$PSVersionTable.PSVersion.ToString()
+            DotNetVersion=[Environment]::Version.ToString()
+            Is64BitOperatingSystem=[Environment]::Is64BitOperatingSystem
+            RunnerImageOS=$env:ImageOS
+            RunnerImageVersion=$env:ImageVersion
+            VendorInstallerExecuted=$false
+          }
+          New-Item -ItemType Directory artifacts/vendor-utility/environment -Force | Out-Null
+          $report | ConvertTo-Json | Set-Content artifacts/vendor-utility/environment/runner.json -Encoding UTF8
+          Write-MbxEvidence -Kind 'utility_runner_environment' -Data $report
+      - name: Inspect MSI installer without executing it
+        if: inputs.phase == 'inspect'
+        timeout-minutes: 8
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Inspect-MsiUtility.ps1 -OutputDirectory artifacts/vendor-utility/inspection
+      - name: Compare native HTTP clients against the official GIGABYTE sources
+        if: inputs.phase == 'gigabyte-source'
+        timeout-minutes: 6
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Probe-GigabyteSource.ps1 -OutputDirectory artifacts/vendor-utility/gigabyte-source
+      - name: Validate independent utility script with simulated installers
+        if: inputs.phase == 'validate' || inputs.phase == 'research' || inputs.phase == 'deep-research' || inputs.phase == 'installer-shortcut' || inputs.phase == 'other-installer-shortcuts' || inputs.phase == 'gigabyte-installer-shortcut'
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Test-VendorUtility.ps1 -Live -OutputDirectory artifacts/vendor-utility/tests
+      - name: Verify installer shortcuts on Windows Desktop and redirected OneDrive Desktop
+        if: ${{ !cancelled() && (inputs.phase == 'installer-shortcut' || inputs.phase == 'deep-research') }}
+        timeout-minutes: 4
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Test-InstallerShortcut.ps1 -Live -OutputDirectory artifacts/vendor-utility/installer-shortcut
+      - name: Verify other manufacturers installer shortcuts with real downloads
+        if: ${{ !cancelled() && inputs.phase == 'other-installer-shortcuts' }}
+        timeout-minutes: 8
+        shell: powershell
+        run: |
+          if ('${{ inputs.gcc_catalogue }}' -eq 'recorded-audit') {
+            ./tools/experimental/vendor-utility/Test-InstallerShortcut.ps1 -Live -Vendors GIGABYTE -RecordedGigabyteCatalogue tools/experimental/vendor-utility/fixtures/gigabyte-official-2026-10-18.html -OutputDirectory artifacts/vendor-utility/other-installer-shortcuts
+          } else {
+            ./tools/experimental/vendor-utility/Test-InstallerShortcut.ps1 -Live -Vendors MSI,ASUS,GIGABYTE -OutputDirectory artifacts/vendor-utility/other-installer-shortcuts
+          }
+      - name: Verify current GCC download and Desktop shortcuts using its live software manifest
+        if: ${{ !cancelled() && inputs.phase == 'gigabyte-installer-shortcut' }}
+        timeout-minutes: 5
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Test-InstallerShortcut.ps1 -Live -Vendors GIGABYTE -OutputDirectory artifacts/vendor-utility/gigabyte-installer-shortcut
+      - name: Reject invalid GCC manifests and incomplete or substituted core downloads
+        if: ${{ !cancelled() && (inputs.phase == 'deep-research' || inputs.phase == 'other-installer-shortcuts' || inputs.phase == 'gigabyte-installer-shortcut') }}
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Test-GigabyteCoreDownload.ps1 -OutputDirectory artifacts/vendor-utility/gigabyte-core-download
+      - name: Verify ASUS discovery and signed download without installation
+        if: inputs.phase == 'research' || inputs.phase == 'deep-research'
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Test-VendorDiscovery.ps1 -Live -OutputDirectory artifacts/vendor-utility/discovery
+      - name: Inspect ASRock signature and Inno actions without installation
+        if: inputs.phase == 'research'
+        timeout-minutes: 8
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Inspect-MsiUtility.ps1 -Vendor ASRock -OutputDirectory artifacts/vendor-utility/asrock
+      - name: Verify ASRock model catalogue and current signed download
+        if: ${{ !cancelled() && inputs.phase == 'deep-research' }}
+        timeout-minutes: 4
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Test-AsrockDiscovery.ps1 -Live -OutputDirectory artifacts/vendor-utility/asrock-discovery
+      - name: Verify GIGABYTE discovery using simulated catalogues
+        if: ${{ !cancelled() && (inputs.phase == 'deep-research' || inputs.phase == 'other-installer-shortcuts') }}
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Test-GigabyteDiscovery.ps1 -OutputDirectory artifacts/vendor-utility/gigabyte-discovery
+      - name: Verify extraction chooses only the signed GIGABYTE core
+        if: ${{ !cancelled() && (inputs.phase == 'deep-research' || inputs.phase == 'other-installer-shortcuts') }}
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Test-GigabytePackage.ps1 -OutputDirectory artifacts/vendor-utility/gigabyte-package
+      - name: Audit official GIGABYTE bundle and application signatures without execution
+        if: ${{ !cancelled() && inputs.phase == 'deep-research' }}
+        timeout-minutes: 6
+        shell: powershell
+        run: |
+          if ('${{ inputs.gcc_catalogue }}' -eq 'recorded-audit') {
+            ./tools/experimental/vendor-utility/Audit-GigabyteCore.ps1 -RecordedOfficialCatalogue tools/experimental/vendor-utility/fixtures/gigabyte-official-2026-10-18.html -OutputDirectory artifacts/vendor-utility/gigabyte-core
+          } else {
+            ./tools/experimental/vendor-utility/Audit-GigabyteCore.ps1 -OutputDirectory artifacts/vendor-utility/gigabyte-core
+          }
+      - name: Verify MSI manifest parser with inert ZIP and XML fixtures
+        if: ${{ !cancelled() && inputs.phase == 'deep-research' }}
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Test-MsiAppxMetadata.ps1 -OutputDirectory artifacts/vendor-utility/msi-appx-metadata-tests
+      - name: Read official MSI application manifests without installation
+        if: ${{ !cancelled() && inputs.phase == 'deep-research' }}
+        timeout-minutes: 6
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Inspect-MsiAppx.ps1 -OutputDirectory artifacts/vendor-utility/msi-appx
+      - name: Inspect current ASRock installer actions without execution
+        if: ${{ !cancelled() && inputs.phase == 'deep-research' }}
+        timeout-minutes: 4
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Inspect-MsiUtility.ps1 -Vendor ASRock -CurrentAsrockModel 'B650M Pro RS' -OutputDirectory artifacts/vendor-utility/asrock-current
+      - name: Reject substituted packages and older versions using simulated payloads
+        if: ${{ !cancelled() && inputs.phase == 'deep-research' }}
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Test-VendorPackageVerification.ps1 -OutputDirectory artifacts/vendor-utility/package-verification
+      - name: Preserve JSON evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: vendor-utility-tests
+          path: |
+            artifacts/vendor-utility/**/*.json
+            artifacts/vendor-utility/**/*.txt
+          if-no-files-found: error
+          retention-days: 14

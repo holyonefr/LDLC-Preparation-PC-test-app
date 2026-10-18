@@ -1,0 +1,81 @@
+[
+  {
+    "run": {
+      "id": 39034015504,
+      "head_sha": "3b06aa3bfc729c78f4d43cb864ebed183247fd51",
+      "status": "completed",
+      "conclusion": "failure",
+      "html_url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39034015504"
+    },
+    "test_failures": [
+      {
+        "Name": "Simulated ZIP audit validates signed payload and never executes",
+        "Result": "failed",
+        "Error": "Unable to find type [IO.Compression.ZipArchiveMode]."
+      },
+      {
+        "Name": "Simulated ZIP path traversal refused",
+        "Result": "failed",
+        "Error": "Unable to find type [IO.Compression.ZipArchiveMode]."
+      },
+      {
+        "Name": "Actual official MSI archive download and Authenticode (no execution)",
+        "Result": "failed",
+        "Error": "Taille annoncee superieure a la limite de lecture."
+      }
+    ],
+    "live_audits": [
+      [
+        {
+          "Kind": "RealCimInventory",
+          "BaseBoards": 1,
+          "Computers": 1,
+          "BIOS": 1,
+          "Drivers": 59,
+          "PnP": 57,
+          "CimErrors": [],
+          "SelectionStatus": "manual_required",
+          "Reason": "Machine virtuelle : aucun utilitaire de carte mere physique selectionne."
+        }
+      ]
+    ]
+  },
+  {
+    "run": {
+      "id": 39034228189,
+      "head_sha": "c19b95e3959ee16bbd47e133e317ada73f5cd468",
+      "status": "completed",
+      "conclusion": "failure",
+      "html_url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39034228189"
+    },
+    "test_failures": [
+      {
+        "Name": "Actual official MSI archive download and Authenticode (no execution)",
+        "Result": "failed",
+        "Error": "Exception calling \"GetResult\" with \"0\" argument(s): \"A task was canceled.\""
+      }
+    ],
+    "live_audits": [
+      [
+        {
+          "Kind": "RealCimInventory",
+          "BaseBoards": 1,
+          "Computers": 1,
+          "BIOS": 1,
+          "Drivers": 59,
+          "PnP": 57,
+          "CimErrors": [],
+          "SelectionStatus": "manual_required",
+          "Reason": "Machine virtuelle : aucun utilitaire de carte mere physique selectionne."
+        },
+        {
+          "Vendor": "ASUS",
+          "Status": "download_audit_failed",
+          "Error": "Nom de fichier hors du perimetre de cet utilitaire.",
+          "Executed": false,
+          "Installed": false
+        }
+      ]
+    ]
+  }
+]

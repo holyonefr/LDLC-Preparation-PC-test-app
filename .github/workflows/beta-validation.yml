@@ -1,0 +1,75 @@
+name: LDLC beta - build and Windows validation
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  beta:
+    if: github.repository == 'holyonefr/LDLC-Preparation-PC-test-app'
+    runs-on: windows-2025
+    timeout-minutes: 20
+    env:
+      LDLC_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          lfs: true
+          persist-credentials: true
+      - name: Compile the standalone beta executable on native Windows
+        shell: powershell
+        run: ./tools/Build-LDLCPreparationPCExe.ps1
+      - name: Check embedded integration, laptop exclusion and error reporting
+        shell: powershell
+        run: ./tools/Test-LDLCBetaVendorUtility.ps1
+      - name: Check synchronization preserves beta and never writes to stable
+        shell: powershell
+        run: ./tools/Test-LDLCBetaSync.ps1
+      - name: Run the full release regression suite without installing software
+        shell: powershell
+        run: |
+          ./tools/Test-LDLCRelease.ps1
+          Import-Module ./tools/experimental/motherboard/MotherboardExperiment.psm1 -Force
+          Write-MbxEvidence -Kind 'beta_release' -Data @{Status='passed';Suite='Test-LDLCRelease.ps1';VendorInstallerExecuted=$false}
+      - name: Verify live GCC download and real Desktop shortcuts in the beta repository
+        shell: powershell
+        run: ./tools/experimental/vendor-utility/Test-InstallerShortcut.ps1 -Live -Vendors GIGABYTE -OutputDirectory artifacts/beta-gcc-live
+      - name: Open and close the actual beta UI four times
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          for($i=1;$i -le 4;$i++) {
+            ./tools/Test-PreparationUiLaunch.ps1
+            if($LASTEXITCODE -ne 0){throw "UI launch $i failed"}
+          }
+          Import-Module ./tools/experimental/motherboard/MotherboardExperiment.psm1 -Force
+          Write-MbxEvidence -Kind 'beta_ui_launches' -Data @{Count=4;Failures=0;Mode='real_compiled_executable_preview_and_quit';VendorInstallerExecuted=$false}
+      - name: Publish only verified beta delivery files
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $origin=git remote get-url origin
+          if(($origin -replace '.git$','') -cne 'https://github.com/holyonefr/LDLC-Preparation-PC-test-app'){throw 'Wrong publication repository'}
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- dist/LDLCPreparationPC.exe dist/LDLCPreparationPC.exe.config dist/LDLCPreparationPC.ps1 dist/LDLCPreparationPC.worker.embed.ps1 dist/SHA256SUMS.txt
+          if($LASTEXITCODE -ne 0){throw 'Staging failed'}
+          git diff --cached --quiet
+          if($LASTEXITCODE -eq 1){
+            git commit -m 'Publish Windows-compiled and validated LDLC beta executable'
+            if($LASTEXITCODE -ne 0){throw 'Commit failed'}
+            git push origin HEAD:main
+            if($LASTEXITCODE -ne 0){throw 'Beta publication failed'}
+          }
+          Import-Module ./tools/experimental/motherboard/MotherboardExperiment.psm1 -Force
+          Write-MbxEvidence -Kind 'beta_delivery' -Data @{Repository=$env:GITHUB_REPOSITORY;TestedSource=$env:GITHUB_SHA;DeliveryCommit=(git rev-parse HEAD);ExecutableSHA256=(Get-FileHash dist/LDLCPreparationPC.exe).Hash;VendorInstallerExecuted=$false}
+      - name: Preserve test evidence and Windows build
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: ldlc-beta-windows
+          path: |
+            artifacts/
+            dist/*.exe
+            dist/*.exe.config
+            dist/*.zip
+            dist/SHA256SUMS.txt

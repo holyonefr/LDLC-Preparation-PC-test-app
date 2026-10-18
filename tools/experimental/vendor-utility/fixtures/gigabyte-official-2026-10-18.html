@@ -1,0 +1,78 @@
+<input type="hidden" id="now_page" value="1" />
+    <div class="ListContent utility-list-items" id="2010">
+        <div id="FtpUtility-2010" class="FtpUtility utility-item-header">
+            <div class="item-header-left">GIGABYTE Control Center Full Installation Pa...</div>
+            <div class="item-header-right">
+                <span class="">860.72 MB</span><span class="">Sep 10, 2026</span>
+            </div>
+        </div>
+        <div class="utility-item-content">
+            <div class="utility-item-downloadLink hq-site">
+                <a title="Download" target="_blank" href="https://download.gigabyte.com/FileList/Utility/GCC_26.09.10.01.zip?v=bd7c81fc9b9052caa13e7f70b0252f9e" rel = 'noopener'>
+Download    </a>
+
+            </div>
+                <div class="utility-item-info">
+                    <span class="item-info-title">Version&nbsp;:&nbsp;</span><span>26.09.10.01</span>
+                </div>
+                            <div class="utility-item-info">
+                    <div class="item-info-title">OS&nbsp;:</div>
+                    <div>
+                            <span>Windows 10 64bit</span>
+                                <span>,</span>
+                            <span>Windows 11 64bit</span>
+                    </div>
+                </div>
+                            <div class="utility-item-info">
+                    <div class="item-info-title">Description&nbsp;:</div>
+                    <div>GIGABYTE Control Center Full Installation Package<br/>
+Detail version :<br/>
+Cooler_26.08.24.01<br/>
+Keyboard_25.07.25.01<br/>
+VGA_26.08.24.01<br/>
+Power_26.08.24.01<br/>
+Mouse_26.08.24.01<br/>
+SingleLed_26.08.24.01<br/>
+MBUpdate_26.07.22.01<br/>
+MBEasyTune_26.08.06.01<br/>
+MBStorage_26.09.08.01<br/>
+RGB_Sync_Control_26.08.31.01<br/>
+rgbMotherboard_26.08.27.01<br/>
+Notebook_26.08.28.01<br/>
+Sidekick_26.08.04.01<br/>
+GCC Main Program_26.08.28.01<br/></div>
+                </div>
+                    </div>
+    </div>
+    <div class="paging ">
+
+        <div class="totalItem">
+
+            <span class="paging-result"><span class="items">1</span> items</span>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+    <script>
+
+        var CommonpageNav = {
+            SetCurrentPage: function (nav, currentPage) {
+                currentPage = (isNaN(parseInt(currentPage))) ? 1 : parseInt(currentPage);
+                currentPage = (currentPage <= 0) ? 1 : currentPage;
+                switch (parseInt(nav)) {
+                case 1:
+                    currentPage += 1;
+                    break;
+                case -1:
+                    currentPage -= 1;
+                    break;
+                default:
+                    currentPage = (nav.indexOf("Page:") == 0 && !isNaN(parseInt(nav.replace("Page:", "")))) ? parseInt(nav.replace("Page:", "")) : 1;
+                    break;
+                }
+
+                return currentPage;
+            }
+
+        };
+    </script>

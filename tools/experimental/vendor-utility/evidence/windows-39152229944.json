@@ -1,0 +1,754 @@
+{
+  "run": {
+    "id": 39152229944,
+    "head_sha": "385065c937a8046379eaffb9d1d66ede6bcff3c6",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39152229944"
+  },
+  "jobs": [
+    {
+      "id": 117748044200,
+      "name": "utility",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T18:01:21Z",
+          "completed_at": "2026-10-18T18:01:22Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T18:01:22Z",
+          "completed_at": "2026-10-18T18:01:57Z"
+        },
+        {
+          "name": "Record native Windows and PowerShell environment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-18T18:01:57Z",
+          "completed_at": "2026-10-18T18:02:18Z"
+        },
+        {
+          "name": "Inspect MSI installer without executing it",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-10-18T18:02:18Z",
+          "completed_at": "2026-10-18T18:02:18Z"
+        },
+        {
+          "name": "Compare native HTTP clients against the official GIGABYTE sources",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5,
+          "started_at": "2026-10-18T18:02:18Z",
+          "completed_at": "2026-10-18T18:02:18Z"
+        },
+        {
+          "name": "Validate independent utility script with simulated installers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-18T18:02:18Z",
+          "completed_at": "2026-10-18T18:02:22Z"
+        },
+        {
+          "name": "Verify installer shortcuts on Windows Desktop and redirected OneDrive Desktop",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2026-10-18T18:02:22Z",
+          "completed_at": "2026-10-18T18:02:22Z"
+        },
+        {
+          "name": "Verify other manufacturers installer shortcuts with real downloads",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T18:02:22Z",
+          "completed_at": "2026-10-18T18:02:22Z"
+        },
+        {
+          "name": "Verify current GCC download and Desktop shortcuts using its live software manifest",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-18T18:02:22Z",
+          "completed_at": "2026-10-18T18:02:35Z"
+        },
+        {
+          "name": "Reject invalid GCC manifests and incomplete or substituted core downloads",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-18T18:02:35Z",
+          "completed_at": "2026-10-18T18:02:36Z"
+        },
+        {
+          "name": "Verify ASUS discovery and signed download without installation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-10-18T18:02:36Z",
+          "completed_at": "2026-10-18T18:02:36Z"
+        },
+        {
+          "name": "Inspect ASRock signature and Inno actions without installation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-10-18T18:02:36Z",
+          "completed_at": "2026-10-18T18:02:36Z"
+        },
+        {
+          "name": "Verify ASRock model catalogue and current signed download",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13,
+          "started_at": "2026-10-18T18:02:36Z",
+          "completed_at": "2026-10-18T18:02:36Z"
+        },
+        {
+          "name": "Verify GIGABYTE discovery using simulated catalogues",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14,
+          "started_at": "2026-10-18T18:02:36Z",
+          "completed_at": "2026-10-18T18:02:36Z"
+        },
+        {
+          "name": "Verify extraction chooses only the signed GIGABYTE core",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15,
+          "started_at": "2026-10-18T18:02:36Z",
+          "completed_at": "2026-10-18T18:02:36Z"
+        },
+        {
+          "name": "Audit official GIGABYTE bundle and application signatures without execution",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 16,
+          "started_at": "2026-10-18T18:02:36Z",
+          "completed_at": "2026-10-18T18:02:36Z"
+        },
+        {
+          "name": "Verify MSI manifest parser with inert ZIP and XML fixtures",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 17,
+          "started_at": "2026-10-18T18:02:36Z",
+          "completed_at": "2026-10-18T18:02:36Z"
+        },
+        {
+          "name": "Read official MSI application manifests without installation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 18,
+          "started_at": "2026-10-18T18:02:36Z",
+          "completed_at": "2026-10-18T18:02:36Z"
+        },
+        {
+          "name": "Inspect current ASRock installer actions without execution",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 19,
+          "started_at": "2026-10-18T18:02:36Z",
+          "completed_at": "2026-10-18T18:02:36Z"
+        },
+        {
+          "name": "Reject substituted packages and older versions using simulated payloads",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 20,
+          "started_at": "2026-10-18T18:02:36Z",
+          "completed_at": "2026-10-18T18:02:36Z"
+        },
+        {
+          "name": "Preserve JSON evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-18T18:02:36Z",
+          "completed_at": "2026-10-18T18:02:37Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 42,
+          "started_at": "2026-10-18T18:02:37Z",
+          "completed_at": "2026-10-18T18:02:40Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43,
+          "started_at": "2026-10-18T18:02:40Z",
+          "completed_at": "2026-10-18T18:02:40Z"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "d0bcfc9b4d3e439ab1638bcd780114f3",
+          "kind": "gigabyte_core_download_tests",
+          "data": {
+            "Kind": "gigabyte_core_download_tests",
+            "Assertions": 34,
+            "Cases": [
+              {
+                "Name": "Official software manifest selects only GCC and preserves its version",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "New manifest version changes the filename without a pinned release",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Description cannot overwrite the current version",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Another utility",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Optional bundle",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing version",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Duplicate section",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Duplicate version",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Version URL injection",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Version overflow",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Missing size",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid size",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Negative size",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Empty payload size",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unbounded payload size",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Empty response",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTML challenge",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Oversized response",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Production path downloads the current core without bundle or archiver",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Live catalogue HTTP 403",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Live catalogue timeout",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Interrupted download",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "HTTP transfer incomplete",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Complete HTTP file shorter than manifest",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Ambiguous payload",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Old executable rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Signature failure",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Modified hash",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Modified file length",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Modified executable version",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Failures": 0,
+            "Mode": "simulated_manifest_download_signature_inert_files",
+            "ActualNetworkRequests": 0,
+            "VendorInstallerExecuted": false
+          }
+        },
+        {
+          "id": "5093186b91f0474c8db57e11bf8c4973",
+          "kind": "utility_installer_shortcut_tests",
+          "data": {
+            "Kind": "utility_installer_shortcut_tests",
+            "Assertions": 62,
+            "Cases": [
+              {
+                "Name": "Verified ASRock installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Verified MSI installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Verified ASUS installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Verified GIGABYTE installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Repeated preparation reuses the same stable installer target",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Installer target survives removal of the temporary download",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Changed downloaded installer cannot receive a shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid signature prevents any shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Changed persistent installer is rejected without overwrite",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Wrong file version is rejected even if the hash is known",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid version or hash cannot form a cache path",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "GIGABYTE full bundle cannot be offered as a minimal installer shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Inaccessible Desktop reports an explicit error",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual GIGABYTE download and installer shortcut: Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual GIGABYTE download and installer shortcut: OneDrive - Fixture/Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Original Windows Desktop is restored after native tests",
+                "Mode": "real_com",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Failures": 0,
+            "VendorInstallerExecuted": false,
+            "ActualVendorInstallations": 0,
+            "Live": [
+              {
+                "Vendor": "GIGABYTE",
+                "HardwareSimulated": true,
+                "DesktopMode": "Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "26.08.28.01",
+                "InstallerSHA256": "86EF9762C631252958D52C499DDD1EC5334908845A08729FB52EA6088D2C2A10",
+                "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+                "DetectionMethod": "official_gcc_software_update_manifest",
+                "DetectionSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+                "InstallerSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+                "ShortcutFileName": "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              },
+              {
+                "Vendor": "GIGABYTE",
+                "HardwareSimulated": true,
+                "DesktopMode": "OneDrive - Fixture/Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "26.08.28.01",
+                "InstallerSHA256": "86EF9762C631252958D52C499DDD1EC5334908845A08729FB52EA6088D2C2A10",
+                "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+                "DetectionMethod": "official_gcc_software_update_manifest",
+                "DetectionSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+                "InstallerSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+                "ShortcutFileName": "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              }
+            ]
+          }
+        },
+        {
+          "id": "b5eb541530bf4b699fbf8307ea5f9b45",
+          "kind": "utility_tests",
+          "data": {
+            "Kind": "utility_only_tests",
+            "SimulationCases": true,
+            "ActualVendorInstallations": 0,
+            "Assertions": 85,
+            "Cases": [
+              {
+                "Name": "Syntax and no driver/firmware/update invocations",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify MSI with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify ASUS with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify GIGABYTE with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify ASRock with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported unknown never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported missing_model never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported oem never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported portable never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported virtual never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported server never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported 32bit never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Manual fallback never claims downloaded equals installed",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Portable with an existing app still receives no Desktop shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Network failure precise and non successful",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Installer Desktop error is explicit and never claims a shortcut exists",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Already verified app creates shortcut without download or reinstall",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated supported installation verifies app and shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1603 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1641 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1223 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated 3010 requests manual restart only",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated Timeout fails without shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated Interrupted fails without shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Exit zero but no application fails verification",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Version comparison numeric and stale installation rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unknown package hash and changed installer never execute",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Desktop error never claims complete success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Real native process boundary blocks all vendor installers on GitHub",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe exact registered Store package and declared app target",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects wrong_family",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects developer_mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects unsigned",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects missing_app",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Registry SDK or orphan entry cannot prove MSI Center installed",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual Windows 5.1 CIM and VM refusal",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual COM shortcuts on redirected user Desktop with restoration",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Real": [
+              {
+                "Kind": "ActualWindowsCim",
+                "Status": "manual_required",
+                "Reason": "Machine virtuelle : aucune installation de logiciel materiel autorisee.",
+                "VendorInstallerExecuted": false
+              },
+              {
+                "Kind": "ActualCOMShortcut",
+                "RedirectedDesktop": true,
+                "Restored": true,
+                "ApplicationExecuted": false
+              }
+            ],
+            "Failures": 0
+          }
+        },
+        {
+          "id": "74c2d923698d4feca9b5f8f2be74e254",
+          "kind": "utility_runner_environment",
+          "data": {
+            "Kind": "utility_runner_environment",
+            "RequestedRunner": "windows-2025",
+            "WindowsCaption": "Microsoft Windows Server 2025 Datacenter",
+            "WindowsVersion": "10.0.26100",
+            "PowerShellVersion": "5.1.26100.33438",
+            "DotNetVersion": "4.0.30319.42000",
+            "Is64BitOperatingSystem": true,
+            "RunnerImageOS": "win25-vs2026",
+            "RunnerImageVersion": "20261007.264.1",
+            "VendorInstallerExecuted": false
+          }
+        }
+      ],
+      "incomplete": [],
+      "legacy": []
+    }
+  ]
+}

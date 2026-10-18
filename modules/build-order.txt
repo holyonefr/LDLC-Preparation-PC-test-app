@@ -1,0 +1,16 @@
+00.Bootstrap.ps1
+00.Core.ps1
+05.Telemetry.ps1
+10.InitialSetup.ps1
+20.WindowsLayout.ps1
+30.Applications.ps1
+40.Desktop.ps1
+45.Wallpaper.ps1
+50.Cleanup.ps1
+60.Gpu.ps1
+70.DefaultApps.ps1
+80.WindowsUpdate.ps1
+85.VendorUtility.ps1
+90.Workflow.ps1
+95.WorkerLauncher.ps1
+99.UI.ps1

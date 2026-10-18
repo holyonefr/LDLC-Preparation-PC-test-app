@@ -1,0 +1,534 @@
+{
+  "run": {
+    "id": 39149548075,
+    "head_sha": "5c1a17c5b0aee3a407210192801906a727d424cd",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39149548075"
+  },
+  "jobs": [
+    {
+      "id": 117740191091,
+      "name": "utility",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T17:25:57Z",
+          "completed_at": "2026-10-18T17:25:58Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T17:25:58Z",
+          "completed_at": "2026-10-18T17:26:10Z"
+        },
+        {
+          "name": "Record native Windows and PowerShell environment",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-18T17:26:10Z",
+          "completed_at": "2026-10-18T17:26:14Z"
+        },
+        {
+          "name": "Inspect MSI installer without executing it",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4,
+          "started_at": "2026-10-18T17:26:14Z",
+          "completed_at": "2026-10-18T17:26:14Z"
+        },
+        {
+          "name": "Validate independent utility script with simulated installers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-18T17:26:14Z",
+          "completed_at": "2026-10-18T17:26:17Z"
+        },
+        {
+          "name": "Verify installer shortcuts on Windows Desktop and redirected OneDrive Desktop",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-18T17:26:17Z",
+          "completed_at": "2026-10-18T17:26:22Z"
+        },
+        {
+          "name": "Verify ASUS discovery and signed download without installation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2026-10-18T17:26:22Z",
+          "completed_at": "2026-10-18T17:26:22Z"
+        },
+        {
+          "name": "Inspect ASRock signature and Inno actions without installation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2026-10-18T17:26:22Z",
+          "completed_at": "2026-10-18T17:26:22Z"
+        },
+        {
+          "name": "Verify ASRock model catalogue and current signed download",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2026-10-18T17:26:22Z",
+          "completed_at": "2026-10-18T17:26:22Z"
+        },
+        {
+          "name": "Verify GIGABYTE discovery using simulated catalogues",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10,
+          "started_at": "2026-10-18T17:26:22Z",
+          "completed_at": "2026-10-18T17:26:22Z"
+        },
+        {
+          "name": "Audit official GIGABYTE bundle and application signatures without execution",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-10-18T17:26:22Z",
+          "completed_at": "2026-10-18T17:26:22Z"
+        },
+        {
+          "name": "Verify MSI manifest parser with inert ZIP and XML fixtures",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-10-18T17:26:22Z",
+          "completed_at": "2026-10-18T17:26:22Z"
+        },
+        {
+          "name": "Read official MSI application manifests without installation",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13,
+          "started_at": "2026-10-18T17:26:22Z",
+          "completed_at": "2026-10-18T17:26:22Z"
+        },
+        {
+          "name": "Inspect current ASRock installer actions without execution",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14,
+          "started_at": "2026-10-18T17:26:22Z",
+          "completed_at": "2026-10-18T17:26:22Z"
+        },
+        {
+          "name": "Reject substituted packages and older versions using simulated payloads",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 15,
+          "started_at": "2026-10-18T17:26:22Z",
+          "completed_at": "2026-10-18T17:26:22Z"
+        },
+        {
+          "name": "Preserve JSON evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-18T17:26:22Z",
+          "completed_at": "2026-10-18T17:26:23Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-10-18T17:26:23Z",
+          "completed_at": "2026-10-18T17:26:27Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-10-18T17:26:27Z",
+          "completed_at": "2026-10-18T17:26:27Z"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "650e97ce42274476a87d0f92455546fd",
+          "kind": "utility_installer_shortcut_tests",
+          "data": {
+            "Kind": "utility_installer_shortcut_tests",
+            "Assertions": 55,
+            "Cases": [
+              {
+                "Name": "Verified ASRock installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Verified MSI installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Verified ASUS installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Repeated preparation reuses the same stable installer target",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Installer target survives removal of the temporary download",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Changed downloaded installer cannot receive a shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid signature prevents any shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Changed persistent installer is rejected without overwrite",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Wrong file version is rejected even if the hash is known",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid version or hash cannot form a cache path",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "GIGABYTE full bundle cannot be offered as a minimal installer shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Inaccessible Desktop reports an explicit error",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual ASRock download and installer shortcut: Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual ASRock download and installer shortcut: OneDrive - Fixture/Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Original Windows Desktop is restored after native tests",
+                "Mode": "real_com",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Failures": 0,
+            "VendorInstallerExecuted": false,
+            "ActualVendorInstallations": 0,
+            "Live": [
+              {
+                "HardwareSimulated": true,
+                "DesktopMode": "Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "InstallerVersion": "2.0.0.9",
+                "InstallerSHA256": "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+                "Signer": "ASROCK INC.",
+                "ShortcutFileName": "Installer ASRock APP Shop 2.0.0.9.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              },
+              {
+                "HardwareSimulated": true,
+                "DesktopMode": "OneDrive - Fixture/Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "InstallerVersion": "2.0.0.9",
+                "InstallerSHA256": "80E7078E81C4BD312D341B9CCC32631D72C188DBECA90A78F8E6765BA3C7AA83",
+                "Signer": "ASROCK INC.",
+                "ShortcutFileName": "Installer ASRock APP Shop 2.0.0.9.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              }
+            ]
+          }
+        },
+        {
+          "id": "bfa33572f85b4767b87cde0d7ca964ea",
+          "kind": "utility_tests",
+          "data": {
+            "Kind": "utility_only_tests",
+            "SimulationCases": true,
+            "ActualVendorInstallations": 0,
+            "Assertions": 81,
+            "Cases": [
+              {
+                "Name": "Syntax and no driver/firmware/update invocations",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify MSI with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify ASUS with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify GIGABYTE with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Identify ASRock with no guessed automatic mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported unknown never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported missing_model never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported oem never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported portable never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported virtual never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported server never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unsupported 32bit never installs",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Manual fallback never claims downloaded equals installed",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Portable with an existing app still receives no Desktop shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Network failure precise and non successful",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Installer Desktop error is explicit and never claims a shortcut exists",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Already verified app creates shortcut without download or reinstall",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated supported installation verifies app and shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1603 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1641 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated exit 1223 is not success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated 3010 requests manual restart only",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated Timeout fails without shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Simulated Interrupted fails without shortcut",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Exit zero but no application fails verification",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Version comparison numeric and stale installation rejected",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Unknown package hash and changed installer never execute",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Desktop error never claims complete success",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Real native process boundary blocks all vendor installers on GitHub",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe exact registered Store package and declared app target",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects wrong_family",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects developer_mode",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects unsigned",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Probe rejects missing_app",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Registry SDK or orphan entry cannot prove MSI Center installed",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual Windows 5.1 CIM and VM refusal",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual COM shortcuts on redirected user Desktop with restoration",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Real": [
+              {
+                "Kind": "ActualWindowsCim",
+                "Status": "manual_required",
+                "Reason": "Machine virtuelle : aucune installation de logiciel materiel autorisee.",
+                "VendorInstallerExecuted": false
+              },
+              {
+                "Kind": "ActualCOMShortcut",
+                "RedirectedDesktop": true,
+                "Restored": true,
+                "ApplicationExecuted": false
+              }
+            ],
+            "Failures": 0
+          }
+        },
+        {
+          "id": "5edd208e11e24ec29f7fb75cc5798a9e",
+          "kind": "utility_runner_environment",
+          "data": {
+            "Kind": "utility_runner_environment",
+            "RequestedRunner": "windows-2025",
+            "WindowsCaption": "Microsoft Windows Server 2025 Datacenter",
+            "WindowsVersion": "10.0.26100",
+            "PowerShellVersion": "5.1.26100.33438",
+            "DotNetVersion": "4.0.30319.42000",
+            "Is64BitOperatingSystem": true,
+            "RunnerImageOS": "win25-vs2026",
+            "RunnerImageVersion": "20261007.264.1",
+            "VendorInstallerExecuted": false
+          }
+        }
+      ],
+      "incomplete": [],
+      "legacy": []
+    }
+  ]
+}

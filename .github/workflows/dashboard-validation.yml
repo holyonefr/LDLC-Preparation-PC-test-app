@@ -1,0 +1,20 @@
+name: Dashboard source validation (Windows)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dashboard:
+    runs-on: windows-2022
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          lfs: false
+          persist-credentials: false
+      - name: Verify dashboard rendering and compatibility
+        shell: pwsh
+        run: node tools/Test-LDLCDashboardCompatibility.cjs
+      - name: Verify telemetry ingestion without production writes
+        shell: pwsh
+        run: node tools/Test-LDLCTelemetryIngestion.cjs

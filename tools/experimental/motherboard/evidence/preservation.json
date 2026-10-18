@@ -1,0 +1,17 @@
+{
+  "LDLC-Preparation": {
+    "BaselineHead": "10dd62303ba00852f60b8d5ecf2bc964f9fc7826",
+    "OriginalTrackedFiles": 112,
+    "ModifiedOriginalFiles": []
+  },
+  "Numerik-s-Preparation-PC": {
+    "BaselineHead": "f668f06acb780f16abe19272dfd6cd04476a123d",
+    "OriginalTrackedFiles": 132,
+    "ModifiedOriginalFiles": []
+  },
+  "LDLC-Preparation-Addon": {
+    "BaselineHead": "22ad8128154ef2cf2fb190522962723f37b812a1",
+    "OriginalTrackedFiles": 97,
+    "ModifiedOriginalFiles": []
+  }
+}

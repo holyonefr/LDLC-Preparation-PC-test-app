@@ -1,0 +1,41 @@
+{
+  "ObservedAtUtc": "2026-10-18T18:04:10.243567+00:00",
+  "Mode": "cloud_http_and_static_archive_inspection_not_windows_installation",
+  "ManifestUrl": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+  "ManifestSHA256": "4B33B336819DBC1CD7689D1E669B7028187CBCFE9631407BF1D8B6D06B6F6B28",
+  "ManifestText": "[Info]\nApName=GIGABYTE Control Center\nDisplayName=GIGABYTE Control Center\nVer=26.08.28.01\nApNum=0\nSize=52064856\nDate=2026/08/28\n\n[Description]\neng=Gigabyte GIGABYTE Control Center Main Program\nchs=\ncht=\nrus=\nger=\njap=\nkor=\nspa=\nfra=\nswe=\nita=\npor=\nvie=\nind=\nara=\ntur=\npol=\ntha=\nper=\n",
+  "DiscoveredFrom": {
+    "Source": "GIGABYTE signed distribution, static IL inspection only",
+    "Dll": "ExtLIB_Loader_Lib.dll",
+    "DllSHA256": "C82EF84FC49E0FEB8D7D30882FF02B34F8770E5D6C6608B338237EC1BAA4CA14",
+    "Method": "ExtLIB_Loader_Lib.Web_Sync_Class.Get_Fource_Update_Info_Json_String",
+    "MethodToken": "0x06000039",
+    "PathConstruction": "Get_DL_Server_Addr() + GCC/ + LIB + /ver2.ini; GCC/ + LIB + / + LIB + _ + Ver + .exe",
+    "ServerAddressMethod": "GCC_Main_COMM_Fun.Download_Lib_Class.Get_DL_Server_Addr"
+  },
+  "OfficialDownload": {
+    "Url": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+    "Bytes": 52064856,
+    "SHA256": "86EF9762C631252958D52C499DDD1EC5334908845A08729FB52EA6088D2C2A10",
+    "ProductName": "Liveupdate_GCC",
+    "ContainsOptionalModules": [
+      "GBT_MB_Update_26.07.22.01.exe",
+      "GBT_RGB_Sync_Control_26.08.31.01.exe"
+    ],
+    "OfferedAsDesktopTarget": false
+  },
+  "ExtractedCore": {
+    "FileName": "GIGABYTE Control Center_26.08.28.01.exe",
+    "ProductName": "GIGABYTE Control Center",
+    "Bytes": 49095256,
+    "SHA256": "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+    "Version": "26.08.28.01",
+    "MatchesPreviouslyAuditedFullBundleCore": true
+  },
+  "VendorInstallerExecuted": false,
+  "Limitations": [
+    "Cloud static inspection does not establish Windows Authenticode or installation; see native Windows test evidence.",
+    "No DLL was loaded or vendor executable run.",
+    "Only the core installer is offered; no optional module is extracted or executed by the utility."
+  ]
+}
