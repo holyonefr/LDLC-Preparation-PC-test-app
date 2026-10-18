@@ -37,12 +37,17 @@ jobs:
         shell: powershell
         run: |
           $ErrorActionPreference='Stop'
+          $powershell=Join-Path $env:WINDIR 'System32/WindowsPowerShell/v1.0/powershell.exe'
+          $passes=@()
           for($i=1;$i -le 4;$i++) {
-            ./tools/Test-PreparationUiLaunch.ps1
+            # Each double-click starts a fresh process. Reusing one process
+            # incorrectly reinitializes Windows Forms after its first window.
+            & $powershell -STA -NoProfile -ExecutionPolicy Bypass -File ./tools/Test-PreparationUiLaunch.ps1 -Artifacts "artifacts/preview-$i"
             if($LASTEXITCODE -ne 0){throw "UI launch $i failed"}
+            $passes+=Get-Content "artifacts/preview-$i/geometry.json" -Raw | ConvertFrom-Json
           }
           Import-Module ./tools/experimental/motherboard/MotherboardExperiment.psm1 -Force
-          Write-MbxEvidence -Kind 'beta_ui_launches' -Data @{Count=4;Failures=0;Mode='real_compiled_executable_preview_and_quit';VendorInstallerExecuted=$false}
+          Write-MbxEvidence -Kind 'beta_ui_launches' -Data @{Count=4;Failures=0;Passes=$passes;Mode='real_compiled_executable_preview_and_quit_isolated_processes';VendorInstallerExecuted=$false}
       - name: Publish only verified beta delivery files
         shell: powershell
         run: |

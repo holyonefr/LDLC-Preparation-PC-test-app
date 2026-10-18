@@ -1,2 +1,2 @@
 *.exe filter=lfs diff=lfs merge=lfs -text
-dist/*.ps1 -text
+dist/*.ps1 -text whitespace=cr-at-eol
