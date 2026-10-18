@@ -37,6 +37,8 @@ function Invoke-LDLCVendorUtility {
             Write-Ok ($result.Tool+' : application presente, raccourci Bureau verifie.')
         } elseif ($result.Status -eq 'manual_required' -and $result.InstallerShortcut) {
             Write-Ok ($result.Tool+' : installateur verifie, raccourci sur le Bureau. Installation manuelle par le technicien.')
+        } elseif ($result.Status -eq 'manual_required' -and $result.PSObject.Properties['SupportShortcut'] -and $result.SupportShortcut) {
+            Write-Warn ($result.Tool+' : telechargement manuel requis. '+$result.Reason)
         } elseif ($result.Status -eq 'manual_required' -and -not $result.Tool) {
             Write-Step ('Logiciel de carte mere non applicable : '+$result.Reason)
         } else {

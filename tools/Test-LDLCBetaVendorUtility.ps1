@@ -51,6 +51,7 @@ try {
     &$script:LoadedBetaModule {function script:Invoke-VendorUtility {if($script:BetaFixture -eq 'throw'){throw 'Fixture download interrupted'};return $script:BetaFixture}}
     foreach($fixture in @(
         @{Name='Verified installer shortcut is a normal manual result';Status='manual_required';Tool='GIGABYTE Control Center';InstallerShortcut='fixture.lnk';ApplicationVerified=$false;Shortcut='';Reason='manual';Level='ok'},
+        @{Name='Official web fallback remains a visible warning, never installer success';Status='manual_required';Tool='ASRock APP Shop';InstallerShortcut='';SupportShortcut='official.url';ApplicationVerified=$false;Shortcut='';Reason='HTTP 503, repli manuel officiel';Level='warning'},
         @{Name='Already installed application keeps its verified shortcut';Status='already_installed';Tool='MSI Center';InstallerShortcut='';ApplicationVerified=$true;Shortcut='fixture.lnk';Reason='existing';Level='ok'},
         @{Name='Laptop or unsupported PC is skipped without blocking warning';Status='manual_required';Tool='';InstallerShortcut='';ApplicationVerified=$false;Shortcut='';Reason='Portable exclu';Level='step'},
         @{Name='Real detection/download failure exposes the blocking cause';Status='manual_required';Tool='ASUS DriverHub';InstallerShortcut='';ApplicationVerified=$false;Shortcut='';Reason='HTTP 503 source officielle';Level='warning'},

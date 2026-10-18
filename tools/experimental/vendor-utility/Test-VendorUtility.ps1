@@ -75,6 +75,11 @@ $original=& $module {
         if ($script:CaseState.InstallerShortcutFailure) { throw 'Fixture : Bureau installateur inaccessible' }
         return [pscustomobject]@{Path=$Package.Path;Version=$Package.Version;Shortcut=('fixture-desktop/Installer '+$Profile.Name+'.lnk')}
     }
+    function script:New-VutSupportShortcut {
+        param($Profile)
+        $script:CaseState.SupportShortcuts++
+        return 'fixture-desktop/Telechargement officiel.url'
+    }
 } $original $installer $appPath
 
 function Reset-Case {
@@ -83,7 +88,7 @@ function Reset-Case {
             Hardware=[pscustomobject]@{BoardManufacturer='Micro-Star International Co., Ltd.';BoardModel='SIMULATED MSI MODEL';ComputerManufacturer='System manufacturer';ComputerModel='System Product Name';Portable=$false;WindowsCaption='Microsoft Windows 11 Pro';WindowsVersion='10.0.22631';ClientWindows=$true;Is64Bit=$true}
             CertifiedSimulation=$false; WrongApprovedHash=$false; Existing=$false; PostInstalled=$true
             InstalledVersion='2.0.74.0'; TargetVersion='2.0.74.0'; PackageHash=(Get-FileHash $script:FixtureInstaller).Hash
-            Downloads=0; Probes=0; InstallerCalls=0; Shortcuts=0; InstallerShortcuts=0; ExitCode=0; LastArguments=''
+            Downloads=0; Probes=0; InstallerCalls=0; Shortcuts=0; InstallerShortcuts=0; SupportShortcuts=0; ExitCode=0; LastArguments=''
             NetworkFailure=$false; ChangedFile=$false; Timeout=$false; Interrupted=$false; ShortcutFailure=$false; InstallerShortcutFailure=$false
         }
     }
@@ -122,7 +127,7 @@ try {
             }
             $r=Invoke-VendorUtility
             Assert ($r.Status -eq 'manual_required' -and -not $r.Installed) 'Materiel incompatible accepte.'
-            Assert ((State).InstallerCalls -eq 0 -and (State).Downloads -eq 0 -and (State).Shortcuts -eq 0 -and (State).InstallerShortcuts -eq 0) 'Effet inattendu.'
+            Assert ((State).InstallerCalls -eq 0 -and (State).Downloads -eq 0 -and (State).Shortcuts -eq 0 -and (State).InstallerShortcuts -eq 0 -and (State).SupportShortcuts -eq 0) 'Effet inattendu.'
         }
     }
     Case 'Manual fallback never claims downloaded equals installed' {
@@ -140,6 +145,7 @@ try {
         Reset-Case; (State).NetworkFailure=$true; $r=Invoke-VendorUtility
         Assert ($r.Status -eq 'manual_required' -and $r.Reason -match '503' -and -not $r.Installed) 'Erreur reseau masquee.'
         Assert (-not $r.InstallerShortcut -and (State).InstallerShortcuts -eq 0) 'Raccourci cree malgre erreur de telechargement.'
+        Assert ($r.SupportShortcut -and $r.FallbackUsed -and (State).SupportShortcuts -eq 1) 'Repli officiel absent.'
     }
     Case 'Installer Desktop error is explicit and never claims a shortcut exists' {
         Reset-Case; (State).InstallerShortcutFailure=$true; $r=Invoke-VendorUtility

@@ -156,6 +156,31 @@ function Get-VutInstallerStore {
     return Join-Path $local 'VendorUtility/Installers'
 }
 
+function New-VutSupportShortcut {
+    param([Parameter(Mandatory)]$Profile)
+    # Fixed official landing page, never a guessed binary or a cached old release.
+    $official=Get-VutProfile -Vendor $Profile.Vendor
+    if (-not $official -or $Profile.OfficialPage -cne $official.OfficialPage -or
+        -not (Test-MbxOfficialUri $official.OfficialPage $official.DownloadDefinition.Hosts)) {
+        throw 'Page de repli officielle invalide ; aucun raccourci Internet cree.'
+    }
+    $path=Join-Path (Get-VutDesktop) ('Telechargement officiel - '+$official.Name+'.url')
+    $content="[InternetShortcut]`r`nURL=$($official.OfficialPage)`r`n"
+    if (Test-Path -LiteralPath $path) {
+        if ([IO.File]::ReadAllText($path).Trim() -cne $content.Trim()) {
+            throw 'Un raccourci Internet du meme nom a une autre cible : il est conserve.'
+        }
+        return $path
+    }
+    $stream=[IO.File]::Open($path,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::None)
+    try {
+        $bytes=[Text.Encoding]::ASCII.GetBytes($content)
+        $stream.Write($bytes,0,$bytes.Length)
+    } finally {$stream.Dispose()}
+    if ([IO.File]::ReadAllText($path) -cne $content) {throw 'Verification du raccourci Internet officiel en echec.'}
+    return $path
+}
+
 function New-VutInstallerShortcut {
     param([Parameter(Mandatory)]$Profile,[Parameter(Mandatory)]$Package)
     $displayVersion=([string]$Package.Version).Trim()
@@ -258,7 +283,7 @@ function Invoke-VutInstallerProcess {
 function Invoke-VendorUtility {
     [CmdletBinding()]
     param([switch]$PlanOnly)
-    $r=[ordered]@{ Mode=if ($script:UtilitySimulation) { 'simulation' } else { 'real' }; Status='failed'; Vendor=''; Model=''; Tool=''; Reason=''; OfficialPage=''; InstallerPath=''; InstallerVersion=''; InstallerShortcut=''; InstallerSource=''; DetectionSource=''; DetectionMethod=''; Installed=$false; InstalledThisRun=$false; ApplicationVerified=$false; ApplicationVersion=''; RebootRequired=$false; Shortcut=''; AutomaticInstallAvailable=$false }
+    $r=[ordered]@{ Mode=if ($script:UtilitySimulation) { 'simulation' } else { 'real' }; Status='failed'; Vendor=''; Model=''; Tool=''; Reason=''; OfficialPage=''; InstallerPath=''; InstallerVersion=''; InstallerShortcut=''; InstallerSource=''; DetectionSource=''; DetectionMethod=''; SupportShortcut=''; FallbackUsed=$false; DownloadFailure=''; FallbackError=''; Installed=$false; InstalledThisRun=$false; ApplicationVerified=$false; ApplicationVersion=''; RebootRequired=$false; Shortcut=''; AutomaticInstallAvailable=$false }
     try {
         $hardware=Get-VutHardware
         $selection=Resolve-VutSelection $hardware
@@ -277,7 +302,19 @@ function Invoke-VendorUtility {
         }
         $cache=Join-Path ([Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData)) ('VendorUtility/'+[guid]::NewGuid().ToString('N'))
         try { $package=Get-VutPackage $profile $cache; $r.InstallerPath=$package.Path }
-        catch { $r.Status='manual_required'; $r.Reason=$profile.AutomaticReason+' Telechargement : '+$_.Exception.Message; return [pscustomobject]$r }
+        catch {
+            $r.Status='manual_required'; $r.DownloadFailure=$_.Exception.Message
+            $r.Reason='Detection/telechargement automatique impossible : '+$r.DownloadFailure
+            try {
+                $r.SupportShortcut=New-VutSupportShortcut -Profile $profile
+                $r.FallbackUsed=$true
+                $r.Reason+=' Repli manuel : raccourci Telechargement officiel sur le Bureau vers '+$r.OfficialPage+'. Aucun installateur valide ni installation confirmee.'
+            } catch {
+                $r.FallbackError=$_.Exception.Message
+                $r.Reason+=' Repli Bureau impossible : '+$r.FallbackError+' Page officielle : '+$r.OfficialPage
+            }
+            return [pscustomobject]$r
+        }
         $discovery=Get-MbxValue $package 'Discovery'
         $r.DetectionSource=[string](Get-MbxValue $discovery 'ManifestUrl')
         $r.DetectionMethod=[string](Get-MbxValue $discovery 'Method')

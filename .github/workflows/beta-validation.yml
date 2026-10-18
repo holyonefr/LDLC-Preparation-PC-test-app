@@ -29,12 +29,14 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           $powershell=Join-Path $env:WINDIR 'System32/WindowsPowerShell/v1.0/powershell.exe'
-          foreach($test in @('Test-VendorResilience','Test-VendorDiscovery','Test-AsrockDiscovery','Test-GigabyteCoreDownload')){
+          foreach($test in @('Test-VendorResilience','Test-VendorDiscovery','Test-AsrockDiscovery','Test-GigabyteCoreDownload','Test-VendorUtility')){
             & $powershell -NoProfile -File "tools/experimental/vendor-utility/$test.ps1" -OutputDirectory "artifacts/resilience/$test"
             if($LASTEXITCODE -ne 0){throw "$test failed"}
           }
           & $powershell -NoProfile -File tools/experimental/motherboard/Test-MotherboardExperiment.ps1 -OutputDirectory artifacts/resilience/transport
           if($LASTEXITCODE -ne 0){throw 'Native HTTP transport regressions failed'}
+          & $powershell -NoProfile -File tools/experimental/vendor-utility/Test-VendorFallback.ps1 -Native -OutputDirectory artifacts/resilience/fallback
+          if($LASTEXITCODE -ne 0){throw 'Native official fallback regressions failed'}
       - name: Run the full release regression suite without installing software
         shell: powershell
         run: |

@@ -11,6 +11,7 @@ Write-Host ("{0} / {1} : {2}" -f $result.Vendor,$result.Model,$result.Tool)
 Write-Host ("Statut : {0}. {1}" -f $result.Status,$result.Reason)
 if ($result.InstallerPath) { Write-Host ('Installateur verifie : '+$result.InstallerPath) }
 if ($result.InstallerShortcut) { Write-Host ('Raccourci installateur sur le Bureau : '+$result.InstallerShortcut) }
+if ($result.SupportShortcut) { Write-Host ('Repli manuel vers le site officiel : '+$result.SupportShortcut) }
 if ($result.OfficialPage) { Write-Host ('Support officiel : '+$result.OfficialPage) }
 if ($result.Shortcut) { Write-Host ('Raccourci application : '+$result.Shortcut) }
 if ($result.RebootRequired) { Write-Host 'Redemarrage demande par le logiciel, a effectuer manuellement.' }

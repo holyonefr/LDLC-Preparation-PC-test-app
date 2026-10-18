@@ -15,6 +15,12 @@ n'est installe par cette fonctionnalite. Le parcours GPU deja present reste celu
 de LDLC. Un echec reel est signale avec sa cause ; le repli manuel normal n'est pas
 une erreur de preparation. Rapport : `LDLC_VENDOR_UTILITY_RESULT.json` du runtime.
 
+Si la detection ou le telechargement constructeur echoue, un raccourci
+**Telechargement officiel - nom du logiciel** ouvre sa page officielle pour une
+recuperation manuelle. Cet etat reste un avertissement avec la cause exacte ;
+il n'est jamais presente comme un installateur telecharge ou une installation
+reussie. Un Bureau inaccessible est signale avec l'adresse officielle.
+
 Les cinq modules PowerShell utiles sont embarques dans le worker et le script du
 vrai EXE. Ils sont materialises et verifies par SHA256 uniquement a cette etape :
 aucun telechargement constructeur au demarrage de l'interface. Le raccourci GCC
@@ -54,5 +60,6 @@ Les workflows de test restent manuels pour eviter un lancement a chaque push.
 Une validation VM ne prouve pas l'installation ni la compatibilite sur tout PC physique.
 
 Validation Windows terminee : voir [beta/RESULTATS_WINDOWS.md](beta/RESULTATS_WINDOWS.md).
-Quatre ouvertures/fermetures reussies, suite release reussie, vrai telechargement GCC
-et raccourcis verifies. L'EXE publie est celui compile par ce passage Windows.
+Quatre ouvertures/fermetures, suite release, vrais telechargements constructeurs
+et raccourcis sont controles par le workflow. Voir le rapport pour les versions
+du code effectivement validees et la distinction entre essais reels et simulations.

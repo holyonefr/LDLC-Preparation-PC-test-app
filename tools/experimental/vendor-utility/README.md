@@ -53,6 +53,16 @@ des quatre marques et comparent les numeros numeriquement, y compris 1.10 > 1.9.
 Une refonte du site ou du format constructeur peut necessiter une adaptation :
 elle doit produire une erreur precise et jamais un faux succes.
 
+Si la detection ou le telechargement echoue, le repli cree sur le vrai Bureau un
+raccourci **Telechargement officiel - nom du logiciel.url** vers la page officielle
+de la marque, sans executer le navigateur. Il n'annonce ni version ni installateur
+verifie : le technicien telecharge et installe manuellement. Le rapport conserve
+la cause dans `DownloadFailure`, le raccourci dans `SupportShortcut` et l'etat
+`manual_required`. L'integration All in App affiche cet etat comme avertissement.
+Si le Bureau est inaccessible ou un raccourci homonyme pointe ailleurs, il est
+preserve ; `FallbackError` explique le probleme et la page officielle reste dans
+le rapport. Ce repli ne s'applique pas aux portables ou autres PC exclus.
+
 Si l'application n'est pas déjà installée, le script tente le téléchargement lorsqu'un lien
 officiel vérifié est disponible. Un téléchargement ne donne jamais le statut « installé ».
 Après téléchargement vérifié, il ajoute sur le **Bureau réel de l'utilisateur** un
