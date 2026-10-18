@@ -43,6 +43,16 @@ dans la détection ASUS/ASRock/GIGABYTE. ASRock refuse un modèle absent, un OS 
 pris en charge ou une version/hash incohérente, sans télécharger une version plus
 ancienne. L'ancien snapshot ASRock 2.0.0.4 reste uniquement un audit historique.
 
+Chaque preparation consulte la source officielle courante avec demande de
+revalidation du cache. Les coupures reseau, fichiers interrompus et erreurs HTTP
+temporaires (408, 429, 500, 502, 503, 504) autorisent au maximum trois tentatives
+dans le delai initial, en repartant de zero. Les erreurs de certificat, de domaine,
+de signature ou d'integrite restent bloquantes. Aucun ancien paquet n'est utilise
+pour masquer une source indisponible. Les tests simulent aussi de nouvelles versions
+des quatre marques et comparent les numeros numeriquement, y compris 1.10 > 1.9.
+Une refonte du site ou du format constructeur peut necessiter une adaptation :
+elle doit produire une erreur precise et jamais un faux succes.
+
 Si l'application n'est pas déjà installée, le script tente le téléchargement lorsqu'un lien
 officiel vérifié est disponible. Un téléchargement ne donne jamais le statut « installé ».
 Après téléchargement vérifié, il ajoute sur le **Bureau réel de l'utilisateur** un

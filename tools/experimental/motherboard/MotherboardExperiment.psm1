@@ -201,11 +201,51 @@ function Invoke-MbxHttp {
     param([Parameter(Mandatory)][string]$Url, [Parameter(Mandatory)][string[]]$Hosts,
         [ValidateRange(1,600)][int]$TimeoutSeconds=30, [ValidateRange(1024,1073741824)][long]$MaxBytes=8388608,
         [string]$OutFile, [switch]$Head,[string]$UserAgent='MotherboardFeasibility/1.0')
+    # Restart a temporary failure from byte zero; never reuse a partial payload.
+    # Three attempts share one timeout. TLS, host and integrity checks stay strict.
+    $budget=[Diagnostics.Stopwatch]::StartNew()
+    for($attempt=1;$attempt -le 3;$attempt++) {
+        $remaining=[int][Math]::Ceiling($TimeoutSeconds-$budget.Elapsed.TotalSeconds)
+        if($remaining -le 0){throw 'Delai global de telechargement depasse ; aucun fichier valide.'}
+        try {
+            $result=Invoke-MbxHttpAttempt -Url $Url -Hosts $Hosts -TimeoutSeconds $remaining -MaxBytes $MaxBytes -OutFile $OutFile -Head:$Head -UserAgent $UserAgent
+            $result | Add-Member -NotePropertyName Attempts -NotePropertyValue $attempt -Force
+            return $result
+        } catch {
+            if($attempt -eq 3 -or -not (Test-MbxTemporaryHttpFailure $_.Exception)){throw}
+            $delay=$attempt
+            if($budget.Elapsed.TotalSeconds+$delay -ge $TimeoutSeconds){throw}
+            Wait-MbxHttpRetry -Seconds $delay
+        }
+    }
+}
+
+function Test-MbxTemporaryHttpFailure {
+    param([Exception]$Exception)
+    $network=$false;$current=$Exception
+    while($current){
+        if($current -is [Security.Authentication.AuthenticationException]){return $false}
+        if($current.Data['MbxNetworkFailure']){$network=$true}
+        $current=$current.InnerException
+    }
+    return ($network -or $Exception.Message -match '\AHTTP (408|429|500|502|503|504)\b|\ATelechargement interrompu :')
+}
+
+function Wait-MbxHttpRetry {param([int]$Seconds) Start-Sleep -Seconds $Seconds}
+
+function Invoke-MbxHttpAttempt {
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][string]$Url, [Parameter(Mandatory)][string[]]$Hosts,
+        [ValidateRange(1,600)][int]$TimeoutSeconds=30, [ValidateRange(1024,1073741824)][long]$MaxBytes=8388608,
+        [string]$OutFile, [switch]$Head,[string]$UserAgent='MotherboardFeasibility/1.0')
     Add-Type -AssemblyName System.Net.Http
     $handler=New-MbxHttpHandler
     $client=New-Object Net.Http.HttpClient($handler)
     $client.Timeout=[Threading.Timeout]::InfiniteTimeSpan
     $client.DefaultRequestHeaders.UserAgent.ParseAdd($UserAgent)
+    $client.DefaultRequestHeaders.CacheControl=New-Object Net.Http.Headers.CacheControlHeaderValue
+    $client.DefaultRequestHeaders.CacheControl.NoCache=$true
+    $client.DefaultRequestHeaders.Pragma.ParseAdd('no-cache')
     $cts=New-Object Threading.CancellationTokenSource
     $cts.CancelAfter([TimeSpan]::FromSeconds($TimeoutSeconds))
     $response=$null; $stream=$null; $sink=$null; $part=$null; $total=[long]0; $expected=$null
@@ -219,6 +259,7 @@ function Invoke-MbxHttp {
             $request.RequestUri=$current
             $request.Method=if ($Head) { [Net.Http.HttpMethod]::Head } else { [Net.Http.HttpMethod]::Get }
             try { $response=$client.SendAsync($request,[Net.Http.HttpCompletionOption]::ResponseHeadersRead,$cts.Token).GetAwaiter().GetResult() }
+            catch {$_.Exception.Data['MbxNetworkFailure']=$true;throw}
             finally { $request.Dispose() }
             $code=[int]$response.StatusCode
             if ($code -in @(301,302,303,307,308)) {
@@ -246,7 +287,10 @@ function Invoke-MbxHttp {
         } else { $sink=New-Object IO.MemoryStream }
         $buffer=New-Object byte[] 65536; $total=[long]0
         $progressClock=[Diagnostics.Stopwatch]::StartNew(); $lastProgress=[long]-500; $progressUpdates=0
-        while (($read=$stream.ReadAsync($buffer,0,$buffer.Length,$cts.Token).GetAwaiter().GetResult()) -gt 0) {
+        while ($true) {
+            try {$read=$stream.ReadAsync($buffer,0,$buffer.Length,$cts.Token).GetAwaiter().GetResult()}
+            catch {$_.Exception.Data['MbxNetworkFailure']=$true;throw}
+            if($read -le 0){break}
             $total+=$read
             if ($total -gt $MaxBytes) { throw 'Taille maximale de lecture depassee.' }
             $sink.Write($buffer,0,$read)

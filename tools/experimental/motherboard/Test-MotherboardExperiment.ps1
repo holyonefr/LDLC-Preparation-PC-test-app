@@ -213,12 +213,15 @@ try {
     }
     foreach ($status in @(403,404,429,500,503,206)) {
         Case-Mbx ("Simulated HTTP $status remains a failure") {
-            [MbxFakeHandler]::Reset(); [MbxFakeHandler]::Add($status,'','',2048)
+            [MbxFakeHandler]::Reset()
+            $attempts=if($status -in @(429,500,503)){3}else{1}
+            1..$attempts | ForEach-Object { [MbxFakeHandler]::Add($status,'','',2048) }
             Throws-Mbx { Invoke-MbxHttp $testUrl @('msi.com') } "HTTP $status"
+            Assert-Mbx ([MbxFakeHandler]::Requests.Count -eq $attempts) 'Nombre de reprises incorrect.'
         }
     }
     Case-Mbx 'Simulated connection error and actual cancellation deadline' {
-        [MbxFakeHandler]::Reset(); [MbxFakeHandler]::Add(200,'','network',-1)
+        [MbxFakeHandler]::Reset(); 1..3 | ForEach-Object { [MbxFakeHandler]::Add(200,'','network',-1) }
         Throws-Mbx { Invoke-MbxHttp $testUrl @('msi.com') } 'simulated connection'
         [MbxFakeHandler]::Reset(); [MbxFakeHandler]::Add(200,'','timeout',-1)
         $watch=[Diagnostics.Stopwatch]::StartNew()
@@ -228,8 +231,8 @@ try {
     foreach ($kind in @('short','interrupt','oversize')) {
         Case-Mbx ("Simulated $kind download cleans partial files") {
             [MbxFakeHandler]::Reset()
-            if ($kind -eq 'short') { [MbxFakeHandler]::Add(200,'','',9999) }
-            elseif ($kind -eq 'interrupt') { [MbxFakeHandler]::Add(200,'','interrupt',2048) }
+            if ($kind -eq 'short') { 1..3 | ForEach-Object { [MbxFakeHandler]::Add(200,'','',9999) } }
+            elseif ($kind -eq 'interrupt') { 1..3 | ForEach-Object { [MbxFakeHandler]::Add(200,'','interrupt',2048) } }
             else { [MbxFakeHandler]::Add(200,'','',2048) }
             $p=Join-Path $temp ($kind+'.exe')
             $limit=if($kind -eq 'oversize'){1024}else{8388608}
@@ -237,6 +240,16 @@ try {
             Assert-Mbx (-not (Test-Path $p)) 'Fichier incomplet conserve comme final.'
             Assert-Mbx (@(Get-ChildItem $temp -Filter '*.part').Count -eq 0) 'Fichier partiel non nettoye.'
         }
+    }
+    Case-Mbx 'Interrupted stream retries from scratch and leaves only the complete file' {
+        [MbxFakeHandler]::Reset()
+        [MbxFakeHandler]::Add(200,'','interrupt',2048)
+        [MbxFakeHandler]::Add(200,'','',2048)
+        $p=Join-Path $temp 'recovered.exe'
+        $r=Invoke-MbxHttp $testUrl @('msi.com') -OutFile $p
+        Assert-Mbx ($r.Attempts -eq 2 -and [MbxFakeHandler]::Requests.Count -eq 2) 'Coupure non reprise.'
+        Assert-Mbx ((Get-Item $p).Length -eq 2048 -and $r.Bytes -eq 2048) 'Octets partiels reutilises.'
+        Assert-Mbx (@(Get-ChildItem $temp -Filter '*.part').Count -eq 0) 'Fichier partiel restant apres reprise.'
     }
     Case-Mbx 'Existing file never overwritten' {
         [MbxFakeHandler]::Reset(); [MbxFakeHandler]::Add(200,'','',2048)

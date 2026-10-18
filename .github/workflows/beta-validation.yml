@@ -24,6 +24,17 @@ jobs:
       - name: Check synchronization preserves beta and never writes to stable
         shell: powershell
         run: ./tools/Test-LDLCBetaSync.ps1
+      - name: Verify temporary outages and future releases for every manufacturer
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $powershell=Join-Path $env:WINDIR 'System32/WindowsPowerShell/v1.0/powershell.exe'
+          foreach($test in @('Test-VendorResilience','Test-VendorDiscovery','Test-AsrockDiscovery','Test-GigabyteCoreDownload')){
+            & $powershell -NoProfile -File "tools/experimental/vendor-utility/$test.ps1" -OutputDirectory "artifacts/resilience/$test"
+            if($LASTEXITCODE -ne 0){throw "$test failed"}
+          }
+          & $powershell -NoProfile -File tools/experimental/motherboard/Test-MotherboardExperiment.ps1 -OutputDirectory artifacts/resilience/transport
+          if($LASTEXITCODE -ne 0){throw 'Native HTTP transport regressions failed'}
       - name: Run the full release regression suite without installing software
         shell: powershell
         run: |
