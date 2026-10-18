@@ -35,7 +35,9 @@ publication des autres applications, travailler et pousser uniquement ici.
 
 Un changement stable dans un fichier adapte a la beta demande une fusion explicite.
 Apres cette fusion seulement, `-Apply -AcceptMergedOverlays` met a jour la reference.
-Les conflits ordinaires restent refuses. Les fichiers propres a la beta sont gardes,
+Les conflits ordinaires restent refuses. Pendant le gel de la production, chaque
+correction propre a cette beta doit aussi etre ajoutee aux OverlayPaths, afin que
+la synchronisation ne remplace jamais la correction par un ancien fichier stable. Les fichiers propres a la beta sont gardes,
 les suppressions stables sont propagees, les livraisons `dist/` sont reconstruites.
 Le helper n'a aucune commande de push et ne modifie pas le depot source.
 Ne jamais utiliser `Sync-PreparationCore.ps1 -Publish` pour cette beta.
@@ -50,3 +52,7 @@ installateur constructeur reel n'est execute sur la VM. La publication finale de
 livraisons est limitee au depot beta, apres reussite des controles.
 Les workflows de test restent manuels pour eviter un lancement a chaque push.
 Une validation VM ne prouve pas l'installation ni la compatibilite sur tout PC physique.
+
+Validation Windows terminee : voir [beta/RESULTATS_WINDOWS.md](beta/RESULTATS_WINDOWS.md).
+Quatre ouvertures/fermetures reussies, suite release reussie, vrai telechargement GCC
+et raccourcis verifies. L'EXE publie est celui compile par ce passage Windows.

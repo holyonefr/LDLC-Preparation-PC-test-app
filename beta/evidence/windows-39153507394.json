@@ -1,0 +1,376 @@
+{
+  "run": {
+    "id": 39153507394,
+    "head_sha": "2f24c57184167ed25d4679ac4c7a1eedba5d7915",
+    "status": "completed",
+    "conclusion": "failure",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39153507394"
+  },
+  "jobs": [
+    {
+      "id": 117751841807,
+      "name": "beta",
+      "status": "completed",
+      "conclusion": "failure",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-18T18:17:54Z",
+          "completed_at": "2026-10-18T18:17:55Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-18T18:17:55Z",
+          "completed_at": "2026-10-18T18:18:05Z"
+        },
+        {
+          "name": "Compile the standalone beta executable on native Windows",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-18T18:18:05Z",
+          "completed_at": "2026-10-18T18:18:13Z"
+        },
+        {
+          "name": "Check embedded integration, laptop exclusion and error reporting",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-18T18:18:13Z",
+          "completed_at": "2026-10-18T18:18:14Z"
+        },
+        {
+          "name": "Check synchronization preserves beta and never writes to stable",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-18T18:18:14Z",
+          "completed_at": "2026-10-18T18:18:17Z"
+        },
+        {
+          "name": "Run the full release regression suite without installing software",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-18T18:18:17Z",
+          "completed_at": "2026-10-18T18:19:24Z"
+        },
+        {
+          "name": "Verify live GCC download and real Desktop shortcuts in the beta repository",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-18T18:19:24Z",
+          "completed_at": "2026-10-18T18:19:39Z"
+        },
+        {
+          "name": "Open and close the actual beta UI four times",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 8,
+          "started_at": "2026-10-18T18:19:39Z",
+          "completed_at": "2026-10-18T18:19:42Z"
+        },
+        {
+          "name": "Publish only verified beta delivery files",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2026-10-18T18:19:42Z",
+          "completed_at": "2026-10-18T18:19:42Z"
+        },
+        {
+          "name": "Preserve test evidence and Windows build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-18T18:19:42Z",
+          "completed_at": "2026-10-18T18:19:43Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-18T18:19:44Z",
+          "completed_at": "2026-10-18T18:19:47Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-18T18:19:47Z",
+          "completed_at": "2026-10-18T18:19:47Z"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "39538b5d40ea418fa519acbe268d0ff8",
+          "kind": "utility_installer_shortcut_tests",
+          "data": {
+            "Kind": "utility_installer_shortcut_tests",
+            "Assertions": 64,
+            "Cases": [
+              {
+                "Name": "Verified ASRock installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Verified MSI installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Verified ASUS installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Verified GIGABYTE installer becomes a manual Desktop shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Repeated preparation reuses the same stable installer target",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Installer target survives removal of the temporary download",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Changed downloaded installer cannot receive a shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid signature prevents any shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Changed persistent installer is rejected without overwrite",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Wrong file version is rejected even if the hash is known",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Invalid version or hash cannot form a cache path",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "GIGABYTE full bundle cannot be offered as a minimal installer shortcut",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Inaccessible Desktop reports an explicit error",
+                "Mode": "simulation",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual GIGABYTE download and installer shortcut: Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Actual GIGABYTE download and installer shortcut: OneDrive - Fixture/Bureau",
+                "Mode": "real_download_signature_and_com_with_hardware_fixture",
+                "Result": "passed",
+                "Error": ""
+              },
+              {
+                "Name": "Original Windows Desktop is restored after native tests",
+                "Mode": "real_com",
+                "Result": "passed",
+                "Error": ""
+              }
+            ],
+            "Failures": 0,
+            "VendorInstallerExecuted": false,
+            "ActualVendorInstallations": 0,
+            "Live": [
+              {
+                "Vendor": "GIGABYTE",
+                "HardwareSimulated": true,
+                "DesktopMode": "Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "26.08.28.01",
+                "InstallerSHA256": "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+                "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+                "DetectionMethod": "official_gcc_software_update_manifest",
+                "DetectionSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+                "InstallerSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+                "ShortcutFileName": "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              },
+              {
+                "Vendor": "GIGABYTE",
+                "HardwareSimulated": true,
+                "DesktopMode": "OneDrive - Fixture/Bureau",
+                "OfficialDownloadReal": true,
+                "SignatureReal": true,
+                "ShortcutCOMReal": true,
+                "CatalogueMode": "live",
+                "InstallerVersion": "26.08.28.01",
+                "InstallerSHA256": "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+                "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+                "DetectionMethod": "official_gcc_software_update_manifest",
+                "DetectionSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+                "InstallerSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+                "ShortcutFileName": "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+                "TargetExistedAtCheck": true,
+                "Arguments": "",
+                "ReusedWithoutDuplicate": true,
+                "UnrelatedShortcutPreserved": true,
+                "VendorInstallerExecuted": false,
+                "Installed": false
+              }
+            ]
+          }
+        },
+        {
+          "id": "130b4073a5764c14a005eff7a875d526",
+          "kind": "beta_release",
+          "data": {
+            "Status": "passed",
+            "Suite": "Test-LDLCRelease.ps1",
+            "VendorInstallerExecuted": false
+          }
+        },
+        {
+          "id": "cedec237dacc4f218ea06015ab649a67",
+          "kind": "beta_sync_tests",
+          "data": {
+            "Assertions": 11,
+            "Mode": "local_git_fixtures_no_push_no_network",
+            "Cases": [
+              {
+                "Result": "passed",
+                "Name": "Audit leaves identical files unchanged"
+              },
+              {
+                "Result": "passed",
+                "Name": "Missing stable correction is detected, then copied only into beta"
+              },
+              {
+                "Result": "passed",
+                "Name": "Conflicting beta edit is preserved"
+              },
+              {
+                "Result": "passed",
+                "Name": "Overlay change requires explicit merge and keeps beta integration"
+              },
+              {
+                "Result": "passed",
+                "Name": "Stable deletion is propagated while beta-only files remain"
+              },
+              {
+                "Result": "passed",
+                "Name": "Wrong repository cannot receive a synchronization"
+              }
+            ],
+            "Failures": 0,
+            "Kind": "beta_sync_tests"
+          }
+        },
+        {
+          "id": "63e32fe8e4914d0e9796544d51502b46",
+          "kind": "beta_vendor_integration",
+          "data": {
+            "Cases": [
+              {
+                "Result": "passed",
+                "Name": "Five actual utility sources are embedded with valid hashes"
+              },
+              {
+                "Result": "passed",
+                "Name": "Portable is excluded by the real embedded utility before network and app probe"
+              },
+              {
+                "Result": "passed",
+                "Name": "Changed extracted source is refused before import"
+              },
+              {
+                "Result": "passed",
+                "Name": "Verified installer shortcut is a normal manual result"
+              },
+              {
+                "Result": "passed",
+                "Name": "Already installed application keeps its verified shortcut"
+              },
+              {
+                "Result": "passed",
+                "Name": "Laptop or unsupported PC is skipped without blocking warning"
+              },
+              {
+                "Result": "passed",
+                "Name": "Real detection/download failure exposes the blocking cause"
+              },
+              {
+                "Result": "passed",
+                "Name": "Module error does not masquerade as installation"
+              },
+              {
+                "Result": "passed",
+                "Name": "Thrown failure is visible and does not abort the base preparation"
+              },
+              {
+                "Result": "passed",
+                "Name": "Quit before this step prevents module/network work"
+              },
+              {
+                "Result": "passed",
+                "Name": "The real workflow calls the beta step exactly once after apps and before defaults"
+              }
+            ],
+            "VendorInstallerExecuted": false,
+            "Assertions": 26,
+            "Failures": 0,
+            "Kind": "beta_vendor_integration",
+            "Mode": "real_embedded_import_with_simulated_hardware_and_adapter_results"
+          }
+        }
+      ],
+      "incomplete": [],
+      "legacy": []
+    }
+  ]
+}

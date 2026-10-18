@@ -1,6 +1,6 @@
 # Logiciel constructeur uniquement — prototype indépendant
 
-Ce dossier n'est appelé par aucune application LDLC, Numerik's ou ADDON.
+Dans ce depot beta, les cinq sources utiles sont embarquees dans All in App : voir [BETA.md](../../../BETA.md). Les trois applications de production restent inchangees ; le script independant ci-dessous reste disponible pour les tests isoles.
 Il identifie la carte mère et le PC par CIM, sans inventaire des pilotes ou du BIOS.
 Il ne lance ni application constructeur, ni recherche de mises à jour, ni installation de pilote,
 firmware, antivirus ou module facultatif.

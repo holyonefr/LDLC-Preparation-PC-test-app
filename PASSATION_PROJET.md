@@ -574,3 +574,14 @@ dans le JSON de découverte du manifeste. Les trois applications restent inchang
 ## Depot beta et integration constructeur — 18 octobre 2026
 
 Copie des 174 fichiers suivis de LDLC stable a2a57ee dans le depot vide LDLC-Preparation-PC-test-app. Publication reservee a ce depot a la demande utilisateur. Integration beta du prototype constructeur a 82 %, apres applications et avant associations : cinq modules embarques et verifies par hash, chargement differe, rapport local, installation manuelle, portables exclus, erreurs visibles et repli manuel normal informatif. UI, assets et configuration Google preserves. Regle de synchronisation durable dans AGENTS/BETA, helper de synchronisation sans aucun push et refus de conflits. Tests beta et workflow Windows natif a consigner apres execution.
+
+Validation beta finale : run 39153783822, sources e9df3aa, EXE Windows publie en
+2632098. Integration 11/26/0, synchronisation 6/11/0, raccourcis GCC live 16/64/0,
+suite release 35 PowerShell + 3 JS + diagnostics du lanceur reussis, quatre vrais
+Preview/fermetures en processus isoles reussis (1,481 a 1,739 s depuis EntryPoint,
+hors UAC). Le premier run 39153507394 echouait au deuxieme Preview par reutilisation
+du processus Windows Forms ; test corrige sans modifier le lanceur ni l'UI.
+SHA256 EXE C98364BA1221C684DE893D325E5C2F8A394CC68DAC54FF86B4F7EAE8EDE19643,
+verifie apres recuperation Git LFS. Rapport et JSON dans beta/. Aucune installation
+constructeur reelle ; preuve GCC reseau/signature/COM reelle avec materiel simule.
+Les trois refs de production sont restees inchangees, aucun push sur ces depots.
