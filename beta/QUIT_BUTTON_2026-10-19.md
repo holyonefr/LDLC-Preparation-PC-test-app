@@ -1,42 +1,46 @@
-# Bouton Quitter — 19 octobre 2026
+# Bouton Quitter et bandeau bas — 19 octobre 2026
 
-Retour utilisateur : le bas du libellé est coupé. Le contrôle précédent mesurait
-le texte brut contre la taille du bouton, sans tenir compte de l'espace nécessaire
-au rendu natif du contrôle. Le bouton pouvait mesurer seulement 14 pixels de haut.
+Sur une petite fenêtre, les hauteurs minimales de police et les marges natives
+rendaient le bouton trop massif ; il recouvrait le bas du cadre de progression.
+La première correction (75 × 26 px) gardait le texte entier mais son rendu a été
+refusé par l'utilisateur. Elle est remplacée par la disposition décrite ici.
 
-Correction : AutoSize/GrowOnly, taille native préférée, minimum 24 pixels de haut,
-marges internes explicites, libellé centré et ancrage en bas à droite. La police
-lisible est conservée au lieu de la réduire jusqu'à 5,5 points. Marge extérieure
-préservée pour rester à l'intérieur du bord arrondi. Gestion du clic/arrêt inchangée.
+Le bouton utilise la taille native préférée avec GrowAndShrink, un padding
+horizontal réduit et aucune marge verticale ajoutée. Les événements de clic et
+d'arrêt restent identiques. Un espace est réservé en bas avant de placer les
+textes : le cadre de progression et son contenu remontent ensemble si nécessaire.
+Le bouton ne peut plus empiéter sur ce cadre. Une marge à droite protège ses
+quatre coins du masque arrondi. La taille de fenêtre reste inchangée.
 
-Publication : bêta uniquement. Même adaptation préparée localement dans LDLC et
-les deux arbres Addon ; Numerik's reste inchangé. La bêta garde les modifications
-précédentes (textes agrandis, Edge, intégration carte mère).
+Les rectangles des deux lignes de chaque étape utilisent la vraie hauteur des
+polices : plus de lettres coupées verticalement. Les longs libellés gardent les
+points de suspension prévus par l'interface. Images, logos, couleurs des textes
+et opérations de préparation sont conservés. Numerik's est exclu.
 
-Les contrôles Windows du vrai EXE sont renforcés : taille préférée native,
-centrage, espace disponible après padding, quatre coins dans la région de fenêtre
-et pixels blancs du texte réellement dessiné, avec marge au-dessus et en dessous.
-La capture du quatrième Preview (runtime isolé, sans préparation ni données client)
-est publiée avec l'EXE comme preuve visuelle dans evidence/quit-button-2026-10-19/.
+## Revue avant livraison
 
-Validation Windows réussie : [run 39266577489](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39266577489),
-source `8c215d0`, Windows Server 2025 / PowerShell 5.1. Suite release complète,
-tests d'intégration/synchronisation et quatre ouvertures/fermetures du vrai EXE.
-Les téléchargements constructeurs non modifiés sont exclus de ce passage ;
-leurs tests simulés restent actifs et aucun installateur matériel n'est exécuté.
+[Revue Windows réussie](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39270324865),
+source `509f8d4` : six rendus GDI+ et quatre vrais lancements Preview isolés.
+Fenêtre 481 × 222 inchangée ; bouton **57 × 22**, cadre terminé à y=192,
+bouton à y=197 : **5 pixels de séparation**. Texte centré, pixels blancs conservés,
+quatre coins entièrement dans la fenêtre. [Capture réelle inspectée](evidence/quit-layout-review-2026-10-19/ui-preview.png).
+Cette étape de revue n'a publié aucun EXE.
 
-Sur le bureau du runner (fenêtre 481 × 222), bouton **75 × 26 pixels**, contre
-50 × 14 dans la livraison précédente. Taille préférée native respectée sur les
-quatre passages ; pixels blancs du libellé détectés de la ligne 10 à 17, sans
-toucher les bords. Tous les coins sont dans la région de fenêtre. La
-[capture Windows réelle](evidence/quit-button-2026-10-19/ui-preview.png) a été
-inspectée : « Quitter » apparaît en entier et centré.
+Les contrôles natifs vérifient maintenant les limites de chaque texte/barre et la
+séparation cadre/bouton. Une première revue a correctement échoué sur un coin
+encore trop proche de l'arrondi ; la marge a été corrigée, sans affaiblir le test.
+Le workflow rapide `ui-preview.yml` garde aussi la capture et le statut des essais
+en échec, pour permettre le diagnostic sans prétendre que le rendu est validé.
 
-Livraison publiée uniquement dans la bêta, commit `fa07625` ; fichier Git LFS
-vérifié contre le manifeste et la preuve du runner :
-`3BE15311787BD6E55C84A91C659F4E157354A4ACBC94D18184381C62F72E03E5`.
-[Preuves Windows](evidence/quit-button-2026-10-19/windows-evidence.json).
+## Portée et publication
 
-LDLC stable et Addon restent préparés localement, sans push ni EXE de production
-modifié. Addon main/worker identiques et Test-AddonSync local réussi ; aucun
-nouvel EXE Addon lancé pendant cette vérification. Numerik's intact.
+Modifications préparées dans LDLC et Addon localement (deux arbres Addon identiques),
+sans push ni nouvel EXE de production. La fixture de dessin Addon est extraite de
+son vrai fichier local ; la bêta conserve l'intégration carte mère et les autres
+corrections. Seule la bêta est autorisée à publier son EXE.
+
+Validation release complète et nouvelle livraison : en cours après la revue.
+Les tests UI/GDI+ sont réels ; opérations Shell/installation simulées. Aucun
+installateur matériel réel et aucun téléchargement constructeur non modifié
+ne sont exécutés pour cette correction. Les essais ne constituent pas un
+lancement d'un nouvel EXE Addon ou LDLC de production.
