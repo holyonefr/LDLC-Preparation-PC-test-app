@@ -32,6 +32,11 @@ public static class PreparationUiLaunchTest {
                 if(form.Text.IndexOf("Preview",StringComparison.OrdinalIgnoreCase)<0 || seen) return;
                 Control quit=Find(form,"Quitter"); if(quit==null) return;
                 form.Refresh();
+                Directory.CreateDirectory(artifacts);
+                using(Bitmap firstImage=new Bitmap(form.Width,form.Height)) {
+                    form.DrawToBitmap(firstImage,new Rectangle(Point.Empty,firstImage.Size));
+                    firstImage.Save(Path.Combine(artifacts,"ui-preview.png"),ImageFormat.Png);
+                }
                 Point origin=form.PointToClient(quit.PointToScreen(Point.Empty));
                 Rectangle bounds=new Rectangle(origin,quit.Size);
                 if(!form.ClientRectangle.Contains(bounds) || quit.Width<35 || quit.Height<12)

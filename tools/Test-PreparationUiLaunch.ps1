@@ -18,7 +18,14 @@ try{
  & $csc /nologo /target:library "/out:$dll" /reference:System.Core.dll /reference:System.Drawing.dll /reference:System.Windows.Forms.dll (Join-Path $PSScriptRoot 'PreparationUiLaunchTest.cs')
  if($LASTEXITCODE -ne 0){throw 'Preview driver compilation failed'}
  $driver=[Reflection.Assembly]::Load([IO.File]::ReadAllBytes($dll)).GetType('PreparationUiLaunchTest')
- try{$json=$driver.GetMethod('Run').Invoke($null,[object[]]@($assembly,$Artifacts))}catch{throw $_.Exception.GetBaseException()}
+ try{$json=$driver.GetMethod('Run').Invoke($null,[object[]]@($assembly,$Artifacts))}catch{
+  $cause=$_.Exception.GetBaseException().Message
+  if($env:GITHUB_ACTIONS -eq 'true'){
+   $detail=($cause -replace 'https?://\S+','[adresse]' -replace 'LDLC-(Dashboard|PrepTool)-[A-Za-z0-9-]+','[cle]').Replace('%','%25').Replace("`r",'%0D').Replace("`n",'%0A')
+   Write-Host "::error title=Native UI preview::$detail"
+  }
+  throw $_.Exception.GetBaseException()
+ }
  $report=$json|ConvertFrom-Json
  $report|Add-Member NoteProperty Scope 'Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur.'
  $report|ConvertTo-Json|Set-Content -LiteralPath (Join-Path $Artifacts 'geometry.json') -Encoding UTF8

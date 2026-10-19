@@ -15,6 +15,7 @@
     "tools/google-apps-script/LDLC_ErrorTelemetry.gs",
     "tools/Test-LDLCDashboardCompatibility.cjs",
     "tools/PreparationUiLaunchTest.cs",
+    "tools/Test-PreparationUiLaunch.ps1",
     "README.md",
     "SYNCHRONISATION.md",
     "modules/90.Workflow.ps1",
