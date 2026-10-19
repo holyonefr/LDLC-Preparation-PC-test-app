@@ -1,0 +1,24 @@
+{
+  "checkedDate": "2026-10-19",
+  "productionReadOnlyCheck": {
+    "httpStatus": 200,
+    "title": "Dashboard Preparation PC",
+    "embeddedHtmlEncoding": "Google sandbox hexadecimal escapes",
+    "legacyLastMessageHeadingPresent": true,
+    "compactCardCodePresent": false,
+    "customerDataSaved": false
+  },
+  "publication": {
+    "deployed": false,
+    "blocker": "No authorized Google Apps Script publication session configured",
+    "githubPushChangesLiveDashboard": false
+  },
+  "localValidation": {
+    "browserCases": 12,
+    "javascriptErrors": 0,
+    "compatibility": "passed",
+    "ingestion": "passed",
+    "usesSyntheticDataOnly": true,
+    "sourceSha256": "a5265e64b502df4ebbe62595cc6d63832b2cf4071c01a1fa06b14e64f3aa5704"
+  }
+}

@@ -1224,7 +1224,7 @@ tbody tr:hover{background:#222c39}
 .issue-item span{display:block;margin-top:4px;color:var(--muted);font-size:11px;line-height:1.5}
 #runsRows>tr>td[data-label="Details"]>.issue-list{margin-top:0}
 .run-detail-card b{color:#c6d7ec}
-.run-detail-card .run-detail-excerpt{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:6px 0;color:var(--muted)}
+.run-detail-card .run-detail-excerpt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;max-height:33px;overflow:hidden;margin:6px 0;color:var(--muted)}
 .run-detail-button{padding:0;border:0;background:transparent;color:var(--blue);font:inherit;font-size:11px;text-align:left;text-decoration:underline;cursor:pointer}
 .run-detail-dialog{width:min(660px,calc(100vw - 32px));max-height:80vh;padding:22px;border:1px solid var(--line);border-radius:8px;background:#1c242e;color:var(--text);overflow:auto}
 .run-detail-dialog::backdrop{background:rgba(0,0,0,.6)}
@@ -1232,7 +1232,7 @@ tbody tr:hover{background:#222c39}
 .run-detail-dialog h3{margin:0 0 18px;font-size:18px}
 .run-detail-dialog h4{margin:18px 0 6px;font-size:13px;color:#c6d7ec}
 .run-detail-dialog p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.6}
-@media(min-width:761px){.view-table:has(#runsRows) table{min-width:1220px}.view-table:has(#runsRows) th:nth-child(11){width:230px}.view-table:has(#runsRows) th:nth-child(12){width:72px}}
+@media(min-width:761px){.view-table:has(#runsRows) table{min-width:1220px;table-layout:auto}.view-table:has(#runsRows) th{white-space:nowrap;overflow-wrap:normal}.view-table:has(#runsRows) th:nth-child(11){width:230px}.view-table:has(#runsRows) th:nth-child(12){width:72px}#runsRows td[data-label="Statut"] .pill{white-space:nowrap;overflow-wrap:normal}}
 .delete-run-button{width:32px;height:32px;border:1px solid #62434b;border-radius:5px;background:#34282f;color:var(--red);font-size:18px;line-height:1}
 .delete-run-button:hover{background:#493038}
 .delete-run-button:disabled{opacity:.5;cursor:wait}

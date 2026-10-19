@@ -754,3 +754,18 @@ EXE bêta publié en 2547252, SHA256
 Capture finale inspectée et annotations/empreinte vérifiées. Les anciennes mesures
 75 × 26 et l'ancienne empreinte ci-dessus sont historiques et remplacées par cette
 livraison. Voir beta/QUIT_BUTTON_2026-10-19.md et ses preuves Windows.
+
+### Nouvelle vérification des lignes du dashboard — 19 octobre 2026
+
+Google sert encore l'ancienne version : réponse HTTP 200, en-tête « Dernier
+message » dans le HTML sandbox encodé, aucune classe run-detail-card. Ce constat
+explique la capture utilisateur malgré le correctif GitHub. Pas de données client
+conservées ni de modification de l'historique. Aucune session Google autorisée
+pour publier ; ne pas annoncer le dashboard corrigé en ligne.
+
+Résumé désormais limité à deux lignes et 33 px même sans line-clamp, colonnes
+adaptatives et en-têtes/statuts sans coupure de mots. Douze essais Chromium et
+contrôles Node compatibilité/ingestion réussis. Aperçu synthétique complet et
+procédure de mise à jour du déploiement permanent dans
+beta/DASHBOARD_DETAILS_COMPACTS_2026-10-19.md. Aucun changement des EXE ou de l'UI
+All in App, aucun push des productions.
