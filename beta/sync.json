@@ -3,7 +3,7 @@
   "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
   "StableRepository": "holyonefr/LDLC-Preparation",
   "SourceCommit": "a2a57ee2d28203fded79802eae2a58883d996c7e",
-  "SourceWorkingTreeDirty": false,
+  "SourceWorkingTreeDirty": true,
   "OverlayPaths": [
     ".gitattributes",
     ".github/workflows/windows-validation.yml",

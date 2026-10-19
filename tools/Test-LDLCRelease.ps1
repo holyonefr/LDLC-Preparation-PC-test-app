@@ -17,7 +17,7 @@ try {
         'Test-LDLCNoValidatorDependencies', 'Test-LDLCHardening', 'Test-LDLCTaskbarPins', 'Test-LDLCWorkflowOrder',
         'Test-WindowsUpdateTrigger', 'Test-LDLCSecurityBootstrap', 'Test-LDLCEmbeddedAssets',
         'Test-LDLCErrorReportFixes', 'Test-LDLCInstallRobustness', 'Test-LDLCOfficialInstallerFlow',
-        'Test-LDLCUIBranding', 'Test-LDLCLauncherPackaging', 'Test-PreparationCoreSync', 'Test-PreparationDelivery', 'Test-PreparationTelemetryEdition',
+        'Test-LDLCUIBranding', 'Test-ProgressTextRendering', 'Test-LDLCLauncherPackaging', 'Test-PreparationCoreSync', 'Test-PreparationDelivery', 'Test-PreparationTelemetryEdition',
         'Test-PreparationStartup', 'Test-BootstrapFirstPaint', 'Test-UiFirstPaint', 'Test-UiLazyInterop', 'Test-UiPixelBuffer'
     )
     foreach ($test in $tests) {

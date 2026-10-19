@@ -704,3 +704,10 @@ Shell français/anglais. Une épingle réellement persistante garde son avertiss
 Edge seulement ouvert devient informatif. Comparaison avant/après et huit scénarios
 simulés : tools/Test-LDLCTaskbarPins.ps1, ajouté à la suite release.
 Voir beta/UI_EDGE_2026-10-19.md pour la validation Windows et la portée exacte.
+
+Précision utilisateur : agrandir aussi LDLC stable et Addon, jamais Numerik's.
+Corrections de polices préparées localement dans ces deux dépôts, sans publication
+de production. Bêta synchronisée avec l'UI LDLC locale (SourceWorkingTreeDirty=true).
+Hauteurs GDI+ réelles réservées pour éviter la coupe dans la petite fenêtre du
+runner. Test natif du dessin isolé LDLC/bêta et Addon à trois tailles ajouté à la
+suite release ; fixture Addon limitée aux fonctions de dessin, jamais embarquée.

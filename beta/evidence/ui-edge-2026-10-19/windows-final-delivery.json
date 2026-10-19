@@ -1,0 +1,128 @@
+{
+  "run": 39240131634,
+  "status": "success",
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "conclusion": "success"
+    },
+    {
+      "name": "Compile the standalone beta executable on native Windows",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check embedded integration, laptop exclusion and error reporting",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check manufacturer step stays at the end of the applications phase",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check synchronization preserves beta and never writes to stable",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify temporary outages and future releases for every manufacturer",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run the full release regression suite without installing software",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify live downloads and real Desktop shortcuts for all four vendors",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Open and close the actual beta UI four times",
+      "conclusion": "success"
+    },
+    {
+      "name": "Publish only verified beta delivery files",
+      "conclusion": "success"
+    },
+    {
+      "name": "Preserve test evidence and Windows build",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success"
+    }
+  ],
+  "evidence": {
+    "beta_delivery": {
+      "DeliveryCommit": "0ba1e1615d554637e78ba820b90f497af6f74fb9",
+      "TestedSource": "39946acf93bd2646426c6d06bde5429bb79d28ca",
+      "VendorInstallerExecuted": false,
+      "ExecutableSHA256": "30F8C86C0D1AC6090D1706C0F602CA2252ECAF25BD615CB08A3745A644607A9F",
+      "Repository": "holyonefr/LDLC-Preparation-PC-test-app"
+    },
+    "beta_ui_launches": {
+      "Passes": [
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1912,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1596,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1603,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1592,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      ],
+      "Mode": "real_compiled_executable_preview_and_quit_isolated_processes",
+      "VendorInstallerExecuted": false,
+      "Count": 4,
+      "Failures": 0
+    },
+    "beta_release": {
+      "Status": "passed",
+      "Suite": "Test-LDLCRelease.ps1",
+      "VendorInstallerExecuted": false
+    }
+  }
+}
