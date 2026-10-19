@@ -1,0 +1,40 @@
+{
+  "SchemaVersion": 1,
+  "SourceRepository": "holyonefr/LDLC-Preparation",
+  "SourceCommit": "c205efc7150bc0d2af55b7c0a4dc3bce617f68ed",
+  "Scope": "Historical completion logic only; all URLs and known configuration credentials replaced with inert test values; no network operation permitted by tests",
+  "Files": [
+    {
+      "Name": "00.Core.ps1",
+      "SHA256": "33C1AE819DB4DA56A2C04CF1030F4839A8F3F79BA9B81BAB40E57E55B7D8533C",
+      "OriginalSHA256": "300D41F25EC16667D43CBFF12402324316A9478C0540D4277034C8E1793954B1",
+      "RedactedUrlCount": 2,
+      "RedactedKnownValueCount": 0,
+      "RedactedLegacyKeyCount": 0
+    },
+    {
+      "Name": "05.Telemetry.ps1",
+      "SHA256": "B02EF77B5824D6CE2FEFA5015C6124036A819B68A89E15FB55CF0414AD7EAF1E",
+      "OriginalSHA256": "7ECC5040C4C5999AA9E16AAD736C00BF96C19FD6D7B5488E12C103492F1E722D",
+      "RedactedUrlCount": 1,
+      "RedactedKnownValueCount": 2,
+      "RedactedLegacyKeyCount": 0
+    },
+    {
+      "Name": "90.Workflow.ps1",
+      "SHA256": "D19D63FD13F51D46715B77EE13C4C3E93635118E6E8F472151862D14813C52EA",
+      "OriginalSHA256": "5CE89DFA2F2176316F0F49F64BA65C432E2CD7D529F6AC6BCF6FD1BA387BAF78",
+      "RedactedUrlCount": 0,
+      "RedactedKnownValueCount": 0,
+      "RedactedLegacyKeyCount": 0
+    },
+    {
+      "Name": "99.UI.ps1",
+      "SHA256": "E4FD834DF6D9B0F534F0A60AE1EEEA8E8BDEECC3B1A1B594021D3925E5306CDA",
+      "OriginalSHA256": "E4FD834DF6D9B0F534F0A60AE1EEEA8E8BDEECC3B1A1B594021D3925E5306CDA",
+      "RedactedUrlCount": 0,
+      "RedactedKnownValueCount": 0,
+      "RedactedLegacyKeyCount": 0
+    }
+  ]
+}

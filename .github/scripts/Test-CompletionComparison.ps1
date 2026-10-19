@@ -5,10 +5,18 @@ $reports=Join-Path $root 'artifacts/comparaison'
 New-Item -ItemType Directory -Path $baseline,$reports -Force | Out-Null
 $powershell=Join-Path $env:WINDIR 'System32/WindowsPowerShell/v1.0/powershell.exe'
 try {
-    foreach($file in @('00.Core.ps1','05.Telemetry.ps1','90.Workflow.ps1','99.UI.ps1')) {
-        $content=@(& git -C $root show ('c205efc:modules/'+$file))
-        if($LASTEXITCODE -ne 0){throw "Source de comparaison absente : $file"}
-        [IO.File]::WriteAllText((Join-Path $baseline $file),($content -join "`n"),(New-Object Text.UTF8Encoding($true)))
+    # The beta was copied without the private stable repository's Git history.
+    # Use the frozen, sanitized test fixture rather than depending on that history.
+    $fixture=Join-Path $root 'tools/fixtures/completion-before-c205efc'
+    $manifest=Get-Content (Join-Path $fixture 'manifest.json') -Raw | ConvertFrom-Json
+    if($manifest.SourceCommit -cne 'c205efc7150bc0d2af55b7c0a4dc3bce617f68ed'){throw 'Reference historique de comparaison incorrecte.'}
+    $files=@('00.Core.ps1','05.Telemetry.ps1','90.Workflow.ps1','99.UI.ps1')
+    if($manifest.Files.Count -ne $files.Count){throw 'Fixture de comparaison incomplete.'}
+    foreach($file in $files) {
+        $entry=@($manifest.Files|Where-Object Name -ceq $file)
+        $path=Join-Path $fixture $file
+        if($entry.Count -ne 1 -or (Get-FileHash $path).Hash -cne $entry[0].SHA256){throw "Fixture historique modifiee ou absente : $file"}
+        Copy-Item -LiteralPath $path -Destination (Join-Path $baseline $file)
     }
     $test=Join-Path $root 'tools/Test-PreparationCompletion.ps1'
     $previous=$ErrorActionPreference

@@ -7,6 +7,8 @@
   "OverlayPaths": [
     ".gitattributes",
     ".github/workflows/windows-validation.yml",
+    ".github/scripts/Test-CompletionComparison.ps1",
+    ".github/scripts/Test-WindowsValidation.ps1",
     "AGENTS.md",
     "PASSATION_PROJET.md",
     "README.md",

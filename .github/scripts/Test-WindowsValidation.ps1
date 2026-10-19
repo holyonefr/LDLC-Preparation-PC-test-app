@@ -56,6 +56,17 @@ try {
         -Script 'tools\Test-LDLCRelease.ps1'
     Invoke-WindowsValidationCheck -Name 'Comparaison avant apres des 7 scenarios de finalisation' `
         -Script '.github/scripts/Test-CompletionComparison.ps1'
+    Invoke-WindowsValidationCheck -Name 'BETA modules embarques, portable exclu et erreurs visibles' `
+        -Script 'tools/Test-LDLCBetaVendorUtility.ps1'
+    Invoke-WindowsValidationCheck -Name 'BETA fin de la phase Installation et respect des arrets' `
+        -Script 'tools/Test-LDLCBetaPlacement.ps1'
+    Invoke-WindowsValidationCheck -Name 'BETA synchronisation sans modification des productions' `
+        -Script 'tools/Test-LDLCBetaSync.ps1'
+    for($launch=1;$launch -le 3;$launch++) {
+        Invoke-WindowsValidationCheck -Name ("BETA ouverture fermeture du vrai EXE compile $launch sur 3") `
+            -Script 'tools/Test-PreparationUiLaunch.ps1' `
+            -Arguments @('-Artifacts',(Join-Path $artifacts ("compiled-launch-$launch")))
+    }
     $success = $true
 }
 finally {
@@ -65,7 +76,7 @@ finally {
         PowerShell = $PSVersionTable.PSVersion.ToString()
         UserInteractive = [Environment]::UserInteractive
         Success = $success; Checks = @($checks.ToArray())
-        Scope = 'Windows Server 2022: LDLC compile, suite release, 7 scenarios de fin avant/apres. Les controles des associations Chrome utilisent des fixtures ; aucune preparation complete ni installation reelle.'
+        Scope = 'Windows Server 2022: beta livree puis compilee, suite release, comparaison historique, integration constructeur, placement et synchronisation ; 4 Preview/fermetures par passage. Actions systeme/installeurs/Chrome simules ; aucune preparation destructive ni installation reelle.'
     }
     $report | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $artifacts 'resultat.json') -Encoding UTF8
     if ($transcriptStarted) { Stop-Transcript | Out-Null }
