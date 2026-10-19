@@ -2462,11 +2462,32 @@ function Set-LDLCWindowsLayout {
             [string[]]$PathPatterns = @()
         )
 
-        $items = @($shell.Namespace("shell:::{4234d49b-0245-4df3-b780-3893943456e1}").Items())
+        # AppsFolder contains installed applications, including those no longer
+        # pinned. Check persisted pins first, then the actual Unpin shell verb.
+        $pinFolder = Join-Path ([Environment]::GetFolderPath('ApplicationData')) 'Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar'
+        if (Test-Path -LiteralPath $pinFolder -PathType Container) {
+            $pinNamespace = $shell.Namespace($pinFolder)
+            if (-not $pinNamespace) { throw 'Lecture des raccourcis epingles impossible.' }
+            foreach ($candidate in @($pinNamespace.Items())) {
+                if (Test-LDLCTaskbarItemMatch -Item $candidate -ExactNames $ExactNames -NamePatterns $NamePatterns -PathPatterns $PathPatterns) {
+                    return $candidate
+                }
+            }
+        }
+
+        $appsNamespace = $shell.Namespace("shell:::{4234d49b-0245-4df3-b780-3893943456e1}")
+        if (-not $appsNamespace) { throw 'Lecture des applications Windows impossible.' }
+        $items = @($appsNamespace.Items())
 
         foreach ($candidate in $items) {
             if (Test-LDLCTaskbarItemMatch -Item $candidate -ExactNames $ExactNames -NamePatterns $NamePatterns -PathPatterns $PathPatterns) {
-                return $candidate
+                foreach ($verb in @($candidate.Verbs())) {
+                    $verbName = ([string]$verb.Name).Replace('&', '').Normalize([Text.NormalizationForm]::FormD)
+                    $verbName = ($verbName -replace '\p{Mn}', '').Trim()
+                    if ($verbName -match '^(taskbarunpin|unpin from taskbar|detacher de la barre des taches|desepingler de la barre des taches)$') {
+                        return $candidate
+                    }
+                }
             }
         }
 
@@ -2512,7 +2533,7 @@ function Set-LDLCWindowsLayout {
         $itemToRemove = Get-LDLCTaskbarItem -ExactNames $ExactNames -NamePatterns $NamePatterns -PathPatterns $PathPatterns
 
         if (-not $itemToRemove) {
-            Write-Step "$Label deja absent de la barre des taches."
+            Write-Step "Aucune epingle $Label detectee dans la barre des taches."
             return $false
         }
 
@@ -2573,7 +2594,7 @@ function Set-LDLCWindowsLayout {
         [void](Remove-LDLCTaskbarPins -ExactNames @("Microsoft Edge", "Edge") -NamePatterns @("*Edge*") -PathPatterns @("*msedge.exe*") -ProgressMessage "Suppression Edge barre des taches..." -ProgressPercent 18 -Label "Edge")
 
         if (Get-Process -Name "msedge" -ErrorAction SilentlyContinue) {
-            Write-Warn "Des processus Edge sont encore ouverts. L'icone peut rester visible tant qu'ils ne sont pas fermes."
+            Write-Info "Edge est encore ouvert : une fenetre active peut afficher son icone meme apres desepinglage."
         }
 
         [void](Remove-LDLCTaskbarPins -ExactNames @("Copilot") -NamePatterns @("*Copilot*") -ProgressMessage "Suppression Copilot barre des taches..." -ProgressPercent 20 -Label "Copilot")
@@ -12540,9 +12561,9 @@ function Draw-LDLCProgressArea {
     param([System.Drawing.Graphics]$Graphics)
 
     $statusFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 27 8), [System.Drawing.FontStyle]::Bold)
-    $detailFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 15 7), [System.Drawing.FontStyle]::Regular)
+    $detailFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 18 8.5), [System.Drawing.FontStyle]::Regular)
     $percentFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 34 10), [System.Drawing.FontStyle]::Bold)
-    $metaFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 11 6), [System.Drawing.FontStyle]::Regular)
+    $metaFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 14 7.5), [System.Drawing.FontStyle]::Regular)
     $textFormat = New-Object System.Drawing.StringFormat
     $textFormat.Trimming = [System.Drawing.StringTrimming]::EllipsisCharacter
     $textFormat.FormatFlags = [System.Drawing.StringFormatFlags]::NoWrap
@@ -12556,8 +12577,8 @@ function Draw-LDLCProgressArea {
     $meta = if ($Preview) { 'MODE PREVISUALISATION - aucune installation lancee' } else { 'Progression en temps reel' }
 
     $statusRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 552), (Convert-X 790), (Convert-Y 50))
-    $detailRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 648), (Convert-X 805), (Convert-Y 30))
-    $metaRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 680), (Convert-X 805), (Convert-Y 24))
+    $detailRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 648), (Convert-X 805), (Convert-Y 32))
+    $metaRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 684), (Convert-X 805), (Convert-Y 26))
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $status -Font $statusFont -Brush $whiteBrush -Bounds $statusRect -Format $textFormat -ShadowAlpha 210
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $detail -Font $detailFont -Brush $blueTextBrush -Bounds $detailRect -Format $textFormat -ShadowAlpha 190
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $meta -Font $metaFont -Brush $softBrush -Bounds $metaRect -Format $textFormat -ShadowAlpha 180
