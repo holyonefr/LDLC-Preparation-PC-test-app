@@ -139,3 +139,39 @@ et verifications de raccourcis par marque (trois Bureau, trois OneDrive-fixture)
 Les runs 39158466171 et 39158519116 ont ete annules pendant l'elargissement du
 perimetre, avant la validation finale. Ils ne sont pas comptes comme reussis.
 Seul le depot beta a recu les modifications et la livraison Windows.
+
+
+## Placement a la fin des applications — 19 octobre 2026
+
+Run [39202137884](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39202137884),
+sources `ca08dca2225d709778ac181a0b1c7672d3884451`, validation Windows reussie.
+L'etape constructeur passe maintenant juste apres le dernier logiciel, a **60 %**,
+dans la phase **INSTALLATION** (25-60). La configuration du bureau commence ensuite.
+Le pourcentage et l'ordre de tous les autres modules restent ceux de la preparation.
+Le module prepare l'installateur et son raccourci ; l'installation reste manuelle.
+
+| Controle Windows | Resultat |
+|---|---|
+| Orchestration reelle + fonction de phase UI reelle, operations systeme simulees | 7 scenarios / 25 assertions / 0 echec |
+| Sources embarquees, portables exclus, erreurs visibles | 12 scenarios / 29 assertions / 0 echec |
+| Synchronisation, fixtures Git locales | 6 scenarios / 11 assertions / 0 echec |
+| Suite release existante et diagnostics du lanceur compile | Reussis |
+| Vrai EXE, quatre Preview/fermetures en processus separes | 4/4, 1448 / 1239 / 1231 / 1223 ms depuis EntryPoint, hors clic/UAC |
+
+Les scenarios executent le vrai parcours avec trois logiciels, un seul, aucun,
+un echec du premier ou du dernier, un arret apres le dernier logiciel et un arret
+pendant l'etape constructeur. Ils verifient l'unicite de l'appel, son ordre et le
+nom de phase UI, sans lancer d'operation systeme ni d'installateur constructeur.
+Aucun nouveau telechargement constructeur ou miroir pendant ce passage : il
+valide le deplacement du module deja teste, pas de nouveaux liens externes.
+
+Livraison Windows publiee en `94c449d945ad8ecbabe8bd613be0d0f64c169579`, SHA256
+`B8DA90B2805638DE294C1647C4323F717833A93808CEF063E503EF7F4F4AAD5C`, compare a l'EXE
+Git LFS recupere et au manifeste SHA256SUMS : identiques. Preuves dans
+`beta/evidence/placement-39202137884/`. Les trois refs de production sont inchangees.
+
+Les appels API GitHub Actions sont refuses par le proxy cloud. Le workflow cible a
+ete declenche une seule fois par le push beta ; il a publie ses propres resultats
+et l'EXE apres succes dans ce depot. Il repasse maintenant en declenchement manuel
+pour ne pas generer de tests/notifications a chaque modification. Aucun contenu
+externe refuse n'a ete telecharge par un relais.

@@ -610,3 +610,28 @@ reelle 200 et identite confirmee, acquisition du paquet non testee. WinGet MSI r
 Ninite/Scoop Extras sans correspondance demandee. Les miroirs explores rencontrent
 un refus 403 du tunnel cloud ; autorisations reseau sauvegardees en brouillon,
 publication de l'environnement requise avant verification. Voir beta/REPLI_TELECHARGEMENTS.md.
+
+
+## Fin du module Installation des applications — 19 octobre 2026
+
+Instruction utilisateur maintenue : publication uniquement sur le depot beta.
+Module constructeur deplace de 82 % (Configuration) a 60 % (fin Installation),
+immediatement apres la boucle des logiciels, avant la configuration du bureau.
+Defaut Invoke-LDLCVendorUtility=60. Aucune installation automatique constructeur
+ajoutee et aucun miroir binaire non verifie active. Sept scenarios d'orchestration
+reelle/phase UI avec actions simulees, 25 assertions, passes sous Linux puis Windows.
+Source ca08dca, run Windows 39202137884, integration 12/29/0, synchro 6/11/0,
+suite release et quatre Preview/fermetures reels passes. EXE Windows publie en
+94c449d, SHA256 B8DA90B2805638DE294C1647C4323F717833A93808CEF063E503EF7F4F4AAD5C
+recupere/compare au rapport et au manifeste. Preuves dans beta/evidence/placement-39202137884.
+Workflow de placement declenche une fois par push car l'API Actions est refusee,
+puis repasse en manuel ; pas de nouveau telechargement materiel a ce passage.
+
+Recherche de replis : deux adresses retrouvees dans les copies de sources officielles :
+MSI download.msi.com/uti_exe/desktop/MSI-Center.zip et ASUS geo.asus.com/driverhubcn/.
+Provenance hash dans beta/evidence/official-alternative-links.json, destinations/
+versions non validees car CONNECT 403. Ni basculement regional ni miroir non valide
+active. Brouillon reseau sauvegarde avec les domaines miroirs, ces points officiels,
+Store et API/docs GitHub ; requires_publish=true, pas applique a l'instance.
+La suite de cette recherche reste bloquee par l'activation reseau ; ne pas la declarer
+terminee ni utiliser une version ancienne pour forcer le succes.

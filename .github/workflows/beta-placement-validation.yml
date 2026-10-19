@@ -1,9 +1,6 @@
 name: Beta - applications phase placement on Windows
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: [.github/workflows/beta-placement-validation.yml]
 permissions:
   contents: write
 jobs:
