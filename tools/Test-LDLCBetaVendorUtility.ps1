@@ -79,8 +79,8 @@ try {
     }
     Case 'The real workflow calls the beta step exactly once after apps and before defaults' {
         $workflow=[IO.File]::ReadAllText((Join-Path $root 'modules/90.Workflow.ps1'))
-        $index=$workflow.IndexOf('[void](Invoke-LDLCVendorUtility -ProgressPercent 82)')
-        Assert ($index -gt $workflow.IndexOf('Install-LDLCApplication -App $app') -and $index -lt $workflow.IndexOf('Invoke-LDLCChromeDefaultAppsSequence')) 'Mauvais emplacement du parcours beta.'
+        $index=$workflow.IndexOf('[void](Invoke-LDLCVendorUtility -ProgressPercent 60)')
+        Assert ($index -gt $workflow.IndexOf('Install-LDLCApplication -App $app') -and $index -lt $workflow.IndexOf('Write-ProgressFile 80')) 'Mauvais emplacement du parcours beta.'
         Assert (([regex]::Matches($workflow,'Invoke-LDLCVendorUtility -ProgressPercent')).Count -eq 1) 'Etape doublee.'
     }
 } finally {Remove-Module VendorUtility,MotherboardExperiment -ErrorAction SilentlyContinue;Remove-Item -LiteralPath $temp -Recurse -Force}

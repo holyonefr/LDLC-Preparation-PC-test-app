@@ -1,0 +1,25 @@
+{
+  "ReviewedAtUtc": "2026-10-19T04:58:02.795970+00:00",
+  "Kind": "cached_official_alternative_link_research",
+  "LiveDownloadValidated": false,
+  "Candidates": [
+    {
+      "Vendor": "MSI",
+      "Url": "https://download.msi.com/uti_exe/desktop/MSI-Center.zip",
+      "CachedOfficialSourceFile": "msi-landing.html",
+      "SourceSHA256": "601B8814D22B3A85C2480797B9FC5446D12AB45E0A0E27D92B1C385750093F0A",
+      "Provenance": "manufacturer_page_or_javascript_previously_collected",
+      "LiveCheck": "HTTPS CONNECT denied 403 in last attempt; runtime network grants remain unchanged",
+      "EnabledInDownloader": false
+    },
+    {
+      "Vendor": "ASUS",
+      "Url": "https://geo.asus.com/driverhubcn/",
+      "CachedOfficialSourceFile": "chunk9.js",
+      "SourceSHA256": "165C8A3BA621F827D89E2688FFF82FCDDA48E94ECBCD62391B20D54AD9660EC9",
+      "Provenance": "manufacturer_page_or_javascript_previously_collected",
+      "LiveCheck": "HTTPS CONNECT denied 403 in last attempt; runtime network grants remain unchanged",
+      "EnabledInDownloader": false
+    }
+  ]
+}

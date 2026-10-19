@@ -420,12 +420,13 @@ function Invoke-LDLCPreparation {
             }
         }
 
+        # Last step of the applications phase (25-60), before configuration.
+        # Prepare only the verified manufacturer installer shortcut.
+        [void](Invoke-LDLCVendorUtility -ProgressPercent 60)
+
         Stop-IfRequested
         Write-ProgressFile 80 "Configuration du bureau..."
         Write-Step "Configuration des icones systeme du bureau reportee en fin de script pour conserver l'ordre des icones."
-
-        # Beta only: verified manufacturer installer shortcut, never installation.
-        [void](Invoke-LDLCVendorUtility -ProgressPercent 82)
 
         Stop-IfRequested
         Write-ProgressFile 87 "Configuration des applications par défaut avant les pilotes GPU..."

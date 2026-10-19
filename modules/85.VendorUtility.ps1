@@ -24,7 +24,7 @@ function Initialize-LDLCVendorUtilityModule {
 }
 
 function Invoke-LDLCVendorUtility {
-    param([int]$ProgressPercent=82)
+    param([int]$ProgressPercent=60)
     Stop-IfRequested
     Write-ProgressFile $ProgressPercent 'Logiciel de carte mere : detection et preparation du raccourci...'
     try {

@@ -4,8 +4,9 @@ Depot de test : **holyonefr/LDLC-Preparation-PC-test-app**.
 Base LDLC stable : commit `a2a57ee2d28203fded79802eae2a58883d996c7e`.
 Les trois depots de production ne recoivent aucun push pour cette livraison.
 
-La preparation LDLC habituelle est conservee. Apres les installations et avant
-les applications par defaut, la beta prepare le logiciel de carte mere : MSI Center,
+La preparation LDLC habituelle est conservee. Tout a la fin de la phase
+Installation des applications (60 %), apres le dernier logiciel et avant toute
+configuration du bureau, la beta prepare le logiciel de carte mere : MSI Center,
 ASUS DriverHub, GIGABYTE Control Center ou ASRock APP Shop selon le constructeur
 et les controles du prototype. Elle telecharge un installateur officiel verifie
 et cree son raccourci sur le vrai Bureau, y compris OneDrive. **Installation manuelle**

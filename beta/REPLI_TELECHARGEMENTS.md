@@ -64,3 +64,30 @@ la cause doit rester explicite au lieu de choisir automatiquement un vieux fichi
 Voir [RESULTATS_WINDOWS.md](RESULTATS_WINDOWS.md) pour les telechargements
 constructeurs reels et les tests de la beta deja termines. Aucun test de miroir
 externe n'est inclus dans ces reussites.
+
+
+## Pistes officielles supplementaires retrouvees — 19 octobre 2026
+
+Deux liens exacts retrouves dans les sources constructeur conservees :
+
+- MSI : `https://download.msi.com/uti_exe/desktop/MSI-Center.zip`, present dans
+  la page officielle MSI Center archivee. Le chemin utilise actuellement par la
+  beta est sur `download-2.msi.com`. Ce second hote est un candidat officiel,
+  pas une preuve de disponibilite ni d'identite du fichier actuel.
+- ASUS : `https://geo.asus.com/driverhubcn/`, present dans le JavaScript officiel
+  `chunk9.js`. C'est un point regional, pas un EXE. La destination, la region,
+  la version et l'identite du fichier restent a verifier ; aucun basculement
+  automatique vers une distribution regionale non verifiee.
+
+Les essais HEAD/GET se sont heurtes au refus CONNECT 403. Le manifeste regional
+`driverhub.asus.com.cn/download/ASUS-DriverHub-Installer.json` est uniquement une
+URL candidate, sans preuve de presence ni de contenu ; il n'est pas ajoute au code.
+Les preuves de provenance sont dans `evidence/official-alternative-links.json`.
+Aucun autre lien ASRock/GIGABYTE de secours minimal et actuel n'est valide.
+
+Le brouillon reseau conserve les sites miroirs precedemment demandes et ajoute
+`download.msi.com`, `geo.asus.com`, `driverhub.asus.com.cn`. Les autorisations de
+l'instance restent observees inchangees. Les appels API GitHub Actions sont aussi
+refuses dans ce cloud : la verification Windows du placement utilise un push beta
+cible, avec retour de ses propres resultats directement dans ce depot, sans relayage
+de contenus externes refuses et sans nouveau telechargement constructeur.

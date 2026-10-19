@@ -1,0 +1,84 @@
+name: Beta - applications phase placement on Windows
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/beta-placement-validation.yml]
+permissions:
+  contents: write
+jobs:
+  placement:
+    if: github.repository == 'holyonefr/LDLC-Preparation-PC-test-app'
+    runs-on: windows-2025
+    timeout-minutes: 15
+    env:
+      LDLC_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          lfs: true
+          persist-credentials: true
+      - name: Compile the actual beta executable
+        shell: powershell
+        run: ./tools/Build-LDLCPreparationPCExe.ps1
+      - name: Verify placement, embedded feature and synchronization
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $ps=Join-Path $env:WINDIR 'System32/WindowsPowerShell/v1.0/powershell.exe'
+          foreach($test in @('Test-LDLCBetaPlacement','Test-LDLCBetaVendorUtility','Test-LDLCBetaSync')){
+            & $ps -NoProfile -File "tools/$test.ps1" -OutputDirectory "artifacts/placement/$test"
+            if($LASTEXITCODE -ne 0){throw "$test failed"}
+          }
+      - name: Verify full release regressions without vendor downloads or installation
+        shell: powershell
+        run: ./tools/Test-LDLCRelease.ps1
+      - name: Open and close the actual beta UI four times
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $ps=Join-Path $env:WINDIR 'System32/WindowsPowerShell/v1.0/powershell.exe'
+          for($i=1;$i -le 4;$i++){
+            & $ps -STA -NoProfile -ExecutionPolicy Bypass -File tools/Test-PreparationUiLaunch.ps1 -Artifacts "artifacts/placement/preview-$i"
+            if($LASTEXITCODE -ne 0){throw "UI launch $i failed"}
+          }
+      - name: Publish test evidence and successful Windows delivery only to the beta
+        if: always()
+        env:
+          NATIVE_JOB_STATUS: ${{ job.status }}
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $origin=git remote get-url origin
+          if(($origin -replace '\.git$','') -cne 'https://github.com/holyonefr/LDLC-Preparation-PC-test-app'){throw 'Wrong publication repository'}
+          $destination="beta/evidence/placement-$env:GITHUB_RUN_ID"
+          New-Item -ItemType Directory -Path $destination -Force | Out-Null
+          $reports=@('Test-LDLCBetaPlacement/beta-placement.json','Test-LDLCBetaVendorUtility/beta-vendor.json','Test-LDLCBetaSync/beta-sync.json')
+          foreach($report in $reports){
+            $path=Join-Path artifacts/placement $report
+            if(Test-Path $path){Copy-Item $path $destination}
+          }
+          for($i=1;$i -le 4;$i++){
+            $path="artifacts/placement/preview-$i/geometry.json"
+            if(Test-Path $path){Copy-Item $path "$destination/preview-$i.json"}
+          }
+          $exe='dist/LDLCPreparationPC.exe'
+          $record=@{
+            Status=$env:NATIVE_JOB_STATUS;TestedSource=$env:GITHUB_SHA;RunId=$env:GITHUB_RUN_ID
+            RunUrl="https://github.com/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID"
+            ExecutableSHA256=if(Test-Path $exe){(Get-FileHash $exe).Hash}else{''}
+            VendorInstallerExecuted=$false;LiveVendorDownloadsExecuted=$false
+            Scope='Native compile, actual workflow and UI phase with system operations simulated, full release regressions, four actual EXE Preview/quit processes'
+          }
+          $record|ConvertTo-Json -Depth 5|Set-Content "$destination/summary.json" -Encoding UTF8
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- $destination
+          if($env:NATIVE_JOB_STATUS -eq 'success'){
+            git add -- dist/LDLCPreparationPC.exe dist/LDLCPreparationPC.exe.config dist/LDLCPreparationPC.ps1 dist/LDLCPreparationPC.worker.embed.ps1 dist/SHA256SUMS.txt
+          }
+          if($LASTEXITCODE -ne 0){throw 'Staging failed'}
+          git commit -m "Record Windows placement validation $env:GITHUB_RUN_ID ($env:NATIVE_JOB_STATUS)"
+          if($LASTEXITCODE -ne 0){throw 'Commit failed'}
+          git push origin HEAD:main
+          if($LASTEXITCODE -ne 0){throw 'Beta publication failed'}

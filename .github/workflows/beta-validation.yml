@@ -21,6 +21,9 @@ jobs:
       - name: Check embedded integration, laptop exclusion and error reporting
         shell: powershell
         run: ./tools/Test-LDLCBetaVendorUtility.ps1
+      - name: Check manufacturer step stays at the end of the applications phase
+        shell: powershell
+        run: ./tools/Test-LDLCBetaPlacement.ps1
       - name: Check synchronization preserves beta and never writes to stable
         shell: powershell
         run: ./tools/Test-LDLCBetaSync.ps1
