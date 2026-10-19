@@ -1,0 +1,15 @@
+[
+  {
+    "code": "before",
+    "exitCode": 1,
+    "expected": "false warning reproduced",
+    "observedFailure": "Installed application must not produce a false warning"
+  },
+  {
+    "code": "after",
+    "exitCode": 0,
+    "expected": "8 scenarios passed",
+    "scenarioCount": 8,
+    "operations": "simulated Shell; no real Windows changes"
+  }
+]

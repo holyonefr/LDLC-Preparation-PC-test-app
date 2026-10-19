@@ -1,0 +1,414 @@
+{
+  "run": 39239783820,
+  "sourceCommit": "4f2e8acbc98a63059b0f3a49ed4bd596c0422d77",
+  "jobs": [
+    {
+      "job": "Windows - passage 2 sur 3",
+      "status": "success",
+      "reports": [
+        {
+          "kind": "LDLC Windows result",
+          "data": {
+            "Commit": "4f2e8acbc98a63059b0f3a49ed4bd596c0422d77",
+            "Passage": "2",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "Started": "2026-10-19T10:46:15.0727226Z",
+                "ExitCode": 0,
+                "Seconds": 4.84
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "Started": "2026-10-19T10:46:19.9285607Z",
+                "ExitCode": 0,
+                "Seconds": 1.456
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "Started": "2026-10-19T10:46:21.3836281Z",
+                "ExitCode": 0,
+                "Seconds": 39.125
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "Started": "2026-10-19T10:47:00.5106872Z",
+                "ExitCode": 0,
+                "Seconds": 6.18
+              },
+              {
+                "Name": "BETA modules embarques, portable exclu et erreurs visibles",
+                "Started": "2026-10-19T10:47:06.6884206Z",
+                "ExitCode": 0,
+                "Seconds": 0.804
+              },
+              {
+                "Name": "BETA fin de la phase Installation et respect des arrets",
+                "Started": "2026-10-19T10:47:07.4853810Z",
+                "ExitCode": 0,
+                "Seconds": 0.383
+              },
+              {
+                "Name": "BETA synchronisation sans modification des productions",
+                "Started": "2026-10-19T10:47:07.8759993Z",
+                "ExitCode": 0,
+                "Seconds": 1.518
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 1 sur 3",
+                "Started": "2026-10-19T10:47:09.3958918Z",
+                "ExitCode": 0,
+                "Seconds": 1.409
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 2 sur 3",
+                "Started": "2026-10-19T10:47:10.8043662Z",
+                "ExitCode": 0,
+                "Seconds": 1.368
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 3 sur 3",
+                "Started": "2026-10-19T10:47:12.1639340Z",
+                "ExitCode": 0,
+                "Seconds": 1.367
+              }
+            ],
+            "Scope": "Windows Server 2022: beta livree puis compilee, suite release, comparaison historique, integration constructeur, placement et synchronisation ; 4 Preview/fermetures par passage. Actions systeme/installeurs/Chrome simules ; aucune preparation destructive ni installation reelle."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 949,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 955,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 983,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 2032,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        }
+      ]
+    },
+    {
+      "job": "Windows - passage 3 sur 3",
+      "status": "success",
+      "reports": [
+        {
+          "kind": "LDLC Windows result",
+          "data": {
+            "Commit": "4f2e8acbc98a63059b0f3a49ed4bd596c0422d77",
+            "Passage": "3",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "Started": "2026-10-19T10:46:25.1350680Z",
+                "ExitCode": 0,
+                "Seconds": 7.431
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "Started": "2026-10-19T10:46:32.5778111Z",
+                "ExitCode": 0,
+                "Seconds": 1.54
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "Started": "2026-10-19T10:46:34.1260720Z",
+                "ExitCode": 0,
+                "Seconds": 47.533
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "Started": "2026-10-19T10:47:21.6585007Z",
+                "ExitCode": 0,
+                "Seconds": 6.902
+              },
+              {
+                "Name": "BETA modules embarques, portable exclu et erreurs visibles",
+                "Started": "2026-10-19T10:47:28.5586469Z",
+                "ExitCode": 0,
+                "Seconds": 1.003
+              },
+              {
+                "Name": "BETA fin de la phase Installation et respect des arrets",
+                "Started": "2026-10-19T10:47:29.5597676Z",
+                "ExitCode": 0,
+                "Seconds": 0.448
+              },
+              {
+                "Name": "BETA synchronisation sans modification des productions",
+                "Started": "2026-10-19T10:47:30.0133941Z",
+                "ExitCode": 0,
+                "Seconds": 1.78
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 1 sur 3",
+                "Started": "2026-10-19T10:47:31.7954697Z",
+                "ExitCode": 0,
+                "Seconds": 1.603
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 2 sur 3",
+                "Started": "2026-10-19T10:47:33.3902225Z",
+                "ExitCode": 0,
+                "Seconds": 1.604
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 3 sur 3",
+                "Started": "2026-10-19T10:47:35.0018021Z",
+                "ExitCode": 0,
+                "Seconds": 1.6
+              }
+            ],
+            "Scope": "Windows Server 2022: beta livree puis compilee, suite release, comparaison historique, integration constructeur, placement et synchronisation ; 4 Preview/fermetures par passage. Actions systeme/installeurs/Chrome simules ; aucune preparation destructive ni installation reelle."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 1124,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 1123,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 1107,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 2974,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        }
+      ]
+    },
+    {
+      "job": "Windows - passage 1 sur 3",
+      "status": "success",
+      "reports": [
+        {
+          "kind": "LDLC Windows result",
+          "data": {
+            "Commit": "4f2e8acbc98a63059b0f3a49ed4bd596c0422d77",
+            "Passage": "1",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "Started": "2026-10-19T10:46:14.6028632Z",
+                "ExitCode": 0,
+                "Seconds": 4.74
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "Started": "2026-10-19T10:46:19.3579797Z",
+                "ExitCode": 0,
+                "Seconds": 1.285
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "Started": "2026-10-19T10:46:20.6405883Z",
+                "ExitCode": 0,
+                "Seconds": 35.641
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "Started": "2026-10-19T10:46:56.2890250Z",
+                "ExitCode": 0,
+                "Seconds": 5.557
+              },
+              {
+                "Name": "BETA modules embarques, portable exclu et erreurs visibles",
+                "Started": "2026-10-19T10:47:01.8439518Z",
+                "ExitCode": 0,
+                "Seconds": 0.74
+              },
+              {
+                "Name": "BETA fin de la phase Installation et respect des arrets",
+                "Started": "2026-10-19T10:47:02.5890793Z",
+                "ExitCode": 0,
+                "Seconds": 0.342
+              },
+              {
+                "Name": "BETA synchronisation sans modification des productions",
+                "Started": "2026-10-19T10:47:02.9232543Z",
+                "ExitCode": 0,
+                "Seconds": 1.37
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 1 sur 3",
+                "Started": "2026-10-19T10:47:04.2987730Z",
+                "ExitCode": 0,
+                "Seconds": 1.312
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 2 sur 3",
+                "Started": "2026-10-19T10:47:05.6130040Z",
+                "ExitCode": 0,
+                "Seconds": 1.292
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 3 sur 3",
+                "Started": "2026-10-19T10:47:06.9114221Z",
+                "ExitCode": 0,
+                "Seconds": 1.3
+              }
+            ],
+            "Scope": "Windows Server 2022: beta livree puis compilee, suite release, comparaison historique, integration constructeur, placement et synchronisation ; 4 Preview/fermetures par passage. Actions systeme/installeurs/Chrome simules ; aucune preparation destructive ni installation reelle."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 905,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 910,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 933,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "kind": "PrepTool compiled preview",
+          "data": {
+            "Visible": true,
+            "MillisecondsToPreview": 2020,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        }
+      ]
+    }
+  ]
+}

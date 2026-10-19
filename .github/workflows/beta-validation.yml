@@ -1,6 +1,11 @@
 name: LDLC beta - build and Windows validation
 on:
   workflow_dispatch:
+    inputs:
+      live_vendor_downloads:
+        description: 'Retester les telechargements constructeurs reels (independants des corrections UI)'
+        type: boolean
+        default: true
 permissions:
   contents: write
 jobs:
@@ -47,6 +52,7 @@ jobs:
           Import-Module ./tools/experimental/motherboard/MotherboardExperiment.psm1 -Force
           Write-MbxEvidence -Kind 'beta_release' -Data @{Status='passed';Suite='Test-LDLCRelease.ps1';VendorInstallerExecuted=$false}
       - name: Verify live downloads and real Desktop shortcuts for all four vendors
+        if: inputs.live_vendor_downloads
         shell: powershell
         run: ./tools/experimental/vendor-utility/Test-InstallerShortcut.ps1 -Live -Vendors ASRock,MSI,ASUS,GIGABYTE -OutputDirectory artifacts/beta-vendors-live
       - name: Open and close the actual beta UI four times
