@@ -6,6 +6,10 @@ on:
         description: 'Retester les telechargements constructeurs reels (independants des corrections UI)'
         type: boolean
         default: true
+      publish_delivery:
+        description: 'Publier l EXE valide (false = capture de revue uniquement)'
+        type: boolean
+        default: true
 permissions:
   contents: write
 jobs:
@@ -84,19 +88,24 @@ jobs:
           New-Item -ItemType Directory -Path $previewEvidence -Force | Out-Null
           Copy-Item artifacts/preview-4/ui-preview.png "$previewEvidence/ui-preview.png" -Force
           Copy-Item artifacts/preview-4/geometry.json "$previewEvidence/geometry.json" -Force
-          git add -- dist/LDLCPreparationPC.exe dist/LDLCPreparationPC.exe.config dist/LDLCPreparationPC.ps1 dist/LDLCPreparationPC.worker.embed.ps1 dist/SHA256SUMS.txt
-          if($LASTEXITCODE -ne 0){throw 'Staging failed'}
+          $publishDelivery='${{ inputs.publish_delivery }}' -eq 'true'
+          if($publishDelivery){
+            git add -- dist/LDLCPreparationPC.exe dist/LDLCPreparationPC.exe.config dist/LDLCPreparationPC.ps1 dist/LDLCPreparationPC.worker.embed.ps1 dist/SHA256SUMS.txt
+            if($LASTEXITCODE -ne 0){throw 'Staging failed'}
+          }
           git add -- "$previewEvidence/ui-preview.png" "$previewEvidence/geometry.json"
           if($LASTEXITCODE -ne 0){throw 'Preview evidence staging failed'}
           git diff --cached --quiet
           if($LASTEXITCODE -eq 1){
-            git commit -m 'Publish Windows-compiled and validated LDLC beta executable'
+            $message=if($publishDelivery){'Publish Windows-compiled and validated LDLC beta executable'}else{'Save Windows preview for visual review before EXE publication'}
+            git commit -m $message
             if($LASTEXITCODE -ne 0){throw 'Commit failed'}
             git push origin HEAD:main
             if($LASTEXITCODE -ne 0){throw 'Beta publication failed'}
           }
           Import-Module ./tools/experimental/motherboard/MotherboardExperiment.psm1 -Force
-          Write-MbxEvidence -Kind 'beta_delivery' -Data @{Repository=$env:GITHUB_REPOSITORY;TestedSource=$env:GITHUB_SHA;DeliveryCommit=(git rev-parse HEAD);ExecutableSHA256=(Get-FileHash dist/LDLCPreparationPC.exe).Hash;VendorInstallerExecuted=$false}
+          $kind=if($publishDelivery){'beta_delivery'}else{'beta_preview_review'}
+          Write-MbxEvidence -Kind $kind -Data @{Repository=$env:GITHUB_REPOSITORY;TestedSource=$env:GITHUB_SHA;DeliveryCommit=(git rev-parse HEAD);ExecutableSHA256=(Get-FileHash dist/LDLCPreparationPC.exe).Hash;PublishedExecutable=$publishDelivery;VendorInstallerExecuted=$false}
       - name: Preserve test evidence and Windows build
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9

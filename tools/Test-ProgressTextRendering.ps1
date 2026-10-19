@@ -21,9 +21,10 @@ foreach ($source in $sources) {
             $capture = @'
     $script:TextMetrics = @{Blue=$detailRect;White=$metaRect;BlueFont=$detailFont.GetHeight($Graphics);WhiteFont=$metaFont.GetHeight($Graphics)}
 '@
-            $pattern = '(?m)^    \$metaRect = New-Object System.Drawing.RectangleF[^\r\n]*'
-            if ([regex]::Matches($text,$pattern).Count -ne 1) { throw 'Renderer observation point missing.' }
-            $text = [regex]::Replace($text,$pattern,[Text.RegularExpressions.MatchEvaluator]{param($m) $m.Value+"`n"+$capture})
+            $marker = '    Draw-LDLCTextWithShadow -Graphics $Graphics -Text $status -Font'
+            if (-not $text.Contains($marker)) { $marker = '    $Graphics.DrawString($status,' }
+            if (-not $text.Contains($marker)) { throw 'Renderer observation point missing.' }
+            $text = $text.Replace($marker,$capture+"`n"+$marker)
         }
         . ([scriptblock]::Create($text))
     }

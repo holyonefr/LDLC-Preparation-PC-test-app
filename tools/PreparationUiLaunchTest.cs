@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Collections;
 
 public static class PreparationUiLaunchTest {
     private static Control Find(Control root, string text) {
@@ -30,6 +31,7 @@ public static class PreparationUiLaunchTest {
                 }
                 if(form.Text.IndexOf("Preview",StringComparison.OrdinalIgnoreCase)<0 || seen) return;
                 Control quit=Find(form,"Quitter"); if(quit==null) return;
+                form.Refresh();
                 Point origin=form.PointToClient(quit.PointToScreen(Point.Empty));
                 Rectangle bounds=new Rectangle(origin,quit.Size);
                 if(!form.ClientRectangle.Contains(bounds) || quit.Width<35 || quit.Height<12)
@@ -43,6 +45,16 @@ public static class PreparationUiLaunchTest {
                     throw new InvalidOperationException("Quit button smaller than native preferred size: preferred="+preferred+", button="+quit.ClientSize);
                 if(((Button)quit).TextAlign!=ContentAlignment.MiddleCenter)
                     throw new InvalidOperationException("Quit label must be centered.");
+                IDictionary layout=quit.Parent.Tag as IDictionary;
+                if(layout==null) throw new InvalidOperationException("Progress layout not exposed after paint.");
+                RectangleF progressPanel=(RectangleF)layout["Panel"];
+                if(bounds.Top<progressPanel.Bottom+2)
+                    throw new InvalidOperationException("Quit button intrudes into progress panel: button="+bounds+", panel="+progressPanel);
+                foreach(string key in new[]{"Status","Bar","Detail","Meta","Percent"}) {
+                    RectangleF content=(RectangleF)layout[key];
+                    if(!progressPanel.Contains(content) || content.IntersectsWith(bounds))
+                        throw new InvalidOperationException("Progress content overlaps or escapes panel: "+key+"="+content);
+                }
                 using(Graphics g=quit.CreateGraphics()) {
                     Size label=TextRenderer.MeasureText(g,quit.Text,quit.Font,new Size(int.MaxValue,int.MaxValue),TextFormatFlags.SingleLine|TextFormatFlags.NoPadding);
                     if(label.Width>quit.ClientSize.Width-quit.Padding.Horizontal || label.Height>quit.ClientSize.Height-quit.Padding.Vertical)
@@ -64,7 +76,7 @@ public static class PreparationUiLaunchTest {
                     image.Save(Path.Combine(artifacts,"ui-preview.png"),ImageFormat.Png);
                 }
                 result=String.Format(System.Globalization.CultureInfo.InvariantCulture,
-                    "{{\"Visible\":true,\"MillisecondsToPreview\":{0},\"WindowWidth\":{1},\"WindowHeight\":{2},\"QuitLeft\":{3},\"QuitTop\":{4},\"QuitWidth\":{5},\"QuitHeight\":{6},\"QuitPreferredWidth\":{7},\"QuitPreferredHeight\":{8},\"QuitWhitePixels\":{9},\"QuitGlyphTop\":{10},\"QuitGlyphBottom\":{11}}}",watch.ElapsedMilliseconds,form.ClientSize.Width,form.ClientSize.Height,bounds.Left,bounds.Top,bounds.Width,bounds.Height,preferred.Width,preferred.Height,whitePixels,minWhiteY,maxWhiteY);
+                    "{{\"Visible\":true,\"MillisecondsToPreview\":{0},\"WindowWidth\":{1},\"WindowHeight\":{2},\"QuitLeft\":{3},\"QuitTop\":{4},\"QuitWidth\":{5},\"QuitHeight\":{6},\"QuitPreferredWidth\":{7},\"QuitPreferredHeight\":{8},\"QuitWhitePixels\":{9},\"QuitGlyphTop\":{10},\"QuitGlyphBottom\":{11},\"ProgressPanelBottom\":{12},\"FooterGap\":{13}}}",watch.ElapsedMilliseconds,form.ClientSize.Width,form.ClientSize.Height,bounds.Left,bounds.Top,bounds.Width,bounds.Height,preferred.Width,preferred.Height,whitePixels,minWhiteY,maxWhiteY,progressPanel.Bottom,bounds.Top-progressPanel.Bottom);
                 seen=true;form.Close();
             } catch(Exception ex) { failure=ex;form.Close(); }
             finally {System.Threading.Interlocked.Exchange(ref pending,0);}
