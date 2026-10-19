@@ -12577,8 +12577,14 @@ function Draw-LDLCProgressArea {
     $meta = if ($Preview) { 'MODE PREVISUALISATION - aucune installation lancee' } else { 'Progression en temps reel' }
 
     $statusRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 552), (Convert-X 790), (Convert-Y 50))
-    $detailRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 648), (Convert-X 805), (Convert-Y 32))
-    $metaRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 684), (Convert-X 805), (Convert-Y 26))
+    # Minimum font sizes stay readable even when the entire window is scaled
+    # down. Reserve their real pixel height instead of scaling the text box
+    # below the font height (notably on the small GitHub runner desktop).
+    $detailHeight = [Math]::Max((Convert-Y 32), [Math]::Ceiling($detailFont.GetHeight($Graphics)) + 2)
+    $metaHeight = [Math]::Max((Convert-Y 26), [Math]::Ceiling($metaFont.GetHeight($Graphics)) + 2)
+    $detailRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 648), (Convert-X 805), $detailHeight)
+    $metaTop = [Math]::Max((Convert-Y 684), $detailRect.Bottom + 1)
+    $metaRect = New-Object System.Drawing.RectangleF((Convert-X 548), $metaTop, (Convert-X 805), $metaHeight)
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $status -Font $statusFont -Brush $whiteBrush -Bounds $statusRect -Format $textFormat -ShadowAlpha 210
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $detail -Font $detailFont -Brush $blueTextBrush -Bounds $detailRect -Format $textFormat -ShadowAlpha 190
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $meta -Font $metaFont -Brush $softBrush -Bounds $metaRect -Format $textFormat -ShadowAlpha 180
