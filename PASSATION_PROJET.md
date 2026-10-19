@@ -711,3 +711,10 @@ de production. Bêta synchronisée avec l'UI LDLC locale (SourceWorkingTreeDirty
 Hauteurs GDI+ réelles réservées pour éviter la coupe dans la petite fenêtre du
 runner. Test natif du dessin isolé LDLC/bêta et Addon à trois tailles ajouté à la
 suite release ; fixture Addon limitée aux fonctions de dessin, jamais embarquée.
+
+Validation finale réussie : run 39241128195, source c1d78dc, six rendus GDI+ natifs
+LDLC/bêta/Addon et quatre vrais lancements/fermetures. Livraison bêta 7b1dcba,
+SHA256 B8BC83FDF8D469C09F698B2D30911BD7C025F04556E574187DA88C25A9BBA288.
+LDLC et Addon : sources de polices locales seulement, aucun EXE de production
+reconstruit/poussé. Addon main/worker identiques et Test-AddonSync Linux réussi.
+Numerik's intact. Dashboard préparé mais non déployé (Google CONNECT 403).

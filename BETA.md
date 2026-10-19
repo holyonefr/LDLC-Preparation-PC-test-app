@@ -30,7 +30,9 @@ pointe uniquement vers le coeur signe, pas vers le wrapper MB Update/RGB Sync.
 ## Synchronisation pour les prochaines corrections
 
 La beta doit rester a jour a chaque modification demandee. Pendant le gel de
-publication des autres applications, travailler et pousser uniquement ici.
+publication des autres applications, pousser uniquement ici. Exception de travail
+local demandee le 19 octobre : agrandir les deux textes de progression dans LDLC
+et Addon, en conservant Numerik's intact ; leurs EXE et publications restent geles.
 `beta/sync.json` indique le commit stable et les adaptations beta a conserver.
 
 ```powershell

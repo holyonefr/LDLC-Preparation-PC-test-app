@@ -1,0 +1,219 @@
+{
+  "run": 39241128195,
+  "status": "success",
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "conclusion": "success"
+    },
+    {
+      "name": "Compile the standalone beta executable on native Windows",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check embedded integration, laptop exclusion and error reporting",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check manufacturer step stays at the end of the applications phase",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check synchronization preserves beta and never writes to stable",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify temporary outages and future releases for every manufacturer",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run the full release regression suite without installing software",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify live downloads and real Desktop shortcuts for all four vendors",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Open and close the actual beta UI four times",
+      "conclusion": "success"
+    },
+    {
+      "name": "Publish only verified beta delivery files",
+      "conclusion": "success"
+    },
+    {
+      "name": "Preserve test evidence and Windows build",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success"
+    }
+  ],
+  "nativeTextRendering": {
+    "Numeriks": "unchanged and excluded",
+    "Cases": [
+      {
+        "Width": 481,
+        "Height": 222,
+        "WhiteHeight": 16,
+        "WhiteFontHeight": 13.3007793,
+        "BlueFontHeight": 15.0742168,
+        "Edition": "LDLC et beta",
+        "BlueHeight": 18,
+        "PaintedPixels": [
+          587,
+          383
+        ],
+        "Fits": true
+      },
+      {
+        "Width": 902,
+        "Height": 416,
+        "WhiteHeight": 16,
+        "WhiteFontHeight": 13.3007793,
+        "BlueFontHeight": 15.0742168,
+        "Edition": "LDLC et beta",
+        "BlueHeight": 18,
+        "PaintedPixels": [
+          587,
+          383
+        ],
+        "Fits": true
+      },
+      {
+        "Width": 1280,
+        "Height": 591,
+        "WhiteHeight": 20,
+        "WhiteFontHeight": 13.6850548,
+        "BlueFontHeight": 17.59507,
+        "Edition": "LDLC et beta",
+        "BlueHeight": 24,
+        "PaintedPixels": [
+          658,
+          383
+        ],
+        "Fits": true
+      },
+      {
+        "Width": 481,
+        "Height": 222,
+        "WhiteHeight": 15,
+        "WhiteFontHeight": 12.4140606,
+        "BlueFontHeight": 14.187499,
+        "Edition": "Addon",
+        "BlueHeight": 17,
+        "PaintedPixels": [
+          565,
+          354
+        ],
+        "Fits": true
+      },
+      {
+        "Width": 902,
+        "Height": 416,
+        "WhiteHeight": 15,
+        "WhiteFontHeight": 12.4140606,
+        "BlueFontHeight": 14.187499,
+        "Edition": "Addon",
+        "BlueHeight": 17,
+        "PaintedPixels": [
+          565,
+          354
+        ],
+        "Fits": true
+      },
+      {
+        "Width": 1280,
+        "Height": 591,
+        "WhiteHeight": 20,
+        "WhiteFontHeight": 12.707551,
+        "BlueFontHeight": 15.6400623,
+        "Edition": "Addon",
+        "BlueHeight": 24,
+        "PaintedPixels": [
+          522,
+          366
+        ],
+        "Fits": true
+      }
+    ],
+    "Mode": "real native GDI+ rasterization of isolated source renderers; no application preparation",
+    "Failures": 0
+  },
+  "evidence": {
+    "beta_delivery": {
+      "DeliveryCommit": "7b1dcba9adff2a05e947760144d53fdc93571b86",
+      "TestedSource": "c1d78dc1b8fd6631294dfaff15d379a1ebcbaae3",
+      "VendorInstallerExecuted": false,
+      "ExecutableSHA256": "B8BC83FDF8D469C09F698B2D30911BD7C025F04556E574187DA88C25A9BBA288",
+      "Repository": "holyonefr/LDLC-Preparation-PC-test-app"
+    },
+    "beta_ui_launches": {
+      "Passes": [
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1650,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1589,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1525,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1464,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      ],
+      "Mode": "real_compiled_executable_preview_and_quit_isolated_processes",
+      "VendorInstallerExecuted": false,
+      "Count": 4,
+      "Failures": 0
+    },
+    "beta_release": {
+      "Status": "passed",
+      "Suite": "Test-LDLCRelease.ps1",
+      "VendorInstallerExecuted": false
+    }
+  }
+}
