@@ -1184,7 +1184,7 @@ th,td{padding:13px 12px;border-bottom:1px solid #2b3440;text-align:left;vertical
 th{position:sticky;top:0;z-index:1;background:#252e3a;color:#c6cfdb;font-weight:500}
 td{color:#c3cbd6}
 tbody tr:hover{background:#222c39}
-.pill{display:inline-flex;align-items:center;justify-content:center;min-height:26px;padding:4px 9px;border:1px solid transparent;border-radius:5px;font-size:11px;font-weight:500;line-height:1.3;text-align:center;white-space:nowrap;vertical-align:middle}
+.pill{display:inline-flex;align-items:center;justify-content:center;min-height:26px;max-width:100%;padding:4px 9px;border:1px solid transparent;border-radius:5px;font-size:11px;font-weight:500;line-height:1.3;text-align:center;white-space:normal;overflow-wrap:anywhere;vertical-align:middle}
 .pill.wait{background:#332e29;border-color:#5b4b37;color:var(--orange)}
 .pill.crit{background:#34282f;border-color:#62434b;color:var(--red)}
 .pill.ok{background:#24332e;border-color:#3c5b4e;color:var(--green)}
@@ -1210,17 +1210,29 @@ tbody tr:hover{background:#222c39}
 .settings-list b{display:block;font-weight:500}
 .settings-link{display:inline-block;margin-top:6px;color:var(--blue);overflow-wrap:anywhere;text-decoration:none}
 .settings-link:hover{text-decoration:underline}
-.issue-details summary{list-style:none;display:inline-flex;align-items:center;min-height:32px;padding:0 10px;border:1px solid #425670;border-radius:5px;color:#c6d7ec;background:#263342;font-size:12px;cursor:pointer;white-space:nowrap}
+.issue-details{min-width:0;max-width:100%}
+.issue-details summary{list-style:none;display:inline-flex;align-items:center;min-height:32px;max-width:100%;padding:4px 10px;border:1px solid #425670;border-radius:5px;color:#c6d7ec;background:#263342;font-size:12px;cursor:pointer;white-space:normal;overflow-wrap:anywhere}
 .issue-details summary::-webkit-details-marker{display:none}
 .issue-details[open] summary{background:#304055}
 .issue-details .toggle-open{display:none}
 .issue-details[open] .toggle-open{display:inline}
 .issue-details[open] .toggle-closed{display:none}
-.issue-list{display:grid;gap:10px;margin-top:12px;width:min(680px,100%)}
+.issue-list{display:grid;gap:10px;margin-top:12px;width:min(680px,100%);min-width:0;max-width:100%}
 .run-issue-list{width:min(760px,100%)}
-.issue-item{padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#171f29}
+.issue-item{min-width:0;max-width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#171f29;white-space:normal;overflow-wrap:anywhere}
 .issue-item b{display:block;font-size:12px;font-weight:500;line-height:1.5}
 .issue-item span{display:block;margin-top:4px;color:var(--muted);font-size:11px;line-height:1.5}
+#runsRows>tr>td[data-label="Details"]>.issue-list{margin-top:0}
+.run-detail-card b{color:#c6d7ec}
+.run-detail-card .run-detail-excerpt{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:6px 0;color:var(--muted)}
+.run-detail-button{padding:0;border:0;background:transparent;color:var(--blue);font:inherit;font-size:11px;text-align:left;text-decoration:underline;cursor:pointer}
+.run-detail-dialog{width:min(660px,calc(100vw - 32px));max-height:80vh;padding:22px;border:1px solid var(--line);border-radius:8px;background:#1c242e;color:var(--text);overflow:auto}
+.run-detail-dialog::backdrop{background:rgba(0,0,0,.6)}
+.run-detail-dialog form{float:right;margin:0 0 12px 16px}
+.run-detail-dialog h3{margin:0 0 18px;font-size:18px}
+.run-detail-dialog h4{margin:18px 0 6px;font-size:13px;color:#c6d7ec}
+.run-detail-dialog p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.6}
+@media(min-width:761px){.view-table:has(#runsRows) table{min-width:1220px}.view-table:has(#runsRows) th:nth-child(11){width:230px}.view-table:has(#runsRows) th:nth-child(12){width:72px}}
 .delete-run-button{width:32px;height:32px;border:1px solid #62434b;border-radius:5px;background:#34282f;color:var(--red);font-size:18px;line-height:1}
 .delete-run-button:hover{background:#493038}
 .delete-run-button:disabled{opacity:.5;cursor:wait}
@@ -1482,13 +1494,23 @@ function dashboardScript_() {
     var validation = run.validation || {};
     var content = '';
     function detail(label, value){
-      return value ? '<article class="issue-item"><b>' + esc(label) + '</b><span>' + esc(value) + '</span></article>' : '';
+      return value ? '<h4>' + esc(label) + '</h4><p>' + esc(value) + '</p>' : '';
     }
     if (validation.state === 'blocked') content += detail('Validation bloquee', validation.reason);
     content += detail('Avertissements', run.warningDetails);
     content += detail('Dernier message', run.lastMessage);
-    if (issues.length) content += issueListHtml(issues, 'run-issue-list');
-    return content ? '<details class="issue-details"><summary><span class="toggle-closed">+</span><span class="toggle-open">-</span> Details</summary><div class="issue-list run-issue-list">' + content + '</div></details>' : '<span class="empty">-</span>';
+    issues.forEach(function(issue){
+      content += detail([issue.date, issue.step, issue.category].filter(Boolean).join(' - ') || 'Erreur', issue.message);
+    });
+    if (!content) return '<span class="empty">-</span>';
+    var counts = [];
+    var errors = Number(run.errors || issues.length || 0), warnings = Number(run.warnings || 0);
+    if (errors) counts.push(errors + ' erreur' + (errors > 1 ? 's' : ''));
+    if (warnings) counts.push(warnings + ' avertissement' + (warnings > 1 ? 's' : ''));
+    var title = counts.join(' / ') || (validation.state === 'blocked' ? 'Validation bloquee' : 'Compte rendu');
+    var excerpt = String(validation.reason || (issues[0] && issues[0].message) || run.warningDetails || run.lastMessage || '').replace(/\\s+/g, ' ').trim();
+    if (excerpt.length > 160) excerpt = excerpt.slice(0, 157) + '...';
+    return '<article class="issue-item run-detail-card"><b>' + esc(title) + '</b><span class="run-detail-excerpt">' + esc(excerpt) + '</span><button type="button" class="run-detail-button" data-show-run-details>Voir les détails</button><div hidden class="run-detail-full">' + content + '</div></article>';
   }
   function deleteRunButtonHtml(run){
     var id = String(run && run.runId || '').trim();
@@ -1949,6 +1971,21 @@ function dashboardScript_() {
     document.querySelectorAll('[data-toggle-application]').forEach(function(btn){ btn.addEventListener('click', function(){ state.application = btn.getAttribute('data-toggle-application') || 'LDLC_PREPARATION_PC'; render(); }); });
     document.querySelectorAll('.application-tab').forEach(function(btn){ btn.addEventListener('click', function(){ state.application = btn.getAttribute('data-application') || 'LDLC_PREPARATION_PC'; render(); }); });
     document.addEventListener('click', function(event){
+      var detailButton = event.target && event.target.closest ? event.target.closest('[data-show-run-details]') : null;
+      if (detailButton) {
+        var dialog = $('runDetailDialog');
+        if (!dialog) {
+          dialog = document.createElement('dialog');
+          dialog.id = 'runDetailDialog';
+          dialog.className = 'run-detail-dialog';
+          dialog.setAttribute('aria-labelledby', 'runDetailTitle');
+          dialog.innerHTML = '<form method="dialog"><button type="submit" class="icon-button">Fermer</button></form><h3 id="runDetailTitle">Détails de l’exécution</h3><div class="run-detail-body"></div>';
+          document.body.appendChild(dialog);
+        }
+        dialog.querySelector('.run-detail-body').innerHTML = detailButton.nextElementSibling.innerHTML;
+        dialog.showModal();
+        return;
+      }
       var button = event.target && event.target.closest ? event.target.closest('[data-delete-run]') : null;
       if (!button) return;
       deleteRun(button.getAttribute('data-delete-run'), button);

@@ -1,0 +1,126 @@
+{
+  "results": [
+    {
+      "width": 1600,
+      "app": "LDLC_PREPARATION_PC",
+      "cards": 4,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    },
+    {
+      "width": 1600,
+      "app": "NUMERIKS_PREPARATION_PC",
+      "cards": 3,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    },
+    {
+      "width": 1600,
+      "app": "LDLC_PREPARATION_ADDON",
+      "cards": 3,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    },
+    {
+      "width": 1024,
+      "app": "LDLC_PREPARATION_PC",
+      "cards": 4,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    },
+    {
+      "width": 1024,
+      "app": "NUMERIKS_PREPARATION_PC",
+      "cards": 3,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    },
+    {
+      "width": 1024,
+      "app": "LDLC_PREPARATION_ADDON",
+      "cards": 3,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    },
+    {
+      "width": 768,
+      "app": "LDLC_PREPARATION_PC",
+      "cards": 4,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    },
+    {
+      "width": 768,
+      "app": "NUMERIKS_PREPARATION_PC",
+      "cards": 3,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    },
+    {
+      "width": 768,
+      "app": "LDLC_PREPARATION_ADDON",
+      "cards": 3,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    },
+    {
+      "width": 390,
+      "app": "LDLC_PREPARATION_PC",
+      "cards": 4,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    },
+    {
+      "width": 390,
+      "app": "NUMERIKS_PREPARATION_PC",
+      "cards": 3,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    },
+    {
+      "width": 390,
+      "app": "LDLC_PREPARATION_ADDON",
+      "cards": 3,
+      "contained": true,
+      "separateDelete": true,
+      "shortSummary": true,
+      "fullTextRetained": true,
+      "dialogClose": true
+    }
+  ],
+  "javascriptErrors": 0,
+  "networkRequests": "blocked; synthetic data only"
+}

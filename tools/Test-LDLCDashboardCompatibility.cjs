@@ -453,7 +453,7 @@ assert(legacyFalseTimeoutDashboardRun && legacyFalseTimeoutDashboardRun.isFinal 
 
 const script = api.dashboardScript_();
 const html = api.renderDashboard_({ errors: [], runs: [], generatedAt: '', generatedIso: receivedAt.toISOString() }, '');
-// Exercise rendered cells: long messages stay available inside a closed disclosure.
+// One short card per run; full messages remain hidden until explicitly requested.
 const compactNodes = { runsRows: {}, runsBoard: {} };
 const compactContext = vm.createContext({
   window: { LDLC_DASHBOARD_DATA: { errors: [], runs: [] } },
@@ -466,7 +466,8 @@ compactContext.compact.renderRunsView([compactRun]);
 const compactRow = compactNodes.runsRows.innerHTML;
 assert((compactRow.match(/<td /g) || []).length === 12, 'Execution rows must contain twelve cells.');
 assert(!html.includes('<th>Dernier message</th>') && !compactRow.includes('data-label="Dernier message"'), 'Last message must not have a table column.');
-assert(compactRow.includes('<details class="issue-details">') && !compactRow.includes('<details class="issue-details" open'), 'Execution details must start collapsed.');
+assert(compactRow.includes('class="issue-item run-detail-card"') && compactRow.includes('<div hidden class="run-detail-full">'), 'Execution details must use one compact card with full text hidden.');
+assert(!compactRow.includes('<details') && compactRow.includes('1 erreur / 1 avertissement'), 'Warnings must be summarized instead of stacked in the table.');
 assert(compactRow.includes('&lt;img onerror=bad&gt;') && !compactRow.includes('<img'), 'Last message must remain escaped and accessible even without RunId.');
 assert(compactRow.includes('Warning retained') && compactRow.includes('Blocked retained'), 'Blocking and warning reasons must remain accessible.');
 compactContext.compact.renderRunsView([]);

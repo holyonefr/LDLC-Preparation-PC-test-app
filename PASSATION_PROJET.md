@@ -686,3 +686,12 @@ identifiants/URLs/donnees clients dans beta/evidence/full-suite-2026-10-19/.
 Une annotation de lecture globale LDLC est tronquee, champs complets conserves ;
 les trois roundtrips sont complets. Pas de push des productions ni de deploiement.
 Leurs trois refs sont verifiees inchangees. Tous les workflows beta restent manuels.
+
+### Détails dashboard compacts — 19 octobre 2026
+
+Un encadré par exécution, compteurs et résumé court ; aucune liste complète
+d'avertissements empilée dans le tableau. Texte complet dans un dialogue séparé.
+12 combinaisons navigateur validées, compatibilité et ingestion locales réussies.
+Voir beta/DASHBOARD_DETAILS_COMPACTS_2026-10-19.md. Déploiement Google encore bloqué
+par CONNECT 403 et absence de session clasp autorisée ; ne pas annoncer le rendu
+en ligne sur la seule base du push bêta. Aucun EXE modifié pour cette correction.

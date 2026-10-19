@@ -11,6 +11,8 @@
     ".github/scripts/Test-WindowsValidation.ps1",
     "AGENTS.md",
     "PASSATION_PROJET.md",
+    "tools/google-apps-script/LDLC_ErrorTelemetry.gs",
+    "tools/Test-LDLCDashboardCompatibility.cjs",
     "README.md",
     "SYNCHRONISATION.md",
     "modules/90.Workflow.ps1",
