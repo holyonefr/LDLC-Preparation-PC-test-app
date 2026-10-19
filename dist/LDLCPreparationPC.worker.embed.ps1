@@ -12720,12 +12720,16 @@ try {
     $picture.Controls.Add($overlay)
 
     $closeButton = New-Object System.Windows.Forms.Button
+    $closeButton.Name = 'QuitButton'
     $closeButton.Text = 'Quitter'
-    # Footer alignment shared with the Numerik's reference; keep a usable target at small resolutions.
-    $closeButton.Width = [Math]::Max(50, (Convert-X 174))
-    $closeButton.Height = [Math]::Max(14, (Convert-Y 34))
-    $closeButton.Left = [Math]::Min((Convert-X 1450), ($displayWidth - $closeButton.Width - 2))
-    $closeButton.Top = [Math]::Min((Convert-Y 725), ($displayHeight - $closeButton.Height - [Math]::Max(2, (Convert-Y 13))))
+    # Let native Button layout include its text inset and the current Windows DPI.
+    $closeButton.AutoSize = $true
+    $closeButton.AutoSizeMode = [System.Windows.Forms.AutoSizeMode]::GrowOnly
+    $closeButton.MinimumSize = New-Object System.Drawing.Size([Math]::Max(50, (Convert-X 174)), [Math]::Max(24, (Convert-Y 34)))
+    $closeButton.Padding = New-Object System.Windows.Forms.Padding(6, 2, 6, 2)
+    $closeButton.Margin = New-Object System.Windows.Forms.Padding 0
+    $closeButton.TextAlign = [System.Drawing.ContentAlignment]::MiddleCenter
+    $closeButton.UseCompatibleTextRendering = $false
     $closeButton.FlatStyle = 'Flat'
     $closeButton.FlatAppearance.BorderSize = 0
     $closeButton.FlatAppearance.MouseOverBackColor = [System.Drawing.Color]::FromArgb(245, 55, 55)
@@ -12733,16 +12737,13 @@ try {
     $closeButton.BackColor = [System.Drawing.Color]::FromArgb(215, 35, 35)
     $closeButton.ForeColor = 'White'
     $closeButton.Font = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 17 7.5), [System.Drawing.FontStyle]::Bold)
-    # A point-size floor can otherwise exceed the scaled button's pixel height.
-    while ($closeButton.Font.Size -gt 5.5 -and
-        [System.Windows.Forms.TextRenderer]::MeasureText($closeButton.Text, $closeButton.Font).Height -gt ($closeButton.Height - 2)) {
-        $previousFont = $closeButton.Font
-        $closeButton.Font = New-Object System.Drawing.Font('Segoe UI', ($previousFont.Size - 0.5), [System.Drawing.FontStyle]::Bold)
-        $previousFont.Dispose()
-    }
     $closeButton.Cursor = 'Hand'
     $closeButton.TabStop = $false
     $overlay.Controls.Add($closeButton)
+    $closeButton.Size = $closeButton.GetPreferredSize([System.Drawing.Size]::Empty)
+    $closeButton.Left = [Math]::Min((Convert-X 1450), ($displayWidth - $closeButton.Width - [Math]::Max(8, (Convert-X 34))))
+    $closeButton.Top = [Math]::Min((Convert-Y 725), ($displayHeight - $closeButton.Height - [Math]::Max(6, (Convert-Y 13))))
+    $closeButton.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Right
 
     $script:closeMouseArmedUntil = [datetime]::MinValue
     $script:allowFormClose = [bool]$Preview

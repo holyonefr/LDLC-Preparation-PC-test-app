@@ -1,0 +1,16 @@
+﻿{
+    "Visible":  true,
+    "MillisecondsToPreview":  2050,
+    "WindowWidth":  481,
+    "WindowHeight":  222,
+    "QuitLeft":  396,
+    "QuitTop":  190,
+    "QuitWidth":  75,
+    "QuitHeight":  26,
+    "QuitPreferredWidth":  75,
+    "QuitPreferredHeight":  26,
+    "QuitWhitePixels":  66,
+    "QuitGlyphTop":  10,
+    "QuitGlyphBottom":  17,
+    "Scope":  "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+}
