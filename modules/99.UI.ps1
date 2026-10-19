@@ -1152,7 +1152,7 @@ try {
     $closeButton.TabStop = $false
     $overlay.Controls.Add($closeButton)
     $closeButton.Size = $closeButton.GetPreferredSize([System.Drawing.Size]::Empty)
-    $closeButton.Left = [Math]::Min((Convert-X 1450), ($displayWidth - $closeButton.Width - [Math]::Max(8, (Convert-X 34))))
+    $closeButton.Left = [Math]::Min((Convert-X 1450), ($displayWidth - $closeButton.Width - [Math]::Max(12, (Convert-X 48))))
     $closeButton.Top = $displayHeight - $closeButton.Height - [Math]::Max(3, (Convert-Y 6))
     $closeButton.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Right
     $script:LDLCQuitButton = $closeButton
