@@ -78,8 +78,16 @@ jobs:
           if(($origin -replace '.git$','') -cne 'https://github.com/holyonefr/LDLC-Preparation-PC-test-app'){throw 'Wrong publication repository'}
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # Publish the generated Preview as review evidence. The test uses an
+          # isolated runtime and never runs preparation or reads customer data.
+          $previewEvidence='beta/evidence/quit-button-2026-10-19'
+          New-Item -ItemType Directory -Path $previewEvidence -Force | Out-Null
+          Copy-Item artifacts/preview-4/ui-preview.png "$previewEvidence/ui-preview.png" -Force
+          Copy-Item artifacts/preview-4/geometry.json "$previewEvidence/geometry.json" -Force
           git add -- dist/LDLCPreparationPC.exe dist/LDLCPreparationPC.exe.config dist/LDLCPreparationPC.ps1 dist/LDLCPreparationPC.worker.embed.ps1 dist/SHA256SUMS.txt
           if($LASTEXITCODE -ne 0){throw 'Staging failed'}
+          git add -- "$previewEvidence/ui-preview.png" "$previewEvidence/geometry.json"
+          if($LASTEXITCODE -ne 0){throw 'Preview evidence staging failed'}
           git diff --cached --quiet
           if($LASTEXITCODE -eq 1){
             git commit -m 'Publish Windows-compiled and validated LDLC beta executable'

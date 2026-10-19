@@ -718,3 +718,13 @@ SHA256 B8BC83FDF8D469C09F698B2D30911BD7C025F04556E574187DA88C25A9BBA288.
 LDLC et Addon : sources de polices locales seulement, aucun EXE de production
 reconstruit/poussé. Addon main/worker identiques et Test-AddonSync Linux réussi.
 Numerik's intact. Dashboard préparé mais non déployé (Google CONNECT 403).
+
+### Bouton Quitter tronqué — 19 octobre 2026
+
+Dimensions natives préférées et AutoSize/GrowOnly remplacent la hauteur de 14 px
+et la réduction excessive de police. Padding explicite, texte centré, ancrage
+bas/droite ; aucun changement du clic ni de la demande d'arrêt. Même correction
+préparée localement dans LDLC et Addon, aucune publication de production.
+Contrôle Windows renforcé (préférence native, coins, pixels du libellé) et Preview
+isolé publié avec la livraison pour inspection visuelle. Rapport :
+beta/QUIT_BUTTON_2026-10-19.md ; attendre les résultats avant d'annoncer la réussite.

@@ -34,12 +34,29 @@ public static class PreparationUiLaunchTest {
                 Rectangle bounds=new Rectangle(origin,quit.Size);
                 if(!form.ClientRectangle.Contains(bounds) || quit.Width<35 || quit.Height<12)
                     throw new InvalidOperationException("Quit button outside usable preview: window="+form.ClientSize+", button="+bounds);
-                if(form.Region!=null && !form.Region.IsVisible(bounds.Left+bounds.Width/2,bounds.Bottom-1))
-                    throw new InvalidOperationException("Quit button clipped by window region.");
+                if(form.Region!=null) {
+                    foreach(Point corner in new[]{new Point(bounds.Left,bounds.Top),new Point(bounds.Right-1,bounds.Top),new Point(bounds.Left,bounds.Bottom-1),new Point(bounds.Right-1,bounds.Bottom-1)})
+                        if(!form.Region.IsVisible(corner)) throw new InvalidOperationException("Quit button clipped by window region at "+corner);
+                }
+                Size preferred=quit.GetPreferredSize(Size.Empty);
+                if(preferred.Width>quit.ClientSize.Width || preferred.Height>quit.ClientSize.Height)
+                    throw new InvalidOperationException("Quit button smaller than native preferred size: preferred="+preferred+", button="+quit.ClientSize);
+                if(((Button)quit).TextAlign!=ContentAlignment.MiddleCenter)
+                    throw new InvalidOperationException("Quit label must be centered.");
                 using(Graphics g=quit.CreateGraphics()) {
                     Size label=TextRenderer.MeasureText(g,quit.Text,quit.Font,new Size(int.MaxValue,int.MaxValue),TextFormatFlags.SingleLine|TextFormatFlags.NoPadding);
-                    if(label.Width>quit.ClientSize.Width || label.Height>quit.ClientSize.Height)
+                    if(label.Width>quit.ClientSize.Width-quit.Padding.Horizontal || label.Height>quit.ClientSize.Height-quit.Padding.Vertical)
                         throw new InvalidOperationException("Quit label clipped: label="+label+", button="+quit.ClientSize);
+                }
+                int whitePixels=0,minWhiteY=quit.Height,maxWhiteY=-1;
+                using(Bitmap buttonImage=new Bitmap(quit.Width,quit.Height)) {
+                    quit.DrawToBitmap(buttonImage,new Rectangle(Point.Empty,buttonImage.Size));
+                    for(int y=0;y<buttonImage.Height;y++) for(int x=0;x<buttonImage.Width;x++) {
+                        Color pixel=buttonImage.GetPixel(x,y);
+                        if(pixel.R>200 && pixel.G>200 && pixel.B>200) {whitePixels++;minWhiteY=Math.Min(minWhiteY,y);maxWhiteY=Math.Max(maxWhiteY,y);}
+                    }
+                    if(whitePixels<10 || minWhiteY<2 || maxWhiteY>=quit.Height-2)
+                        throw new InvalidOperationException("Quit label raster touches edge or is missing: pixels="+whitePixels+", top="+minWhiteY+", bottom="+maxWhiteY+", height="+quit.Height);
                 }
                 Directory.CreateDirectory(artifacts);
                 using(Bitmap image=new Bitmap(form.Width,form.Height)) {
@@ -47,7 +64,7 @@ public static class PreparationUiLaunchTest {
                     image.Save(Path.Combine(artifacts,"ui-preview.png"),ImageFormat.Png);
                 }
                 result=String.Format(System.Globalization.CultureInfo.InvariantCulture,
-                    "{{\"Visible\":true,\"MillisecondsToPreview\":{0},\"WindowWidth\":{1},\"WindowHeight\":{2},\"QuitLeft\":{3},\"QuitTop\":{4},\"QuitWidth\":{5},\"QuitHeight\":{6}}}",watch.ElapsedMilliseconds,form.ClientSize.Width,form.ClientSize.Height,bounds.Left,bounds.Top,bounds.Width,bounds.Height);
+                    "{{\"Visible\":true,\"MillisecondsToPreview\":{0},\"WindowWidth\":{1},\"WindowHeight\":{2},\"QuitLeft\":{3},\"QuitTop\":{4},\"QuitWidth\":{5},\"QuitHeight\":{6},\"QuitPreferredWidth\":{7},\"QuitPreferredHeight\":{8},\"QuitWhitePixels\":{9},\"QuitGlyphTop\":{10},\"QuitGlyphBottom\":{11}}}",watch.ElapsedMilliseconds,form.ClientSize.Width,form.ClientSize.Height,bounds.Left,bounds.Top,bounds.Width,bounds.Height,preferred.Width,preferred.Height,whitePixels,minWhiteY,maxWhiteY);
                 seen=true;form.Close();
             } catch(Exception ex) { failure=ex;form.Close(); }
             finally {System.Threading.Interlocked.Exchange(ref pending,0);}

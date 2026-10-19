@@ -14,6 +14,7 @@
     "PASSATION_PROJET.md",
     "tools/google-apps-script/LDLC_ErrorTelemetry.gs",
     "tools/Test-LDLCDashboardCompatibility.cjs",
+    "tools/PreparationUiLaunchTest.cs",
     "README.md",
     "SYNCHRONISATION.md",
     "modules/90.Workflow.ps1",
