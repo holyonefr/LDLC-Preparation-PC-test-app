@@ -61,6 +61,8 @@ jobs:
           path: |
             dist/*.exe
             dist/*.exe.config
+            dist/LDLCPreparationPC.ps1
+            dist/LDLCPreparationPC.worker.embed.ps1
             dist/SHA256SUMS.txt
           if-no-files-found: error
           retention-days: 7

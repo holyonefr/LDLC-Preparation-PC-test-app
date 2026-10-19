@@ -35,5 +35,5 @@ déploiement doit être disponible. Un push GitHub ne met pas le dashboard en li
 Après rétablissement de ces accès, déployer sur le déploiement permanent avec
 tools/Deploy-LDLCDashboard.ps1 et vérifier le rendu réel sans modifier les données.
 
-Contrôle Windows GitHub : à compléter après le passage manuel du workflow
-dashboard-validation.yml sur cette correction.
+Contrôle Windows GitHub réussi sur le commit `0b02a77` : compatibilité et ingestion,
+codes de sortie 0, Windows Server 2022. [Passage réel](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39239344172).

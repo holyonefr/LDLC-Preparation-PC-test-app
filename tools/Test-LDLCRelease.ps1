@@ -14,7 +14,7 @@ try {
         'Test-LDLCSyntax', 'Test-LDLCTelemetryStatus', 'Test-LDLCTelemetryLifecycle', 'Test-PreparationCompletion', 'Test-PreparationStartupStop', 'Test-PreparationOutboxConcurrency', 'Test-PreparationDashboardRead',
         'Test-LDLCDefaultApps', 'Test-DefaultAppsUiWarning', 'Test-ChromeBrowserDefaultButton', 'Test-LDLCCompactUi', 'Test-LDLCGpuAmdFlow',
         'Test-LDLCGpuAmdDetection', 'Test-LDLCAmdSoftwareDetection', 'Test-LDLCGpuInstallValidation', 'Test-NvidiaFallbackResult',
-        'Test-LDLCNoValidatorDependencies', 'Test-LDLCHardening', 'Test-LDLCWorkflowOrder',
+        'Test-LDLCNoValidatorDependencies', 'Test-LDLCHardening', 'Test-LDLCTaskbarPins', 'Test-LDLCWorkflowOrder',
         'Test-WindowsUpdateTrigger', 'Test-LDLCSecurityBootstrap', 'Test-LDLCEmbeddedAssets',
         'Test-LDLCErrorReportFixes', 'Test-LDLCInstallRobustness', 'Test-LDLCOfficialInstallerFlow',
         'Test-LDLCUIBranding', 'Test-LDLCLauncherPackaging', 'Test-PreparationCoreSync', 'Test-PreparationDelivery', 'Test-PreparationTelemetryEdition',

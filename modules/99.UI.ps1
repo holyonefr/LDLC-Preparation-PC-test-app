@@ -939,9 +939,9 @@ function Draw-LDLCProgressArea {
     param([System.Drawing.Graphics]$Graphics)
 
     $statusFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 27 8), [System.Drawing.FontStyle]::Bold)
-    $detailFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 15 7), [System.Drawing.FontStyle]::Regular)
+    $detailFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 18 8.5), [System.Drawing.FontStyle]::Regular)
     $percentFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 34 10), [System.Drawing.FontStyle]::Bold)
-    $metaFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 11 6), [System.Drawing.FontStyle]::Regular)
+    $metaFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 14 7.5), [System.Drawing.FontStyle]::Regular)
     $textFormat = New-Object System.Drawing.StringFormat
     $textFormat.Trimming = [System.Drawing.StringTrimming]::EllipsisCharacter
     $textFormat.FormatFlags = [System.Drawing.StringFormatFlags]::NoWrap
@@ -955,8 +955,8 @@ function Draw-LDLCProgressArea {
     $meta = if ($Preview) { 'MODE PREVISUALISATION - aucune installation lancee' } else { 'Progression en temps reel' }
 
     $statusRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 552), (Convert-X 790), (Convert-Y 50))
-    $detailRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 648), (Convert-X 805), (Convert-Y 30))
-    $metaRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 680), (Convert-X 805), (Convert-Y 24))
+    $detailRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 648), (Convert-X 805), (Convert-Y 32))
+    $metaRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 684), (Convert-X 805), (Convert-Y 26))
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $status -Font $statusFont -Brush $whiteBrush -Bounds $statusRect -Format $textFormat -ShadowAlpha 210
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $detail -Font $detailFont -Brush $blueTextBrush -Bounds $detailRect -Format $textFormat -ShadowAlpha 190
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $meta -Font $metaFont -Brush $softBrush -Bounds $metaRect -Format $textFormat -ShadowAlpha 180

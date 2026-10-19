@@ -695,3 +695,12 @@ d'avertissements empilée dans le tableau. Texte complet dans un dialogue sépar
 Voir beta/DASHBOARD_DETAILS_COMPACTS_2026-10-19.md. Déploiement Google encore bloqué
 par CONNECT 403 et absence de session clasp autorisée ; ne pas annoncer le rendu
 en ligne sur la seule base du push bêta. Aucun EXE modifié pour cette correction.
+
+### Texte sous progression et Edge — 19 octobre 2026
+
+Deux lignes agrandies dans la bêta uniquement. Le contrôle de désépinglage ne
+confond plus AppsFolder avec la barre des tâches : dossier des épingles et verbe
+Shell français/anglais. Une épingle réellement persistante garde son avertissement,
+Edge seulement ouvert devient informatif. Comparaison avant/après et huit scénarios
+simulés : tools/Test-LDLCTaskbarPins.ps1, ajouté à la suite release.
+Voir beta/UI_EDGE_2026-10-19.md pour la validation Windows et la portée exacte.
