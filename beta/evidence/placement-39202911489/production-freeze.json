@@ -1,0 +1,11 @@
+{
+  "ObservedAtUtc": "2026-10-19T05:10:36.963910+00:00",
+  "MainRefs": {
+    "LDLC-Preparation": "a2a57ee2d28203fded79802eae2a58883d996c7e",
+    "Numerik-s-Preparation-PC": "1a4dae5039c18634dd1371e7d4813a5135ab3e45",
+    "LDLC-Preparation-Addon": "22ad8128154ef2cf2fb190522962723f37b812a1"
+  },
+  "Unchanged": true,
+  "BetaDeliveryCommit": "f12249ddd6955531c11bc0772d7175fe4d4da391",
+  "BetaExecutableSHA256": "3402ACFCDD9D6FADD77FD30BB531B618BFABA6C1F6914CC1B02123201115DC88"
+}

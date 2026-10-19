@@ -635,3 +635,20 @@ active. Brouillon reseau sauvegarde avec les domaines miroirs, ces points offici
 Store et API/docs GitHub ; requires_publish=true, pas applique a l'instance.
 La suite de cette recherche reste bloquee par l'activation reseau ; ne pas la declarer
 terminee ni utiliser une version ancienne pour forcer le succes.
+
+
+## Retest de la beta — 19 octobre 2026
+
+A la demande utilisateur, nouvelle execution Windows sur 565373c : run 39202911489
+compile/release/placement/integration/synchro et quatre Preview/fermetures reussis.
+Run independant 39202954609 phase validate, Windows 2025 : 37 scenarios / 89
+assertions / 0 echec, CIM reel (VM refusee), vrai raccourci COM dans Bureau redirige
+OneDrive-fixture et restauration ; cible inerte, aucune application executee.
+Total groupes comptes : 62 scenarios / 154 assertions, plus suite release et UI4.
+Livraison Windows f12249d, SHA256
+3402ACFCDD9D6FADD77FD30BB531B618BFABA6C1F6914CC1B02123201115DC88 verifiee.
+Les quatre sondes reseau cloud constructeurs sont bloquees CONNECT 403 ; aucun
+telechargement materiel reel ni miroir externe teste dans cette relance.
+Acces API GitHub de nouveau fonctionnel : declenchements manuels et collecte des
+annotations officiels reussis, sans modifier les workflows ni le code application.
+Rapports dans beta/RESULTATS_WINDOWS.md et beta/evidence/. Production inchangee.

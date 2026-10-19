@@ -1,0 +1,29 @@
+{
+  "observed_utc": "2026-10-19T05:07:05.384376+00:00",
+  "checks": [
+    {
+      "name": "MSI primary",
+      "url": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+      "method": "HEAD",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "ASUS manifest",
+      "url": "https://driverhub.asus.com/download/ASUS-DriverHub-Installer.json",
+      "method": "GET",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "ASRock catalogue",
+      "url": "https://www.asrock.com/support/LiveUpdate.asp?Platform=App&Model=B650M%20Pro%20RS",
+      "method": "GET",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "GCC manifest",
+      "url": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+      "method": "GET",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    }
+  ]
+}

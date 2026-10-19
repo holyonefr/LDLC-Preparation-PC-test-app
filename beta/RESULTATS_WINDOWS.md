@@ -175,3 +175,41 @@ ete declenche une seule fois par le push beta ; il a publie ses propres resultat
 et l'EXE apres succes dans ce depot. Il repasse maintenant en declenchement manuel
 pour ne pas generer de tests/notifications a chaque modification. Aucun contenu
 externe refuse n'a ete telecharge par un relais.
+
+
+## Nouvelle verification demandee — 19 octobre 2026
+
+Deux workflows manuels sur les sources `565373c181068c0a97abe9baf4b0654f67845672` :
+
+- [39202911489](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39202911489) : compilation native et suite release reussies ; placement 7 scenarios /
+  25 assertions, integration 12 / 29, synchronisation 6 / 11, tous sans echec.
+  Quatre ouvertures/fermetures du vrai EXE reussies : 1703, 1521, 1513 et 1449 ms
+  depuis l'EntryPoint, hors clic et UAC. Livraison Windows republiee en `f12249d`,
+  SHA256 `3402ACFCDD9D6FADD77FD30BB531B618BFABA6C1F6914CC1B02123201115DC88`,
+  compare au fichier Git LFS recupere, au rapport et a SHA256SUMS : identique.
+- [39202954609](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39202954609) : utilitaire independant sous Windows 2025 / PowerShell 5.1,
+  **37 scenarios / 89 assertions / 0 echec**. Les cas logiciels/installeurs sont
+  simules ; deux controles supplementaires sont reels : inventaire CIM avec refus
+  de la VM, et creation/lecture COM d'un raccourci dans le Bureau utilisateur
+  redirige vers un dossier OneDrive-fixture. La cible de ce raccourci est un
+  fichier inerte de test ; aucune application ni installateur n'a ete execute.
+  Le Bureau initial a ete restaure. Aucun telechargement de paquet constructeur
+  n'est realise par cette phase `validate`.
+
+Soit 62 scenarios / 154 assertions passes dans ces quatre groupes, plus la suite
+release existante et les quatre lancements de l'interface. Les refus de VM,
+versions anciennes et autres erreurs simulees sont des cas attendus et controles,
+pas des erreurs de preparation ignorees.
+
+**Limite actuelle** : les nouveaux essais HTTP depuis le cloud vers le ZIP MSI,
+le manifeste ASUS, le catalogue ASRock et le manifeste GCC rencontrent tous un
+refus CONNECT 403 du proxy. Ces quatre controles sont bloques, pas reussis ;
+aucun nouveau telechargement constructeur/miroir n'est annonce par cette relance.
+Les refus n'ont pas ete contournes par les workflows Windows. Les precedents
+telechargements/signatures reels restent des preuves historiques, distinctes.
+Le brouillon reseau prepare doit etre active avant une nouvelle verification live.
+
+Rapports bruts dans `beta/evidence/windows-392029*.json` et
+`beta/evidence/placement-39202911489/`. Aucun changement du fonctionnement ajoute
+pendant cette relance ; seul le depot beta recoit les resultats et la livraison
+recompilee. Les trois depots de production sont encore verifies inchangees.
