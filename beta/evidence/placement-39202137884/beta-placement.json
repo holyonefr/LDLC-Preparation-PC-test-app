@@ -1,0 +1,98 @@
+﻿{
+    "Cases":  [
+                  {
+                      "VendorPercent":  60,
+                      "Result":  "passed",
+                      "Name":  "normal",
+                      "Trace":  [
+                                    "app:A",
+                                    "app:B",
+                                    "app:C",
+                                    "vendor",
+                                    "configuration",
+                                    "defaults"
+                                ],
+                      "VendorPhase":  "INSTALLATION"
+                  },
+                  {
+                      "VendorPercent":  60,
+                      "Result":  "passed",
+                      "Name":  "one_app",
+                      "Trace":  [
+                                    "app:A",
+                                    "vendor",
+                                    "configuration",
+                                    "defaults"
+                                ],
+                      "VendorPhase":  "INSTALLATION"
+                  },
+                  {
+                      "VendorPercent":  60,
+                      "Result":  "passed",
+                      "Name":  "no_apps",
+                      "Trace":  [
+                                    "vendor",
+                                    "configuration",
+                                    "defaults"
+                                ],
+                      "VendorPhase":  "INSTALLATION"
+                  },
+                  {
+                      "VendorPercent":  60,
+                      "Result":  "passed",
+                      "Name":  "failed_first",
+                      "Trace":  [
+                                    "app:A",
+                                    "app:B",
+                                    "app:C",
+                                    "vendor",
+                                    "configuration",
+                                    "defaults"
+                                ],
+                      "VendorPhase":  "INSTALLATION"
+                  },
+                  {
+                      "VendorPercent":  60,
+                      "Result":  "passed",
+                      "Name":  "failed_last",
+                      "Trace":  [
+                                    "app:A",
+                                    "app:B",
+                                    "app:C",
+                                    "vendor",
+                                    "configuration",
+                                    "defaults"
+                                ],
+                      "VendorPhase":  "INSTALLATION"
+                  },
+                  {
+                      "VendorPercent":  -1,
+                      "Result":  "passed",
+                      "Name":  "stop_after_last",
+                      "Trace":  [
+                                    "app:A",
+                                    "app:B",
+                                    "app:C"
+                                ],
+                      "VendorPhase":  ""
+                  },
+                  {
+                      "VendorPercent":  60,
+                      "Result":  "passed",
+                      "Name":  "stop_in_vendor",
+                      "Trace":  [
+                                    "app:A",
+                                    "app:B",
+                                    "app:C",
+                                    "vendor"
+                                ],
+                      "VendorPhase":  "INSTALLATION"
+                  }
+              ],
+    "VendorInstallerExecuted":  false,
+    "Assertions":  25,
+    "Failures":  0,
+    "Kind":  "beta_placement_tests",
+    "Mode":  "actual_orchestration_and_ui_phase_function_with_system_operations_simulated",
+    "NetworkRequests":  0
+}

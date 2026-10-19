@@ -1,0 +1,32 @@
+﻿{
+    "Assertions":  11,
+    "Mode":  "local_git_fixtures_no_push_no_network",
+    "Cases":  [
+                  {
+                      "Result":  "passed",
+                      "Name":  "Audit leaves identical files unchanged"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Missing stable correction is detected, then copied only into beta"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Conflicting beta edit is preserved"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Overlay change requires explicit merge and keeps beta integration"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Stable deletion is propagated while beta-only files remain"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Wrong repository cannot receive a synchronization"
+                  }
+              ],
+    "Failures":  0,
+    "Kind":  "beta_sync_tests"
+}

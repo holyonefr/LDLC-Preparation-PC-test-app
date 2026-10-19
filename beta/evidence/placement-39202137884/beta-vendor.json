@@ -1,0 +1,57 @@
+﻿{
+    "Cases":  [
+                  {
+                      "Result":  "passed",
+                      "Name":  "Five actual utility sources are embedded with valid hashes"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Portable is excluded by the real embedded utility before network and app probe"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Changed extracted source is refused before import"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Verified installer shortcut is a normal manual result"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Official web fallback remains a visible warning, never installer success"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Already installed application keeps its verified shortcut"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Laptop or unsupported PC is skipped without blocking warning"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Real detection/download failure exposes the blocking cause"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Module error does not masquerade as installation"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Thrown failure is visible and does not abort the base preparation"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "Quit before this step prevents module/network work"
+                  },
+                  {
+                      "Result":  "passed",
+                      "Name":  "The real workflow calls the beta step exactly once after apps and before defaults"
+                  }
+              ],
+    "VendorInstallerExecuted":  false,
+    "Assertions":  29,
+    "Failures":  0,
+    "Kind":  "beta_vendor_integration",
+    "Mode":  "real_embedded_import_with_simulated_hardware_and_adapter_results"
+}

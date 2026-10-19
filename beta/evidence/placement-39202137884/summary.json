@@ -1,0 +1,10 @@
+﻿{
+    "ExecutableSHA256":  "B8DA90B2805638DE294C1647C4323F717833A93808CEF063E503EF7F4F4AAD5C",
+    "TestedSource":  "ca08dca2225d709778ac181a0b1c7672d3884451",
+    "Status":  "success",
+    "RunId":  "39202137884",
+    "VendorInstallerExecuted":  false,
+    "Scope":  "Native compile, actual workflow and UI phase with system operations simulated, full release regressions, four actual EXE Preview/quit processes",
+    "LiveVendorDownloadsExecuted":  false,
+    "RunUrl":  "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39202137884"
+}
