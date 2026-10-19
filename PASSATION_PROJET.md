@@ -769,3 +769,22 @@ contrôles Node compatibilité/ingestion réussis. Aperçu synthétique complet 
 procédure de mise à jour du déploiement permanent dans
 beta/DASHBOARD_DETAILS_COMPACTS_2026-10-19.md. Aucun changement des EXE ou de l'UI
 All in App, aucun push des productions.
+
+### Luminosité dashboard et préparation OAuth — 19 octobre 2026
+
+Teintes ardoise éclaircies dans dashboardCss_ uniquement : fond, menu, cartes,
+champs, tableau et bordures. Statuts, tailles de police et fonctionnement
+inchangés. Aperçus inspectés, 12 essais Chromium et tests Node réussis ; voir
+beta/DASHBOARD_LUMINOSITE_2026-10-19.md. Aucun EXE changé.
+
+À la demande de l'utilisateur, préparation OAuth dans /workspace/cloud-setup/google-oauth,
+hors Git : assistant Windows Connexion-Google-Dashboard.zip, SDK officiel clasp
+3.4.1, contrôle en lecture seule du projet/déploiement permanents et erreurs
+expurgées. Le brouillon cloud enregistre le secret personnel
+GOOGLE_APPS_SCRIPT_REFRESH_TOKEN, destiné uniquement à oauth2.googleapis.com,
+et les instructions d'installation/démarrage. Aucune valeur saisie ni session
+Google réelle à ce stade. Le propriétaire doit autoriser Google sur son PC,
+coller le jeton via les paramètres secrets, puis enregistrer/publier
+l'environnement. Jamais de jeton/mot de passe/code OAuth dans le chat ou Git.
+Contrôles hors ligne et préparation PowerShell sans login réussis ; connexion
+réelle, consentement Windows et publication Google restent à vérifier ensuite.

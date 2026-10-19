@@ -1,0 +1,39 @@
+{
+  "before": {
+    "colours": {
+      "--bg": "#11161c",
+      "--panel": "#1b222c",
+      "--muted": "#a3acb8",
+      "--line": "#303843",
+      "--text": "#e4e8ee",
+      "--blue": "#8daed5",
+      "--green": "#7fc5a0",
+      "--red": "#e28a90",
+      "--orange": "#d9b47a"
+    },
+    "bodyFont": "14px",
+    "titleFont": "44px",
+    "cellFont": "12px"
+  },
+  "after": {
+    "colours": {
+      "--bg": "#1b222c",
+      "--panel": "#252e3a",
+      "--muted": "#b5bfcc",
+      "--line": "#465263",
+      "--text": "#e4e8ee",
+      "--blue": "#8daed5",
+      "--green": "#7fc5a0",
+      "--red": "#e28a90",
+      "--orange": "#d9b47a"
+    },
+    "bodyFont": "14px",
+    "titleFont": "44px",
+    "cellFont": "12px"
+  },
+  "contrast": {
+    "bodyOnPanel": 11.156743667676837,
+    "mutedOnPanel": 7.37573746789357
+  },
+  "scope": "real Chromium with synthetic data; no external requests, login or deployment"
+}

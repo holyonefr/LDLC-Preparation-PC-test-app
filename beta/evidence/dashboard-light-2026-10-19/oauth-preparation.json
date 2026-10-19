@@ -1,0 +1,22 @@
+{
+  "officialClaspVersion": "3.4.1",
+  "offlineChecks": "passed",
+  "realGoogleConsent": "pending",
+  "realProjectAccess": "not_tested_without_owner_authorization",
+  "localPowerShellPreparation": "passed_without_login",
+  "realWindowsConsentAndClipboard": "not_tested",
+  "credentialValuesLogged": false,
+  "draftSaved": true,
+  "runtimeApplied": false,
+  "environmentPublicationRequired": true,
+  "network": {
+    "script_api": {
+      "status": 401,
+      "credentialsSent": false
+    },
+    "oauth_token_endpoint": {
+      "status": 404,
+      "credentialsSent": false
+    }
+  }
+}
