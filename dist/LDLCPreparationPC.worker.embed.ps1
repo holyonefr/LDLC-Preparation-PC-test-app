@@ -12539,8 +12539,11 @@ function Draw-LDLCStageList {
         $numberFormat.Alignment = 'Center'
         $numberFormat.LineAlignment = 'Center'
         Draw-LDLCTextWithShadow -Graphics $Graphics -Text ([string]($i + 1)) -Font $fontNumber -Brush $titleBrush -Bounds $circleBounds -Format $numberFormat -ShadowAlpha 155
-        $titleRect = New-Object System.Drawing.RectangleF((Convert-X 152), (Convert-Y ($y + 10)), (Convert-X 300), (Convert-Y 44))
-        $detailRect = New-Object System.Drawing.RectangleF((Convert-X 152), (Convert-Y ($y + 54)), (Convert-X 300), (Convert-Y 28))
+        $titleHeight = [Math]::Ceiling($fontTitle.GetHeight($Graphics)) + 1
+        $detailHeight = [Math]::Ceiling($fontDetail.GetHeight($Graphics)) + 1
+        $textTop = $bounds.Top + [Math]::Max(0, ($bounds.Height - $titleHeight - $detailHeight) / 2)
+        $titleRect = New-Object System.Drawing.RectangleF((Convert-X 152), $textTop, (Convert-X 300), $titleHeight)
+        $detailRect = New-Object System.Drawing.RectangleF((Convert-X 152), $titleRect.Bottom, (Convert-X 300), $detailHeight)
         Draw-LDLCTextWithShadow -Graphics $Graphics -Text $script:phases[$i].Name -Font $fontTitle -Brush $titleBrush -Bounds $titleRect -Format $textFormat
         Draw-LDLCTextWithShadow -Graphics $Graphics -Text $script:phases[$i].Detail -Font $fontDetail -Brush $detailBrush -Bounds $detailRect -Format $textFormat
 
@@ -12585,11 +12588,42 @@ function Draw-LDLCProgressArea {
     $detailRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 648), (Convert-X 805), $detailHeight)
     $metaTop = [Math]::Max((Convert-Y 684), $detailRect.Bottom + 1)
     $metaRect = New-Object System.Drawing.RectangleF((Convert-X 548), $metaTop, (Convert-X 805), $metaHeight)
+    $barBounds = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 608), (Convert-X 832), (Convert-Y 35))
+    $percentRect = New-Object System.Drawing.RectangleF((Convert-X 1410), (Convert-Y 584), (Convert-X 135), (Convert-Y 70))
+
+    # Reserve the footer first. Move the progress content up as one block when
+    # minimum font heights need more room than the scaled background provides.
+    $footerTop = (Convert-Y 772) - [Math]::Max(26, (Convert-Y 50))
+    if ($script:LDLCQuitButton -and -not $script:LDLCQuitButton.IsDisposed) {
+        $footerTop = $script:LDLCQuitButton.Top - [Math]::Max(3, (Convert-Y 6))
+    }
+    $panelBottom = [Math]::Min((Convert-Y 720), $footerTop - [Math]::Max(2, (Convert-Y 6)))
+    $contentPadding = [Math]::Max(4, (Convert-Y 12))
+    $shiftUp = [Math]::Max(0, $metaRect.Bottom + $contentPadding - $panelBottom)
+    $statusRect.Y -= $shiftUp
+    $detailRect.Y -= $shiftUp
+    $metaRect.Y -= $shiftUp
+    $barBounds.Y -= $shiftUp
+    $percentRect.Y -= $shiftUp
+    $panelTop = [Math]::Min((Convert-Y 485), $statusRect.Top - $contentPadding)
+    $panelBounds = New-Object System.Drawing.RectangleF((Convert-X 540), $panelTop, (Convert-X 1110), ($panelBottom - $panelTop))
+    $workspaceBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(255, 2, 18, 45))
+    $panelBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(255, 3, 17, 42))
+    $panelBorder = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(255, 24, 75, 139), 1)
+    $clearTop = [Math]::Min((Convert-Y 485), $panelTop) - 2
+    $clearBounds = New-Object System.Drawing.RectangleF(($panelBounds.Left - 2), $clearTop, ($panelBounds.Width + 4), ((Convert-Y 766) - $clearTop))
+    $Graphics.FillRectangle($workspaceBrush, $clearBounds)
+    $panelPath = New-RoundedRectanglePath -Bounds $panelBounds -Radius ([Math]::Max(5, (Convert-X 32)))
+    $Graphics.FillPath($panelBrush, $panelPath)
+    $Graphics.DrawPath($panelBorder, $panelPath)
+    $panelPath.Dispose(); $panelBorder.Dispose(); $panelBrush.Dispose(); $workspaceBrush.Dispose()
+    if ($script:LDLCUiOverlay -and -not $script:LDLCUiOverlay.IsDisposed) {
+        $script:LDLCUiOverlay.Tag = @{Panel=$panelBounds;Status=$statusRect;Bar=$barBounds;Detail=$detailRect;Meta=$metaRect;Percent=$percentRect;FooterTop=$footerTop}
+    }
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $status -Font $statusFont -Brush $whiteBrush -Bounds $statusRect -Format $textFormat -ShadowAlpha 210
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $detail -Font $detailFont -Brush $blueTextBrush -Bounds $detailRect -Format $textFormat -ShadowAlpha 190
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $meta -Font $metaFont -Brush $softBrush -Bounds $metaRect -Format $textFormat -ShadowAlpha 180
 
-    $barBounds = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 608), (Convert-X 832), (Convert-Y 35))
     $barPath = New-RoundedRectanglePath -Bounds $barBounds -Radius (Convert-X 18)
     $barBack = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(210, 2, 28, 72))
     $barPen = New-Object System.Drawing.Pen([System.Drawing.Color]::FromArgb(255, 20, 145, 255), (Convert-X 1))
@@ -12614,7 +12648,6 @@ function Draw-LDLCProgressArea {
     $Graphics.DrawPath($barPen, $barPath)
 
     $percentText = "$([int]$script:percent)%"
-    $percentRect = New-Object System.Drawing.RectangleF((Convert-X 1410), (Convert-Y 584), (Convert-X 135), (Convert-Y 70))
     Draw-LDLCTextWithShadow -Graphics $Graphics -Text $percentText -Font $percentFont -Brush $whiteBrush -Bounds $percentRect -ShadowAlpha 210
 
     if ($fillBrush) { $fillBrush.Dispose() }
@@ -12724,9 +12757,9 @@ try {
     $closeButton.Text = 'Quitter'
     # Let native Button layout include its text inset and the current Windows DPI.
     $closeButton.AutoSize = $true
-    $closeButton.AutoSizeMode = [System.Windows.Forms.AutoSizeMode]::GrowOnly
-    $closeButton.MinimumSize = New-Object System.Drawing.Size([Math]::Max(50, (Convert-X 174)), [Math]::Max(24, (Convert-Y 34)))
-    $closeButton.Padding = New-Object System.Windows.Forms.Padding(6, 2, 6, 2)
+    $closeButton.AutoSizeMode = [System.Windows.Forms.AutoSizeMode]::GrowAndShrink
+    $closeButton.MinimumSize = New-Object System.Drawing.Size([Math]::Max(50, (Convert-X 174)), [Math]::Max(18, (Convert-Y 34)))
+    $closeButton.Padding = New-Object System.Windows.Forms.Padding(4, 0, 4, 0)
     $closeButton.Margin = New-Object System.Windows.Forms.Padding 0
     $closeButton.TextAlign = [System.Drawing.ContentAlignment]::MiddleCenter
     $closeButton.UseCompatibleTextRendering = $false
@@ -12741,9 +12774,11 @@ try {
     $closeButton.TabStop = $false
     $overlay.Controls.Add($closeButton)
     $closeButton.Size = $closeButton.GetPreferredSize([System.Drawing.Size]::Empty)
-    $closeButton.Left = [Math]::Min((Convert-X 1450), ($displayWidth - $closeButton.Width - [Math]::Max(8, (Convert-X 34))))
-    $closeButton.Top = [Math]::Min((Convert-Y 725), ($displayHeight - $closeButton.Height - [Math]::Max(6, (Convert-Y 13))))
+    $closeButton.Left = [Math]::Min((Convert-X 1450), ($displayWidth - $closeButton.Width - [Math]::Max(12, (Convert-X 48))))
+    $closeButton.Top = $displayHeight - $closeButton.Height - [Math]::Max(3, (Convert-Y 6))
     $closeButton.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Right
+    $script:LDLCQuitButton = $closeButton
+    $script:LDLCUiOverlay = $overlay
 
     $script:closeMouseArmedUntil = [datetime]::MinValue
     $script:allowFormClose = [bool]$Preview
