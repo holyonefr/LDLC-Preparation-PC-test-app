@@ -17,8 +17,26 @@ Les contrôles Windows du vrai EXE sont renforcés : taille préférée native,
 centrage, espace disponible après padding, quatre coins dans la région de fenêtre
 et pixels blancs du texte réellement dessiné, avec marge au-dessus et en dessous.
 La capture du quatrième Preview (runtime isolé, sans préparation ni données client)
-sera publiée avec l'EXE comme preuve visuelle dans evidence/quit-button-2026-10-19/.
+est publiée avec l'EXE comme preuve visuelle dans evidence/quit-button-2026-10-19/.
 
-Validation Windows et livraison finale : en cours, à compléter après le workflow
-beta-validation.yml. Les téléchargements constructeurs non modifiés sont exclus
-de ce passage ; leurs tests simulés et la suite release restent actifs.
+Validation Windows réussie : [run 39266577489](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39266577489),
+source `8c215d0`, Windows Server 2025 / PowerShell 5.1. Suite release complète,
+tests d'intégration/synchronisation et quatre ouvertures/fermetures du vrai EXE.
+Les téléchargements constructeurs non modifiés sont exclus de ce passage ;
+leurs tests simulés restent actifs et aucun installateur matériel n'est exécuté.
+
+Sur le bureau du runner (fenêtre 481 × 222), bouton **75 × 26 pixels**, contre
+50 × 14 dans la livraison précédente. Taille préférée native respectée sur les
+quatre passages ; pixels blancs du libellé détectés de la ligne 10 à 17, sans
+toucher les bords. Tous les coins sont dans la région de fenêtre. La
+[capture Windows réelle](evidence/quit-button-2026-10-19/ui-preview.png) a été
+inspectée : « Quitter » apparaît en entier et centré.
+
+Livraison publiée uniquement dans la bêta, commit `fa07625` ; fichier Git LFS
+vérifié contre le manifeste et la preuve du runner :
+`3BE15311787BD6E55C84A91C659F4E157354A4ACBC94D18184381C62F72E03E5`.
+[Preuves Windows](evidence/quit-button-2026-10-19/windows-evidence.json).
+
+LDLC stable et Addon restent préparés localement, sans push ni EXE de production
+modifié. Addon main/worker identiques et Test-AddonSync local réussi ; aucun
+nouvel EXE Addon lancé pendant cette vérification. Numerik's intact.

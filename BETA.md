@@ -72,3 +72,5 @@ Derniere campagne multi-editions : [12 passages Windows des quatre applications]
 La comparaison historique de la beta utilise les fixtures controlees dans
 `tools/fixtures/completion-before-c205efc`, car l'historique stable n'a pas ete copie.
 Aucune fixture historique ne doit entrer dans le build de l'application.
+
+Dernière correction UI : [bouton Quitter entier et centré, validation Windows](beta/QUIT_BUTTON_2026-10-19.md).

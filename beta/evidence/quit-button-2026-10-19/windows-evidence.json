@@ -1,0 +1,148 @@
+{
+  "run": 39266577489,
+  "status": "success",
+  "evidence": {
+    "beta_delivery": {
+      "DeliveryCommit": "fa07625272e40029688ff26cae3f2d0f0da3fc5f",
+      "TestedSource": "8c215d02b1de54fcda510327a8c30a8902f1e8f4",
+      "VendorInstallerExecuted": false,
+      "ExecutableSHA256": "3BE15311787BD6E55C84A91C659F4E157354A4ACBC94D18184381C62F72E03E5",
+      "Repository": "holyonefr/LDLC-Preparation-PC-test-app"
+    },
+    "beta_ui_launches": {
+      "Passes": [
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 2007,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 396,
+          "QuitTop": 190,
+          "QuitWidth": 75,
+          "QuitHeight": 26,
+          "QuitPreferredWidth": 75,
+          "QuitPreferredHeight": 26,
+          "QuitWhitePixels": 66,
+          "QuitGlyphTop": 10,
+          "QuitGlyphBottom": 17,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1683,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 396,
+          "QuitTop": 190,
+          "QuitWidth": 75,
+          "QuitHeight": 26,
+          "QuitPreferredWidth": 75,
+          "QuitPreferredHeight": 26,
+          "QuitWhitePixels": 66,
+          "QuitGlyphTop": 10,
+          "QuitGlyphBottom": 17,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1926,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 396,
+          "QuitTop": 190,
+          "QuitWidth": 75,
+          "QuitHeight": 26,
+          "QuitPreferredWidth": 75,
+          "QuitPreferredHeight": 26,
+          "QuitWhitePixels": 66,
+          "QuitGlyphTop": 10,
+          "QuitGlyphBottom": 17,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 2050,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 396,
+          "QuitTop": 190,
+          "QuitWidth": 75,
+          "QuitHeight": 26,
+          "QuitPreferredWidth": 75,
+          "QuitPreferredHeight": 26,
+          "QuitWhitePixels": 66,
+          "QuitGlyphTop": 10,
+          "QuitGlyphBottom": 17,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      ],
+      "Mode": "real_compiled_executable_preview_and_quit_isolated_processes",
+      "VendorInstallerExecuted": false,
+      "Count": 4,
+      "Failures": 0
+    },
+    "beta_release": {
+      "Status": "passed",
+      "Suite": "Test-LDLCRelease.ps1",
+      "VendorInstallerExecuted": false
+    }
+  },
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "conclusion": "success"
+    },
+    {
+      "name": "Compile the standalone beta executable on native Windows",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check embedded integration, laptop exclusion and error reporting",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check manufacturer step stays at the end of the applications phase",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check synchronization preserves beta and never writes to stable",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify temporary outages and future releases for every manufacturer",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run the full release regression suite without installing software",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify live downloads and real Desktop shortcuts for all four vendors",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Open and close the actual beta UI four times",
+      "conclusion": "success"
+    },
+    {
+      "name": "Publish only verified beta delivery files",
+      "conclusion": "success"
+    },
+    {
+      "name": "Preserve test evidence and Windows build",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success"
+    }
+  ]
+}

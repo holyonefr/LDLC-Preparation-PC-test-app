@@ -728,3 +728,10 @@ préparée localement dans LDLC et Addon, aucune publication de production.
 Contrôle Windows renforcé (préférence native, coins, pixels du libellé) et Preview
 isolé publié avec la livraison pour inspection visuelle. Rapport :
 beta/QUIT_BUTTON_2026-10-19.md ; attendre les résultats avant d'annoncer la réussite.
+
+Résultat final : run Windows 39266577489 réussi sur 8c215d0 ; quatre vrais Preview
+et fermetures, libellé vérifié par ses pixels, centrage, taille native et région.
+Bouton 75 × 26 dans la petite fenêtre 481 × 222, au lieu de 50 × 14. Capture réelle
+inspectée dans beta/evidence/quit-button-2026-10-19/ui-preview.png. Livraison bêta
+fa07625, SHA256 3BE15311787BD6E55C84A91C659F4E157354A4ACBC94D18184381C62F72E03E5.
+Pas de publication LDLC/Addon/Numerik's. Addon local main/worker et suite locale OK.
