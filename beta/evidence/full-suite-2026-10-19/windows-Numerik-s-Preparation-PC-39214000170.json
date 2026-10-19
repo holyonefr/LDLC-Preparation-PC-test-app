@@ -1,0 +1,332 @@
+{
+  "Repository": "Numerik-s-Preparation-PC",
+  "Run": {
+    "id": 39214000170,
+    "head_sha": "1a4dae5039c18634dd1371e7d4813a5135ab3e45",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/holyonefr/Numerik-s-Preparation-PC/actions/runs/39214000170",
+    "created_at": "2026-10-19T07:07:47Z",
+    "updated_at": "2026-10-19T07:12:47Z"
+  },
+  "Jobs": [
+    {
+      "Id": 117933530147,
+      "Name": "Windows - passage 2 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver la compilation Windows si tous les controles passent",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "1a4dae5039c18634dd1371e7d4813a5135ab3e45",
+            "Passage": "2",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: Numeriks compile, suite release, 7 scenarios de fin avant/apres. Les controles des associations Chrome utilisent des fixtures ; aucune preparation complete ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 6.247
+              },
+              {
+                "Name": "Accueil et interface de l EXE livre",
+                "ExitCode": 0,
+                "Seconds": 7.3
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "ExitCode": 0,
+                "Seconds": 2.485
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "ExitCode": 0,
+                "Seconds": 83.298
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "ExitCode": 0,
+                "Seconds": 10.495
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    },
+    {
+      "Id": 117933530424,
+      "Name": "Windows - passage 3 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver la compilation Windows si tous les controles passent",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "1a4dae5039c18634dd1371e7d4813a5135ab3e45",
+            "Passage": "3",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: Numeriks compile, suite release, 7 scenarios de fin avant/apres. Les controles des associations Chrome utilisent des fixtures ; aucune preparation complete ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 6.538
+              },
+              {
+                "Name": "Accueil et interface de l EXE livre",
+                "ExitCode": 0,
+                "Seconds": 7.842
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "ExitCode": 0,
+                "Seconds": 2.653
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "ExitCode": 0,
+                "Seconds": 89.601
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "ExitCode": 0,
+                "Seconds": 11.322
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    },
+    {
+      "Id": 117933530440,
+      "Name": "Windows - passage 1 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver la compilation Windows si tous les controles passent",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "DashboardRoundTrip",
+          "Data": {
+            "Success": true,
+            "Commit": "1a4dae5039c18634dd1371e7d4813a5135ab3e45",
+            "Cleaned": true,
+            "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+            "Phase": "scenario stopped",
+            "Reason": "",
+            "Checks": [
+              {
+                "Scenario": "success",
+                "Status": "success",
+                "Validation": "non_exposee",
+                "InitialVisible": true,
+                "FinalVisible": true,
+                "Acknowledged": true,
+                "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+                "ToolVersion": "2.6.5"
+              },
+              {
+                "Scenario": "failed",
+                "Status": "error",
+                "Validation": "non_exposee",
+                "InitialVisible": true,
+                "FinalVisible": true,
+                "Acknowledged": true,
+                "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+                "ToolVersion": "2.6.5"
+              },
+              {
+                "Scenario": "stopped",
+                "Status": "stopped",
+                "Validation": "non_exposee",
+                "InitialVisible": true,
+                "FinalVisible": true,
+                "Acknowledged": true,
+                "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+                "ToolVersion": "2.6.5"
+              }
+            ],
+            "OwnedTestRowsRequiringCleanup": 0
+          }
+        },
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "1a4dae5039c18634dd1371e7d4813a5135ab3e45",
+            "Passage": "1",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: Numeriks compile, suite release, 7 scenarios de fin avant/apres. Les controles des associations Chrome utilisent des fixtures ; aucune preparation complete ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 6.77
+              },
+              {
+                "Name": "Accueil et interface de l EXE livre",
+                "ExitCode": 0,
+                "Seconds": 7.705
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "ExitCode": 0,
+                "Seconds": 2.564
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "ExitCode": 0,
+                "Seconds": 87.383
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "ExitCode": 0,
+                "Seconds": 10.827
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    }
+  ]
+}

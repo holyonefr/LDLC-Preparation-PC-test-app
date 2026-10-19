@@ -1,0 +1,287 @@
+{
+  "Repository": "LDLC-Preparation-Addon",
+  "Run": {
+    "id": 39214000300,
+    "head_sha": "22ad8128154ef2cf2fb190522962723f37b812a1",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation-Addon/actions/runs/39214000300",
+    "created_at": "2026-10-19T07:07:47Z",
+    "updated_at": "2026-10-19T07:13:06Z"
+  },
+  "Jobs": [
+    {
+      "Id": 117933529516,
+      "Name": "Windows - passage 1 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "DashboardRoundTrip",
+          "Data": {
+            "Success": true,
+            "Commit": "22ad8128154ef2cf2fb190522962723f37b812a1",
+            "Cleaned": true,
+            "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+            "Phase": "scenario stopped",
+            "Reason": "",
+            "Checks": [
+              {
+                "Scenario": "success",
+                "Status": "success",
+                "Validation": "non_exposee",
+                "InitialVisible": true,
+                "FinalVisible": true,
+                "Acknowledged": true,
+                "ApplicationSource": "LDLC_PREPARATION_ADDON",
+                "ToolVersion": "2.0"
+              },
+              {
+                "Scenario": "failed",
+                "Status": "error",
+                "Validation": "non_exposee",
+                "InitialVisible": true,
+                "FinalVisible": true,
+                "Acknowledged": true,
+                "ApplicationSource": "LDLC_PREPARATION_ADDON",
+                "ToolVersion": "2.0"
+              },
+              {
+                "Scenario": "stopped",
+                "Status": "stopped",
+                "Validation": "non_exposee",
+                "InitialVisible": true,
+                "FinalVisible": true,
+                "Acknowledged": true,
+                "ApplicationSource": "LDLC_PREPARATION_ADDON",
+                "ToolVersion": "2.0"
+              }
+            ],
+            "OwnedTestRowsRequiringCleanup": 0
+          }
+        },
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "22ad8128154ef2cf2fb190522962723f37b812a1",
+            "Passage": "1",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: ADDON WinForms, ressources de l EXE livre, 7 scenarios de fin avant/apres, sans nouvelle compilation ps2exe. Les controles des associations Chrome utilisent des fixtures ; aucune preparation complete ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 5.731
+              },
+              {
+                "Name": "ADDON WinForms ressources livraison regressions et diagnostics",
+                "ExitCode": 0,
+                "Seconds": 69.419
+              },
+              {
+                "Name": "ADDON comparaison avant apres des 7 scenarios",
+                "ExitCode": 0,
+                "Seconds": 8.835
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    },
+    {
+      "Id": 117933529809,
+      "Name": "Windows - passage 2 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "22ad8128154ef2cf2fb190522962723f37b812a1",
+            "Passage": "2",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: ADDON WinForms, ressources de l EXE livre, 7 scenarios de fin avant/apres, sans nouvelle compilation ps2exe. Les controles des associations Chrome utilisent des fixtures ; aucune preparation complete ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 6.165
+              },
+              {
+                "Name": "ADDON WinForms ressources livraison regressions et diagnostics",
+                "ExitCode": 0,
+                "Seconds": 70.62
+              },
+              {
+                "Name": "ADDON comparaison avant apres des 7 scenarios",
+                "ExitCode": 0,
+                "Seconds": 8.672
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    },
+    {
+      "Id": 117933529817,
+      "Name": "Windows - passage 3 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "22ad8128154ef2cf2fb190522962723f37b812a1",
+            "Passage": "3",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: ADDON WinForms, ressources de l EXE livre, 7 scenarios de fin avant/apres, sans nouvelle compilation ps2exe. Les controles des associations Chrome utilisent des fixtures ; aucune preparation complete ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 5.982
+              },
+              {
+                "Name": "ADDON WinForms ressources livraison regressions et diagnostics",
+                "ExitCode": 0,
+                "Seconds": 76.858
+              },
+              {
+                "Name": "ADDON comparaison avant apres des 7 scenarios",
+                "ExitCode": 0,
+                "Seconds": 9.312
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    }
+  ]
+}

@@ -64,3 +64,9 @@ Validation Windows terminee : voir [beta/RESULTATS_WINDOWS.md](beta/RESULTATS_WI
 Quatre ouvertures/fermetures, suite release, vrais telechargements constructeurs
 et raccourcis sont controles par le workflow. Voir le rapport pour les versions
 du code effectivement validees et la distinction entre essais reels et simulations.
+
+
+Derniere campagne multi-editions : [12 passages Windows des quatre applications](beta/TESTS_QUATRE_APPLICATIONS_2026-10-19.md).
+La comparaison historique de la beta utilise les fixtures controlees dans
+`tools/fixtures/completion-before-c205efc`, car l'historique stable n'a pas ete copie.
+Aucune fixture historique ne doit entrer dans le build de l'application.

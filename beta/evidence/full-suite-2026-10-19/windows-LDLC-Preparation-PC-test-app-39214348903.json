@@ -1,0 +1,377 @@
+{
+  "Repository": "LDLC-Preparation-PC-test-app",
+  "Run": {
+    "id": 39214348903,
+    "head_sha": "9f510de16543ffda9846f223412e675890d0ac1c",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39214348903",
+    "created_at": "2026-10-19T07:11:02Z",
+    "updated_at": "2026-10-19T07:12:51Z"
+  },
+  "Jobs": [
+    {
+      "Id": 117934630242,
+      "Name": "Windows - passage 1 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Lire les statuts du dashboard Google sans modifier les donnees",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver la compilation Windows si tous les controles passent",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "9f510de16543ffda9846f223412e675890d0ac1c",
+            "Passage": "1",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: beta livree puis compilee, suite release, comparaison historique, integration constructeur, placement et synchronisation ; 4 Preview/fermetures par passage. Actions systeme/installeurs/Chrome simules ; aucune preparation destructive ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 5.887
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "ExitCode": 0,
+                "Seconds": 1.737
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "ExitCode": 0,
+                "Seconds": 53.909
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "ExitCode": 0,
+                "Seconds": 9.169
+              },
+              {
+                "Name": "BETA modules embarques, portable exclu et erreurs visibles",
+                "ExitCode": 0,
+                "Seconds": 1.125
+              },
+              {
+                "Name": "BETA fin de la phase Installation et respect des arrets",
+                "ExitCode": 0,
+                "Seconds": 0.585
+              },
+              {
+                "Name": "BETA synchronisation sans modification des productions",
+                "ExitCode": 0,
+                "Seconds": 2.048
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 1 sur 3",
+                "ExitCode": 0,
+                "Seconds": 1.997
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 2 sur 3",
+                "ExitCode": 0,
+                "Seconds": 2.014
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 3 sur 3",
+                "ExitCode": 0,
+                "Seconds": 2.068
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    },
+    {
+      "Id": 117934630357,
+      "Name": "Windows - passage 3 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Lire les statuts du dashboard Google sans modifier les donnees",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver la compilation Windows si tous les controles passent",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "9f510de16543ffda9846f223412e675890d0ac1c",
+            "Passage": "3",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: beta livree puis compilee, suite release, comparaison historique, integration constructeur, placement et synchronisation ; 4 Preview/fermetures par passage. Actions systeme/installeurs/Chrome simules ; aucune preparation destructive ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 5.293
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "ExitCode": 0,
+                "Seconds": 1.731
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "ExitCode": 0,
+                "Seconds": 49.478
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "ExitCode": 0,
+                "Seconds": 10.005
+              },
+              {
+                "Name": "BETA modules embarques, portable exclu et erreurs visibles",
+                "ExitCode": 0,
+                "Seconds": 1.1
+              },
+              {
+                "Name": "BETA fin de la phase Installation et respect des arrets",
+                "ExitCode": 0,
+                "Seconds": 0.558
+              },
+              {
+                "Name": "BETA synchronisation sans modification des productions",
+                "ExitCode": 0,
+                "Seconds": 1.982
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 1 sur 3",
+                "ExitCode": 0,
+                "Seconds": 1.958
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 2 sur 3",
+                "ExitCode": 0,
+                "Seconds": 1.959
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 3 sur 3",
+                "ExitCode": 0,
+                "Seconds": 1.917
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    },
+    {
+      "Id": 117934630361,
+      "Name": "Windows - passage 2 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Lire les statuts du dashboard Google sans modifier les donnees",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver la compilation Windows si tous les controles passent",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "9f510de16543ffda9846f223412e675890d0ac1c",
+            "Passage": "2",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: beta livree puis compilee, suite release, comparaison historique, integration constructeur, placement et synchronisation ; 4 Preview/fermetures par passage. Actions systeme/installeurs/Chrome simules ; aucune preparation destructive ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 5.287
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "ExitCode": 0,
+                "Seconds": 1.442
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "ExitCode": 0,
+                "Seconds": 43.387
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "ExitCode": 0,
+                "Seconds": 6.705
+              },
+              {
+                "Name": "BETA modules embarques, portable exclu et erreurs visibles",
+                "ExitCode": 0,
+                "Seconds": 0.897
+              },
+              {
+                "Name": "BETA fin de la phase Installation et respect des arrets",
+                "ExitCode": 0,
+                "Seconds": 0.433
+              },
+              {
+                "Name": "BETA synchronisation sans modification des productions",
+                "ExitCode": 0,
+                "Seconds": 1.624
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 1 sur 3",
+                "ExitCode": 0,
+                "Seconds": 1.572
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 2 sur 3",
+                "ExitCode": 0,
+                "Seconds": 1.578
+              },
+              {
+                "Name": "BETA ouverture fermeture du vrai EXE compile 3 sur 3",
+                "ExitCode": 0,
+                "Seconds": 1.613
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    }
+  ]
+}

@@ -1,0 +1,340 @@
+{
+  "Repository": "LDLC-Preparation",
+  "Run": {
+    "id": 39214000180,
+    "head_sha": "a2a57ee2d28203fded79802eae2a58883d996c7e",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39214000180",
+    "created_at": "2026-10-19T07:07:47Z",
+    "updated_at": "2026-10-19T07:12:05Z"
+  },
+  "Jobs": [
+    {
+      "Id": 117933530199,
+      "Name": "Windows - passage 2 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Lire les statuts du dashboard Google sans modifier les donnees",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver la compilation Windows si tous les controles passent",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "a2a57ee2d28203fded79802eae2a58883d996c7e",
+            "Passage": "2",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: LDLC compile, suite release, 7 scenarios de fin avant/apres. Les controles des associations Chrome utilisent des fixtures ; aucune preparation complete ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 4.363
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "ExitCode": 0,
+                "Seconds": 1.275
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "ExitCode": 0,
+                "Seconds": 37.853
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "ExitCode": 0,
+                "Seconds": 6.613
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    },
+    {
+      "Id": 117933530353,
+      "Name": "Windows - passage 1 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Lire les statuts du dashboard Google sans modifier les donnees",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver la compilation Windows si tous les controles passent",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "DashboardRoundTrip",
+          "Data": {
+            "Success": true,
+            "Commit": "a2a57ee2d28203fded79802eae2a58883d996c7e",
+            "Cleaned": true,
+            "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+            "Phase": "scenario stopped",
+            "Reason": "",
+            "Checks": [
+              {
+                "Scenario": "success",
+                "Status": "success",
+                "Validation": "non_exposee",
+                "InitialVisible": true,
+                "FinalVisible": true,
+                "Acknowledged": true,
+                "ApplicationSource": "LDLC_PREPARATION_PC",
+                "ToolVersion": "2.6.5"
+              },
+              {
+                "Scenario": "failed",
+                "Status": "error",
+                "Validation": "non_exposee",
+                "InitialVisible": true,
+                "FinalVisible": true,
+                "Acknowledged": true,
+                "ApplicationSource": "LDLC_PREPARATION_PC",
+                "ToolVersion": "2.6.5"
+              },
+              {
+                "Scenario": "stopped",
+                "Status": "stopped",
+                "Validation": "non_exposee",
+                "InitialVisible": true,
+                "FinalVisible": true,
+                "Acknowledged": true,
+                "ApplicationSource": "LDLC_PREPARATION_PC",
+                "ToolVersion": "2.6.5"
+              }
+            ],
+            "OwnedTestRowsRequiringCleanup": 0
+          }
+        },
+        {
+          "AnnotationTruncated": true,
+          "Kind": "DashboardReadAggregatesOnly",
+          "Data": {
+            "Available": true,
+            "Seconds": 7.013
+          }
+        },
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "a2a57ee2d28203fded79802eae2a58883d996c7e",
+            "Passage": "1",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: LDLC compile, suite release, 7 scenarios de fin avant/apres. Les controles des associations Chrome utilisent des fixtures ; aucune preparation complete ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 5.332
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "ExitCode": 0,
+                "Seconds": 1.707
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "ExitCode": 0,
+                "Seconds": 57.221
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "ExitCode": 0,
+                "Seconds": 10.188
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    },
+    {
+      "Id": 117933530448,
+      "Name": "Windows - passage 3 sur 3",
+      "Status": "completed",
+      "Conclusion": "success",
+      "Steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Tester la livraison puis compiler et verifier sous Windows",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Lire les statuts du dashboard Google sans modifier les donnees",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Verifier envoi client et dashboard permanent puis nettoyer les seuls essais",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Conserver les journaux et apercus",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conserver la compilation Windows si tous les controles passent",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Recuperer le depot et les executables Git LFS",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "Reports": [
+        {
+          "AnnotationTruncated": false,
+          "Kind": "WindowsValidation",
+          "Data": {
+            "Commit": "a2a57ee2d28203fded79802eae2a58883d996c7e",
+            "Passage": "3",
+            "Windows": "Microsoft Windows NT 10.0.20348.0",
+            "PowerShell": "5.1.20348.5622",
+            "UserInteractive": true,
+            "Success": true,
+            "Scope": "Windows Server 2022: LDLC compile, suite release, 7 scenarios de fin avant/apres. Les controles des associations Chrome utilisent des fixtures ; aucune preparation complete ni installation reelle.",
+            "Checks": [
+              {
+                "Name": "Lancement Preview du vrai EXE livre et bouton Quitter",
+                "ExitCode": 0,
+                "Seconds": 5.438
+              },
+              {
+                "Name": "Compilation Windows PowerShell 5.1 et C#",
+                "ExitCode": 0,
+                "Seconds": 1.713
+              },
+              {
+                "Name": "Suite release Windows et diagnostics du lanceur compile",
+                "ExitCode": 0,
+                "Seconds": 56.822
+              },
+              {
+                "Name": "Comparaison avant apres des 7 scenarios de finalisation",
+                "ExitCode": 0,
+                "Seconds": 10.17
+              }
+            ]
+          }
+        }
+      ],
+      "Issues": []
+    }
+  ]
+}

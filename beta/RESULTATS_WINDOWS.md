@@ -213,3 +213,18 @@ Rapports bruts dans `beta/evidence/windows-392029*.json` et
 `beta/evidence/placement-39202911489/`. Aucun changement du fonctionnement ajoute
 pendant cette relance ; seul le depot beta recoit les resultats et la livraison
 recompilee. Les trois depots de production sont encore verifies inchangees.
+
+
+## Douze passages sur les quatre editions — 19 octobre 2026
+
+Voir [le rapport des quatre applications](TESTS_QUATRE_APPLICATIONS_2026-10-19.md).
+12/12 jobs Windows reussis, 66 controles de haut niveau avec code 0, 21 Preview/
+fermetures explicites. Les 11 scenarios de finalisation sont rejoues dans chaque
+passage (132 executions). Les trois editions de production ont chacune reussi
+un aller-retour live sur trois scenarios success/error/stopped et nettoye les
+neuf rapports d'essai. Le champ detaille validation.state est absent des reponses
+live : cette validation metier reste non verifiee ; les statuts sont confirmes.
+Les installations et les autres actions systeme restent simulees dans les parcours.
+La dependance du test beta a un commit absent est corrigee par une fixture historique
+figee, verifiee et sans identifiants reels. Aucune logique d'application modifiee.
+Preuves projetees sans donnees client dans beta/evidence/full-suite-2026-10-19/.

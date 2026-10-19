@@ -652,3 +652,37 @@ telechargement materiel reel ni miroir externe teste dans cette relance.
 Acces API GitHub de nouveau fonctionnel : declenchements manuels et collecte des
 annotations officiels reussis, sans modifier les workflows ni le code application.
 Rapports dans beta/RESULTATS_WINDOWS.md et beta/evidence/. Production inchangee.
+
+
+## Tests des quatre All in App — 19 octobre 2026
+
+A la demande utilisateur : trois passages Windows 2022 par application, douze jobs
+reussis, 66 controles de haut niveau code 0, 21 Preview/fermetures explicites.
+LDLC 39214000180 (a2a57ee), Addon 39214000300 (22ad812), Numerik's 39214000170
+(1a4dae5), beta 39214348903 (9f510de). Chaque comparaison finale rejoue 11 scenarios
+corriges et les 7 scenarios historiques attendus en echec. Les suites release et
+les tests specialises d'edition passent ; la beta ajoute integration/placement/
+synchro et trois Preview compiles en plus du Preview de l'EXE livre par passage.
+
+Defaut trouve dans le test beta uniquement : c205efc absent de l'historique copie.
+Helper adapte a quatre fichiers historiques figes, SHA256 verifies, URLs et valeurs
+de configuration inertes, exclus du build. .gitattributes preserve les octets sous
+Windows. Controle local avant : 7 scenarios, 32 checks, 17 echecs attendus, exit 1 ;
+apres : 11 scenarios, 66 checks, zero echec, exit 0. Puis trois passages Windows
+beta reussis, sans retirer aucun controle ni changer la logique des applications.
+Les deux helpers beta sont ajoutes aux OverlayPaths. Correction de test en 9f510de.
+
+Dashboard reel : LDLC, Addon et Numerik's ont chacun transmis success/failed/stopped ;
+serveur observe success/error/stopped, isFinal/edition/version/ack et cause 1603
+controles. Neuf lignes CODEX-TEST uniques supprimees puis absence verifiee.
+Le champ validation.state est absent des reponses live (non_exposee), contrairement
+au contrat local Apps Script : etat validated/blocked du service deploye non prouve.
+Ne pas annoncer cette partie comme validee et ne pas deployer le backend dans le gel.
+La beta ne lance pas de roundtrip permanent distinct. Les actions systeme et toutes
+installations restent simulees ; les Preview, compilations et roundtrips sont reels.
+
+Rapport beta/TESTS_QUATRE_APPLICATIONS_2026-10-19.md, projections des annotations sans
+identifiants/URLs/donnees clients dans beta/evidence/full-suite-2026-10-19/.
+Une annotation de lecture globale LDLC est tronquee, champs complets conserves ;
+les trois roundtrips sont complets. Pas de push des productions ni de deploiement.
+Leurs trois refs sont verifiees inchangees. Tous les workflows beta restent manuels.
