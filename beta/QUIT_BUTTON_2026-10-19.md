@@ -39,7 +39,21 @@ sans push ni nouvel EXE de production. La fixture de dessin Addon est extraite d
 son vrai fichier local ; la bêta conserve l'intégration carte mère et les autres
 corrections. Seule la bêta est autorisée à publier son EXE.
 
-Validation release complète et nouvelle livraison : en cours après la revue.
+La [validation Windows complète](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39271341285)
+est réussie sur `e24ab79bb7e6a374fb319bdb529e5d647671943a` : suite release,
+six rendus GDI+ à trois tailles (LDLC/bêta et fixture Addon), puis quatre nouveaux
+lancements et fermetures du vrai EXE, sans échec. Les quatre passages gardent le
+bouton à 57 × 22 px et les cinq pixels de séparation. La capture finale a été
+inspectée dans son intégralité : [aperçu réel de l'EXE livré](evidence/quit-button-2026-10-19/ui-preview.png).
+Les [annotations Windows vérifiées](evidence/quit-button-2026-10-19/windows-evidence.json)
+et la géométrie accompagnent cette capture. Avec la revue précédente, huit
+lancements Preview ont réussi sur la disposition corrigée.
+
+Livraison bêta : `25472527eadc966e0eb684b0e64a66997cb2b14e`.
+SHA256 de `dist/LDLCPreparationPC.exe` :
+`0646BA6C805B3BA3D1D60B527A728C3EEB2E9D03655B0463438F5FC0E96FE218`.
+L'empreinte locale correspond à l'annotation du runner et à `dist/SHA256SUMS.txt`.
+
 Les tests UI/GDI+ sont réels ; opérations Shell/installation simulées. Aucun
 installateur matériel réel et aucun téléchargement constructeur non modifié
 ne sont exécutés pour cette correction. Les essais ne constituent pas un

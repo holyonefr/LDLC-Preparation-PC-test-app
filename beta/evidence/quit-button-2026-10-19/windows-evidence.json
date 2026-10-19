@@ -1,78 +1,88 @@
 {
-  "run": 39266577489,
+  "run": 39271341285,
   "status": "success",
+  "url": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39271341285",
   "evidence": {
     "beta_delivery": {
-      "DeliveryCommit": "fa07625272e40029688ff26cae3f2d0f0da3fc5f",
-      "TestedSource": "8c215d02b1de54fcda510327a8c30a8902f1e8f4",
-      "VendorInstallerExecuted": false,
-      "ExecutableSHA256": "3BE15311787BD6E55C84A91C659F4E157354A4ACBC94D18184381C62F72E03E5",
-      "Repository": "holyonefr/LDLC-Preparation-PC-test-app"
+      "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+      "PublishedExecutable": true,
+      "ExecutableSHA256": "0646BA6C805B3BA3D1D60B527A728C3EEB2E9D03655B0463438F5FC0E96FE218",
+      "DeliveryCommit": "25472527eadc966e0eb684b0e64a66997cb2b14e",
+      "TestedSource": "e24ab79bb7e6a374fb319bdb529e5d647671943a",
+      "VendorInstallerExecuted": false
     },
     "beta_ui_launches": {
       "Passes": [
         {
           "Visible": true,
-          "MillisecondsToPreview": 2007,
+          "MillisecondsToPreview": 2202,
           "WindowWidth": 481,
           "WindowHeight": 222,
-          "QuitLeft": 396,
-          "QuitTop": 190,
-          "QuitWidth": 75,
-          "QuitHeight": 26,
-          "QuitPreferredWidth": 75,
-          "QuitPreferredHeight": 26,
+          "QuitLeft": 410,
+          "QuitTop": 197,
+          "QuitWidth": 57,
+          "QuitHeight": 22,
+          "QuitPreferredWidth": 57,
+          "QuitPreferredHeight": 22,
           "QuitWhitePixels": 66,
-          "QuitGlyphTop": 10,
-          "QuitGlyphBottom": 17,
+          "QuitGlyphTop": 8,
+          "QuitGlyphBottom": 15,
+          "ProgressPanelBottom": 192,
+          "FooterGap": 5,
           "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
         },
         {
           "Visible": true,
-          "MillisecondsToPreview": 1683,
+          "MillisecondsToPreview": 1921,
           "WindowWidth": 481,
           "WindowHeight": 222,
-          "QuitLeft": 396,
-          "QuitTop": 190,
-          "QuitWidth": 75,
-          "QuitHeight": 26,
-          "QuitPreferredWidth": 75,
-          "QuitPreferredHeight": 26,
+          "QuitLeft": 410,
+          "QuitTop": 197,
+          "QuitWidth": 57,
+          "QuitHeight": 22,
+          "QuitPreferredWidth": 57,
+          "QuitPreferredHeight": 22,
           "QuitWhitePixels": 66,
-          "QuitGlyphTop": 10,
-          "QuitGlyphBottom": 17,
+          "QuitGlyphTop": 8,
+          "QuitGlyphBottom": 15,
+          "ProgressPanelBottom": 192,
+          "FooterGap": 5,
           "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
         },
         {
           "Visible": true,
-          "MillisecondsToPreview": 1926,
+          "MillisecondsToPreview": 1960,
           "WindowWidth": 481,
           "WindowHeight": 222,
-          "QuitLeft": 396,
-          "QuitTop": 190,
-          "QuitWidth": 75,
-          "QuitHeight": 26,
-          "QuitPreferredWidth": 75,
-          "QuitPreferredHeight": 26,
+          "QuitLeft": 410,
+          "QuitTop": 197,
+          "QuitWidth": 57,
+          "QuitHeight": 22,
+          "QuitPreferredWidth": 57,
+          "QuitPreferredHeight": 22,
           "QuitWhitePixels": 66,
-          "QuitGlyphTop": 10,
-          "QuitGlyphBottom": 17,
+          "QuitGlyphTop": 8,
+          "QuitGlyphBottom": 15,
+          "ProgressPanelBottom": 192,
+          "FooterGap": 5,
           "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
         },
         {
           "Visible": true,
-          "MillisecondsToPreview": 2050,
+          "MillisecondsToPreview": 1947,
           "WindowWidth": 481,
           "WindowHeight": 222,
-          "QuitLeft": 396,
-          "QuitTop": 190,
-          "QuitWidth": 75,
-          "QuitHeight": 26,
-          "QuitPreferredWidth": 75,
-          "QuitPreferredHeight": 26,
+          "QuitLeft": 410,
+          "QuitTop": 197,
+          "QuitWidth": 57,
+          "QuitHeight": 22,
+          "QuitPreferredWidth": 57,
+          "QuitPreferredHeight": 22,
           "QuitWhitePixels": 66,
-          "QuitGlyphTop": 10,
-          "QuitGlyphBottom": 17,
+          "QuitGlyphTop": 8,
+          "QuitGlyphBottom": 15,
+          "ProgressPanelBottom": 192,
+          "FooterGap": 5,
           "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
         }
       ],
@@ -86,6 +96,97 @@
       "Suite": "Test-LDLCRelease.ps1",
       "VendorInstallerExecuted": false
     }
+  },
+  "progress_text_rendering": {
+    "Numeriks": "unchanged and excluded",
+    "Cases": [
+      {
+        "Width": 481,
+        "Height": 222,
+        "WhiteHeight": 16,
+        "WhiteFontHeight": 13.3007793,
+        "BlueFontHeight": 15.0742168,
+        "Edition": "LDLC et beta",
+        "BlueHeight": 18,
+        "PaintedPixels": [
+          596,
+          383
+        ],
+        "Fits": true
+      },
+      {
+        "Width": 902,
+        "Height": 416,
+        "WhiteHeight": 16,
+        "WhiteFontHeight": 13.3007793,
+        "BlueFontHeight": 15.0742168,
+        "Edition": "LDLC et beta",
+        "BlueHeight": 18,
+        "PaintedPixels": [
+          596,
+          383
+        ],
+        "Fits": true
+      },
+      {
+        "Width": 1280,
+        "Height": 591,
+        "WhiteHeight": 20,
+        "WhiteFontHeight": 13.6850548,
+        "BlueFontHeight": 17.59507,
+        "Edition": "LDLC et beta",
+        "BlueHeight": 24,
+        "PaintedPixels": [
+          693,
+          383
+        ],
+        "Fits": true
+      },
+      {
+        "Width": 481,
+        "Height": 222,
+        "WhiteHeight": 15,
+        "WhiteFontHeight": 12.4140606,
+        "BlueFontHeight": 14.187499,
+        "Edition": "Addon",
+        "BlueHeight": 17,
+        "PaintedPixels": [
+          588,
+          375
+        ],
+        "Fits": true
+      },
+      {
+        "Width": 902,
+        "Height": 416,
+        "WhiteHeight": 15,
+        "WhiteFontHeight": 12.4140606,
+        "BlueFontHeight": 14.187499,
+        "Edition": "Addon",
+        "BlueHeight": 17,
+        "PaintedPixels": [
+          588,
+          375
+        ],
+        "Fits": true
+      },
+      {
+        "Width": 1280,
+        "Height": 591,
+        "WhiteHeight": 20,
+        "WhiteFontHeight": 12.707551,
+        "BlueFontHeight": 15.6400623,
+        "Edition": "Addon",
+        "BlueHeight": 24,
+        "PaintedPixels": [
+          575,
+          383
+        ],
+        "Fits": true
+      }
+    ],
+    "Mode": "real native GDI+ rasterization of isolated source renderers; no application preparation",
+    "Failures": 0
   },
   "steps": [
     {

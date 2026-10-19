@@ -735,3 +735,22 @@ Bouton 75 × 26 dans la petite fenêtre 481 × 222, au lieu de 50 × 14. Capture
 inspectée dans beta/evidence/quit-button-2026-10-19/ui-preview.png. Livraison bêta
 fa07625, SHA256 3BE15311787BD6E55C84A91C659F4E157354A4ACBC94D18184381C62F72E03E5.
 Pas de publication LDLC/Addon/Numerik's. Addon local main/worker et suite locale OK.
+
+### Reprise visuelle du bouton — 19 octobre 2026
+
+L'utilisateur a refusé la capture 75 × 26 : le contrôle ne tenait pas compte du
+cadre de progression. Disposition revue sans changer la taille de fenêtre :
+bouton compact GrowAndShrink, bandeau bas réservé, contenu/cadre de progression
+remontés ensemble à petite taille et hauteur native des textes d'étapes.
+La revue ui-preview.yml run 39270324865 est passée : quatre vrais Preview,
+57 × 22, cinq pixels entre cadre et bouton, image complète inspectée. Aucun EXE
+publié pendant cette revue. Le premier essai avait échoué sur un coin de fenêtre ;
+marge corrigée sans affaiblir le test. Capture même en échec et cause native
+disponibles via workflow UI dédié. Sources LDLC/Addon locales adaptées ; Numerik's
+intact. Livraison complète réussie : run 39271341285 sur e24ab79, six rendus natifs
+et quatre nouveaux Preview/fermetures (huit avec la revue), aucun échec.
+EXE bêta publié en 2547252, SHA256
+0646BA6C805B3BA3D1D60B527A728C3EEB2E9D03655B0463438F5FC0E96FE218.
+Capture finale inspectée et annotations/empreinte vérifiées. Les anciennes mesures
+75 × 26 et l'ancienne empreinte ci-dessus sont historiques et remplacées par cette
+livraison. Voir beta/QUIT_BUTTON_2026-10-19.md et ses preuves Windows.
