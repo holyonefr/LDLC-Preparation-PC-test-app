@@ -1,0 +1,20 @@
+[
+  {
+    "Repository": "holyonefr/LDLC-Preparation",
+    "BaseCommit": "0b7c369853c47c1e495f1c0efb3a64d29346dc98",
+    "PatchSHA256": "20447A94546EBDC0640B10D8171720477B783612ECD201E75528914613BA0468",
+    "ProductionPublished": false
+  },
+  {
+    "Repository": "holyonefr/Numerik-s-Preparation-PC",
+    "BaseCommit": "f230c544ee51c10cfba85ff7b810c723900259fe",
+    "PatchSHA256": "20447A94546EBDC0640B10D8171720477B783612ECD201E75528914613BA0468",
+    "ProductionPublished": false
+  },
+  {
+    "Repository": "holyonefr/LDLC-Preparation-Addon",
+    "BaseCommit": "142629f8424769f6d2cc0ed1b7a1752662838f79",
+    "PatchSHA256": "6F892898C61C42C6FE946BC9913B728AC358FF685696430418FBD0726BE04463",
+    "ProductionPublished": false
+  }
+]

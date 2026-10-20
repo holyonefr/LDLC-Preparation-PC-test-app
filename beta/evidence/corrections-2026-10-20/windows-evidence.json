@@ -1,0 +1,286 @@
+{
+  "PrepTool dashboard roundtrip": {
+    "Success": true,
+    "Commit": "c13c115f9f1c9f132a491249a25c18b596116ae5",
+    "Checks": [
+      {
+        "ApplicationSource": "LDLC_PREPARATION_PC",
+        "Validation": "non_exposee",
+        "ToolVersion": "2.6.9",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "success",
+        "FinalVisible": true,
+        "Scenario": "success"
+      },
+      {
+        "ApplicationSource": "LDLC_PREPARATION_PC",
+        "Validation": "non_exposee",
+        "ToolVersion": "2.6.9",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "error",
+        "FinalVisible": true,
+        "Scenario": "failed"
+      },
+      {
+        "ApplicationSource": "LDLC_PREPARATION_PC",
+        "Validation": "non_exposee",
+        "ToolVersion": "2.6.9",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "stopped",
+        "FinalVisible": true,
+        "Scenario": "stopped"
+      }
+    ],
+    "Cleaned": true,
+    "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+    "Phase": "scenario stopped",
+    "ReadAttempts": [
+      {
+        "Stage": "preflight",
+        "Attempt": 1,
+        "Success": true,
+        "HttpStatus": 200,
+        "NetworkStatus": "OK",
+        "Transient": false,
+        "Milliseconds": 9696
+      },
+      {
+        "Stage": "scenario_success_initial",
+        "Attempt": 1,
+        "Success": true,
+        "HttpStatus": 200,
+        "NetworkStatus": "OK",
+        "Transient": false,
+        "Milliseconds": 7131
+      },
+      {
+        "Stage": "scenario_success_final",
+        "Attempt": 1,
+        "Success": true,
+        "HttpStatus": 200,
+        "NetworkStatus": "OK",
+        "Transient": false,
+        "Milliseconds": 6436
+      },
+      {
+        "Stage": "scenario_failed_initial",
+        "Attempt": 1,
+        "Success": true,
+        "HttpStatus": 200,
+        "NetworkStatus": "OK",
+        "Transient": false,
+        "Milliseconds": 6422
+      },
+      {
+        "Stage": "scenario_failed_final",
+        "Attempt": 1,
+        "Success": true,
+        "HttpStatus": 200,
+        "NetworkStatus": "OK",
+        "Transient": false,
+        "Milliseconds": 5659
+      },
+      {
+        "Stage": "scenario_stopped_initial",
+        "Attempt": 1,
+        "Success": true,
+        "HttpStatus": 200,
+        "NetworkStatus": "OK",
+        "Transient": false,
+        "Milliseconds": 8770
+      },
+      {
+        "Stage": "scenario_stopped_final",
+        "Attempt": 1,
+        "Success": true,
+        "HttpStatus": 200,
+        "NetworkStatus": "OK",
+        "Transient": false,
+        "Milliseconds": 5507
+      },
+      {
+        "Stage": "cleanup_verify",
+        "Attempt": 1,
+        "Success": true,
+        "HttpStatus": 200,
+        "NetworkStatus": "OK",
+        "Transient": false,
+        "Milliseconds": 4983
+      }
+    ]
+  },
+  "Preparation regression comparison": {
+    "Mode": "same simulated OS/HTTP fixtures before and after; native isolated shortcuts on Windows",
+    "RealDefaultsOrTaskbarChanged": false,
+    "ReferenceRevision": "ba8257821e7d5aaf53b5c0508116e6107dfc3e46",
+    "Checks": [
+      {
+        "Phase": "before",
+        "ExitCode": 1,
+        "ExpectedResult": true,
+        "Test": "Test-TelemetryDeliveryRecovery.ps1"
+      },
+      {
+        "Phase": "after",
+        "ExitCode": 0,
+        "ExpectedResult": true,
+        "Test": "Test-TelemetryDeliveryRecovery.ps1"
+      },
+      {
+        "Phase": "before",
+        "ExitCode": 1,
+        "ExpectedResult": true,
+        "Test": "Test-ChromeQuickConfirmation.ps1"
+      },
+      {
+        "Phase": "after",
+        "ExitCode": 0,
+        "ExpectedResult": true,
+        "Test": "Test-ChromeQuickConfirmation.ps1"
+      },
+      {
+        "Phase": "before",
+        "ExitCode": 1,
+        "ExpectedResult": true,
+        "Test": "Test-LDLCChromeTaskbarPin.ps1"
+      },
+      {
+        "Phase": "after",
+        "ExitCode": 0,
+        "ExpectedResult": true,
+        "Test": "Test-LDLCChromeTaskbarPin.ps1"
+      }
+    ],
+    "Failures": 0
+  },
+  "McAfee historical rollback": {
+    "HistoricalCommit": "3aec296b7468e7634815eccec5d549fc90689c9f",
+    "Failures": 0,
+    "RealMcAfeeInstalled": false,
+    "LegacyTimeoutSeconds": 90,
+    "RealMcAfeeRemoved": false,
+    "Assertions": 36,
+    "NortonChanged": false,
+    "NativeWorker": "real PowerShell child plus generated security worker; inventory/preparation stubbed; no real antivirus installed or removed",
+    "Cases": 14
+  },
+  "Chrome taskbar pin": {
+    "NativeShortcutCheck": "real WScript shortcut write/read in isolated folder; no taskbar changed",
+    "Cases": 11,
+    "ActualUserTaskbarChanged": false,
+    "Assertions": 26,
+    "Failures": 0,
+    "Mode": "controller and Windows actions simulated"
+  },
+  "Chrome default actions": {
+    "Cases": 10,
+    "AlreadyConfiguredMilliseconds": 250,
+    "Assertions": 28,
+    "Failures": 0,
+    "Mode": "simulated Windows associations, UI actions and clock",
+    "RealBrowserDefaultsChanged": false
+  },
+  "Telemetry delivery recovery": {
+    "Assertions": 35,
+    "RealDashboardModified": false,
+    "Cases": 12,
+    "Mode": "simulated HTTP responses and real isolated durable queue",
+    "Failures": 0
+  },
+  "beta_delivery": {
+    "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+    "PublishedExecutable": true,
+    "ExecutableSHA256": "DDEF45E5335000E477A80A8F0C2CB3A31C00F425DC99C40A15A93AFC2E7CBDD0",
+    "DeliveryCommit": "b6617532bcf4775b2eef002a1411de83326498a8",
+    "TestedSource": "c13c115f9f1c9f132a491249a25c18b596116ae5",
+    "VendorInstallerExecuted": false
+  },
+  "beta_ui_launches": {
+    "Passes": [
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 4374,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1836,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1655,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1624,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    ],
+    "Mode": "real_compiled_executable_preview_and_quit_isolated_processes",
+    "VendorInstallerExecuted": false,
+    "Count": 4,
+    "Failures": 0
+  },
+  "beta_release": {
+    "Status": "passed",
+    "Suite": "Test-LDLCRelease.ps1",
+    "VendorInstallerExecuted": false
+  }
+}

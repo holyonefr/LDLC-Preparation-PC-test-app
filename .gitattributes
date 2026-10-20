@@ -1,3 +1,5 @@
 *.exe filter=lfs diff=lfs merge=lfs -text
 dist/*.ps1 -text whitespace=cr-at-eol
 tools/fixtures/completion-before-c205efc/*.ps1 -text whitespace=cr-at-eol
+# Unified diff context uses a single space for empty context lines.
+beta/patches/transmission/*.patch -whitespace

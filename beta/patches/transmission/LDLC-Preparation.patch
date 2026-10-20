@@ -1,0 +1,296 @@
+diff --git a/modules/05.Telemetry.ps1 b/modules/05.Telemetry.ps1
+index 5b70971..47acff5 100644
+--- a/modules/05.Telemetry.ps1
++++ b/modules/05.Telemetry.ps1
+@@ -12,7 +12,7 @@ $script:LDLCTelemetryEdition = 'LDLC'
+ $script:LDLCTelemetrySendSuccessfulRuns = $true
+ $script:LDLCTelemetryUpdateIntervalSeconds = 60
+ $script:LDLCTelemetryRemoteWriteMode = 'live'
+-$script:LDLCTelemetryNetworkTimeoutSeconds = 20
++$script:LDLCTelemetryNetworkTimeoutSeconds = 30
+ 
+ function Test-LDLCTelemetryDisabled {
+     $value = [string]$env:LDLC_TELEMETRY_DISABLED
+@@ -156,10 +156,10 @@ function Get-LDLCTelemetryNetworkTimeoutSeconds {
+     }
+ 
+     try {
+-        return [math]::Min(20, [math]::Max(2, [int]$value))
++        return [math]::Min(60, [math]::Max(2, [int]$value))
+     }
+     catch {
+-        return 5
++        return 20
+     }
+ }
+ 
+@@ -350,6 +350,8 @@ function Initialize-LDLCTelemetry {
+         return
+     }
+ 
++    $script:LDLCTelemetryLastTransportFailure = $null
++
+     $script:LDLCTelemetryRunId = if (-not [string]::IsNullOrWhiteSpace($env:LDLC_TELEMETRY_RUN_ID)) {
+         ConvertTo-LDLCTelemetryText $env:LDLC_TELEMETRY_RUN_ID 80
+     }
+@@ -848,11 +850,14 @@ function SendOrQueue-LDLCTelemetryPayload {
+     $payloads = @(Merge-LDLCQueuedTelemetryPayloads -Payloads ($queuedPayloads + @($Payload)))
+     # Persister avant le POST : un crash ou une coupure ne doit pas perdre la fin.
+     $script:LDLCTelemetryLastQueueSaved = Write-LDLCQueuedTelemetryPayloads -Payloads $payloads
++    # A previous outage must not make this final report wait behind an unbounded
++    # archive of other preparations. Only acknowledged members are removed.
++    $batch = @(Get-LDLCTelemetrySendBatch -Payloads $payloads -CurrentPayload $Payload)
+ 
+     try {
+         $script:LDLCTelemetrySending = $true
+-        Send-LDLCTelemetryPayloads -Payloads $payloads
+-        Clear-LDLCQueuedTelemetryPayloads -AcknowledgedPayloads $payloads
++        Send-LDLCTelemetryPayloads -Payloads $batch
++        Clear-LDLCQueuedTelemetryPayloads -AcknowledgedPayloads $batch
+         $script:LDLCTelemetryLastSentAt = [datetime]::UtcNow
+         return $true
+     }
+@@ -1028,6 +1033,44 @@ function New-LDLCTelemetryPayload {
+     }
+ }
+ 
++function Get-LDLCTelemetrySendBatch {
++    param([object[]]$Payloads, $CurrentPayload, [int]$MaxCount = 10, [int]$MaxBytes = 524288)
++    $currentId = Get-LDLCTelemetryPayloadRunId $CurrentPayload
++    $ordered = if ($currentId) {
++        @($Payloads | Where-Object { (Get-LDLCTelemetryPayloadRunId $_) -eq $currentId }) +
++        @($Payloads | Where-Object { (Get-LDLCTelemetryPayloadRunId $_) -ne $currentId })
++    } else { @($CurrentPayload) + @($Payloads | Where-Object { $_ -ne $CurrentPayload }) }
++    $selected = New-Object 'Collections.Generic.List[object]'
++    $bytes = 0
++    foreach ($item in $ordered) {
++        $size = [Text.Encoding]::UTF8.GetByteCount((ConvertTo-Json -InputObject $item -Depth 14 -Compress))
++        if ($selected.Count -and ($selected.Count -ge $MaxCount -or $bytes + $size -gt $MaxBytes)) { break }
++        $selected.Add($item); $bytes += $size
++    }
++    return @($selected.ToArray())
++}
++
++function Get-LDLCTelemetryTransportFailure {
++    param($ErrorRecord)
++    $exception = $ErrorRecord.Exception
++    if ($exception.Data['LDLCTelemetryFailure']) { return $exception.Data['LDLCTelemetryFailure'] }
++    $current = $exception; $http = $null; $network = ''
++    while ($current) {
++        try { if ($current.Response) { $http = [int]$current.Response.StatusCode } } catch {}
++        if ($current -is [Net.WebException]) { $network = [string]$current.Status }
++        $current = $current.InnerException
++    }
++    $code = 'TransportUnknown'; $message = 'Echec de transmission non identifie ; consulter le journal local.'; $transient = $false
++    if ($http -in @(401,403)) { $code='HttpAuthorization'; $message="Acces au serveur refuse (HTTP $http). Verifier le deploiement ou le proxy." }
++    elseif ($http -in @(408,429,500,502,503,504)) { $code='HttpTransient'; $message="Serveur temporairement indisponible (HTTP $http)."; $transient=$true }
++    elseif ($http) { $code='HttpError'; $message="Serveur en erreur HTTP $http." }
++    elseif ($network -eq 'Timeout' -or $exception.GetType().Name -match 'Timeout|TaskCanceled') { $code='Timeout'; $message='Delai de transmission au serveur depasse.'; $transient=$true }
++    elseif ($network -in @('NameResolutionFailure','ProxyNameResolutionFailure')) { $code='Dns'; $message='Adresse du serveur ou du proxy introuvable (DNS).'; $transient=$true }
++    elseif ($network -in @('ConnectFailure','ConnectionClosed','KeepAliveFailure','ReceiveFailure','SendFailure')) { $code='Connection'; $message='Connexion au serveur interrompue ou impossible.'; $transient=$true }
++    elseif ($network -in @('TrustFailure','SecureChannelFailure')) { $code='Tls'; $message='Connexion HTTPS refusee : certificat ou protocole TLS a verifier.' }
++    return [pscustomobject]@{ Code=$code; Message=$message; HttpStatus=$http; Transient=$transient }
++}
++
+ function Send-LDLCTelemetryPayloads {
+     param([object[]]$Payloads)
+ 
+@@ -1041,16 +1084,33 @@ function Send-LDLCTelemetryPayloads {
+     } | ConvertTo-Json -Depth 14 -Compress
+ 
+     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+-    $script:LDLCTelemetryRemoteRequestCount++
+-    $response = Invoke-RestMethod `
+-        -Uri $endpointUrl `
+-        -Method Post `
+-        -ContentType 'application/json; charset=utf-8' `
+-        -Body $body `
+-        -TimeoutSec (Get-LDLCTelemetryNetworkTimeoutSeconds)
+-
+-    if (-not $response -or $response.ok -ne $true) {
+-        throw 'Google Apps Script n a pas acquitte la telemetrie.'
++    $script:LDLCTelemetryLastTransportFailure = $null
++    for ($attempt=1; $attempt -le 2; $attempt++) {
++        try {
++            $script:LDLCTelemetryRemoteRequestCount++
++            $response = Invoke-RestMethod -Uri $endpointUrl -Method Post -ContentType 'application/json; charset=utf-8' -Body $body -TimeoutSec (Get-LDLCTelemetryNetworkTimeoutSeconds) -ErrorAction Stop
++            $failure = $null
++            if (-not $response -or $response.ok -ne $true) {
++                $serverError = [string]$response.error
++                $failure = [pscustomobject]@{ Code='InvalidAcknowledgement'; Message='Le serveur ne renvoie pas un accuse JSON valide.'; HttpStatus=200; Transient=$false }
++                if ($serverError -eq 'unauthorized') { $failure.Code='IngestAuthorization'; $failure.Message='Cle d envoi refusee par le serveur.' }
++                elseif ($serverError -match '(?i)lock|verrou') { $failure.Code='ServerBusy'; $failure.Message='Google Sheets occupe : verrou serveur indisponible.'; $failure.Transient=$true }
++                elseif ($serverError -match '(?i)quota|too many|rate.limit') { $failure.Code='ServerQuota'; $failure.Message='Quota Google Apps Script ou Sheets atteint.'; $failure.Transient=$true }
++                elseif ($serverError -match '(?i)timeout|timed.out|execution.time') { $failure.Code='ServerTimeout'; $failure.Message='Temps d execution du serveur Google depasse.'; $failure.Transient=$true }
++                elseif ($response -is [string] -and $response -match '(?i)<html|<!doctype') { $failure.Code='HtmlResponse'; $failure.Message='Page HTML recue au lieu de JSON : connexion Google ou deploiement a verifier.' }
++            } elseif ($null -ne $response.payloads -and [int]$response.payloads -ne @($Payloads).Count) {
++                $failure = [pscustomobject]@{ Code='IncompleteAcknowledgement'; Message='Accuse serveur incomplet : nombre de rapports incorrect.'; HttpStatus=200; Transient=$false }
++            }
++            if ($failure) { $transportException = New-Object InvalidOperationException $failure.Message; $transportException.Data['LDLCTelemetryFailure']=$failure; throw $transportException }
++            $script:LDLCTelemetryLastTransportFailure=$null
++            return
++        } catch {
++            $failure=Get-LDLCTelemetryTransportFailure $_
++            $script:LDLCTelemetryLastTransportFailure=$failure
++            if (Get-Command Write-LDLCLocalLog -ErrorAction SilentlyContinue) { Write-LDLCLocalLog -Level 'INFO' -Text ("Transmission rapport : {0}, HTTP={1}, tentative={2}/2. {3}" -f $failure.Code,$failure.HttpStatus,$attempt,$failure.Message) }
++            if (-not $failure.Transient -or $attempt -eq 2) { throw [InvalidOperationException]::new($failure.Message) }
++            Start-Sleep -Milliseconds 500
++        }
+     }
+ }
+ 
+@@ -1145,7 +1205,8 @@ function Complete-LDLCTelemetryRun {
+     }
+     elseif ($script:LDLCTelemetryLastQueueSaved) {
+         Write-Host "[INFO] Telemetrie LDLC non envoyee, sauvegardee pour un prochain essai." -ForegroundColor DarkCyan
+-        if ($null -ne $WorkflowCompleted) { Write-LDLCFinalProgress $percent 'Validation non transmise : reseau ou serveur indisponible. Resultat sauvegarde, nouvel envoi au prochain lancement.' }
++        $cause = if ($script:LDLCTelemetryLastTransportFailure) { $script:LDLCTelemetryLastTransportFailure.Message } else { 'Envoi au serveur non acquitte.' }
++        if ($null -ne $WorkflowCompleted) { Write-LDLCFinalProgress $percent ("Validation non transmise : $cause Resultat sauvegarde, nouvel envoi au prochain lancement.") }
+     }
+     else {
+         Write-Host '[INFO] Telemetrie non envoyee et sauvegarde locale impossible; consulter le journal local.' -ForegroundColor Yellow
+diff --git a/sync/shared-files.json b/sync/shared-files.json
+index e0697c7..c6be363 100644
+--- a/sync/shared-files.json
++++ b/sync/shared-files.json
+@@ -88,7 +88,8 @@
+     "modules/52.SecurityUninstall.ps1",
+     "tools/Test-SecurityInteractiveUninstall.ps1",
+     "tools/Test-McAfeeHistoricalRollback.ps1",
+-    "tools/fixtures/mcafee-before-changes.json"
++    "tools/fixtures/mcafee-before-changes.json",
++    "tools/Test-TelemetryDeliveryRecovery.ps1"
+   ],
+   "ProtectedPaths": [
+     "assets/**",
+diff --git a/sync/state.json b/sync/state.json
+index 7138b8a..aef7b13 100644
+--- a/sync/state.json
++++ b/sync/state.json
+@@ -5,7 +5,7 @@
+     ".gitignore": "0F8D720AF7E71A175DD80327A7870C45C6D71C186D1D199413114D674DDC968D",
+     "modules/00.Bootstrap.ps1": "95A22A1BB147FB46DB208667EBD2E6CF44B143B53EF5D9A5AA207F65A3C13FC8",
+     "modules/00.Core.ps1": "9F0BE35A664E84A40D70F9DB51BA3C6EC1B96B973FA5A6802851F7D629207DDC",
+-    "modules/05.Telemetry.ps1": "A8797F6B4205CE1CB2D4DB7B2EA92A60B2A5BA1AB964C915B3E0C67F913D7AF6",
++    "modules/05.Telemetry.ps1": "0B18DADC3A73CA1DF47BCBED7E2FF991530E3667AE711923A35E5CB77609C876",
+     "modules/10.InitialSetup.ps1": "A1927C32F2367408EE7089F1B9DE82D16058F86D8739BF7840031B99FCA640C8",
+     "modules/20.WindowsLayout.ps1": "910EBE56A46FF4953A0C0A1EC87CB12B7D2DFB0FF20EEF91ABDC18E088906171",
+     "modules/30.Applications.ps1": "95C6DC351E2304688CFF7FA8148DF11D15694F886B7E03B60A74221C326A6481",
+@@ -18,7 +18,7 @@
+     "modules/95.WorkerLauncher.ps1": "75D81F8E3BD71847F3EFADA73547546958F3A5D17CEFB3CABA214CA61FDAAAEB",
+     "modules/build-order.txt": "5580B6144CF5BD2F41C9A55527381B31034DBABC330C68E3FD4E5F979DAC3631",
+     "sync/core-version.json": "CA7C0777BE8946FA512BDEDDF8EC8611961830E4535C7D423771CDA434DB41F2",
+-    "sync/shared-files.json": "5E026E44A6D1EC887FEA3FBF7826D75BDBD9FB9C08AF92AD15D4B7036FE5411F",
++    "sync/shared-files.json": "1AA3702BE7535AF0863A8854A2F32B481A72E5768B801A417A7520DB21CF7C2C",
+     "SYNCHRONISATION.md": "5F727101FCD08BCCBE53F0EE43CF69EB855A8B5ADE27EF69A05A500F26B75727",
+     "DASHBOARD_PREPARATION_PC.md": "104942820D1D6C8222563A60D67F4A8C4D96E6D59800D44F1ECBA0CC436C3FFA",
+     "APPLICATIONS_PAR_DEFAUT.md": "5CD7841D9117A737F43549F208833208E007A048F2D9BE35CA653CB02E4D9D02",
+@@ -49,7 +49,7 @@
+     "tools/Test-LDLCNoValidatorDependencies.ps1": "531BE858EF41FF8594F588AD5BA10B5F3A1C376B107FA69DED7ABEC00F2BE64B",
+     "tools/Test-LDLCOfficialInstallerFlow.ps1": "574949B88C314DB894FAC1305FDF77582B61232608E45DDA09358F077493AB95",
+     "tools/Test-LDLCOfficialInstallerSources.ps1": "1C721DD7193B9FF316AC05E810459C3DED15475FBF0FF852EC1C11FDDF012706",
+-    "tools/Test-LDLCRelease.ps1": "3C2BF1646A4A28AB5D4E4C888294B04F20A9AD7CDA2AA78DEEBC4137BAF299FE",
++    "tools/Test-LDLCRelease.ps1": "5F2277C6A7451CB728E491A3024EDAB65CB9D2C9988195690DA988171EC60E3B",
+     "tools/Test-LDLCSecurityBootstrap.ps1": "0BDF943BFC6797D683F29C151168BFEAA0EDA809CA4BC7F2D65A0424629D2C15",
+     "tools/Test-LDLCSyntax.ps1": "7A1E525D8B3F3A718AFD09ED69F1E9349E870A4CCB4EEA354D9C2473FACE0815",
+     "tools/Test-LDLCTelemetryIngestion.cjs": "B50DFE048DBE093B71B7566AE31A76ECD5C2788B21490CBBA533DC1FF93C527C",
+@@ -88,6 +88,7 @@
+     "modules/52.SecurityUninstall.ps1": "205C491EE37CB44AB83308C170C9ED31FD6410BFAE8182B2B9FA6FA387C865E9",
+     "tools/Test-SecurityInteractiveUninstall.ps1": "B6B2FED8BA48327481C2DAA4B883D3B8BE00702E343BC80B40F8001F960D9626",
+     "tools/Test-McAfeeHistoricalRollback.ps1": "1D18EA689F899291E6D3A76475B0EC1D47C78E9F3155BEDC202CF0D7BD448DD8",
+-    "tools/fixtures/mcafee-before-changes.json": "916B05838BD81A2B1ECB500E5ECD07B2F816D87546E164789DDD4FE42F5C6893"
++    "tools/fixtures/mcafee-before-changes.json": "916B05838BD81A2B1ECB500E5ECD07B2F816D87546E164789DDD4FE42F5C6893",
++    "tools/Test-TelemetryDeliveryRecovery.ps1": "5EF48A906C0B855703296B2D8B3180369A74D837A669C88D533312F846D274CF"
+   }
+-}
++}
+\ No newline at end of file
+diff --git a/tools/Test-LDLCRelease.ps1 b/tools/Test-LDLCRelease.ps1
+index 545c4c6..f47b20a 100644
+--- a/tools/Test-LDLCRelease.ps1
++++ b/tools/Test-LDLCRelease.ps1
+@@ -11,7 +11,7 @@ try {
+     $env:LOCALAPPDATA = $testRoot
+     $env:LDLC_TELEMETRY_DISABLED = '1'
+     $tests = @(
+-        'Test-LDLCSyntax', 'Test-LDLCTelemetryStatus', 'Test-LDLCTelemetryLifecycle', 'Test-PreparationCompletion', 'Test-PreparationStartupStop', 'Test-PreparationOutboxConcurrency', 'Test-PreparationDashboardRead',
++        'Test-LDLCSyntax', 'Test-LDLCTelemetryStatus', 'Test-LDLCTelemetryLifecycle', 'Test-TelemetryDeliveryRecovery', 'Test-PreparationCompletion', 'Test-PreparationStartupStop', 'Test-PreparationOutboxConcurrency', 'Test-PreparationDashboardRead',
+         'Test-LDLCDefaultApps', 'Test-DefaultAppsUiWarning', 'Test-ChromeBrowserDefaultButton', 'Test-ChromeQuickConfirmation', 'Test-DefaultAppsNativeAssociation', 'Test-LDLCChromeTaskbarPin', 'Test-LDLCGpuLaptopBypass', 'Test-LDLCCompactUi', 'Test-LDLCGpuAmdFlow',
+         'Test-LDLCGpuAmdDetection', 'Test-LDLCAmdSoftwareDetection', 'Test-LDLCGpuInstallValidation', 'Test-NvidiaFallbackResult',
+         'Test-LDLCNoValidatorDependencies', 'Test-LDLCHardening', 'Test-LDLCWorkflowOrder',
+diff --git a/tools/Test-TelemetryDeliveryRecovery.ps1 b/tools/Test-TelemetryDeliveryRecovery.ps1
+new file mode 100644
+index 0000000..9e28ac5
+--- /dev/null
++++ b/tools/Test-TelemetryDeliveryRecovery.ps1
+@@ -0,0 +1,70 @@
++#requires -Version 5.1
++param([string]$ModuleRoot=(Join-Path (Split-Path -Parent $PSScriptRoot) 'modules'))
++$ErrorActionPreference='Stop'
++. (Join-Path $ModuleRoot '05.Telemetry.ps1')
++$checks=0;$cases=0
++function Assert($Value,$Reason){$script:checks++;if(-not $Value){throw $Reason}}
++function Get-LDLCTelemetryEndpointUrl {'https://telemetry-fixture.invalid/exec'}
++function Get-LDLCTelemetryApiKey {'synthetic-credential-never-log'}
++function Test-LDLCTelemetryConfigured {$true}
++function Test-LDLCTelemetryDisabled {$false}
++function Write-LDLCLocalLog($Level,$Text){$script:logs+=@($Text)}
++function Start-Sleep { }
++function New-Payload($Id){return @{Run=@{RunId=$Id;IsFinal=$true;Status='success';FinishedAt='2026-10-20T12:00:00Z';Sequence=1};Events=@()}}
++function Reset-Case($Mode){$script:cases++;$script:mode=$Mode;$script:calls=0;$script:logs=@();$script:LDLCTelemetryRemoteRequestCount=0;$script:LDLCTelemetryLastTransportFailure=$null}
++function Invoke-RestMethod($Uri,$Method,$ContentType,$Body,$TimeoutSec,$ErrorAction){
++    $script:calls++;$script:request=$Body|ConvertFrom-Json;$script:timeout=$TimeoutSec
++    if($script:mode -eq 'timeout' -or ($script:mode -eq 'timeout-once' -and $script:calls -eq 1)){throw [Net.WebException]::new('synthetic-credential-never-log',[Net.WebExceptionStatus]::Timeout)}
++    if($script:mode -eq 'http503-once' -and $script:calls -eq 1){$exception=[Exception]::new('synthetic-credential-never-log');$exception|Add-Member NoteProperty Response ([pscustomobject]@{StatusCode=503});throw $exception}
++    if($script:mode -eq 'busy-once' -and $script:calls -eq 1){return @{ok=$false;error='Lock timeout synthetic-credential-never-log'}}
++    if($script:mode -eq 'unauthorized'){return @{ok=$false;error='unauthorized'}}
++    if($script:mode -eq 'html'){return '<!doctype html><html>synthetic-credential-never-log</html>'}
++    if($script:mode -eq 'wrong-count'){return @{ok=$true;payloads=0}}
++    return @{ok=$true;payloads=@($script:request.payloads).Count}
++}
++$directory=Join-Path ([IO.Path]::GetTempPath()) ('Telemetry-Recovery-'+[guid]::NewGuid().ToString('N'))
++$previous=$env:LDLC_TELEMETRY_TIMEOUT_SECONDS
++try{
++    [void](New-Item -ItemType Directory -Path $directory)
++    $payload=New-Payload 'current-fixture'
++    foreach($mode in @('ack','timeout-once','http503-once','busy-once')){
++        Reset-Case $mode
++        Send-LDLCTelemetryPayloads -Payloads @($payload)
++        Assert ($calls -eq $(if($mode -eq 'ack'){1}else{2})) 'One retry only for temporary failures.'
++        Assert (-not $script:LDLCTelemetryLastTransportFailure) 'Successful retry must clear the failure cause.'
++        Assert (($logs -join '') -notmatch 'synthetic-credential-never-log') 'Do not log tokens, server response bodies or raw request exceptions.'
++    }
++    foreach($mode in @('unauthorized','html','wrong-count','timeout')){
++        Reset-Case $mode;$failed=$false
++        try{Send-LDLCTelemetryPayloads -Payloads @($payload)}catch{$failed=$true}
++        Assert $failed 'Missing or invalid acknowledgement must never be success.'
++        Assert ($calls -eq $(if($mode -eq 'timeout'){2}else{1})) 'Permanent errors must not be retried; outages must remain bounded.'
++        Assert ($script:LDLCTelemetryLastTransportFailure.Message -and ($logs -join '') -notmatch 'synthetic-credential-never-log') 'Keep a precise sanitized cause.'
++    }
++    Reset-Case 'ack';$env:LDLC_TELEMETRY_TIMEOUT_SECONDS='45'
++    Send-LDLCTelemetryPayloads -Payloads @($payload)
++    Assert ($timeout -eq 45) 'A configured timeout above 20 seconds must not be silently capped to 20.'
++    $env:LDLC_TELEMETRY_TIMEOUT_SECONDS='999'
++    Assert ((Get-LDLCTelemetryNetworkTimeoutSeconds) -eq 60) 'Keep a finite timeout upper bound.'
++
++    Reset-Case 'ack'
++    $script:LDLCTelemetryDisabled=$false;$script:LDLCTelemetryQueuePath=Join-Path $directory 'queue.json'
++    $old=@(1..23|ForEach-Object{New-Payload ('backlog-'+$_)})
++    Assert (Write-LDLCQueuedTelemetryPayloads -Payloads $old) 'Prepare a durable backlog fixture.'
++    Assert (SendOrQueue-LDLCTelemetryPayload -Payload $payload) 'The current final report must be acknowledged despite the backlog.'
++    Assert (@($request.payloads).Count -eq 10 -and $request.payloads[0].Run.RunId -eq 'current-fixture') 'Prioritize the active run and bound the batch size.'
++    $pending=@(Read-LDLCQueuedTelemetryPayloads)
++    Assert ($pending.Count -eq 14 -and 'current-fixture' -notin @($pending.Run.RunId)) 'Delete only the ten acknowledged members and preserve all others.'
++
++    Reset-Case 'timeout';$payload=New-Payload 'offline-fixture'
++    Assert (-not (SendOrQueue-LDLCTelemetryPayload -Payload $payload)) 'Do not claim delivery after two timeouts.'
++    Assert ('offline-fixture' -in @((Read-LDLCQueuedTelemetryPayloads).Run.RunId)) 'Failed current report must remain on disk for the next attempt.'
++    Assert ($script:LDLCTelemetryLastTransportFailure.Code -eq 'Timeout') 'Expose the actual timeout cause instead of an undifferentiated network/server error.'
++    Reset-Case 'ack'
++    Assert (SendOrQueue-LDLCTelemetryPayload -Payload $payload) 'Retry the same durable report after recovery.'
++    Assert ('offline-fixture' -notin @((Read-LDLCQueuedTelemetryPayloads).Run.RunId)) 'Clear the report only after acknowledgement.'
++    Write-Host ('::notice title=Telemetry delivery recovery::'+(@{Cases=$cases;Assertions=$checks;Failures=0;Mode='simulated HTTP responses and real isolated durable queue';RealDashboardModified=$false}|ConvertTo-Json -Compress))
++}finally{
++    $env:LDLC_TELEMETRY_TIMEOUT_SECONDS=$previous
++    if(Test-Path $directory){Remove-Item $directory -Recurse -Force}
++}

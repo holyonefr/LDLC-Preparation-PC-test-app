@@ -2,7 +2,7 @@
   "SchemaVersion": 1,
   "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
   "StableRepository": "holyonefr/LDLC-Preparation",
-  "SourceCommit": "41a5eef63f6f54970b3617e60323cc06dbf63214",
+  "SourceCommit": "0b7c369853c47c1e495f1c0efb3a64d29346dc98",
   "SourceWorkingTreeDirty": true,
   "OverlayPaths": [
     ".gitattributes",
@@ -54,7 +54,8 @@
     "sync/core-version.json",
     "modules/05.Telemetry.ps1",
     "tools/Test-TelemetryDeliveryRecovery.ps1",
-    "tools/Test-PreparationRegressionComparison.ps1"
+    "tools/Test-PreparationRegressionComparison.ps1",
+    ".github/workflows/telemetry-candidate-windows.yml"
   ],
   "PublicationPolicy": "Production exceptions authorize the Chrome/default/taskbar/laptop-AMD fixes and historical McAfee rollback. Transmission recovery is beta-only until explicitly authorized for production. Preserve beta-only motherboard integration."
 }

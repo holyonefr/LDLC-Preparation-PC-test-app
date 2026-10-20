@@ -1,7 +1,8 @@
-# Passation 2.6.9 beta — corrections en cours
+# Passation 2.6.9 beta — corrections validees sous Windows
 
-Voir beta/CORRECTIONS_2026-10-20.md. Aucune validation Windows de cette nouvelle
-livraison annoncee avant lecture des resultats du workflow manuel.
+Voir beta/CORRECTIONS_2026-10-20.md et ses preuves natives : compilation, suite
+release, comparaison avant/apres, quatre vrais lancements et trois echanges
+dashboard acquittes. La transmission corrigee des productions reste non publiee.
 
 # Passation LDLC PrepTool 2.6.8 beta
 
