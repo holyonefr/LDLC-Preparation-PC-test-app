@@ -262,7 +262,9 @@ function Invoke-LDLCSecurityCleanupIsolated {
     param(
         [int]$StartPercent = 1,
         [int]$EndPercent = 3,
-        [int]$TimeoutSeconds = 90
+        [int]$TimeoutSeconds = 90,
+        [ValidateSet('All', 'McAfee', 'Norton')]
+        [string]$SecurityVendor = 'All'
     )
 
     Stop-IfRequested
@@ -276,10 +278,12 @@ function Invoke-LDLCSecurityCleanupIsolated {
     $resultPath = Join-Path $runtimeRoot 'LDLC_SECURITY_CLEANUP_RESULT.json'
     Remove-Item -LiteralPath $resultPath -Force -ErrorAction SilentlyContinue
     $previousResultPath = $env:LDLC_SECURITY_RESULT_PATH
+    $previousVendorFilter = $env:LDLC_SECURITY_VENDOR_FILTER
     $process = $null
 
     try {
         $env:LDLC_SECURITY_RESULT_PATH = $resultPath
+        $env:LDLC_SECURITY_VENDOR_FILTER = $SecurityVendor
         $psExe = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
         Write-Step "McAfee/Norton : lancement isole avec limite globale de ${TimeoutSeconds}s."
         $process = Start-Process `
@@ -337,6 +341,12 @@ function Invoke-LDLCSecurityCleanupIsolated {
         else {
             $env:LDLC_SECURITY_RESULT_PATH = $previousResultPath
         }
+        if ($null -eq $previousVendorFilter) {
+            Remove-Item Env:\LDLC_SECURITY_VENDOR_FILTER -ErrorAction SilentlyContinue
+        }
+        else {
+            $env:LDLC_SECURITY_VENDOR_FILTER = $previousVendorFilter
+        }
     }
 }
 
@@ -351,7 +361,9 @@ function Invoke-LDLCPreparation {
 
         Stop-IfRequested
         Write-ProgressFile 1 "Detection de McAfee et Norton..."
-        [void](Remove-LDLCSecurityTrialsInteractively -StartPercent 1 -EndPercent 3)
+        # Restore McAfee's pre-change isolated path; Norton remains interactive.
+        [void](Invoke-LDLCSecurityCleanupIsolated -StartPercent 1 -EndPercent 2 -TimeoutSeconds 90 -SecurityVendor McAfee)
+        [void](Remove-LDLCSecurityTrialsInteractively -StartPercent 2 -EndPercent 3)
 
         Stop-IfRequested
         Write-ProgressFile 4 "Creation du point de restauration avant Windows Update..."

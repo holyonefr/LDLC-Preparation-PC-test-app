@@ -61,7 +61,8 @@ if ($SecurityCleanupWorker) {
             try { $testDelay = [math]::Min(30, [math]::Max(0, [int]$env:LDLC_SECURITY_TEST_DELAY_SECONDS)) } catch {}
             if ($testDelay -gt 0) { Start-Sleep -Seconds $testDelay }
         }
-        $result = Remove-LDLCOemAndSecurityTrials -Mode Security -StartPercent 1 -EndPercent 3
+        $securityVendor = if ($env:LDLC_SECURITY_VENDOR_FILTER) { [string]$env:LDLC_SECURITY_VENDOR_FILTER } else { 'All' }
+        $result = Remove-LDLCOemAndSecurityTrials -Mode Security -SecurityVendor $securityVendor -StartPercent 1 -EndPercent 3
         $payload = [ordered]@{
             Success = $true
             Detected = [int]$result.Detected

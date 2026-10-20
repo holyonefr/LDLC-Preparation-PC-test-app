@@ -1,4 +1,23 @@
-# Passation LDLC PrepTool 2.6.5
+# Passation LDLC PrepTool 2.6.8 beta
+
+## McAfee : retour au traitement historique - 2026-10-20
+
+Sur demande utilisateur, McAfee sort du nouveau parcours interactif et de son
+attente illimitee. La beta reutilise le nettoyage historique dans un worker
+separe, avec sa limite globale de 90 secondes et ses avertissements/retours
+precedents. Le filtre McAfee est transmis au worker pour ne pas traiter Norton
+avec cet ancien nettoyage. Les neuf fonctions historiques de detection,
+commandes, verifications et repli MCPR restent identiques a la reference
+`3aec296b7468e7634815eccec5d549fc90689c9f` (dernier etat disponible avant les
+changements d'octobre ; pas de commit exactement trois semaines auparavant).
+
+Norton conserve son parcours actuel. Chrome, l'exclusion AMD des portables,
+l'interface et l'integration carte mere beta ne changent pas. Publication de ce
+retour arriere uniquement dans LDLC-Preparation-PC-test-app, version 2.6.8.
+Le test compare le nettoyage a cette reference et simule retrait, produit
+restant, absence de resultat, delai et Quitter. Le test Windows lance aussi
+un vrai enfant PowerShell inoffensif ; aucun vrai McAfee n'est installe ou retire.
+Resultats et limite de validation : `beta/MCAFEE_ROLLBACK_2026-10-20.md`.
 
 ## Bouton navigateur Chrome par defaut - 2026-10-16
 

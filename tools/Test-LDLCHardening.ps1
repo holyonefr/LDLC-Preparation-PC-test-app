@@ -150,7 +150,8 @@ if ($workflow -notmatch 'Point de restauration recent deja present' -or $workflo
     throw 'Le point de restauration doit gerer les cas non bloquants avec logs precis.'
 }
 
-$securityIndex = $workflow.IndexOf('Remove-LDLCSecurityTrialsInteractively -StartPercent 1 -EndPercent 3')
+$securityIndex = $workflow.IndexOf('Invoke-LDLCSecurityCleanupIsolated -StartPercent 1 -EndPercent 2 -TimeoutSeconds 90 -SecurityVendor McAfee')
+$nortonIndex = $workflow.IndexOf('Remove-LDLCSecurityTrialsInteractively -StartPercent 2 -EndPercent 3')
 $restoreIndex = $workflow.IndexOf('Invoke-LDLCRestorePointCreation -ProgressPercent 4')
 $windowsUpdateIndex = $workflow.IndexOf('Start-LDLCWindowsUpdatesDuringPreparation -StartPercent 5 -EndPercent 7')
 $initialSetupIndex = $workflow.IndexOf('Invoke-LDLCInitialSetup')
@@ -158,10 +159,10 @@ $applicationIndex = $workflow.IndexOf('Install-LDLCApplication -App $app')
 $oemIndex = $workflow.IndexOf('Remove-LDLCOemAndSecurityTrials -Mode Oem')
 $powerRestoreIndex = $workflow.IndexOf('Restore-PowerSettings -ProgressPercent 97')
 if (
-    $securityIndex -lt 0 -or $restoreIndex -lt 0 -or $windowsUpdateIndex -lt 0 -or
+    $securityIndex -lt 0 -or $nortonIndex -lt 0 -or $restoreIndex -lt 0 -or $windowsUpdateIndex -lt 0 -or
     $initialSetupIndex -lt 0 -or $applicationIndex -lt 0 -or $oemIndex -lt 0 -or
     $powerRestoreIndex -lt 0 -or
-    -not ($securityIndex -lt $restoreIndex -and $restoreIndex -lt $windowsUpdateIndex -and
+    -not ($securityIndex -lt $nortonIndex -and $nortonIndex -lt $restoreIndex -and $restoreIndex -lt $windowsUpdateIndex -and
         $windowsUpdateIndex -lt $initialSetupIndex -and $initialSetupIndex -lt $applicationIndex -and
         $applicationIndex -lt $oemIndex -and $oemIndex -lt $powerRestoreIndex)
 ) {

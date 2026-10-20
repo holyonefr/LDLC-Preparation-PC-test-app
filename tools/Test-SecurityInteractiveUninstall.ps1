@@ -54,16 +54,18 @@ try {
         Assert ($failed -and $launches -eq 0) 'No installed-apps fallback or guessed quiet command when interactive uninstall is unavailable.'
     }
     $program.UninstallString = '"'+$fake+'" /remove'
-    foreach ($group in @('McAfee','Norton')) {
+    foreach ($group in @('Norton')) {
         Reset-Case; $script:targets = @([pscustomobject]@{ Profile = @{ Group = $group }; Program = $program })
         $result = Remove-LDLCSecurityTrialsInteractively
         Assert ($launches -eq 1 -and $result.Removed -eq 1 -and $tick -ge 1000) 'Wait for removal after opening each detected vendor directly.'
     }
+    Reset-Case; $script:targets = @([pscustomobject]@{ Profile = @{ Group = 'McAfee' }; Program = $program })
+    Assert ((Remove-LDLCSecurityTrialsInteractively).Detected -eq 0 -and $launches -eq 0 -and $tick -eq 0) 'McAfee must never enter the new interactive launch or indefinite wait.'
     Reset-Case; $script:targets = @([pscustomobject]@{ Profile = @{ Group = 'OEM' }; Program = $program })
     Assert ((Remove-LDLCSecurityTrialsInteractively).Detected -eq 0 -and $launches -eq 0) 'Do not launch unrelated OEM uninstallers.'
-    Reset-Case; $script:targets = @([pscustomobject]@{ Profile = @{ Group = 'McAfee' }; Program = $program }); $script:exitAt = 2000
+    Reset-Case; $script:targets = @([pscustomobject]@{ Profile = @{ Group = 'Norton' }; Program = $program }); $script:exitAt = 2000
     Assert ((Remove-LDLCSecurityTrialsInteractively).Success -and $tick -eq 2000) 'A disappearing registry entry must not resume preparation while its uninstaller is still running.'
-    Reset-Case; $script:targets = @([pscustomobject]@{ Profile = @{ Group = 'McAfee' }; Program = $program }); $script:removedAt = 95000
+    Reset-Case; $script:targets = @([pscustomobject]@{ Profile = @{ Group = 'Norton' }; Program = $program }); $script:removedAt = 95000
     $script:exited = $true
     Assert ((Remove-LDLCSecurityTrialsInteractively).Success -and $tick -ge 95000 -and $launches -eq 1) 'A parent exit or 90-second limit must not kill a visible child or resume preparation early.'
     foreach ($code in @(1602,1603,3010)) {
@@ -71,7 +73,7 @@ try {
         try { Remove-LDLCSecurityTrialsInteractively | Out-Null } catch { $message = $_.Exception.Message }
         Assert ($message -and $tick -eq 0) 'A refused/cancelled uninstall or required reboot must stop with a cause, never report removal.'
     }
-    Reset-Case; $script:targets = @([pscustomobject]@{ Profile = @{ Group = 'McAfee' }; Program = $program }); $script:cancelAt = 1500; $script:removedAt = 10000; $stopped = $false
+    Reset-Case; $script:targets = @([pscustomobject]@{ Profile = @{ Group = 'Norton' }; Program = $program }); $script:cancelAt = 1500; $script:removedAt = 10000; $stopped = $false
     try { Remove-LDLCSecurityTrialsInteractively | Out-Null } catch { $stopped = $_.Exception -is [OperationCanceledException] }
     Assert ($stopped -and $tick -eq 1500) 'Quit must remain responsive while waiting for manual removal.'
     Reset-Case; $script:targets = @([pscustomobject]@{ Profile = @{ Group = 'Norton' }; Program = $program }); $script:cancel = $true; $stopped = $false
@@ -102,7 +104,7 @@ class VisibleFixture {
         if ($LASTEXITCODE -ne 0) { throw 'Native uninstaller fixture compilation failed.' }
         Reset-Case; $script:nativeDone = Join-Path $directory 'completed marker'
         $program.UninstallString = '"'+$exe+'" "'+$script:nativeDone+'"'
-        $script:targets = @([pscustomobject]@{ Profile = @{ Group = 'McAfee' }; Program = $program })
+        $script:targets = @([pscustomobject]@{ Profile = @{ Group = 'Norton' }; Program = $program })
         Set-Item Function:Start-LDLCSecurityInteractiveUninstaller $realLaunch
         function Start-Sleep([int]$Milliseconds) { Microsoft.PowerShell.Utility\Start-Sleep -Milliseconds $Milliseconds }
         # Test watchdog only: no timeout in the application's manual uninstall path.

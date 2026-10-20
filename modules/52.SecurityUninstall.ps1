@@ -1,4 +1,4 @@
-# Open each detected vendor's registered uninstaller, visibly and without silent flags.
+# Norton retains its current interactive path. McAfee uses the historical isolated cleanup.
 function Get-LDLCSecurityInteractiveCommand {
     param($Program)
     $raw = [Environment]::ExpandEnvironmentVariables([string]$Program.UninstallString).Trim()
@@ -29,8 +29,8 @@ function Start-LDLCSecurityInteractiveUninstaller {
 function Remove-LDLCSecurityTrialsInteractively {
     param([int]$StartPercent = 1, [int]$EndPercent = 3)
     Stop-IfRequested
-    Write-Section 'DESINSTALLATION MCAFEE / NORTON'
-    $targets = @(Get-LDLCOemRemovalTargets | Where-Object { $_.Profile.Group -in @('McAfee', 'Norton') })
+    Write-Section 'DESINSTALLATION NORTON'
+    $targets = @(Get-LDLCOemRemovalTargets | Where-Object { $_.Profile.Group -eq 'Norton' })
     $removed = 0
     foreach ($target in $targets) {
         Stop-IfRequested
@@ -62,9 +62,9 @@ function Remove-LDLCSecurityTrialsInteractively {
         Write-Info "Desinstallation terminee : $($program.DisplayName)."
     }
     $remaining = @(Get-LDLCOemRemovalTargets | Where-Object {
-        $_.Profile.Group -in @('McAfee', 'Norton') -and (Test-LDLCProgramStillInstalled -Program $_.Program)
+        $_.Profile.Group -eq 'Norton' -and (Test-LDLCProgramStillInstalled -Program $_.Program)
     })
-    if ($remaining.Count) { throw 'McAfee/Norton encore detecte apres desinstallation ; preparation arretee avant les installations.' }
-    Write-ProgressFile $EndPercent 'Etape McAfee/Norton terminee.'
+    if ($remaining.Count) { throw 'Norton encore detecte apres desinstallation ; preparation arretee avant les installations.' }
+    Write-ProgressFile $EndPercent 'Etape Norton terminee.'
     return [pscustomobject]@{ Detected = $targets.Count; Removed = $removed; Pending = 0; Success = $true }
 }

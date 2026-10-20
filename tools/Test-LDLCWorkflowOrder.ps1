@@ -5,7 +5,8 @@ $windowsUpdatePath = Join-Path $root 'modules\80.WindowsUpdate.ps1'
 $workflow = Get-Content -LiteralPath $workflowPath -Raw -Encoding UTF8
 $windowsUpdate = Get-Content -LiteralPath $windowsUpdatePath -Raw -Encoding UTF8
 
-$securityIndex = $workflow.IndexOf('Remove-LDLCSecurityTrialsInteractively -StartPercent 1 -EndPercent 3')
+$securityIndex = $workflow.IndexOf('Invoke-LDLCSecurityCleanupIsolated -StartPercent 1 -EndPercent 2 -TimeoutSeconds 90 -SecurityVendor McAfee')
+$nortonIndex = $workflow.IndexOf('Remove-LDLCSecurityTrialsInteractively -StartPercent 2 -EndPercent 3')
 $restoreIndex = $workflow.IndexOf('Invoke-LDLCRestorePointCreation -ProgressPercent 4')
 $windowsUpdateIndex = $workflow.IndexOf('Start-LDLCWindowsUpdatesDuringPreparation -StartPercent 5 -EndPercent 7')
 $initialSetupIndex = $workflow.IndexOf('Invoke-LDLCInitialSetup')
@@ -13,7 +14,7 @@ $applicationsIndex = $workflow.IndexOf('Install-LDLCApplication -App $app')
 $oemIndex = $workflow.IndexOf('Remove-LDLCOemAndSecurityTrials -Mode Oem')
 $powerRestoreIndex = $workflow.IndexOf('Restore-PowerSettings -ProgressPercent 97')
 
-if (-not ($securityIndex -ge 0 -and $securityIndex -lt $restoreIndex -and
+if (-not ($securityIndex -ge 0 -and $nortonIndex -ge 0 -and $securityIndex -lt $nortonIndex -and $nortonIndex -lt $restoreIndex -and
     $restoreIndex -lt $windowsUpdateIndex -and $windowsUpdateIndex -lt $initialSetupIndex -and
     $initialSetupIndex -lt $applicationsIndex -and $applicationsIndex -lt $oemIndex -and
     $oemIndex -lt $powerRestoreIndex)) {

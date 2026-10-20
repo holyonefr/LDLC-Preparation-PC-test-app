@@ -29,9 +29,13 @@ vrai EXE. Ils sont materialises et verifies par SHA256 uniquement a cette etape 
 aucun telechargement constructeur au demarrage de l'interface. Le raccourci GCC
 pointe uniquement vers le coeur signe, pas vers le wrapper MB Update/RGB Sync.
 
-Dernière livraison validée : [Chrome sans attente et désinstallateurs antivirus visibles](beta/CHROME_ANTIVIRUS_2026-10-20.md).
-Elle remplace les attentes de confirmation Chrome/épingle décrites dans la
-livraison précédente ; les véritables erreurs de commandes restent signalées.
+Correction McAfee en cours de validation : [retour au traitement historique](beta/MCAFEE_ROLLBACK_2026-10-20.md),
+version beta 2.6.8. McAfee quitte le nouveau parcours interactif et retrouve le
+worker historique limite a 90 secondes. Norton et les autres corrections restent
+conserves. Cette nouvelle publication est limitee au depot beta.
+
+Livraison precedente : [Chrome sans attente et désinstallateurs antivirus visibles](beta/CHROME_ANTIVIRUS_2026-10-20.md).
+Le parcours McAfee de ce rapport historique est remplace par le retour ci-dessus.
 
 ## Synchronisation pour les prochaines corrections
 

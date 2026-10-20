@@ -48,7 +48,10 @@
     "tools/Test-SecurityInteractiveUninstall.ps1",
     "tools/Test-LDLCHardening.ps1",
     "tools/Test-LDLCWorkflowOrder.ps1",
-    "tools/Test-DefaultAppsUiWarning.ps1"
+    "tools/Test-DefaultAppsUiWarning.ps1",
+    "modules/50.Cleanup.ps1",
+    "modules/95.WorkerLauncher.ps1",
+    "sync/core-version.json"
   ],
-  "PublicationPolicy": "User authorized current Chrome/default pin and laptop AMD delivery to all three production repositories on 2026-10-20; keep beta synchronized and motherboard integration beta-only."
+  "PublicationPolicy": "Current McAfee rollback is beta-only. Prior 2026-10-20 production exception covers the already delivered Chrome/taskbar and laptop AMD corrections only; preserve beta-only motherboard integration."
 }

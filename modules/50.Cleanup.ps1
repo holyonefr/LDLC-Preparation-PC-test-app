@@ -590,7 +590,9 @@ function Remove-LDLCOemAndSecurityTrials {
         [int]$StartPercent = 20,
         [int]$EndPercent = 24,
         [ValidateSet('All', 'Security', 'Oem')]
-        [string]$Mode = 'All'
+        [string]$Mode = 'All',
+        [ValidateSet('All', 'McAfee', 'Norton')]
+        [string]$SecurityVendor = 'All'
     )
 
     Stop-IfRequested
@@ -608,7 +610,9 @@ function Remove-LDLCOemAndSecurityTrials {
     Write-Section $sectionLabel
     Write-ProgressFile $StartPercent "Recherche : $targetLabel..."
 
-    $targets = @(Get-LDLCOemRemovalTargets -Mode $Mode)
+    $targets = @(Get-LDLCOemRemovalTargets -Mode $Mode | Where-Object {
+        $SecurityVendor -eq 'All' -or $_.Profile.Category -ne 'Antivirus' -or $_.Profile.Group -eq $SecurityVendor
+    })
     if ($targets.Count -eq 0) {
         Write-Ok "Aucun element cible detecte : $targetLabel."
         Write-ProgressFile $EndPercent "Aucun element detecte : $targetLabel."
@@ -649,7 +653,9 @@ function Remove-LDLCOemAndSecurityTrials {
     }
 
     Clear-LDLCDetectionCaches
-    $remainingTargets = @(Get-LDLCOemRemovalTargets -Mode $Mode)
+    $remainingTargets = @(Get-LDLCOemRemovalTargets -Mode $Mode | Where-Object {
+        $SecurityVendor -eq 'All' -or $_.Profile.Category -ne 'Antivirus' -or $_.Profile.Group -eq $SecurityVendor
+    })
 
     if ($remainingTargets.Count -gt 0) {
         Write-Warn "Des elements restent presents apres le passage silencieux : $targetLabel."
