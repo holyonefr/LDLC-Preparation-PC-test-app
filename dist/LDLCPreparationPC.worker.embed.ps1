@@ -1159,7 +1159,7 @@ function Restore-PowerSettings {
 # They are intentionally embedded so the compiled exe can report issues from any PC.
 $script:LDLCTelemetryEndpointUrl = 'https://script.google.com/macros/s/AKfycbwYe2r5-y8HeyfLjslbq7wI2BdFH0sj7TLJQSiUyeRdt_z7yytyTKsPQPPcT0HUcAci3g/exec'
 $script:LDLCTelemetryApiKey = 'LDLC-PrepTool-2026-ea2653c3d8f94cad9bbe4a2fa6fe8e18'
-$script:LDLCTelemetryToolVersion = '2.6.9'
+$script:LDLCTelemetryToolVersion = '2.6.10'
 $script:LDLCTelemetrySource = 'LDLCPreparationPC'
 $script:LDLCTelemetryApplicationSource = 'LDLC_PREPARATION_PC'
 $script:LDLCTelemetryEdition = 'LDLC'
