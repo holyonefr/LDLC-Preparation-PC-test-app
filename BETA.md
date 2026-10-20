@@ -29,7 +29,7 @@ vrai EXE. Ils sont materialises et verifies par SHA256 uniquement a cette etape 
 aucun telechargement constructeur au demarrage de l'interface. Le raccourci GCC
 pointe uniquement vers le coeur signe, pas vers le wrapper MB Update/RGB Sync.
 
-Correction McAfee en cours de validation : [retour au traitement historique](beta/MCAFEE_ROLLBACK_2026-10-20.md),
+Derniere livraison validee sous Windows : [retour au traitement historique McAfee](beta/MCAFEE_ROLLBACK_2026-10-20.md),
 version beta 2.6.8. McAfee quitte le nouveau parcours interactif et retrouve le
 worker historique limite a 90 secondes. Norton et les autres corrections restent
 conserves. Cette nouvelle publication est limitee au depot beta.

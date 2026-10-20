@@ -30,11 +30,25 @@ dashboard ou carte mere. Les adaptions beta sont declarees dans `beta/sync.json`
   produit restant, repli unique, delai de 90 secondes et Quitter.
 - La suite Norton conserve son faux desinstallateur visible. Elle verifie aussi
   qu'aucun McAfee ne passe par son nouveau lancement ni par l'attente illimitee.
-- Validation native Windows et nouvelle livraison : en attente du workflow manuel.
+- Windows GitHub : **13 cas / 34 assertions McAfee reussis**, incluant le vrai
+  lancement d'un enfant PowerShell inoffensif. Norton : 17 cas / 18 assertions,
+  dont la fenetre factice native ; aucune suppression reelle.
+- La suite release complete, les controles beta et **quatre ouvertures/fermetures
+  du vrai EXE en mode apercu** ont reussi. Les telechargements constructeurs live
+  sont ignores pour ce changement sans rapport avec l'integration carte mere.
+
+Workflow manuel reussi :
+[Windows beta, execution 39426435114](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39426435114).
+Source testee : `f4b1453da492976ccbce96ccc40c78a698672e38`.
+Livraison Windows : `4bcb39f43c914da75dc34d3d5315a77e9dc43c9f`.
+EXE 2.6.8 : `dist/LDLCPreparationPC.exe`.
+SHA256 : `5619D50AE8928F84AFB0D5C3B09F9E403ABF472350B29C6DD58F238288A37370`.
+L'EXE rapatrie apres publication a ete compare a cette empreinte.
+Preuves : [windows-evidence.json](evidence/mcafee-rollback-2026-10-20/windows-evidence.json).
 
 Les suppressions et detections d'antivirus sont **simulees**. Le test natif
 utilise un enfant PowerShell inoffensif ; le test Norton utilise une fenetre
 Windows Forms factice. Aucun vrai McAfee/Norton n'est installe ou retire sur
 le runner GitHub. La compatibilite avec une version reelle de McAfee n'est donc
-pas prouvee par ces tests. Quatre ouvertures du vrai EXE en mode apercu seront
-controlees par le workflow beta avant publication.
+pas prouvee par ces tests. Les quatre ouvertures en mode apercu ont ete controlees
+par le workflow beta avant la publication de l'EXE.
