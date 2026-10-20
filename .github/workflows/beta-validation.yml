@@ -16,7 +16,7 @@ jobs:
   beta:
     if: github.repository == 'holyonefr/LDLC-Preparation-PC-test-app'
     runs-on: windows-2025
-    timeout-minutes: 20
+    timeout-minutes: 35
     env:
       LDLC_TELEMETRY_DISABLED: '1'
     steps:
@@ -61,6 +61,18 @@ jobs:
           git fetch --depth=1 origin ba8257821e7d5aaf53b5c0508116e6107dfc3e46
           if($LASTEXITCODE -ne 0){throw 'Historical revision unavailable'}
           ./tools/Test-PreparationRegressionComparison.ps1
+      - name: Verify current AMD complete package and expected driver versions without running the installer
+        shell: powershell
+        run: ./tools/Test-LDLCAmdOfficialDownload.ps1 -FullPackage
+      - name: Compare the AMD no-op bug before and after the correction
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $old=Join-Path $env:RUNNER_TEMP 'historical-amd-gpu.ps1'
+          git show f722c26dc047aaa4454e953b73f6905634667b61:modules/60.Gpu.ps1 | Set-Content -LiteralPath $old -Encoding UTF8
+          if($LASTEXITCODE -ne 0){throw 'Historical AMD revision unavailable'}
+          ./tools/Test-LDLCAmdUpdateRegression.ps1 -GpuModulePath $old -Historical -ReportPath artifacts/amd-before.json
+          ./tools/Test-LDLCAmdUpdateRegression.ps1 -ReportPath artifacts/amd-after.json
       - name: Verify real acknowledgement and dashboard status for success error and cancellation
         shell: powershell
         run: ./tools/Test-PreparationDashboardRoundTrip.ps1 -ReportPath artifacts/dashboard-roundtrip.json

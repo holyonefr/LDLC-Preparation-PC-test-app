@@ -29,6 +29,13 @@ function Start-Sleep {
     param([int]$Seconds, [int]$Milliseconds)
     $script:Elapsed += $Seconds + ($Milliseconds / 1000.0)
 }
+function Get-ItemProperty { param($LiteralPath) throw 'No AMD registry in isolated test' }
+function Expand-LDLCAmdPackageMetadata {
+ param($Path,$Destination)
+ [void][IO.Directory]::CreateDirectory($Destination)
+ $text="[Version]`nClass=Display`nDriverVer=01/01/2026,32.0.1.2`n[Models.NTamd64]`n%AMD%=driver,PCI\VEN_1002&DEV_164E`n"
+ [IO.File]::WriteAllText((Join-Path $Destination 'amd.inf'),$text)
+}
 function Get-AuthenticodeSignature {
     param($LiteralPath)
     if ($script:SignatureThrows) { throw 'trust unavailable' }
@@ -47,10 +54,14 @@ function Invoke-WebRequest {
     if (-not $OutFile) {
         Assert-True ($Headers['Cache-Control'] -eq 'no-cache' -and $Headers.Pragma -eq 'no-cache') 'La recherche AMD doit demander la page actuelle.'
         $script:PageReads++
+        if([string]$Uri -match '/release-notes/') {
+            $v=[regex]::Match($script:Page,'edition-(\d+(?:\.\d+){1,3})-').Groups[1].Value
+            return [pscustomobject]@{ Content = '<a href="https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-'+$v+'-win10-win11.exe">Full</a>' }
+        }
         return [pscustomobject]@{ Content = $script:Page }
     }
     $script:DownloadedUrls += [string]$Uri
-    Assert-True ($Headers.Referer -eq 'https://www.amd.com/en/support/download/drivers.html') 'AMD download needs the official Referer'
+    Assert-True ($Headers.Referer -match '^https://www\.amd\.com/en/resources/support-articles/release-notes/') 'AMD download needs the official Referer'
     $script:Downloaded++
     if ($script:HtmlDownload) { [System.IO.File]::WriteAllText($OutFile, '<html>Download incomplete</html>') }
     else { Write-FakePe -Path $OutFile }
@@ -65,6 +76,9 @@ function Get-CimInstance {
         'Win32_PnPSignedDriver' {
             $script:DriverReads++
             if ($script:Elapsed -lt $script:DriverReadyAt) { return @() }
+            if($script:Started -and $script:InstallChanges){
+                return @($script:Drivers | ForEach-Object { $d=$_.PSObject.Copy();$d.DriverVersion='32.0.1.2';$d })
+            }
             return $script:Drivers
         }
         'Win32_Process' {
@@ -88,6 +102,7 @@ function Start-Process {
     Assert-True (-not ($ArgumentList -match '(?i)boot|reset|uninstall')) 'No forced restart or destructive reset'
     $script:Started = $true
     $script:Launches++
+    $script:InstalledSoftwareVersion=[regex]::Match($script:Page,'edition-(\d+(?:\.\d+){1,3})-').Groups[1].Value
     $p = [pscustomobject]@{ Id = 100; ExitCode = $script:ExitCode }
     $p | Add-Member ScriptProperty HasExited { return $script:Elapsed -ge $script:RootExitAt }
     $p | Add-Member ScriptMethod WaitForExit { if (-not $this.HasExited) { throw 'Premature wait' } }
@@ -98,7 +113,7 @@ function Get-LDLCAmdSoftwareInstallation {
     param([switch]$Refresh)
     $script:SoftwareReads++
     if ($script:SoftwarePresent) {
-        return [pscustomobject]@{ DisplayName = 'AMD Software: Adrenalin Edition'; DisplayVersion = '1.0.0'; ExePath = 'C:\Fake\AMDSoftware.exe' }
+        return [pscustomobject]@{ DisplayName = 'AMD Software: Adrenalin Edition'; DisplayVersion = $(if($script:Started -and $script:InstallChanges){$script:InstalledSoftwareVersion}else{$script:BeforeSoftwareVersion}); ExePath = 'C:\Fake\AMDSoftware.exe' }
     }
     return $null
 }
@@ -129,6 +144,9 @@ function Reset-Scenario {
     $script:PendingReboot = $false
     $script:DriverReadyAt = 0
     $script:SoftwarePresent = $true
+    $script:BeforeSoftwareVersion = '20.1.1'
+    $script:InstallChanges = $true
+    $script:InstalledSoftwareVersion = '20.1.1'
     $script:NetworkFailure = $false
     $script:HtmlDownload = $false
     $script:Cancel = $false
@@ -141,7 +159,7 @@ function Reset-Scenario {
     $script:Adapters = @([pscustomobject]@{ Name = 'AMD Radeon Graphics'; PNPDeviceID = 'PCI\VEN_1002&DEV_164E'; ConfigManagerErrorCode = 0 })
     $script:Drivers = @([pscustomobject]@{
         DeviceID = 'PCI\VEN_1002&DEV_164E'; DeviceClass = 'DISPLAY'; IsSigned = $true
-        DriverProviderName = 'Advanced Micro Devices, Inc.'; InfName = 'oem12.inf'; DriverVersion = '32.0.1.2'
+        DriverProviderName = 'Advanced Micro Devices, Inc.'; InfName = 'oem12.inf'; DriverVersion = '32.0.1.1'
     })
 }
 
@@ -221,8 +239,8 @@ try {
     Assert-True ($script:Downloaded -eq 1 -and $script:Launches -eq 1 -and $script:Shortcuts -eq 1) 'Existing software/driver must not skip current official installer'
     $script:Page = $script:Page.Replace('99.1.1', '99.3.1')
     Install-LDLCAmdStack
-    Assert-True ($script:Downloaded -eq 2 -and $script:Launches -eq 2 -and $script:PageReads -eq 2) 'Chaque preparation doit rechercher, telecharger et executer AMD meme si deja installe.'
-    Assert-True ($script:DownloadedUrls[-1] -match '99\.3\.1-minimalsetup') 'Suivre une nouvelle version AMD sans ancien cache.'
+    Assert-True ($script:Downloaded -eq 2 -and $script:Launches -eq 2 -and $script:PageReads -eq 4) 'Chaque preparation doit rechercher, telecharger et executer AMD meme si deja installe.'
+    Assert-True ($script:DownloadedUrls[-1] -match '99\.3\.1-win10-win11') 'Suivre une nouvelle version AMD sans ancien cache.'
 
     Reset-Scenario
     $script:ChildParent = 4; $script:ChildName = 'Setup.exe'; $script:ChildPath = 'C:\AMD\Current\Setup.exe'
@@ -235,15 +253,15 @@ try {
     Reset-Scenario
     $script:RootExitAt = 100
     Assert-Throws { Install-LDLCAmdStack } 'delai limite'
-    Assert-True ($script:SoftwareReads -eq 0 -and $script:Shortcuts -eq 0) 'Active root cannot pass using existing software'
+    Assert-True ($script:Shortcuts -eq 0 -and -not ($script:Messages -match 'confirme')) 'Active root cannot pass using existing software'
     Reset-Scenario
     $script:ChildEndsAt = 100
     Assert-Throws { Install-LDLCAmdStack } 'delai limite'
-    Assert-True ($script:SoftwareReads -eq 0 -and $script:Shortcuts -eq 0) 'Active child cannot pass using existing software'
+    Assert-True ($script:Shortcuts -eq 0 -and -not ($script:Messages -match 'confirme')) 'Active child cannot pass using existing software'
     Reset-Scenario
     $script:ExitCode = 1603
     Assert-Throws { Install-LDLCAmdStack } 'code 1603'
-    Assert-True ($script:SoftwareReads -eq 0) 'Installer error cannot pass using existing software'
+    Assert-True ($script:Shortcuts -eq 0 -and -not ($script:Messages -match 'confirme')) 'Installer error cannot pass using existing software'
     Reset-Scenario
     $script:ExitCode = 3010
     Install-LDLCAmdStack
@@ -252,7 +270,7 @@ try {
     $script:ExitCode = 3010; $script:Drivers = @()
     $script:Warnings = @()
     Install-LDLCAmdStack
-    Assert-True ($script:Warnings.Count -eq 1 -and $script:Warnings[0] -match 'pas encore confirmes') 'Required reboot is a precise warning, never a fabricated success'
+    Assert-True ($script:Warnings.Count -eq 1 -and $script:Warnings[0] -match 'versions cibles non confirmees') 'Required reboot is a precise warning, never a fabricated success'
     Assert-True ($script:PendingReboot -and $script:Shortcuts -eq 0) 'Reboot alone is not driver validation'
     Reset-Scenario
     $script:SoftwarePresent = $false
@@ -273,6 +291,14 @@ try {
     $script:Cancel = $true
     Assert-Throws { Install-LDLCAmdStack } 'cancellation'
     Assert-True ($script:Launches -eq 0) 'Cancellation does not launch installer'
+    Reset-Scenario
+    $script:InstallChanges = $false
+    Assert-Throws { Install-LDLCAmdStack } 'versions? INF|version INF|actuelle'
+    Assert-True ($script:Shortcuts -eq 0 -and -not ($script:Messages -match 'confirme')) 'Unchanged older app and driver must not be reported as current'
+    Reset-Scenario
+    $script:BeforeSoftwareVersion='99.9.1';$script:Drivers[0].DriverVersion='32.0.1.2'
+    Install-LDLCAmdStack
+    Assert-True ($script:Launches -eq 0 -and $script:Downloaded -eq 1 -and $script:Shortcuts -eq 1) 'Verified current versions still resolve/download, without reinstall/downgrade'
     Write-Host "OK AMD isolated flow: $script:Assertions assertions; no real hardware query, network, or installation"
 }
 finally {

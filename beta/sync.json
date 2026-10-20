@@ -56,7 +56,9 @@
     "tools/Test-TelemetryDeliveryRecovery.ps1",
     "tools/Test-PreparationRegressionComparison.ps1",
     "tools/Test-LDLCAmdOfficialDownload.ps1",
-    ".github/workflows/amd-live-validation.yml"
+    ".github/workflows/amd-live-validation.yml",
+    "tools/Test-LDLCAmdPackageMetadata.ps1",
+    "tools/Test-LDLCAmdUpdateRegression.ps1"
   ],
   "PublicationPolicy": "2026-10-20 explicit user authorization \"Oui envoie sur les 4\": publish current transmission recovery and tested EXEs in all four repositories. Preserve beta-only motherboard integration and unrelated unpublished UI edits."
 }

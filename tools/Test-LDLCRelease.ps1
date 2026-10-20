@@ -13,7 +13,7 @@ try {
     $tests = @(
         'Test-LDLCSyntax', 'Test-LDLCTelemetryStatus', 'Test-LDLCTelemetryLifecycle', 'Test-TelemetryDeliveryRecovery', 'Test-PreparationCompletion', 'Test-PreparationStartupStop', 'Test-PreparationOutboxConcurrency', 'Test-PreparationDashboardRead',
         'Test-LDLCDefaultApps', 'Test-DefaultAppsUiWarning', 'Test-ChromeBrowserDefaultButton', 'Test-ChromeQuickConfirmation', 'Test-DefaultAppsNativeAssociation', 'Test-LDLCChromeTaskbarPin', 'Test-LDLCCompactUi', 'Test-LDLCGpuAmdFlow', 'Test-LDLCGpuLaptopBypass',
-        'Test-LDLCGpuAmdDetection', 'Test-LDLCAmdSoftwareDetection', 'Test-LDLCGpuInstallValidation', 'Test-NvidiaFallbackResult',
+        'Test-LDLCAmdPackageMetadata', 'Test-LDLCAmdUpdateRegression', 'Test-LDLCGpuAmdDetection', 'Test-LDLCAmdSoftwareDetection', 'Test-LDLCGpuInstallValidation', 'Test-NvidiaFallbackResult',
         'Test-LDLCNoValidatorDependencies', 'Test-LDLCHardening', 'Test-LDLCTaskbarPins', 'Test-LDLCWorkflowOrder',
         'Test-WindowsUpdateTrigger', 'Test-LDLCSecurityBootstrap', 'Test-SecurityInteractiveUninstall', 'Test-McAfeeHistoricalRollback', 'Test-LDLCEmbeddedAssets',
         'Test-LDLCErrorReportFixes', 'Test-LDLCInstallRobustness', 'Test-LDLCOfficialInstallerFlow',

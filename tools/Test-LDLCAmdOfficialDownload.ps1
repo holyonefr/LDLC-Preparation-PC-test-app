@@ -2,6 +2,8 @@
 [CmdletBinding()]
 param([string]$ReportPath = 'artifacts/amd-official-download.json',[switch]$FullPackage)
 $ErrorActionPreference = 'Stop'
+$ProgressPreference = 'SilentlyContinue'
+function Stop-IfRequested {}
 $root = Split-Path -Parent $PSScriptRoot
 . (Join-Path $root 'modules/60.Gpu.ps1')
 $report = [ordered]@{ Success=$false; Commit=$env:GITHUB_SHA; Platform=[Environment]::OSVersion.VersionString; RealNetwork=$true; InstallerExecuted=$false; DriverInstalled=$false; Phase='resolution' }
@@ -18,6 +20,7 @@ try {
     }
     $report.Source = $source
     $report.Phase='download'
+    Write-Host ('::notice title=AMD official selected source::'+($source|ConvertTo-Json -Depth 6 -Compress))
     $path=Join-Path $temp $source.FileName
     Invoke-WebRequest -Uri $source.Url -Headers @{Referer=$source.PageUrl;'Cache-Control'='no-cache';Pragma='no-cache'} -OutFile $path -UseBasicParsing -TimeoutSec 600 -ErrorAction Stop | Out-Null
     $report.Bytes=(Get-Item -LiteralPath $path).Length
@@ -31,7 +34,24 @@ try {
         $seven=Join-Path $env:ProgramFiles '7-Zip/7z.exe'
         $listing=@(& $seven l -slt $path)
         if($LASTEXITCODE -ne 0){throw 'Lecture archive AMD en echec.'}
-        $report.PayloadMetadataPaths=@($listing | Where-Object {$_ -match '(?i)^Path = .*?(?:\.inf$|CNext|CNBrand|ccc2|\.xml$)'} | Select-Object -First 45)
+        $report.UiPackagePaths=@($listing | Where-Object {$_ -match '(?i)^Path = .*?(?:CNext|CNBrand|ccc2|RadeonSoftware|AMDSoftware)'} | Select-Object -First 25)
+        $metadata=Join-Path $temp 'metadata'
+        Expand-LDLCAmdPackageMetadata -Path $path -Destination $metadata
+        $infs=@(Get-ChildItem -LiteralPath $metadata -Filter '*.inf' -File -Recurse | Where-Object {[IO.File]::ReadAllText($_.FullName) -match '(?im)^\s*Class\s*=\s*Display\s*$'})
+        if(-not $infs.Count){throw 'Aucune preuve de pilote DISPLAY dans le package complet.'}
+        $ids=New-Object 'Collections.Generic.List[string]'
+        foreach($inf in $infs){
+            $text=[IO.File]::ReadAllText($inf.FullName)
+            foreach($m in [regex]::Matches($text,'(?i)PCI\\VEN_1002&DEV_[0-9A-F]{4}')){[void]$ids.Add($m.Value)}
+        }
+        $targets=@();foreach($id in @($ids|Select-Object -Unique -First 3)){
+            try{$targets+=@(Get-LDLCAmdPackageDriverTargets -MetadataPath $metadata -PnpDeviceIds @($id) -WindowsBuild 26100)}catch{}
+        }
+        if(-not $targets.Count){throw 'Aucune cible de version INF lisible pour les GPU proposes.'}
+        $report.DisplayInfCount=$infs.Count
+        $report.SampleTargets=@($targets|Select-Object PnpDeviceId,DriverVersion,HardwareId)
+        $report.ExtractedUiFiles=@(Get-ChildItem -LiteralPath $metadata -Include RadeonSoftware.exe,AMDSoftware.exe -File -Recurse | ForEach-Object {@{FileName=$_.Name;Version=(Get-LDLCFileVersionText -Path $_.FullName)}})
+
     }
     $report.Success=$true
 }

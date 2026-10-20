@@ -1,3 +1,12 @@
+# Correction AMD en validation — bêta 2.6.11
+
+Voir beta/AMD_UPDATE_2026-10-20.md. Défaut reproduit : une ancienne application
+et un ancien pilote pouvaient passer après un installateur sans effet. Nouveau
+parcours : package complet actuel, signature, compatibilité et versions INF par
+GPU, version de l’application et protection contre les rétrogradations.
+Publication exclusivement bêta ; suite Windows requise avant livraison EXE.
+Les autres dépôts restent inchangés. Exclusion des portables conservée.
+
 # Livraison vérifiée et dashboard — 20 octobre 2026
 
 Transmission durcie publiée dans les quatre dépôts avec leurs EXE testés sous
