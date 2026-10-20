@@ -17,6 +17,6 @@ jobs:
       LDLC_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - name: Resolve and verify the actual AMD official installer without running it
+      - name: Inspect Chocolatey published package without executing its installation script
         shell: powershell
-        run: ./tools/Test-LDLCAmdOfficialDownload.ps1 -FullPackage:('${{ inputs.full_package }}' -eq 'true')
+        run: ./tools/Test-LDLCAmdChocolateyPackage.ps1
