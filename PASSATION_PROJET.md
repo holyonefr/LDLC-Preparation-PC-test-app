@@ -842,3 +842,13 @@ OEM tardif. Tests de commande, attente longue, processus parent/enfant, erreurs,
 annulation et absence d'installations après blocage ajoutés.
 Voir RESULTATS_CHROME_ANTIVIRUS_2026-10-20.md pour les résultats natifs et la portée
 des fixtures ; ne pas prétendre une désinstallation antivirus réelle sur runner.
+
+Bêta 2.6.7 livrée : run Windows 39413059512, source c37c725, EXE 75f7cd0,
+SHA256 E80699630145E474E6B97F073F46EE71BD830E4D66FA16AA59287D3760385380.
+Suite complète, carte mère préservée, fenêtre factice de désinstallation affichée
+et quatre vrais Preview/fermetures réussis. Productions également livrées : LDLC
+39412857978, Numerik's 39412861967, Addon 39412866385. Source classique partagée
+2.6.7 ; aucun antivirus réel désinstallé sur runner, clics Chrome simulés. Les
+regroupements d'erreurs AV et les sorties anticipées restent bloquants. Résultats
+communs fusionnés ici sans supprimer les overlays bêta ni publier les UI locales
+précédentes. Dernière synchronisation : docs/preuves/métadonnées seulement.

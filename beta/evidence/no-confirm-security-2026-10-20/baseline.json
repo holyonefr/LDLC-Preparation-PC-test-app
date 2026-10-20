@@ -1,0 +1,7 @@
+{
+  "Commit": "c64600d2b896f2c7ba560eaad5e4cca2545e6fc6",
+  "ChromeWithoutConfirmationTest": "expected_failure",
+  "ExitCode": 1,
+  "OldAntivirusPath": "Invoke-LDLCSecurityCleanupIsolated -TimeoutSeconds 90, hidden silent removal",
+  "RealUninstallersExecuted": false
+}
