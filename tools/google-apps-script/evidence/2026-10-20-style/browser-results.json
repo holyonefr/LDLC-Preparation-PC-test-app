@@ -1,0 +1,55 @@
+{
+  "previewData": "synthetic only",
+  "font": "Outfit variable, embedded WOFF2",
+  "checks": [
+    {
+      "width": 1600,
+      "fontLoaded": true,
+      "family": "Outfit, \"Segoe UI Variable Display\", \"Segoe UI\", sans-serif",
+      "titleSize": "44px",
+      "bodyFamily": "\"Trebuchet MS\", Verdana, sans-serif",
+      "titleCenter": 0,
+      "subtitleCenter": 0.0078125,
+      "pageOverflow": false,
+      "titleClip": false,
+      "externalRequests": 0
+    },
+    {
+      "width": 1366,
+      "fontLoaded": true,
+      "family": "Outfit, \"Segoe UI Variable Display\", \"Segoe UI\", sans-serif",
+      "titleSize": "40.98px",
+      "bodyFamily": "\"Trebuchet MS\", Verdana, sans-serif",
+      "titleCenter": 0,
+      "subtitleCenter": 0.0078125,
+      "pageOverflow": false,
+      "titleClip": false,
+      "externalRequests": 0
+    },
+    {
+      "width": 390,
+      "fontLoaded": true,
+      "family": "Outfit, \"Segoe UI Variable Display\", \"Segoe UI\", sans-serif",
+      "titleSize": "30px",
+      "bodyFamily": "\"Trebuchet MS\", Verdana, sans-serif",
+      "titleCenter": 0,
+      "subtitleCenter": 0,
+      "pageOverflow": false,
+      "titleClip": false,
+      "externalRequests": 0
+    }
+  ],
+  "errors": [],
+  "brightness": {
+    "backgroundBefore": 0.007768297984430355,
+    "backgroundAfter": 0.02340318372252233,
+    "panelBefore": 0.015589156265887399,
+    "panelAfter": 0.03947846039562773
+  },
+  "contrast": {
+    "normalText": 10.82015206964045,
+    "mutedText": 7.3606416332144065,
+    "titleOnBrightHero": 7.597093286415933,
+    "subtitleOnBrightHero": 6.295219232426093
+  }
+}

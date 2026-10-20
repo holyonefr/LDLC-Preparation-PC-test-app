@@ -1,0 +1,12 @@
+{
+  "Family": "Outfit",
+  "Style": "normal",
+  "VariableWeight": "100-900",
+  "SourceRepository": "google/fonts",
+  "SourceCommit": "8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5",
+  "SourceURL": "https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/outfit/Outfit%5Bwght%5D.ttf",
+  "License": "SIL Open Font License 1.1",
+  "EmbeddedSubset": "Latin, French accents and punctuation",
+  "SHA256": "2635EC296641C1207DD8E3C803AB31F4FD0E09589504B337FE8A86B8CAC087AE",
+  "Bytes": 33316
+}

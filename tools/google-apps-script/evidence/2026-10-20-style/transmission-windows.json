@@ -1,0 +1,186 @@
+[
+  {
+    "Repository": "LDLC-Preparation",
+    "Version": "2.6.10",
+    "Run": 39455086205,
+    "RunAttempt": 1,
+    "TestedSource": "b505d5b659da9d4cd66dd1cbc18870bfe4ac0267",
+    "DeliveryCommit": "b36234bfb00215e11b4f94b8a285881cdff9a5f1",
+    "ExecutableSHA256": "BD6E521004565B38B5E2367A80A81C9C719902E80B609C51576EFB45BF326CB3",
+    "RealPreviewLaunches": 4,
+    "ReleaseSuitePassed": true,
+    "DashboardChecks": [
+      {
+        "ApplicationSource": "LDLC_PREPARATION_PC",
+        "Validation": "validated",
+        "ToolVersion": "2.6.10",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "success",
+        "FinalVisible": true,
+        "Scenario": "success"
+      },
+      {
+        "ApplicationSource": "LDLC_PREPARATION_PC",
+        "Validation": "blocked",
+        "ToolVersion": "2.6.10",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "error",
+        "FinalVisible": true,
+        "Scenario": "failed"
+      },
+      {
+        "ApplicationSource": "LDLC_PREPARATION_PC",
+        "Validation": "blocked",
+        "ToolVersion": "2.6.10",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "stopped",
+        "FinalVisible": true,
+        "Scenario": "stopped"
+      }
+    ],
+    "TestRowsCleaned": true,
+    "TelemetryFixtureCases": 12,
+    "TelemetryFixtureAssertions": 35
+  },
+  {
+    "Repository": "Numerik-s-Preparation-PC",
+    "Version": "2.6.10",
+    "Run": 39455089955,
+    "RunAttempt": 2,
+    "TestedSource": "f8197f91a789596cc3a3ec9ac2943268893e2335",
+    "DeliveryCommit": "b9fe1a4d75279045eab454a4ac80b72f23d0afbf",
+    "ExecutableSHA256": "0BAB558A5FE94752E405EEF5D14B1CFBB27D84B2194F41F44C5B927B1B620CDE",
+    "RealPreviewLaunches": 4,
+    "ReleaseSuitePassed": true,
+    "DashboardChecks": [
+      {
+        "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+        "Validation": "validated",
+        "ToolVersion": "2.6.10",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "success",
+        "FinalVisible": true,
+        "Scenario": "success"
+      },
+      {
+        "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+        "Validation": "blocked",
+        "ToolVersion": "2.6.10",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "error",
+        "FinalVisible": true,
+        "Scenario": "failed"
+      },
+      {
+        "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+        "Validation": "blocked",
+        "ToolVersion": "2.6.10",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "stopped",
+        "FinalVisible": true,
+        "Scenario": "stopped"
+      }
+    ],
+    "TestRowsCleaned": true,
+    "TelemetryFixtureCases": 12,
+    "TelemetryFixtureAssertions": 35
+  },
+  {
+    "Repository": "LDLC-Preparation-Addon",
+    "Version": "2.0.1",
+    "Run": 39455092562,
+    "RunAttempt": 1,
+    "TestedSource": "352a170f57a43fcc210d1d39f97bba81ea4e20a6",
+    "DeliveryCommit": "50684bf1ca57d4a4cd04762739285b843d89343c",
+    "ExecutableSHA256": "4F0088053A4FAEA374D9C3D67247A72A32F3AD2BDC71C49E8B0F924FA718A711",
+    "RealPreviewLaunches": 4,
+    "ReleaseSuitePassed": true,
+    "DashboardChecks": [
+      {
+        "ApplicationSource": "LDLC_PREPARATION_ADDON",
+        "Validation": "validated",
+        "ToolVersion": "2.0.1",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "success",
+        "FinalVisible": true,
+        "Scenario": "success"
+      },
+      {
+        "ApplicationSource": "LDLC_PREPARATION_ADDON",
+        "Validation": "blocked",
+        "ToolVersion": "2.0.1",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "error",
+        "FinalVisible": true,
+        "Scenario": "failed"
+      },
+      {
+        "ApplicationSource": "LDLC_PREPARATION_ADDON",
+        "Validation": "blocked",
+        "ToolVersion": "2.0.1",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "stopped",
+        "FinalVisible": true,
+        "Scenario": "stopped"
+      }
+    ],
+    "TestRowsCleaned": true,
+    "TelemetryFixtureCases": 12,
+    "TelemetryFixtureAssertions": 35
+  },
+  {
+    "Repository": "LDLC-Preparation-PC-test-app",
+    "Version": "2.6.10",
+    "Run": 39455096015,
+    "RunAttempt": 1,
+    "TestedSource": "5bfddd8115425a063cd72973acce6b0b0260998f",
+    "DeliveryCommit": "dee5689627d0f3ccfadfe9fd79f0038d2ccebf18",
+    "ExecutableSHA256": "69F20D74D8458CDFC4DE245947F0D891694A5D56FCAF4DC2A3D3F2CB8845FFC1",
+    "RealPreviewLaunches": 4,
+    "ReleaseSuitePassed": true,
+    "DashboardChecks": [
+      {
+        "ApplicationSource": "LDLC_PREPARATION_PC",
+        "Validation": "validated",
+        "ToolVersion": "2.6.10",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "success",
+        "FinalVisible": true,
+        "Scenario": "success"
+      },
+      {
+        "ApplicationSource": "LDLC_PREPARATION_PC",
+        "Validation": "blocked",
+        "ToolVersion": "2.6.10",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "error",
+        "FinalVisible": true,
+        "Scenario": "failed"
+      },
+      {
+        "ApplicationSource": "LDLC_PREPARATION_PC",
+        "Validation": "blocked",
+        "ToolVersion": "2.6.10",
+        "Acknowledged": true,
+        "InitialVisible": true,
+        "Status": "stopped",
+        "FinalVisible": true,
+        "Scenario": "stopped"
+      }
+    ],
+    "TestRowsCleaned": true,
+    "TelemetryFixtureCases": 12,
+    "TelemetryFixtureAssertions": 35
+  }
+]

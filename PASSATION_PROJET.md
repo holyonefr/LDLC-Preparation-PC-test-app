@@ -1,9 +1,11 @@
-# Publication transmission — 20 octobre 2026
+# Livraison vérifiée et dashboard — 20 octobre 2026
 
-L'utilisateur autorise maintenant les quatre depots. Voir TRANSMISSION_2026-10-20.md.
-La correction precedemment en attente est publiee en sources ; les livraisons
-Windows ne seront publiees qu'apres reussite des suites et des echanges reels.
-Les anciens changements UI locaux sont conserves hors livraison.
+Transmission durcie publiée dans les quatre dépôts avec leurs EXE testés sous
+Windows : quatre vrais lancements Preview et trois échanges dashboard par édition.
+Voir TRANSMISSION_2026-10-20.md et ses preuves. Dashboard permanent en version 47 :
+thème éclairci et titres Outfit ; voir DASHBOARD_STYLE_2026-10-20.md.
+Les anciennes modifications UI locales restent exclues ; carte mère en bêta seule.
+Les notes suivantes retracent les états antérieurs.
 
 # Etat final du 20 octobre 2026
 

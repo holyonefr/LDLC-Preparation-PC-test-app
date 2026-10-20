@@ -1,6 +1,9 @@
 Publication courante autorisee dans les quatre depots : [transmission 2.6.10](TRANSMISSION_2026-10-20.md).
 
-Derniere campagne validee : [corrections 2.6.9](beta/CORRECTIONS_2026-10-20.md).
+Livraison actuelle **2.6.10** validée : quatre lancements EXE et trois échanges dashboard.
+Dashboard permanent en version 47 : [nouveau visuel](DASHBOARD_STYLE_2026-10-20.md).
+
+Campagne précédente : [corrections 2.6.9](beta/CORRECTIONS_2026-10-20.md).
 
 # LDLC Preparation PC — version beta
 
@@ -34,7 +37,7 @@ aucun telechargement constructeur au demarrage de l'interface. Le raccourci GCC
 pointe uniquement vers le coeur signe, pas vers le wrapper MB Update/RGB Sync.
 
 Livraison historique precedente : [retour au traitement historique McAfee](beta/MCAFEE_ROLLBACK_2026-10-20.md),
-version beta 2.6.8. La livraison courante 2.6.9 est decrite dans le rapport en tete. McAfee quitte le nouveau parcours interactif et retrouve le
+version beta 2.6.8. La livraison historique 2.6.9 est décrite dans son rapport ; la livraison courante est 2.6.10. McAfee quitte le nouveau parcours interactif et retrouve le
 worker historique limite a 90 secondes. Norton et les autres corrections restent
 conserves. Cette nouvelle publication est limitee au depot beta.
 
