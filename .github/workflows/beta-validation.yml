@@ -68,9 +68,18 @@ jobs:
         shell: powershell
         run: |
           $ErrorActionPreference='Stop'
-          $old=Join-Path $env:RUNNER_TEMP 'historical-amd-gpu.ps1'
-          git show f722c26dc047aaa4454e953b73f6905634667b61:modules/60.Gpu.ps1 | Set-Content -LiteralPath $old -Encoding UTF8
-          if($LASTEXITCODE -ne 0){throw 'Historical AMD revision unavailable'}
+          $revision='f722c26dc047aaa4454e953b73f6905634667b61'
+          # checkout is shallow: request the actual historical object explicitly.
+          git fetch --depth=1 origin $revision
+          if($LASTEXITCODE -ne 0){throw 'Historical AMD fetch failed'}
+          $archive=Join-Path $env:RUNNER_TEMP 'historical-amd.zip'
+          $historicalRoot=Join-Path $env:RUNNER_TEMP ('historical-amd-'+[guid]::NewGuid().ToString('N'))
+          # Preserve original bytes/BOM instead of recoding native git stdout in PowerShell 5.1.
+          git archive --format=zip --output=$archive $revision modules/60.Gpu.ps1
+          if($LASTEXITCODE -ne 0){throw 'Historical AMD archive failed'}
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          [IO.Compression.ZipFile]::ExtractToDirectory($archive,$historicalRoot)
+          $old=Join-Path $historicalRoot 'modules/60.Gpu.ps1'
           ./tools/Test-LDLCAmdUpdateRegression.ps1 -GpuModulePath $old -Historical -ReportPath artifacts/amd-before.json
           ./tools/Test-LDLCAmdUpdateRegression.ps1 -ReportPath artifacts/amd-after.json
       - name: Verify real acknowledgement and dashboard status for success error and cancellation

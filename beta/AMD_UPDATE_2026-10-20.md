@@ -79,3 +79,10 @@ La page Guru3D fournie par l’utilisateur a été demandée réellement sur ce 
 HTTP **403 Forbidden**, aucun fichier Guru3D téléchargé. Elle n’est pas retenue
 comme repli automatique non testé. La source officielle complète fonctionne.
 La sonde Guru3D reste disponible à la demande, indépendante des validations requises.
+
+La suite du run `39488236462` passe les régressions complètes et le téléchargement
+réel signé avec lecture des INF. La comparaison historique s’arrête ensuite car
+le checkout GitHub est superficiel et n’avait pas récupéré le commit de référence.
+Le workflow récupère désormais explicitement cette référence et extrait les octets
+originaux avec git archive, sans réencodage du BOM par PowerShell 5.1.
+La livraison reste bloquée jusqu’au passage complet de la campagne suivante.
