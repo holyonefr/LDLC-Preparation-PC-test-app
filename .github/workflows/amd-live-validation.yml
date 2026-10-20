@@ -42,6 +42,6 @@ jobs:
         shell: powershell
         run: ./tools/Test-LDLCAmdGuru3dSource.ps1
       - name: Verify current official complete package without running its installer
-        if: inputs.full_package
+        if: always() && inputs.full_package
         shell: powershell
         run: ./tools/Test-LDLCAmdOfficialDownload.ps1 -FullPackage
