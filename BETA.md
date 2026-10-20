@@ -1,14 +1,15 @@
-Publication courante autorisee dans les quatre depots : [transmission 2.6.10](TRANSMISSION_2026-10-20.md).
+Livraison actuelle **2.6.11** : [correction AMD et résultats Windows](beta/AMD_UPDATE_2026-10-20.md).
+Package AMD complet actuel, compatibilité et versions contrôlées. Publication
+exclusivement dans cette bêta. Quatre lancements EXE et trois échanges dashboard validés.
+L’installation matérielle sur un véritable GPU AMD reste à confirmer.
 
-Livraison actuelle **2.6.10** validée : quatre lancements EXE et trois échanges dashboard.
-Dashboard permanent en version 47 : [nouveau visuel](DASHBOARD_STYLE_2026-10-20.md).
-
-Campagne précédente : [corrections 2.6.9](beta/CORRECTIONS_2026-10-20.md).
+Livraison précédente : [transmission 2.6.10](TRANSMISSION_2026-10-20.md), autorisée
+alors dans les quatre dépôts. Dashboard permanent en version 47.
 
 # LDLC Preparation PC — version beta
 
 Depot de test : **holyonefr/LDLC-Preparation-PC-test-app**.
-Base LDLC stable : commit `41a5eef63f6f54970b3617e60323cc06dbf63214`.
+Base LDLC stable : commit `978b498608586efffb173bee237a294b1452fa0a`, voir `beta/sync.json`.
 Le 20 octobre, l'utilisateur autorise aussi la livraison de la correction
 Chrome/epinglage/portables AMD dans les trois productions. Le module carte mere
 reste exclusivement dans cette beta.
@@ -37,7 +38,7 @@ aucun telechargement constructeur au demarrage de l'interface. Le raccourci GCC
 pointe uniquement vers le coeur signe, pas vers le wrapper MB Update/RGB Sync.
 
 Livraison historique precedente : [retour au traitement historique McAfee](beta/MCAFEE_ROLLBACK_2026-10-20.md),
-version beta 2.6.8. La livraison historique 2.6.9 est décrite dans son rapport ; la livraison courante est 2.6.10. McAfee quitte le nouveau parcours interactif et retrouve le
+version beta 2.6.8. La livraison historique 2.6.9 est décrite dans son rapport ; la livraison courante est 2.6.11. McAfee quitte le nouveau parcours interactif et retrouve le
 worker historique limite a 90 secondes. Norton et les autres corrections restent
 conserves. Cette nouvelle publication est limitee au depot beta.
 

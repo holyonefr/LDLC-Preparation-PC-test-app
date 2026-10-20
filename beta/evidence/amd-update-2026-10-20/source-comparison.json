@@ -1,0 +1,23 @@
+{
+  "AMD": {
+    "Version": "26.10.1",
+    "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+    "Bytes": 1782243424,
+    "SHA256": "EAF0B61DE6CE31793D05222FD57B50C6A55095F52796A33683093381F9345B82",
+    "Signature": "Valid",
+    "INFCount": 2,
+    "NativeDownloadVerified": true,
+    "RealHardwareInstallationVerified": false
+  },
+  "Chocolatey": {
+    "LatestPublished": "26.8.1",
+    "OfficialVersionAtCheck": "26.10.1",
+    "CurrentEnough": false,
+    "ActualCatalogQueriedOnWindows": true
+  },
+  "Guru3D": {
+    "Page": "https://www.guru3d.com/download/amd-radeon-software-adrenalin-26101-driver-download/",
+    "VerifiedDownload": false,
+    "ObservedResult": "HTTP 403 Forbidden on GitHub Windows runner"
+  }
+}

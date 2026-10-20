@@ -1,0 +1,89 @@
+{
+  "SimulatedHardwareAndInstall": true,
+  "Cases": [
+    {
+      "Scenario": "no-op-old",
+      "Before": "success",
+      "After": "error",
+      "Changed": true
+    },
+    {
+      "Scenario": "update-both",
+      "Before": "success",
+      "After": "success",
+      "Changed": false
+    },
+    {
+      "Scenario": "application-only",
+      "Before": "success",
+      "After": "error",
+      "Changed": true
+    },
+    {
+      "Scenario": "driver-only",
+      "Before": "success",
+      "After": "error",
+      "Changed": true
+    },
+    {
+      "Scenario": "already-current",
+      "Before": "success",
+      "After": "success",
+      "Changed": false
+    },
+    {
+      "Scenario": "wrong-device",
+      "Before": "success",
+      "After": "error",
+      "Changed": true
+    },
+    {
+      "Scenario": "signature-error",
+      "Before": "error",
+      "After": "error",
+      "Changed": false
+    },
+    {
+      "Scenario": "installer-1603",
+      "Before": "error",
+      "After": "error",
+      "Changed": false
+    },
+    {
+      "Scenario": "reboot-incomplete",
+      "Before": "success",
+      "After": "reboot_pending",
+      "Changed": true
+    },
+    {
+      "Scenario": "source-offline",
+      "Before": "error",
+      "After": "error",
+      "Changed": false
+    },
+    {
+      "Scenario": "download-interrupted",
+      "Before": "error",
+      "After": "error",
+      "Changed": false
+    },
+    {
+      "Scenario": "newer-driver-older-app",
+      "Before": "success",
+      "After": "error",
+      "Changed": true
+    },
+    {
+      "Scenario": "newer-app-older-driver",
+      "Before": "success",
+      "After": "error",
+      "Changed": true
+    },
+    {
+      "Scenario": "laptop",
+      "Before": "skipped",
+      "After": "skipped",
+      "Changed": false
+    }
+  ]
+}

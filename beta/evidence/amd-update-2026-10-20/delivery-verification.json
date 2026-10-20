@@ -1,0 +1,9 @@
+{
+  "Run": 39489152311,
+  "TestedSource": "8ff91324c2b5fde0b3316c0417033e2b3036516c",
+  "DeliveryCommit": "39dadd61bc459dcf41503ce184a87bd790416d1e",
+  "ExecutableSHA256": "0D7D4C4E5923D46C29E3D381D18B92B3B0FC74B9C589062574B0E44A8FD75CE4",
+  "ActualDownloadedExecutableHashMatched": true,
+  "Version": "2.6.11",
+  "RealHardwareInstallationVerified": false
+}

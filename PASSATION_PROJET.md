@@ -1,11 +1,13 @@
-# Correction AMD en validation — bêta 2.6.11
+# Livraison AMD — bêta 2.6.11, 20 octobre 2026
 
-Voir beta/AMD_UPDATE_2026-10-20.md. Défaut reproduit : une ancienne application
-et un ancien pilote pouvaient passer après un installateur sans effet. Nouveau
-parcours : package complet actuel, signature, compatibilité et versions INF par
-GPU, version de l’application et protection contre les rétrogradations.
-Publication exclusivement bêta ; suite Windows requise avant livraison EXE.
-Les autres dépôts restent inchangés. Exclusion des portables conservée.
+Voir beta/AMD_UPDATE_2026-10-20.md : package complet officiel 26.10.1 réellement
+téléchargé/signé et versions INF vérifiées. Correction du faux succès sur un ancien
+Adrenalin/pilote. Suite Windows complète, comparaison avant/après, quatre lancements
+EXE et trois échanges dashboard réussis ; EXE publié et empreinte récupérée vérifiée.
+Installation matérielle simulée sur la VM ; vérification sur le GPU client à faire.
+Publication exclusivement bêta ; portables exclus, carte mère et UI préservées.
+Chocolatey reste en 26.8.1 ; Guru3D renvoie 403, aucun faux repli annoncé.
+Les notes ci-dessous retracent les livraisons précédentes.
 
 # Livraison vérifiée et dashboard — 20 octobre 2026
 

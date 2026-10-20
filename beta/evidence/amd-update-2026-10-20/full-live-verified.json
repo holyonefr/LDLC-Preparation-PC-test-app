@@ -1,0 +1,62 @@
+{
+  "Success": true,
+  "Commit": "e473d70bd965774ccd8e38f973d3391ee7ac584c",
+  "Platform": "Microsoft Windows NT 10.0.26100.0",
+  "RealNetwork": true,
+  "InstallerExecuted": false,
+  "DriverInstalled": false,
+  "Phase": "verification",
+  "FullSources": [
+    {
+      "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+      "FileName": "whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+      "Version": "26.10.1",
+      "PageUrl": "https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-10-1.html",
+      "IsFullPackage": true
+    }
+  ],
+  "Source": {
+    "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+    "FileName": "whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+    "Version": "26.10.1",
+    "PageUrl": "https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-10-1.html",
+    "IsFullPackage": true
+  },
+  "Bytes": 1782243424,
+  "SHA256": "EAF0B61DE6CE31793D05222FD57B50C6A55095F52796A33683093381F9345B82",
+  "SignatureStatus": "Valid",
+  "Signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+  "UiPackagePaths": [
+    "Path = Packages\\Apps\\CCC2",
+    "Path = Packages\\Apps\\CCC2\\Branding",
+    "Path = Packages\\Apps\\CNBranding",
+    "Path = Bin64\\AMDSoftwareCloud.ico",
+    "Path = Bin64\\AMDSoftwareConsumer.ico",
+    "Path = Bin64\\AMDSoftwarePro.ico",
+    "Path = Packages\\Apps\\CCC2\\Branding\\Branding.msi",
+    "Path = Packages\\Apps\\CNBranding\\CNBranding64.msi",
+    "Path = Bin64\\AMDSoftwareCompatibilityTool.exe",
+    "Path = Bin64\\AMDSoftwareInstaller.exe",
+    "Path = Packages\\Drivers\\Display\\WT6A_INF\\B026676\\ccc2_install.exe",
+    "Path = Packages\\Drivers\\Display2\\WT6A_INF\\B026653\\ccc2_install.exe"
+  ],
+  "DisplayInfCount": 2,
+  "SampleTargets": [
+    {
+      "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C2",
+      "DriverVersion": "32.0.32015.7029",
+      "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C2"
+    },
+    {
+      "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C3",
+      "DriverVersion": "32.0.32015.7029",
+      "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C3"
+    },
+    {
+      "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_D2",
+      "DriverVersion": "32.0.32015.7029",
+      "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_D2"
+    }
+  ],
+  "ExtractedUiFiles": []
+}

@@ -1,0 +1,9 @@
+{
+  "Success": false,
+  "PageUrl": "https://www.guru3d.com/download/amd-radeon-software-adrenalin-26101-driver-download/",
+  "RealNetwork": true,
+  "InstallerExecuted": false,
+  "FileDownloaded": false,
+  "ErrorType": "WebException",
+  "Reason": "The remote server returned an error: (403) Forbidden."
+}
