@@ -1159,7 +1159,7 @@ function Restore-PowerSettings {
 # They are intentionally embedded so the compiled exe can report issues from any PC.
 $script:LDLCTelemetryEndpointUrl = 'https://script.google.com/macros/s/AKfycbwYe2r5-y8HeyfLjslbq7wI2BdFH0sj7TLJQSiUyeRdt_z7yytyTKsPQPPcT0HUcAci3g/exec'
 $script:LDLCTelemetryApiKey = 'LDLC-PrepTool-2026-ea2653c3d8f94cad9bbe4a2fa6fe8e18'
-$script:LDLCTelemetryToolVersion = '2.6.7'
+$script:LDLCTelemetryToolVersion = '2.6.8'
 $script:LDLCTelemetrySource = 'LDLCPreparationPC'
 $script:LDLCTelemetryApplicationSource = 'LDLC_PREPARATION_PC'
 $script:LDLCTelemetryEdition = 'LDLC'
@@ -5959,7 +5959,9 @@ function Remove-LDLCOemAndSecurityTrials {
         [int]$StartPercent = 20,
         [int]$EndPercent = 24,
         [ValidateSet('All', 'Security', 'Oem')]
-        [string]$Mode = 'All'
+        [string]$Mode = 'All',
+        [ValidateSet('All', 'McAfee', 'Norton')]
+        [string]$SecurityVendor = 'All'
     )
 
     Stop-IfRequested
@@ -5977,7 +5979,9 @@ function Remove-LDLCOemAndSecurityTrials {
     Write-Section $sectionLabel
     Write-ProgressFile $StartPercent "Recherche : $targetLabel..."
 
-    $targets = @(Get-LDLCOemRemovalTargets -Mode $Mode)
+    $targets = @(Get-LDLCOemRemovalTargets -Mode $Mode | Where-Object {
+        $SecurityVendor -eq 'All' -or $_.Profile.Category -ne 'Antivirus' -or $_.Profile.Group -eq $SecurityVendor
+    })
     if ($targets.Count -eq 0) {
         Write-Ok "Aucun element cible detecte : $targetLabel."
         Write-ProgressFile $EndPercent "Aucun element detecte : $targetLabel."
@@ -6018,7 +6022,9 @@ function Remove-LDLCOemAndSecurityTrials {
     }
 
     Clear-LDLCDetectionCaches
-    $remainingTargets = @(Get-LDLCOemRemovalTargets -Mode $Mode)
+    $remainingTargets = @(Get-LDLCOemRemovalTargets -Mode $Mode | Where-Object {
+        $SecurityVendor -eq 'All' -or $_.Profile.Category -ne 'Antivirus' -or $_.Profile.Group -eq $SecurityVendor
+    })
 
     if ($remainingTargets.Count -gt 0) {
         Write-Warn "Des elements restent presents apres le passage silencieux : $targetLabel."
@@ -6469,7 +6475,7 @@ function Remove-LDLCMicrosoftOffice {
 
 # endregion Module: 50.Cleanup.ps1
 
-# Open each detected vendor's registered uninstaller, visibly and without silent flags.
+# Norton retains its current interactive path. McAfee uses the historical isolated cleanup.
 function Get-LDLCSecurityInteractiveCommand {
     param($Program)
     $raw = [Environment]::ExpandEnvironmentVariables([string]$Program.UninstallString).Trim()
@@ -6500,8 +6506,8 @@ function Start-LDLCSecurityInteractiveUninstaller {
 function Remove-LDLCSecurityTrialsInteractively {
     param([int]$StartPercent = 1, [int]$EndPercent = 3)
     Stop-IfRequested
-    Write-Section 'DESINSTALLATION MCAFEE / NORTON'
-    $targets = @(Get-LDLCOemRemovalTargets | Where-Object { $_.Profile.Group -in @('McAfee', 'Norton') })
+    Write-Section 'DESINSTALLATION NORTON'
+    $targets = @(Get-LDLCOemRemovalTargets | Where-Object { $_.Profile.Group -eq 'Norton' })
     $removed = 0
     foreach ($target in $targets) {
         Stop-IfRequested
@@ -6533,10 +6539,10 @@ function Remove-LDLCSecurityTrialsInteractively {
         Write-Info "Desinstallation terminee : $($program.DisplayName)."
     }
     $remaining = @(Get-LDLCOemRemovalTargets | Where-Object {
-        $_.Profile.Group -in @('McAfee', 'Norton') -and (Test-LDLCProgramStillInstalled -Program $_.Program)
+        $_.Profile.Group -eq 'Norton' -and (Test-LDLCProgramStillInstalled -Program $_.Program)
     })
-    if ($remaining.Count) { throw 'McAfee/Norton encore detecte apres desinstallation ; preparation arretee avant les installations.' }
-    Write-ProgressFile $EndPercent 'Etape McAfee/Norton terminee.'
+    if ($remaining.Count) { throw 'Norton encore detecte apres desinstallation ; preparation arretee avant les installations.' }
+    Write-ProgressFile $EndPercent 'Etape Norton terminee.'
     return [pscustomobject]@{ Detected = $targets.Count; Removed = $removed; Pending = 0; Success = $true }
 }
 # region Module: 60.Gpu.ps1
@@ -11277,7 +11283,9 @@ function Invoke-LDLCSecurityCleanupIsolated {
     param(
         [int]$StartPercent = 1,
         [int]$EndPercent = 3,
-        [int]$TimeoutSeconds = 90
+        [int]$TimeoutSeconds = 90,
+        [ValidateSet('All', 'McAfee', 'Norton')]
+        [string]$SecurityVendor = 'All'
     )
 
     Stop-IfRequested
@@ -11291,10 +11299,12 @@ function Invoke-LDLCSecurityCleanupIsolated {
     $resultPath = Join-Path $runtimeRoot 'LDLC_SECURITY_CLEANUP_RESULT.json'
     Remove-Item -LiteralPath $resultPath -Force -ErrorAction SilentlyContinue
     $previousResultPath = $env:LDLC_SECURITY_RESULT_PATH
+    $previousVendorFilter = $env:LDLC_SECURITY_VENDOR_FILTER
     $process = $null
 
     try {
         $env:LDLC_SECURITY_RESULT_PATH = $resultPath
+        $env:LDLC_SECURITY_VENDOR_FILTER = $SecurityVendor
         $psExe = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
         Write-Step "McAfee/Norton : lancement isole avec limite globale de ${TimeoutSeconds}s."
         $process = Start-Process `
@@ -11352,6 +11362,12 @@ function Invoke-LDLCSecurityCleanupIsolated {
         else {
             $env:LDLC_SECURITY_RESULT_PATH = $previousResultPath
         }
+        if ($null -eq $previousVendorFilter) {
+            Remove-Item Env:\LDLC_SECURITY_VENDOR_FILTER -ErrorAction SilentlyContinue
+        }
+        else {
+            $env:LDLC_SECURITY_VENDOR_FILTER = $previousVendorFilter
+        }
     }
 }
 
@@ -11366,7 +11382,9 @@ function Invoke-LDLCPreparation {
 
         Stop-IfRequested
         Write-ProgressFile 1 "Detection de McAfee et Norton..."
-        [void](Remove-LDLCSecurityTrialsInteractively -StartPercent 1 -EndPercent 3)
+        # Restore McAfee's pre-change isolated path; Norton remains interactive.
+        [void](Invoke-LDLCSecurityCleanupIsolated -StartPercent 1 -EndPercent 2 -TimeoutSeconds 90 -SecurityVendor McAfee)
+        [void](Remove-LDLCSecurityTrialsInteractively -StartPercent 2 -EndPercent 3)
 
         Stop-IfRequested
         Write-ProgressFile 4 "Creation du point de restauration avant Windows Update..."
@@ -11651,7 +11669,8 @@ if ($SecurityCleanupWorker) {
             try { $testDelay = [math]::Min(30, [math]::Max(0, [int]$env:LDLC_SECURITY_TEST_DELAY_SECONDS)) } catch {}
             if ($testDelay -gt 0) { Start-Sleep -Seconds $testDelay }
         }
-        $result = Remove-LDLCOemAndSecurityTrials -Mode Security -StartPercent 1 -EndPercent 3
+        $securityVendor = if ($env:LDLC_SECURITY_VENDOR_FILTER) { [string]$env:LDLC_SECURITY_VENDOR_FILTER } else { 'All' }
+        $result = Remove-LDLCOemAndSecurityTrials -Mode Security -SecurityVendor $securityVendor -StartPercent 1 -EndPercent 3
         $payload = [ordered]@{
             Success = $true
             Detected = [int]$result.Detected
