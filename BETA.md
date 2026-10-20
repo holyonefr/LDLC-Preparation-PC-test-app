@@ -2,7 +2,9 @@
 
 Depot de test : **holyonefr/LDLC-Preparation-PC-test-app**.
 Base LDLC stable : commit `a2a57ee2d28203fded79802eae2a58883d996c7e`.
-Les trois depots de production ne recoivent aucun push pour cette livraison.
+Le 20 octobre, l'utilisateur autorise aussi la livraison de la correction
+Chrome/epinglage/portables AMD dans les trois productions. Le module carte mere
+reste exclusivement dans cette beta.
 
 La preparation LDLC habituelle est conservee. Tout a la fin de la phase
 Installation des applications (60 %), apres le dernier logiciel et avant toute

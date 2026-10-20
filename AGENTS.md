@@ -18,3 +18,7 @@ The motherboard feature prepares verified installers and Desktop shortcuts only.
 Exclude laptops before network or shortcuts. Do not execute real motherboard
 installers on GitHub VMs or enable automatic driver/BIOS/firmware/module installation.
 Run the native beta validation workflow after code changes; preserve test evidence.
+
+2026-10-20: the user explicitly authorized "Push sur les trois" for this Chrome
+default/taskbar and laptop AMD correction. Production publication of this delivery
+is authorized; preserve the beta-only motherboard feature and resynchronize beta.

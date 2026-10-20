@@ -806,3 +806,12 @@ overlays enregistrés. Rapport et validation native : beta/CHROME_AMD_2026-10-20
 Ne pas présenter les interactions Settings/épinglage simulées comme des essais
 sur un PC Windows 11 physique. Aucun push de production, aucune installation
 constructeur ou matérielle réelle sur runner, aucun déploiement Google.
+
+Première validation Chrome/AMD réussie : run Windows 39406284841, source 749d5eb,
+quatre vrais Preview/fermetures, suite release et API natives isolées. EXE bêta
+d3f6a73, SHA256 5A019D347988301C82102C2F7BA6D0A9C6EE35B4E05EFE46E07D3D4600C52918.
+L'utilisateur a ensuite autorisé « Push sur les trois » pour cette correction.
+Cœur 2.6.6 intégré depuis LDLC/Numerik's ; les overlays Chrome sont identiques,
+module carte mère et tests/rendu bêta préservés. Workflow de livraison production
+volontairement absent de la bêta (overlay) : beta-validation.yml reste sa voie
+de build. Nouvelle validation native après synchronisation requise.

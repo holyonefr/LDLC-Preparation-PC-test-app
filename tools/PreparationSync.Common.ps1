@@ -6,9 +6,9 @@ function Get-PreparationSyncPath {
         @($RelativePath.Split('/') | Where-Object { $_ -in @('', '.', '..') }).Count) {
         throw "Chemin de synchronisation refuse : $RelativePath"
     }
-    $base = [IO.Path]::GetFullPath($Root).TrimEnd('\')
+    $base = [IO.Path]::GetFullPath($Root).TrimEnd([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar)
     $path = [IO.Path]::GetFullPath((Join-Path $base $RelativePath))
-    if (-not $path.StartsWith($base + '\', [StringComparison]::OrdinalIgnoreCase)) { throw 'Chemin hors depot.' }
+    if (-not $path.StartsWith($base + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) { throw 'Chemin hors depot.' }
     $cursor = $path
     while ($cursor -and $cursor.Length -ge $base.Length) {
         if (Test-Path -LiteralPath $cursor) {
@@ -46,10 +46,10 @@ function Get-PreparationSharedHash {
 
 function Get-PreparationSyncPlan {
     param([string]$SourceRepository, [string]$TargetRepository)
-    $sourceRoot = [IO.Path]::GetFullPath($SourceRepository).TrimEnd('\')
-    $targetRoot = [IO.Path]::GetFullPath($TargetRepository).TrimEnd('\')
-    if ($sourceRoot -eq $targetRoot -or $sourceRoot.StartsWith($targetRoot + '\', [StringComparison]::OrdinalIgnoreCase) -or
-        $targetRoot.StartsWith($sourceRoot + '\', [StringComparison]::OrdinalIgnoreCase)) { throw 'Deux depots distincts non imbriques sont requis.' }
+    $sourceRoot = [IO.Path]::GetFullPath($SourceRepository).TrimEnd([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar)
+    $targetRoot = [IO.Path]::GetFullPath($TargetRepository).TrimEnd([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar)
+    if ($sourceRoot -eq $targetRoot -or $sourceRoot.StartsWith($targetRoot + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase) -or
+        $targetRoot.StartsWith($sourceRoot + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) { throw 'Deux depots distincts non imbriques sont requis.' }
     $policy = [IO.File]::ReadAllText((Get-PreparationSyncPath $sourceRoot 'sync/shared-files.json')) | ConvertFrom-Json
     $targetPolicy = [IO.File]::ReadAllText((Get-PreparationSyncPath $targetRoot 'sync/shared-files.json')) | ConvertFrom-Json
     if ($policy.SchemaVersion -ne 1 -or $targetPolicy.SchemaVersion -ne 1) { throw 'Schema de synchronisation inconnu.' }

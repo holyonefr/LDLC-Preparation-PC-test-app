@@ -79,7 +79,12 @@
     "tools/Test-UiFirstPaint.ps1",
     "tools/Test-UiLazyInterop.ps1",
     "tools/Test-UiPixelBuffer.ps1",
-    "tools/Update-LDLCExecutableResources.ps1"
+    "tools/Update-LDLCExecutableResources.ps1",
+    "modules/72.ChromeTaskbar.ps1",
+    "tools/Test-ChromeQuickConfirmation.ps1",
+    "tools/Test-DefaultAppsNativeAssociation.ps1",
+    "tools/Test-LDLCChromeTaskbarPin.ps1",
+    "tools/Test-LDLCGpuLaptopBypass.ps1"
   ],
   "ProtectedPaths": [
     "assets/**",

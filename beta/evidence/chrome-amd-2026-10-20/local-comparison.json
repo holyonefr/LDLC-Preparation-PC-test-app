@@ -1,0 +1,73 @@
+{
+  "SourceCommit": "749d5eb72debdc1b5319c46d3dfd6e36f44b8f12",
+  "BaselineCommit": "725f775439128ff5885e2639525c5a1f9c02902e",
+  "Environment": "Linux PowerShell 7.4.13, Windows interactions simulated",
+  "Baseline": [
+    {
+      "test": "Test-ChromeQuickConfirmation",
+      "before": "expected_failure",
+      "exitCode": 1
+    },
+    {
+      "test": "Test-LDLCGpuLaptopBypass",
+      "before": "expected_failure",
+      "exitCode": 1
+    }
+  ],
+  "BeforeFailureReasons": {
+    "Test-ChromeQuickConfirmation": "Effective Windows ProgID fallback and quoted executable path normalization failed.",
+    "Test-LDLCGpuLaptopBypass": "Portable chassis 8 entered AMD source resolution instead of skipping before network."
+  },
+  "After": [
+    {
+      "test": "Test-ChromeQuickConfirmation",
+      "exitCode": 0
+    },
+    {
+      "test": "Test-ChromeBrowserDefaultButton",
+      "exitCode": 0
+    },
+    {
+      "test": "Test-LDLCChromeTaskbarPin",
+      "exitCode": 0
+    },
+    {
+      "test": "Test-LDLCGpuLaptopBypass",
+      "exitCode": 0
+    },
+    {
+      "test": "Test-LDLCSyntax",
+      "exitCode": 0
+    }
+  ],
+  "Details": {
+    "Test-ChromeQuickConfirmation": {
+      "AlreadyConfiguredMilliseconds": 1250,
+      "Failures": 0,
+      "Assertions": 27,
+      "Mode": "simulated Windows associations, UI actions and clock",
+      "Cases": 9,
+      "RealBrowserDefaultsChanged": false
+    },
+    "Test-LDLCChromeTaskbarPin": {
+      "Cases": 10,
+      "Assertions": 20,
+      "NativeShortcutCheck": "not executed on Linux",
+      "Mode": "controller and Windows actions simulated",
+      "ActualUserTaskbarChanged": false,
+      "Failures": 0
+    },
+    "Test-LDLCGpuLaptopBypass": {
+      "NvidiaPreserved": true,
+      "Failures": 0,
+      "Assertions": 17,
+      "Cases": 17,
+      "Mode": "simulated SMBIOS and GPU boundaries; no driver installed",
+      "PortableNetworkRequests": 0
+    }
+  },
+  "NativeWindowsAPIs": "Not covered by this local report; see Windows workflow evidence.",
+  "DriverInstallersExecuted": false,
+  "RealBrowserDefaultsChanged": false,
+  "RealTaskbarChanged": false
+}

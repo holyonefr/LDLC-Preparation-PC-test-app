@@ -1,7 +1,9 @@
 # Chrome par défaut, barre des tâches et portables AMD
 
-Publication limitée à `holyonefr/LDLC-Preparation-PC-test-app`. Les trois applications
-de production restent gelées ; l'intégration carte mère de la bêta est conservée.
+La première validation concerne `holyonefr/LDLC-Preparation-PC-test-app`.
+L'utilisateur a ensuite autorisé « Push sur les trois » pour ces corrections.
+Les trois éditions conservent leur identité ; l'intégration carte mère reste
+exclusivement dans la bêta.
 
 ## Correction
 
@@ -53,7 +55,17 @@ génère pas de faux succès. Les suites existantes d'associations, AMD, ordre d
 
 ## Validation Windows GitHub
 
-Compilation native, suite release et quatre lancements du vrai EXE : **en cours**.
+Compilation native, suite release et quatre lancements du vrai EXE : **réussis**,
+[run 39406284841](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39406284841),
+source `749d5eb`, livraison `d3f6a73`. SHA256 EXE :
+`5A019D347988301C82102C2F7BA6D0A9C6EE35B4E05EFE46E07D3D4600C52918`.
+Les quatre nouveaux contrôles natifs passent : Chrome 9 scénarios/27 assertions,
+épingle 10 scénarios/22 assertions dont deux vrais raccourcis COM, AMD 17/17,
+API d'associations 3 assertions réelles sur fixture isolée. Preuves :
+[evidence/chrome-amd-2026-10-20/windows-evidence.json](evidence/chrome-amd-2026-10-20/windows-evidence.json).
+
+Nouvelle compilation requise après synchronisation du cœur de production 2.6.6 ;
+ses résultats remplaceront l'empreinte de première livraison ci-dessus.
 Le workflow utilise `live_vendor_downloads=false` : aucun installateur matériel
 n'est exécuté, aucun appel de télémétrie n'est envoyé.
 
