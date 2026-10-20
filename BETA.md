@@ -12,8 +12,8 @@ et les controles du prototype. Elle telecharge un installateur officiel verifie
 et cree son raccourci sur le vrai Bureau, y compris OneDrive. **Installation manuelle**
 par le technicien, aucun lancement constructeur automatique. Portables exclus
 avant reseau/raccourci. Aucun nouveau pilote, BIOS, antivirus ou module facultatif
-n'est installe par cette fonctionnalite. Le parcours GPU deja present reste celui
-de LDLC. Un echec reel est signale avec sa cause ; le repli manuel normal n'est pas
+n'est installe par cette fonctionnalite. Dans cette beta, AMD Adrenalin est ignore
+sur les portables ; le parcours NVIDIA reste inchange. Un echec reel est signale avec sa cause ; le repli manuel normal n'est pas
 une erreur de preparation. Rapport : `LDLC_VENDOR_UTILITY_RESULT.json` du runtime.
 
 Si la detection ou le telechargement constructeur echoue, un raccourci
@@ -61,6 +61,11 @@ installateur constructeur reel n'est execute sur la VM. La publication finale de
 livraisons est limitee au depot beta, apres reussite des controles.
 Les workflows de test restent manuels pour eviter un lancement a chaque push.
 Une validation VM ne prouve pas l'installation ni la compatibilite sur tout PC physique.
+
+Correction Chrome/AMD du 20 octobre : bouton global « Definir par defaut » tente
+en premier, verification Windows plus courte, epinglage Chrome reellement controle
+et exclusion AMD des portables avant tout telechargement. Resultats et limites :
+[beta/CHROME_AMD_2026-10-20.md](beta/CHROME_AMD_2026-10-20.md).
 
 Validation Windows terminee : voir [beta/RESULTATS_WINDOWS.md](beta/RESULTATS_WINDOWS.md).
 Quatre ouvertures/fermetures, suite release, vrais telechargements constructeurs

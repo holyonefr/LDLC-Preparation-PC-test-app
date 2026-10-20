@@ -293,6 +293,6 @@ function Complete-LDLCDefaultAppsChoice {
 }
 Set-LDLCDefaultAppsCompactProgress -Percent 50 -Message 'Configuration de Chrome...'
 & $script:RealDefaultAppAttempt -Application Chrome -State (Get-LDLCDefaultAppState Chrome) -Attempt 1 -Route ([pscustomobject]@{Kind='RegisteredPage';Uri='ms-settings:defaultapps?registeredAppMachine=ChromeFixture'})
-Assert-True (($script:ChromeActions -join ',') -eq 'Page,Association:.html,Choice:.html,Confirm:.html,Page,BrowserDefault:') 'Parcours Chrome strict : .html puis le bouton navigateur ; aucun clic .htm/http/https.'
+Assert-True (($script:ChromeActions -join ',') -eq 'Page,BrowserDefault:') 'Chrome doit essayer directement le bouton navigateur, sans ouvrir d abord le selecteur HTML.'
 Assert-True ((Get-LDLCDefaultAppState Chrome).Confirmed) 'Le bouton global doit etre suivi de la lecture des quatre associations effectives.'
 Write-Host 'OK default apps: Acrobat/Reader variants, already-default, real selection/confirmation loops with simulated UIA, effective result only, unique fallback routes, no repeated unchanged failure/confirmation, compact finally, cancellation, DPI and slow Settings.'

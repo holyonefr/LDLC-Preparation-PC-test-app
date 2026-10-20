@@ -9,6 +9,7 @@
 50.Cleanup.ps1
 60.Gpu.ps1
 70.DefaultApps.ps1
+72.ChromeTaskbar.ps1
 80.WindowsUpdate.ps1
 85.VendorUtility.ps1
 90.Workflow.ps1

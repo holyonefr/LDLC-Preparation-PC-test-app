@@ -788,3 +788,21 @@ coller le jeton via les paramètres secrets, puis enregistrer/publier
 l'environnement. Jamais de jeton/mot de passe/code OAuth dans le chat ou Git.
 Contrôles hors ligne et préparation PowerShell sans login réussis ; connexion
 réelle, consentement Windows et publication Google restent à vérifier ensuite.
+
+### Chrome par défaut, épinglage vérifié et portables AMD — 20 octobre 2026
+
+Correction uniquement bêta : bouton navigateur global tenté avant HTML, un clic
+observé protégé si Invoke reste sans effet, confirmation native des associations
+plus courte et absence d'avertissement intermédiaire périmé. Épinglage vérifié par
+Windows, avec repli sur le menu du fichier Chrome exact ; suppression de l'ancien
+succès XML sans preuve et de son redémarrage global Explorer. Nouveau module
+72.ChromeTaskbar.ps1 dans l'ordre du build. Portables/tablettes et format inconnu
+exclus de l'installation automatique Adrenalin, avant réseau ; NVIDIA conservé.
+
+Tests ciblés locaux réussis, reproductions avant correction en échec attendu.
+Nouveaux tests intégrés à la suite release, dont API d'associations et raccourcis
+COM natifs isolés sous Windows. Audit Sync-LDLCBeta requis avant publication ;
+overlays enregistrés. Rapport et validation native : beta/CHROME_AMD_2026-10-20.md.
+Ne pas présenter les interactions Settings/épinglage simulées comme des essais
+sur un PC Windows 11 physique. Aucun push de production, aucune installation
+constructeur ou matérielle réelle sur runner, aucun déploiement Google.

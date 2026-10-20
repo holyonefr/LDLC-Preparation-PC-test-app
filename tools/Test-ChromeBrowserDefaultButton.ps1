@@ -123,6 +123,12 @@ Assert-True (Wait-LDLCDefaultAppConfirmation Chrome).Confirmed 'Confirmer les qu
 Reset-Case;$script:Button.HasInvoke=$false
 Assert-True (Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome) 'Repli clic observe si Invoke est absent.'
 Assert-True ($script:Invokes -eq 0 -and $script:Clicks -eq 1) 'Un seul clic observe de repli.'
+Reset-Case
+Assert-True (Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -ObservedBrowserClick) 'Reacquerir le bouton exact pour le clic observe demande apres un Invoke sans effet.'
+Assert-True ($script:Invokes -eq 0 -and $script:Clicks -eq 1) 'Le second essai doit etre un clic observe, pas un nouvel Invoke sans effet.'
+Reset-Case;$script:MouseBlocked=$true
+Assert-Throws {Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -ObservedBrowserClick -TimeoutMilliseconds 400} 'BrowserDefault introuvable'
+Assert-True ($script:Invokes -eq 0 -and -not $script:Ready) 'Ne pas contourner un hit-test refuse lors du clic observe.'
 Reset-Case;$script:InvokeFails=$true
 Assert-True (Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome) 'Repli clic observe si Invoke echoue.'
 Assert-True ($script:Invokes -eq 1 -and $script:Clicks -eq 1) 'Essai UIA puis un clic observe.'

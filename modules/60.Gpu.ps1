@@ -1222,6 +1222,29 @@ function Install-LDLCNvidiaStack {
     Ensure-LDLCGpuDesktopShortcut -Vendor 'NVIDIA'
 }
 
+function Get-LDLCGpuComputerFormFactor {
+    # SMBIOS identity, not a GPU name or a battery/UPS, decides laptop exclusion.
+    $computers = @(); $enclosures = @()
+    foreach ($className in @('Win32_ComputerSystem', 'Win32_SystemEnclosure')) {
+        $records = @()
+        try { $records = @(Get-CimInstance -ClassName $className -OperationTimeoutSec 5 -ErrorAction Stop) }
+        catch {
+            try { $records = @(Get-WmiObject -Class $className -ErrorAction Stop) }
+            catch { $records = @() }
+        }
+        if ($className -eq 'Win32_ComputerSystem') { $computers = $records } else { $enclosures = $records }
+    }
+    $types = @($computers | ForEach-Object { $_.PCSystemType })
+    $chassis = @($enclosures | ForEach-Object { $_.ChassisTypes })
+    if (2 -in $types -or @($chassis | Where-Object { $_ -in @(8,9,10,11,14,30,31,32) }).Count -gt 0) {
+        return [pscustomobject]@{ Portable = $true; Known = $true; Reason = 'PC portable/tablette identifie par Windows (SMBIOS).' }
+    }
+    if (@($types | Where-Object { $_ -in @(1,3) }).Count -gt 0 -or @($chassis | Where-Object { $_ -in @(3,4,5,6,7,13,15,16,17,23) }).Count -gt 0) {
+        return [pscustomobject]@{ Portable = $false; Known = $true; Reason = 'PC fixe identifie par Windows (SMBIOS).' }
+    }
+    return [pscustomobject]@{ Portable = $false; Known = $false; Reason = 'Format du PC non confirme par Windows ; installation AMD automatique ignoree par precaution.' }
+}
+
 function Install-LDLCAmdStack {
     param([int]$StartPercent = 84)
 
@@ -1229,6 +1252,11 @@ function Install-LDLCAmdStack {
     $amdAdapters = @(Get-LDLCGpuAdapters | Where-Object { (Get-LDLCGpuAdapterVendor -Adapter $_) -eq 'AMD' })
     if (-not $amdAdapters.Count) {
         Write-Step 'AMD non applicable : aucun adaptateur graphique AMD present.'
+        return
+    }
+    $formFactor = Get-LDLCGpuComputerFormFactor
+    if ($formFactor.Portable -or -not $formFactor.Known) {
+        Write-Step ('AMD Adrenalin ignore : ' + $formFactor.Reason)
         return
     }
     $deviceIds = @($amdAdapters | ForEach-Object { [string]$_.PNPDeviceID } | Select-Object -Unique)
@@ -1362,7 +1390,7 @@ function Install-LDLCGpuDriversAndApps {
         }
     }
     if ($amdGpuNames.Count -gt 0) {
-        Write-Ok "GPU AMD detecte : installation driver"
+        Write-Step "GPU AMD detecte : verification du format du PC avant installation"
         Install-LDLCAmdStack -StartPercent $ProgressPercent
     }
 }

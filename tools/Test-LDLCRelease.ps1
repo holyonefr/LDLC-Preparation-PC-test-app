@@ -12,7 +12,7 @@ try {
     $env:LDLC_TELEMETRY_DISABLED = '1'
     $tests = @(
         'Test-LDLCSyntax', 'Test-LDLCTelemetryStatus', 'Test-LDLCTelemetryLifecycle', 'Test-PreparationCompletion', 'Test-PreparationStartupStop', 'Test-PreparationOutboxConcurrency', 'Test-PreparationDashboardRead',
-        'Test-LDLCDefaultApps', 'Test-DefaultAppsUiWarning', 'Test-ChromeBrowserDefaultButton', 'Test-LDLCCompactUi', 'Test-LDLCGpuAmdFlow',
+        'Test-LDLCDefaultApps', 'Test-DefaultAppsUiWarning', 'Test-ChromeBrowserDefaultButton', 'Test-ChromeQuickConfirmation', 'Test-DefaultAppsNativeAssociation', 'Test-LDLCChromeTaskbarPin', 'Test-LDLCCompactUi', 'Test-LDLCGpuAmdFlow', 'Test-LDLCGpuLaptopBypass',
         'Test-LDLCGpuAmdDetection', 'Test-LDLCAmdSoftwareDetection', 'Test-LDLCGpuInstallValidation', 'Test-NvidiaFallbackResult',
         'Test-LDLCNoValidatorDependencies', 'Test-LDLCHardening', 'Test-LDLCTaskbarPins', 'Test-LDLCWorkflowOrder',
         'Test-WindowsUpdateTrigger', 'Test-LDLCSecurityBootstrap', 'Test-LDLCEmbeddedAssets',

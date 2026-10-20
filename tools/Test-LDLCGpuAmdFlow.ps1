@@ -58,6 +58,8 @@ function Invoke-WebRequest {
 function Get-CimInstance {
     param($ClassName)
     switch ($ClassName) {
+        'Win32_ComputerSystem' { return [pscustomobject]@{ PCSystemType = 1 } }
+        'Win32_SystemEnclosure' { return [pscustomobject]@{ ChassisTypes = @(3) } }
         'Win32_VideoController' { return $script:Adapters }
         'Win32_PnPEntity' { return @() }
         'Win32_PnPSignedDriver' {
