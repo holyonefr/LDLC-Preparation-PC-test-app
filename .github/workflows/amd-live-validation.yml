@@ -17,6 +17,10 @@ jobs:
       LDLC_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Native AMD regression diagnostics without installing hardware
+        shell: powershell
+        run: ./tools/Test-LDLCAmdUpdateRegression.ps1
       - name: Inspect Chocolatey published package without executing its installation script
+        if: always()
         shell: powershell
         run: ./tools/Test-LDLCAmdChocolateyPackage.ps1
