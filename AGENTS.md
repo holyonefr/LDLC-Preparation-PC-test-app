@@ -22,3 +22,7 @@ Run the native beta validation workflow after code changes; preserve test eviden
 2026-10-20: the user explicitly authorized "Push sur les trois" for this Chrome
 default/taskbar and laptop AMD correction. Production publication of this delivery
 is authorized; preserve the beta-only motherboard feature and resynchronize beta.
+
+2026-10-20: the user also authorized the historical McAfee rollback in all three
+production repositories, with Norton parity checks. Transmission recovery is
+currently prepared in beta; other publication restrictions remain in effect.

@@ -1,3 +1,8 @@
+# Passation 2.6.9 beta — corrections en cours
+
+Voir beta/CORRECTIONS_2026-10-20.md. Aucune validation Windows de cette nouvelle
+livraison annoncee avant lecture des resultats du workflow manuel.
+
 # Passation LDLC PrepTool 2.6.8 beta
 
 ## McAfee : retour au traitement historique - 2026-10-20

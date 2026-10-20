@@ -736,9 +736,9 @@ function Close-LDLCDefaultAppsPage {
 }
 
 function Complete-LDLCDefaultAppsChoice {
-    param([string]$Association, [ValidateSet('Chrome', 'Adobe')][string]$Application)
+    param([string]$Association, [ValidateSet('Chrome', 'Adobe')][string]$Application, [int]$TimeoutMilliseconds = 12000)
     $tracking = @{ LastConfirmation = ''; Actions = @{}; Count = 0; UiError = ''; Seen = '' }
-    $confirmed = Wait-LDLCDefaultAppsCondition -TimeoutMilliseconds 12000 -Probe {
+    $confirmed = Wait-LDLCDefaultAppsCondition -TimeoutMilliseconds $TimeoutMilliseconds -Probe {
         if (Test-LDLCEffectiveAssociationTarget -State (Get-LDLCEffectiveAssociation $Association) -Application $Application) { return $true }
         try {
             foreach ($window in @(Get-LDLCDefaultAppsWindows | Sort-Object IsSettings)) {
@@ -767,9 +767,16 @@ function Complete-LDLCDefaultAppsChoice {
 }
 
 function Invoke-LDLCChromeBrowserDefaultAction {
-    # Activate the exact observed button; no association-confirmation polling.
-    [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 5000 -ObservedBrowserClick)
-    return [pscustomobject]@{ BrowserActionInvoked = $true }
+    # Restore UIA Invoke first: the guarded physical click can be unavailable
+    # even when Windows exposes a working, accessible Set default action.
+    [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 5000)
+    $verification = Wait-LDLCDefaultAppConfirmation -Application Chrome -TimeoutMilliseconds 750
+    if (-not $verification.Confirmed) {
+        try { [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 1000 -ObservedBrowserClick) }
+        catch { if (Test-LDLCStopRequestError $_) { throw }; Write-Info '[DEFAULT-APPS] Clic observe indisponible ; verification du resultat Windows.' }
+        $verification = Wait-LDLCDefaultAppConfirmation -Application Chrome -TimeoutMilliseconds 1000
+    }
+    return [pscustomobject]@{ BrowserActionInvoked = $true; Confirmed = $verification.Confirmed }
 }
 
 function Invoke-LDLCDefaultAppAttempt {
@@ -786,7 +793,9 @@ function Invoke-LDLCDefaultAppAttempt {
             Set-LDLCDefaultAppsActionProgress -Application Chrome -Association 'navigateur' -Stage Opening
             Open-LDLCDefaultAppPage -Uri $Route.Uri -Application Chrome
             Set-LDLCDefaultAppsActionProgress -Application Chrome -Association 'navigateur par defaut' -Stage Validating
-            return (Invoke-LDLCChromeBrowserDefaultAction)
+            $browserAction = Invoke-LDLCChromeBrowserDefaultAction
+            if ($browserAction.Confirmed) { return $browserAction }
+            Write-Info '[DEFAULT-APPS] Bouton transmis sans changement effectif ; utilisation des associations Windows enregistrees.'
         }
         catch {
             if (Test-LDLCStopRequestError $_) { throw }
@@ -794,7 +803,9 @@ function Invoke-LDLCDefaultAppAttempt {
             Write-Info ('[DEFAULT-APPS] Action navigateur non disponible ; essai du selecteur HTML enregistre : ' + $_.Exception.Message)
         }
     }
-    $associations = if ($Application -eq 'Chrome') { @('.html') } else { @($State.Missing) }
+    # Windows 10 and older Windows 11 pages may not have a browser-wide button.
+    # HTML alone does not configure HTTP, HTTPS and HTM.
+    $associations = @($State.Missing)
     foreach ($association in $associations) {
         Stop-IfRequested
         # Recheck before acting: an earlier choice may have changed several associations.
@@ -813,7 +824,7 @@ function Invoke-LDLCDefaultAppAttempt {
             $stage = 'Confirm'
             Set-LDLCDefaultAppsActionProgress -Application $Application -Association $association -Stage Validating
             if ($Application -eq 'Chrome') {
-                [void](Invoke-LDLCDefaultAppsUiAction -Kind Confirm -Association $association -Application Chrome -TimeoutMilliseconds 5000)
+                Complete-LDLCDefaultAppsChoice -Association $association -Application Chrome -TimeoutMilliseconds 1500
             } else { Complete-LDLCDefaultAppsChoice -Association $association -Application $Application }
         }
         catch {
@@ -822,6 +833,7 @@ function Invoke-LDLCDefaultAppAttempt {
         }
     }
     if ($Application -eq 'Chrome') {
+        if ((Get-LDLCDefaultAppState Chrome).Confirmed) { return [pscustomobject]@{ BrowserActionInvoked=$false; Confirmed=$true } }
         try {
             $uri = $Route.Uri
             if (-not $uri) { $uri = Get-LDLCDefaultAppUris Chrome | Select-Object -First 1 }
@@ -937,7 +949,7 @@ function Exit-LDLCDefaultAppsCompact {
 
 function Invoke-LDLCDefaultAppConfiguration {
     param([ValidateSet('Chrome', 'Adobe')][string]$Application, [ValidateRange(1, 3)][int]$MaxAttempts = 3, [switch]$DeferFailureWarning)
-    if ($Application -eq 'Chrome') { return Set-LDLCChromeDefaultBrowserWithUiAutomation -DeferFailureWarning:$DeferFailureWarning }
+    if ($Application -eq 'Chrome') { return Set-LDLCChromeDefaultBrowserWithUiAutomation -MaxAttempts $MaxAttempts -DeferFailureWarning:$DeferFailureWarning }
     $errors = New-Object 'Collections.Generic.List[string]'
     $verification = $null
     $attempt = 0
@@ -1008,23 +1020,23 @@ function Invoke-LDLCDefaultAppConfiguration {
 }
 
 function Set-LDLCChromeDefaultBrowserWithUiAutomation {
-    param([switch]$DeferFailureWarning)
+    param([switch]$DeferFailureWarning, [ValidateRange(1,3)][int]$MaxAttempts=3)
     Stop-IfRequested
-    # One optional read avoids touching an already configured browser. No wait,
-    # no repeated reads and no failure merely because an association is unconfirmed.
-    try { if ((Get-LDLCDefaultAppState Chrome).Confirmed) { Write-Info 'Chrome deja selectionne ; aucune action necessaire.'; return $true } } catch { }
     $entered = $false
     try {
+        $state = Get-LDLCDefaultAppState Chrome
+        if ($state.Confirmed) { Write-Info 'Chrome deja selectionne ; aucune action necessaire.'; return $true }
         Enter-LDLCDefaultAppsCompact; $entered = $true
-        $state = [pscustomobject]@{ Confirmed = $false; Missing = @('http','https','.htm','.html'); Associations = @() }
-        $routes = @(Get-LDLCDefaultAppAttemptRoutes -Application Chrome -State $state | Select-Object -First 3)
+        $routes = @(Get-LDLCDefaultAppAttemptRoutes -Application Chrome -State $state | Select-Object -First $MaxAttempts)
         $errors = @(); $attempt = 0
         foreach ($route in $routes) {
             Stop-IfRequested; $attempt++
             try {
                 [void](Invoke-LDLCDefaultAppAttempt -Application Chrome -State $state -Attempt $attempt -Route $route)
-                Write-Info 'Commande Chrome transmise a Windows ; poursuite sans confirmation des associations.'
-                return $true
+                $state=Get-LDLCDefaultAppState Chrome
+                if ($state.Confirmed) { Write-Info 'Chrome defini comme navigateur par defaut par Windows.'; return $true }
+                $errors += ('Windows n a pas applique Chrome pour : ' + ($state.Missing -join ', '))
+                break
             } catch {
                 if (Test-LDLCStopRequestError $_) { throw }
                 $errors += $_.Exception.Message
@@ -1032,7 +1044,13 @@ function Set-LDLCChromeDefaultBrowserWithUiAutomation {
             }
         }
         if (-not $routes.Count) { $errors += 'Aucune fiche Chrome ni aucun selecteur compatible.' }
-        Write-Warn ('Commande Chrome impossible : ' + ($errors -join ' | '))
+        $failure='Chrome non defini par defaut : ' + ($errors -join ' | ') + '. Verifier Parametres > Applications > Applications par defaut.'
+        if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
+        return $false
+    } catch {
+        if (Test-LDLCStopRequestError $_) { throw }
+        $failure='Configuration Chrome interrompue : ' + $_.Exception.Message
+        if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
         return $false
     } finally { if ($entered) { Close-LDLCDefaultAppsPage; Exit-LDLCDefaultAppsCompact } }
 }
@@ -1257,10 +1275,10 @@ function Invoke-LDLCChromeDefaultAppsSequence {
         Set-LDLCDefaultAppsCompactProgress -Percent $(if ($adobe) { 50 } else { 0 }) -Message 'Configuration de Chrome...'
         $chrome = Set-LDLCChromeDefaultBrowserWithUiAutomation
         if ($adobe -and $chrome) {
-            Set-LDLCDefaultAppsCompactProgress -Percent 100 -Message 'Reglages transmis' -Running $false -Success $true
-            Write-Info 'Reglages des applications par defaut termines ; aucune confirmation Chrome demandee.'
+            Set-LDLCDefaultAppsCompactProgress -Percent 100 -Message 'Configuration terminee' -Running $false -Success $true
+            Write-Info 'Applications par defaut configurees ; controle Windows termine.'
         } else {
-            $failed = @(); if (-not $adobe) { $failed += 'Adobe Acrobat Reader (.pdf)' }; if (-not $chrome) { $failed += 'Commande Chrome' }
+            $failed = @(); if (-not $adobe) { $failed += 'Adobe Acrobat Reader (.pdf)' }; if (-not $chrome) { $failed += 'Chrome (HTTP/HTTPS/.htm/.html)' }
             Set-LDLCDefaultAppsCompactProgress -Percent (50 * ([int][bool]$adobe + [int][bool]$chrome)) -Message 'Reglage non effectue' -Running $false -ErrorApplication ($failed -join ' ; ')
         }
     } finally { Exit-LDLCDefaultAppsCompact }

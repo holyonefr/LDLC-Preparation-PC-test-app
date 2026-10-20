@@ -51,7 +51,10 @@
     "tools/Test-DefaultAppsUiWarning.ps1",
     "modules/50.Cleanup.ps1",
     "modules/95.WorkerLauncher.ps1",
-    "sync/core-version.json"
+    "sync/core-version.json",
+    "modules/05.Telemetry.ps1",
+    "tools/Test-TelemetryDeliveryRecovery.ps1",
+    "tools/Test-PreparationRegressionComparison.ps1"
   ],
-  "PublicationPolicy": "Current McAfee rollback is beta-only. Prior 2026-10-20 production exception covers the already delivered Chrome/taskbar and laptop AMD corrections only; preserve beta-only motherboard integration."
+  "PublicationPolicy": "Production exceptions authorize the Chrome/default/taskbar/laptop-AMD fixes and historical McAfee rollback. Transmission recovery is beta-only until explicitly authorized for production. Preserve beta-only motherboard integration."
 }

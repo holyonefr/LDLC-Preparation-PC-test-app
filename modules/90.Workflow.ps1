@@ -288,7 +288,7 @@ function Invoke-LDLCSecurityCleanupIsolated {
         Write-Step "McAfee/Norton : lancement isole avec limite globale de ${TimeoutSeconds}s."
         $process = Start-Process `
             -FilePath $psExe `
-            -ArgumentList @('-ExecutionPolicy', 'Bypass', '-NoProfile', '-File', $workerScript, '-SecurityCleanupWorker') `
+            -ArgumentList @('-ExecutionPolicy', 'Bypass', '-NoProfile', '-File', ('"{0}"' -f $workerScript), '-SecurityCleanupWorker') `
             -WindowStyle Hidden `
             -PassThru `
             -ErrorAction Stop

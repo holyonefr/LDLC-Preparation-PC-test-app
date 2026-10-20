@@ -32,12 +32,17 @@ function Invoke-LDLCDefaultAppsUiAction {
     }
     return $true
 }
-function Complete-LDLCDefaultAppsChoice($Association, $Application) { $script:actions += 'Confirm'; $script:htmlReady = $true }
+function Complete-LDLCDefaultAppsChoice($Association, $Application, $TimeoutMilliseconds) {
+    $script:actions += 'Confirm'
+    if ($script:confirmNoEffect) { throw 'Windows did not apply this association' }
+    $script:associationReady[$Association]=$true
+}
 function Reset-Case {
     $script:cases++; $script:tick = 0; $script:cancel = $false; $script:closed = 0
     $script:warnings = @(); $script:actions = @(); $script:chromeReady = $true; $script:adobeReady = $true
     $script:htmlReady = $false; $script:failFirstGlobal = $false; $script:ignoreGlobal = $false
     $script:physicalWorks = $false; $script:observedClicks = 0; $script:allUiFailure = $false
+    $script:associationReady=@{}; $script:confirmNoEffect=$false
     $script:ProgressFile = $null; $script:LDLCDefaultAppsCompactDepth = 0; $script:LDLCDefaultAppsCompactPath = $null
     $script:LDLCDefaultAppsCompactProgress = $null
 }
@@ -72,7 +77,7 @@ public static class LDLCDefaultAppsNative {
     Assert (-not (Test-LDLCEffectiveAssociationTarget -State $association -Application Chrome)) 'A transient or failed read must not mean success.'
     function Get-LDLCEffectiveAssociation($Association) {
         $isPdf = $Association -eq '.pdf'
-        $ready = if ($isPdf) { $script:adobeReady } else { $script:chromeReady -or ($script:htmlReady -and $Association -eq '.html') }
+        $ready = if ($isPdf) { $script:adobeReady } else { $script:chromeReady -or $script:associationReady.ContainsKey($Association) }
         $program = if (-not $ready) { 'msedge.exe' } elseif ($isPdf) { 'Acrobat.exe' } else { 'chrome.exe' }
         $id = if (-not $ready) { 'MSEdgeHTM' } elseif ($isPdf) { 'AcroExch.Document.DC' } else { 'ChromeHTML.Fixture' }
         [pscustomobject]@{ Association = $Association; ProgId = $id; Executable = (Join-Path $fixture $program); Error = '' }
@@ -87,28 +92,33 @@ public static class LDLCDefaultAppsNative {
     Reset-Case; $script:chromeReady = $false
     Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'The browser-wide action must configure Chrome.'
     Assert (($actions -join ',') -eq 'Page,BrowserDefault') 'Click the exact global browser action before any HTML picker.'
+    Assert ($observedClicks -eq 0) 'A working UIA Invoke must not be replaced by an unnecessary physical click.'
     Assert ((Get-LDLCDefaultAppState Chrome).Associations.Count -eq 4) 'Keep all four real effective associations in the verification.'
     Reset-Case; $script:chromeReady = $false; $script:failFirstGlobal = $true
     Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'Keep the HTML picker fallback when the global action is unavailable.'
-    Assert ($actions -contains 'Association' -and $actions[-1] -eq 'BrowserDefault' -and $warnings.Count -eq 0) 'Fallback must still reach the browser action and must not create an intermediate false warning.'
+    Assert ($actions -contains 'Association' -and $associationReady.Count -eq 4 -and $warnings.Count -eq 0) 'Fallback without a global button must configure HTTP, HTTPS, HTM and HTML, including Windows 10 style pages.'
     Reset-Case; $script:chromeReady = $false; $script:ignoreGlobal = $true; $script:physicalWorks = $true
-    Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'Use the exact guarded observed button without waiting for association confirmation.'
+    Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'Use the exact guarded observed button after a no-effect UIA activation.'
     Assert ($observedClicks -eq 1 -and $warnings.Count -eq 0) 'One observed activation must not create an association-confirmation warning.'
-    Reset-Case; $script:chromeReady = $false; $script:ignoreGlobal = $true
-    Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'A transmitted click must continue without waiting for effective associations, as requested.'
-    Assert ($warnings.Count -eq 0 -and $tick -eq 0 -and $observedClicks -eq 1) 'No association confirmation waits or warning after a transmitted observed click.'
+    Reset-Case; $script:chromeReady = $false; $script:ignoreGlobal = $true; $script:confirmNoEffect=$true
+    Assert (-not (Invoke-LDLCDefaultAppConfiguration Chrome)) 'An invoked button with unchanged associations must never report Chrome configured.'
+    Assert ($warnings.Count -eq 1 -and $tick -le 1750 -and $observedClicks -eq 1) 'Keep verification short and surface the real unchanged state.'
     Reset-Case; $script:chromeReady = $false; $script:ignoreGlobal = $true; $script:allUiFailure = $true
     Invoke-LDLCChromeDefaultAppsSequence
     Assert ($warnings.Count -eq 1 -and -not $script:LDLCDefaultAppsCompactProgress.Success) 'A real unavailable Windows action must still create one warning and no completed UI state.'
     Reset-Case; $script:chromeReady = $false
     $script:savedWait = ${function:Wait-LDLCDefaultAppConfirmation}
-    function Wait-LDLCDefaultAppConfirmation { throw 'Chrome must not poll confirmation' }
-    Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'Legacy Chrome entry point must also avoid all confirmation polling.'
+    function Wait-LDLCDefaultAppConfirmation {
+        param($Application,$TimeoutMilliseconds)
+        Assert ($Application -ne 'Chrome' -or $TimeoutMilliseconds -le 1500) 'No repeated long Chrome confirmation waits.'
+        return (& $script:savedWait -Application $Application -TimeoutMilliseconds $TimeoutMilliseconds)
+    }
+    Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'Legacy entry point must use the same short verified action.'
     Set-Item Function:Wait-LDLCDefaultAppConfirmation $script:savedWait
     Reset-Case; $script:cancel = $true; $stopped = $false
     try { Invoke-LDLCDefaultAppConfiguration Chrome | Out-Null } catch { $stopped = Test-LDLCStopRequestError $_ }
     Assert ($stopped -and $actions.Count -eq 0) 'Cancellation must propagate before any UI action.'
-    Write-Host ('::notice title=Chrome without confirmations::' + (@{ Cases = $cases; Assertions = $checks; Failures = 0; AlreadyConfiguredMilliseconds = $readyDuration; Mode = 'simulated Windows associations, UI actions and clock'; RealBrowserDefaultsChanged = $false } | ConvertTo-Json -Compress))
+    Write-Host ('::notice title=Chrome default actions::' + (@{ Cases = $cases; Assertions = $checks; Failures = 0; AlreadyConfiguredMilliseconds = $readyDuration; Mode = 'simulated Windows associations, UI actions and clock'; RealBrowserDefaultsChanged = $false } | ConvertTo-Json -Compress))
 } finally {
     $env:LDLC_DEFAULT_APPS_UI = $oldUi
     if (Test-Path -LiteralPath $fixture) { Remove-Item -LiteralPath $fixture -Recurse -Force }

@@ -1,8 +1,9 @@
 #requires -Version 5.1
+param([string]$ModuleRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) 'modules'))
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
-. (Join-Path $root 'modules/70.DefaultApps.ps1')
-. (Join-Path $root 'modules/72.ChromeTaskbar.ps1')
+. (Join-Path $ModuleRoot '70.DefaultApps.ps1')
+. (Join-Path $ModuleRoot '72.ChromeTaskbar.ps1')
 $script:realState = ${function:Get-LDLCChromeTaskbarPinState}
 $script:checks = 0; $script:cases = 0
 function Assert($Value, $Reason) { $script:checks++; if (-not $Value) { throw $Reason } }
@@ -19,12 +20,14 @@ function Get-LDLCChromeExecutablePath { if ($script:missing) { return $null }; r
 function Get-LDLCChromeTaskbarPinState {
     param($ChromeExecutable)
     if ($script:readFailure) { throw 'simulated Shell read failure' }
+    if ($script:pinAt -gt 0 -and $script:tick -ge $script:pinAt) { $script:pinned=$true }
     return [pscustomobject]@{ Pinned = $script:pinned }
 }
 function Invoke-LDLCChromeShellPin {
     param($ChromeExecutable)
     $script:shellCalls++
     if ($script:shellWorks) { $script:pinned = $true }
+    if ($script:shellDelayed) { $script:pinAt=200 }
     return $script:verbAvailable
 }
 function Invoke-LDLCChromeTaskbarContextAction {
@@ -39,6 +42,7 @@ function Reset-Case {
     $script:missing = $false; $script:readFailure = $false; $script:shellWorks = $false
     $script:verbAvailable = $false; $script:uiWorks = $false; $script:uiFailure = $false
     $script:menuAlreadyPinned = $false; $script:shellCalls = 0; $script:uiCalls = 0; $script:success = 0; $script:warnings = @()
+    $script:pinAt=0; $script:shellDelayed=$false
 }
 foreach ($label in @('&Pin to taskbar', ('&' + [char]0xC9 + 'pingler ' + [char]0xE0 + ' la barre des t' + [char]0xE2 + 'ches'))) { Assert (Test-LDLCChromeTaskbarVerb $label) 'Recognize Windows pin command in English and French.' }
 foreach ($label in @('&Unpin from taskbar', ('D&' + [char]0xE9 + 'tacher de la barre des t' + [char]0xE2 + 'ches'))) { Assert (Test-LDLCChromeTaskbarVerb $label -Unpin) 'Recognize Windows unpin command.' }
@@ -57,8 +61,11 @@ Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Missing Shell verb must
 Reset-Case; $script:menuAlreadyPinned = $true
 Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Scoped Windows Unpin menu is proof of an existing pin.'
 Reset-Case
-Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Continue after transmitting a Windows pin command without confirmation polling.'
-Assert ($success -eq 0 -and $warnings.Count -eq 0 -and $tick -eq 0) 'Only report transmission; no claim of verified pin and no confirmation wait.'
+Assert (-not (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate)) 'A no-effect pin command must not be reported as successful.'
+Assert ($warnings.Count -eq 1 -and $tick -le 1000) 'Surface a short precise warning when Windows does not apply the pin.'
+Reset-Case; $script:verbAvailable=$true; $script:shellDelayed=$true
+Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Allow Windows to apply an asynchronous Shell pin.'
+Assert ($uiCalls -eq 0 -and $tick -eq 200) 'Do not race the asynchronous Shell command by opening another context menu immediately.'
 Reset-Case; $script:uiFailure = $true
 Assert (-not (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate)) 'Denied pin must remain a precise warning.'
 Reset-Case; $script:missing = $true
@@ -83,6 +90,10 @@ if ($env:OS -eq 'Windows_NT') {
         Assert (-not (& $script:realState -ChromeExecutable $exe -PinDirectory $directory).Pinned) 'A shortcut named Chrome pointing to Edge must not confirm a pin.'
         $link.TargetPath = $exe; $link.Save()
         Assert (& $script:realState -ChromeExecutable $exe -PinDirectory $directory).Pinned 'Read actual COM shortcut target without changing real pins.'
+        $link.TargetPath=$other; $link.Save()
+        Assert ((Get-LDLCChromeTaskbarLaunchPath -ChromeExecutable $exe -ShortcutRoots @($directory)) -eq $exe) 'Do not select a shortcut named Chrome that targets another application.'
+        $link.TargetPath=$exe; $link.Save()
+        Assert ((Get-LDLCChromeTaskbarLaunchPath -ChromeExecutable $exe -ShortcutRoots @($directory)) -eq $linkPath) 'Prefer the verified Chrome Start Menu shortcut to the raw executable for Windows pin actions.'
         $native = 'real WScript shortcut write/read in isolated folder; no taskbar changed'
     } finally { if (Test-Path -LiteralPath $directory) { Remove-Item -LiteralPath $directory -Recurse -Force } }
 }

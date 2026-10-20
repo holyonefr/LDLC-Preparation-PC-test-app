@@ -55,7 +55,7 @@ Assert-True (($script:ApplicationOrder -join ',') -eq 'Adobe,Adobe,Chrome,Chrome
 Assert-True ($script:LDLCDefaultAppsCompactProgress.Progress -eq 100 -and $script:LDLCDefaultAppsCompactProgress.Success) '100 exige les deux resultats confirmes.'
 Assert-True ($script:Attempts.Chrome -eq 2 -and $script:Attempts.Adobe -eq 2) 'Chrome et PDF doivent reessayer apres un premier echec.'
 Assert-True ($script:Warnings.Count -eq 0) 'Une tentative recuperee ne doit pas laisser un faux avertissement.'
-Assert-True ($script:Infos.Contains('Reglages des applications par defaut termines ; aucune confirmation Chrome demandee.')) 'Le bilan distingue la commande Chrome transmise et le PDF configure.'
+Assert-True ($script:Infos.Contains('Applications par defaut configurees ; controle Windows termine.')) 'Le bilan exige les associations Chrome et PDF effectivement configurees.'
 Assert-True ($script:LDLCDefaultAppsCompactDepth -eq 0) 'Restaurer la fenetre apres succes.'
 Assert-True ((Get-LDLCDefaultAppState Chrome).Associations.Count -eq 4) 'Verifier HTTP HTTPS .htm et .html.'
 $script:Ready = @{ Chrome = $false; Adobe = $false }

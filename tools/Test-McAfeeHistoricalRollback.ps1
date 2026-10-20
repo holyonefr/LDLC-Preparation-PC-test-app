@@ -74,7 +74,7 @@ try {
     }
 
     # Real isolated controller; only clock/process/target boundaries are simulated.
-    $script:LDLCEmbeddedWorkerScriptPath = Join-Path $directory 'worker.ps1'
+    $script:LDLCEmbeddedWorkerScriptPath = Join-Path $directory 'worker with spaces.ps1'
     [IO.File]::WriteAllText($script:LDLCEmbeddedWorkerScriptPath, '# harmless worker fixture')
     $script:StopFile = Join-Path $directory 'stop.flag'
     $env:WINDIR = $directory
@@ -145,6 +145,38 @@ if (-not $SecurityCleanupWorker -or $env:LDLC_SECURITY_VENDOR_FILTER -ne 'McAfee
         Assert ($result.Success -and $result.FixtureOnly) 'Run the actual Windows PowerShell child via the restored isolated controller.'
         Assert ($env:LDLC_SECURITY_VENDOR_FILTER -eq 'native-original-filter') 'Native child launch must restore caller selection.'
         $native = 'real Windows PowerShell child with synthetic result; no antivirus installed or removed'
+
+        # Exercise the generated worker and its real mode dispatch too. Stub the
+        # installed-program inventory and preparation entry point before launch:
+        # this cannot uninstall a real product or start a full preparation.
+        $script:cases++
+        $generatedPath = Join-Path $directory 'generated security worker.ps1'
+        & (Join-Path $PSScriptRoot 'Rebuild-LDLCPreparationPC.ps1') -Source worker -OutputPath $generatedPath | Out-Null
+        $generated = [IO.File]::ReadAllText($generatedPath)
+        $generatedAst = [Management.Automation.Language.Parser]::ParseInput($generated, [ref]$tokens, [ref]$errors)
+        Assert ($errors.Count -eq 0 -and 'SecurityCleanupWorker' -in @($generatedAst.ParamBlock.Parameters | ForEach-Object {$_.Name.VariablePath.UserPath})) 'Generated worker must accept the security-only switch.'
+        $replacements = @{
+            'Get-LDLCInstalledPrograms' = 'function Get-LDLCInstalledPrograms { return @() }'
+            'Invoke-LDLCPreparation' = 'function Invoke-LDLCPreparation { throw "SECURITY_WORKER_DISPATCH_FAILED" }'
+        }
+        $edits = foreach ($name in $replacements.Keys) {
+            $node = $generatedAst.Find({param($n) $n -is [Management.Automation.Language.FunctionDefinitionAst] -and $n.Name -eq $name}, $true)
+            if (-not $node) { throw ('Generated worker function missing: ' + $name) }
+            [pscustomobject]@{ Start=$node.Extent.StartOffset; End=$node.Extent.EndOffset; Text=$replacements[$name] }
+        }
+        foreach ($edit in ($edits | Sort-Object Start -Descending)) { $generated = $generated.Remove($edit.Start, $edit.End-$edit.Start).Insert($edit.Start,$edit.Text) }
+        [IO.File]::WriteAllText($generatedPath, $generated, (New-Object Text.UTF8Encoding($true)))
+        $savedRuntime = @{}
+        foreach ($name in @('ProgramData','LOCALAPPDATA','LDLC_PREP_INSTALL_WORKER')) { $savedRuntime[$name]=[Environment]::GetEnvironmentVariable($name,'Process') }
+        try {
+            $env:ProgramData=$directory; $env:LOCALAPPDATA=$directory
+            # The security branch must take priority over an inherited install flag.
+            $env:LDLC_PREP_INSTALL_WORKER='1'
+            $script:LDLCEmbeddedWorkerScriptPath=$generatedPath
+            $result=Invoke-LDLCSecurityCleanupIsolated -SecurityVendor McAfee -TimeoutSeconds 30
+            Assert ($result.Success -and $result.Detected -eq 0 -and $result.Removed -eq 0 -and -not $result.Pending) 'Generated worker must run security-only cleanup, never recurse into full preparation or UI.'
+        } finally { foreach ($name in $savedRuntime.Keys) { [Environment]::SetEnvironmentVariable($name,$savedRuntime[$name],'Process') } }
+        $native = 'real PowerShell child plus generated security worker; inventory/preparation stubbed; no real antivirus installed or removed'
     }
     Write-Host ('::notice title=McAfee historical rollback::' + (@{Cases=$cases;Assertions=$checks;Failures=0;HistoricalCommit=$hashes.Commit;NativeWorker=$native;RealMcAfeeInstalled=$false;RealMcAfeeRemoved=$false;LegacyTimeoutSeconds=90;NortonChanged=$false} | ConvertTo-Json -Compress))
 } catch {

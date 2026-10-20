@@ -1,3 +1,5 @@
+Derniere campagne en cours : [corrections 2.6.9](beta/CORRECTIONS_2026-10-20.md).
+
 # LDLC Preparation PC — version beta
 
 Depot de test : **holyonefr/LDLC-Preparation-PC-test-app**.

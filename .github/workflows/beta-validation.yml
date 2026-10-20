@@ -55,6 +55,15 @@ jobs:
           ./tools/Test-LDLCRelease.ps1
           Import-Module ./tools/experimental/motherboard/MotherboardExperiment.psm1 -Force
           Write-MbxEvidence -Kind 'beta_release' -Data @{Status='passed';Suite='Test-LDLCRelease.ps1';VendorInstallerExecuted=$false}
+      - name: Reproduce the historical failures and test the same cases after correction
+        shell: powershell
+        run: |
+          git fetch --depth=1 origin ba8257821e7d5aaf53b5c0508116e6107dfc3e46
+          if($LASTEXITCODE -ne 0){throw 'Historical revision unavailable'}
+          ./tools/Test-PreparationRegressionComparison.ps1
+      - name: Verify real acknowledgement and dashboard status for success error and cancellation
+        shell: powershell
+        run: ./tools/Test-PreparationDashboardRoundTrip.ps1 -ReportPath artifacts/dashboard-roundtrip.json
       - name: Verify live downloads and real Desktop shortcuts for all four vendors
         if: inputs.live_vendor_downloads
         shell: powershell

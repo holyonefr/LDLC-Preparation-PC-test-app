@@ -86,7 +86,9 @@
     "tools/Test-LDLCChromeTaskbarPin.ps1",
     "tools/Test-LDLCGpuLaptopBypass.ps1",
     "modules/52.SecurityUninstall.ps1",
-    "tools/Test-SecurityInteractiveUninstall.ps1"
+    "tools/Test-SecurityInteractiveUninstall.ps1",
+    "tools/Test-McAfeeHistoricalRollback.ps1",
+    "tools/fixtures/mcafee-before-changes.json"
   ],
   "ProtectedPaths": [
     "assets/**",

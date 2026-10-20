@@ -12,7 +12,7 @@ $script:LDLCTelemetryEdition = 'LDLC'
 $script:LDLCTelemetrySendSuccessfulRuns = $true
 $script:LDLCTelemetryUpdateIntervalSeconds = 60
 $script:LDLCTelemetryRemoteWriteMode = 'live'
-$script:LDLCTelemetryNetworkTimeoutSeconds = 20
+$script:LDLCTelemetryNetworkTimeoutSeconds = 30
 
 function Test-LDLCTelemetryDisabled {
     $value = [string]$env:LDLC_TELEMETRY_DISABLED
@@ -156,10 +156,10 @@ function Get-LDLCTelemetryNetworkTimeoutSeconds {
     }
 
     try {
-        return [math]::Min(20, [math]::Max(2, [int]$value))
+        return [math]::Min(60, [math]::Max(2, [int]$value))
     }
     catch {
-        return 5
+        return 20
     }
 }
 
@@ -349,6 +349,8 @@ function Initialize-LDLCTelemetry {
     if ($script:LDLCTelemetryInitialized) {
         return
     }
+
+    $script:LDLCTelemetryLastTransportFailure = $null
 
     $script:LDLCTelemetryRunId = if (-not [string]::IsNullOrWhiteSpace($env:LDLC_TELEMETRY_RUN_ID)) {
         ConvertTo-LDLCTelemetryText $env:LDLC_TELEMETRY_RUN_ID 80
@@ -848,11 +850,14 @@ function SendOrQueue-LDLCTelemetryPayload {
     $payloads = @(Merge-LDLCQueuedTelemetryPayloads -Payloads ($queuedPayloads + @($Payload)))
     # Persister avant le POST : un crash ou une coupure ne doit pas perdre la fin.
     $script:LDLCTelemetryLastQueueSaved = Write-LDLCQueuedTelemetryPayloads -Payloads $payloads
+    # A previous outage must not make this final report wait behind an unbounded
+    # archive of other preparations. Only acknowledged members are removed.
+    $batch = @(Get-LDLCTelemetrySendBatch -Payloads $payloads -CurrentPayload $Payload)
 
     try {
         $script:LDLCTelemetrySending = $true
-        Send-LDLCTelemetryPayloads -Payloads $payloads
-        Clear-LDLCQueuedTelemetryPayloads -AcknowledgedPayloads $payloads
+        Send-LDLCTelemetryPayloads -Payloads $batch
+        Clear-LDLCQueuedTelemetryPayloads -AcknowledgedPayloads $batch
         $script:LDLCTelemetryLastSentAt = [datetime]::UtcNow
         return $true
     }
@@ -1028,6 +1033,44 @@ function New-LDLCTelemetryPayload {
     }
 }
 
+function Get-LDLCTelemetrySendBatch {
+    param([object[]]$Payloads, $CurrentPayload, [int]$MaxCount = 10, [int]$MaxBytes = 524288)
+    $currentId = Get-LDLCTelemetryPayloadRunId $CurrentPayload
+    $ordered = if ($currentId) {
+        @($Payloads | Where-Object { (Get-LDLCTelemetryPayloadRunId $_) -eq $currentId }) +
+        @($Payloads | Where-Object { (Get-LDLCTelemetryPayloadRunId $_) -ne $currentId })
+    } else { @($CurrentPayload) + @($Payloads | Where-Object { $_ -ne $CurrentPayload }) }
+    $selected = New-Object 'Collections.Generic.List[object]'
+    $bytes = 0
+    foreach ($item in $ordered) {
+        $size = [Text.Encoding]::UTF8.GetByteCount((ConvertTo-Json -InputObject $item -Depth 14 -Compress))
+        if ($selected.Count -and ($selected.Count -ge $MaxCount -or $bytes + $size -gt $MaxBytes)) { break }
+        $selected.Add($item); $bytes += $size
+    }
+    return @($selected.ToArray())
+}
+
+function Get-LDLCTelemetryTransportFailure {
+    param($ErrorRecord)
+    $exception = $ErrorRecord.Exception
+    if ($exception.Data['LDLCTelemetryFailure']) { return $exception.Data['LDLCTelemetryFailure'] }
+    $current = $exception; $http = $null; $network = ''
+    while ($current) {
+        try { if ($current.Response) { $http = [int]$current.Response.StatusCode } } catch {}
+        if ($current -is [Net.WebException]) { $network = [string]$current.Status }
+        $current = $current.InnerException
+    }
+    $code = 'TransportUnknown'; $message = 'Echec de transmission non identifie ; consulter le journal local.'; $transient = $false
+    if ($http -in @(401,403)) { $code='HttpAuthorization'; $message="Acces au serveur refuse (HTTP $http). Verifier le deploiement ou le proxy." }
+    elseif ($http -in @(408,429,500,502,503,504)) { $code='HttpTransient'; $message="Serveur temporairement indisponible (HTTP $http)."; $transient=$true }
+    elseif ($http) { $code='HttpError'; $message="Serveur en erreur HTTP $http." }
+    elseif ($network -eq 'Timeout' -or $exception.GetType().Name -match 'Timeout|TaskCanceled') { $code='Timeout'; $message='Delai de transmission au serveur depasse.'; $transient=$true }
+    elseif ($network -in @('NameResolutionFailure','ProxyNameResolutionFailure')) { $code='Dns'; $message='Adresse du serveur ou du proxy introuvable (DNS).'; $transient=$true }
+    elseif ($network -in @('ConnectFailure','ConnectionClosed','KeepAliveFailure','ReceiveFailure','SendFailure')) { $code='Connection'; $message='Connexion au serveur interrompue ou impossible.'; $transient=$true }
+    elseif ($network -in @('TrustFailure','SecureChannelFailure')) { $code='Tls'; $message='Connexion HTTPS refusee : certificat ou protocole TLS a verifier.' }
+    return [pscustomobject]@{ Code=$code; Message=$message; HttpStatus=$http; Transient=$transient }
+}
+
 function Send-LDLCTelemetryPayloads {
     param([object[]]$Payloads)
 
@@ -1041,16 +1084,33 @@ function Send-LDLCTelemetryPayloads {
     } | ConvertTo-Json -Depth 14 -Compress
 
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-    $script:LDLCTelemetryRemoteRequestCount++
-    $response = Invoke-RestMethod `
-        -Uri $endpointUrl `
-        -Method Post `
-        -ContentType 'application/json; charset=utf-8' `
-        -Body $body `
-        -TimeoutSec (Get-LDLCTelemetryNetworkTimeoutSeconds)
-
-    if (-not $response -or $response.ok -ne $true) {
-        throw 'Google Apps Script n a pas acquitte la telemetrie.'
+    $script:LDLCTelemetryLastTransportFailure = $null
+    for ($attempt=1; $attempt -le 2; $attempt++) {
+        try {
+            $script:LDLCTelemetryRemoteRequestCount++
+            $response = Invoke-RestMethod -Uri $endpointUrl -Method Post -ContentType 'application/json; charset=utf-8' -Body $body -TimeoutSec (Get-LDLCTelemetryNetworkTimeoutSeconds) -ErrorAction Stop
+            $failure = $null
+            if (-not $response -or $response.ok -ne $true) {
+                $serverError = [string]$response.error
+                $failure = [pscustomobject]@{ Code='InvalidAcknowledgement'; Message='Le serveur ne renvoie pas un accuse JSON valide.'; HttpStatus=200; Transient=$false }
+                if ($serverError -eq 'unauthorized') { $failure.Code='IngestAuthorization'; $failure.Message='Cle d envoi refusee par le serveur.' }
+                elseif ($serverError -match '(?i)lock|verrou') { $failure.Code='ServerBusy'; $failure.Message='Google Sheets occupe : verrou serveur indisponible.'; $failure.Transient=$true }
+                elseif ($serverError -match '(?i)quota|too many|rate.limit') { $failure.Code='ServerQuota'; $failure.Message='Quota Google Apps Script ou Sheets atteint.'; $failure.Transient=$true }
+                elseif ($serverError -match '(?i)timeout|timed.out|execution.time') { $failure.Code='ServerTimeout'; $failure.Message='Temps d execution du serveur Google depasse.'; $failure.Transient=$true }
+                elseif ($response -is [string] -and $response -match '(?i)<html|<!doctype') { $failure.Code='HtmlResponse'; $failure.Message='Page HTML recue au lieu de JSON : connexion Google ou deploiement a verifier.' }
+            } elseif ($null -ne $response.payloads -and [int]$response.payloads -ne @($Payloads).Count) {
+                $failure = [pscustomobject]@{ Code='IncompleteAcknowledgement'; Message='Accuse serveur incomplet : nombre de rapports incorrect.'; HttpStatus=200; Transient=$false }
+            }
+            if ($failure) { $transportException = New-Object InvalidOperationException $failure.Message; $transportException.Data['LDLCTelemetryFailure']=$failure; throw $transportException }
+            $script:LDLCTelemetryLastTransportFailure=$null
+            return
+        } catch {
+            $failure=Get-LDLCTelemetryTransportFailure $_
+            $script:LDLCTelemetryLastTransportFailure=$failure
+            if (Get-Command Write-LDLCLocalLog -ErrorAction SilentlyContinue) { Write-LDLCLocalLog -Level 'INFO' -Text ("Transmission rapport : {0}, HTTP={1}, tentative={2}/2. {3}" -f $failure.Code,$failure.HttpStatus,$attempt,$failure.Message) }
+            if (-not $failure.Transient -or $attempt -eq 2) { throw [InvalidOperationException]::new($failure.Message) }
+            Start-Sleep -Milliseconds 500
+        }
     }
 }
 
@@ -1145,7 +1205,8 @@ function Complete-LDLCTelemetryRun {
     }
     elseif ($script:LDLCTelemetryLastQueueSaved) {
         Write-Host "[INFO] Telemetrie LDLC non envoyee, sauvegardee pour un prochain essai." -ForegroundColor DarkCyan
-        if ($null -ne $WorkflowCompleted) { Write-LDLCFinalProgress $percent 'Validation non transmise : reseau ou serveur indisponible. Resultat sauvegarde, nouvel envoi au prochain lancement.' }
+        $cause = if ($script:LDLCTelemetryLastTransportFailure) { $script:LDLCTelemetryLastTransportFailure.Message } else { 'Envoi au serveur non acquitte.' }
+        if ($null -ne $WorkflowCompleted) { Write-LDLCFinalProgress $percent ("Validation non transmise : $cause Resultat sauvegarde, nouvel envoi au prochain lancement.") }
     }
     else {
         Write-Host '[INFO] Telemetrie non envoyee et sauvegarde locale impossible; consulter le journal local.' -ForegroundColor Yellow

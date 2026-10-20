@@ -51,7 +51,7 @@ try {
     Assert (-not $script:LDLCDefaultAppsCompactProgress.Success -and $script:LDLCDefaultAppsCompactProgress.Progress -lt 100) 'False success after real association failure.'
     Assert (@($script:LDLCTelemetryEvents|Where-Object Message -match 'Chrome').Count -gt 0) 'Missing precise cause of real blockage.'
    }
-   'action-sent-unconfirmed' {Assert ($status -eq 'success' -and $counts.WarningCount -eq 0 -and $script:LDLCDefaultAppsCompactProgress.Success) 'An association without confirmation must not block after its command was transmitted.'}
+   'action-sent-unconfirmed' {Assert ($status -ne 'success' -and $counts.WarningCount -gt 0 -and -not $script:LDLCDefaultAppsCompactProgress.Success) 'Transmitting a command without an effective association must not claim success.'}
    'cancellation' {Assert $cancelled 'Cancellation was swallowed.'}
   }
   Assert ($script:LDLCDefaultAppsCompactDepth -eq 0 -and -not $script:LDLCDefaultAppsCompactPath) 'Compact state was not cleaned.'
