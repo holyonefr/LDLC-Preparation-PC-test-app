@@ -297,29 +297,42 @@ function Get-LDLCGpuAdapterVendor {
     return ''
 }
 
-function Resolve-LDLCAmdGpuOfficialSource {
-    # GPU-131: Auto-Detect selects the latest compatible package for each GPU,
-    # unlike a generic full RDNA package which may not support an older iGPU.
-    $pageUrl = 'https://www.amd.com/en/support/download/drivers.html'
-    $response = Invoke-WebRequest -Uri $pageUrl -Headers @{ 'Cache-Control' = 'no-cache'; Pragma = 'no-cache' } -UseBasicParsing -TimeoutSec 60 -ErrorAction Stop
-    $html = [System.Net.WebUtility]::HtmlDecode([string]$response.Content)
-    $sources = foreach ($match in [regex]::Matches($html, '(?i)href\s*=\s*["''](?<url>https://(?:drivers|download)\.amd\.com/[^"''<>\s]+)["'']')) {
-        $uri = [uri]$match.Groups['url'].Value
-        $fileName = [System.IO.Path]::GetFileName($uri.AbsolutePath)
-        if ($uri.UserInfo -or $uri.Port -ne 443 -or $fileName -notmatch '(?i)^amd-software-adrenalin-edition-(?<version>\d+(?:\.\d+){1,3})-minimalsetup-[\w-]+_web\.exe$') {
-            continue
-        }
-        [pscustomobject]@{
-            Url = $uri.AbsoluteUri
-            FileName = $fileName
-            Version = $Matches['version']
-            Provider = 'AMD officiel (Auto-Detect)'
-            PageUrl = $pageUrl
-        }
+function Get-LDLCAmdOfficialInstallerLinks {
+    param([Parameter(Mandatory=$true)][string]$Html,[Parameter(Mandatory=$true)][string]$PageUrl)
+    $decoded=[Net.WebUtility]::HtmlDecode($Html).Replace('\/','/')
+    $links=New-Object 'Collections.Generic.List[string]'
+    foreach($m in [regex]::Matches($decoded,'(?i)(?:href|data-href)\s*=\s*["''](?<url>[^"''<>]+)["'']')){[void]$links.Add($m.Groups['url'].Value)}
+    foreach($m in [regex]::Matches($decoded,'(?i)https://(?:drivers|download)\.amd\.com/[^"''<>\s]+\.exe(?:\?[^"''<>\s]*)?')){[void]$links.Add($m.Value)}
+    foreach($link in @($links | Select-Object -Unique)){
+        try{$uri=[uri]::new([uri]$PageUrl,$link)}catch{continue}
+        if($uri.Scheme -ne 'https' -or $uri.Host -notin @('drivers.amd.com','download.amd.com') -or $uri.UserInfo -or $uri.Port -ne 443){continue}
+        $name=[IO.Path]::GetFileName($uri.AbsolutePath)
+        $m=[regex]::Match($name,'(?i)^(?:whql-)?amd-software-adrenalin-edition-(?<v>\d+(?:\.\d+){1,3})-[\w.-]+\.exe$')
+        if(-not $m.Success){continue}
+        [pscustomobject]@{Url=$uri.AbsoluteUri;FileName=$name;Version=$m.Groups['v'].Value;PageUrl=$PageUrl;IsFullPackage=($name -notmatch '(?i)minimalsetup|_web\.exe$')}
     }
-    $latest = $sources | Sort-Object { [version]$_.Version } -Descending | Select-Object -First 1
-    if (-not $latest) { throw 'Lien Auto-Detect Adrenalin actuel introuvable sur la page AMD officielle.' }
+}
+
+function Resolve-LDLCAmdGpuOfficialSource {
+    # Auto-Detect is discovery metadata only; it is not proof that a driver updated.
+    $pageUrl='https://www.amd.com/en/support/download/drivers.html'
+    $response=Invoke-WebRequest -Uri $pageUrl -Headers @{'Cache-Control'='no-cache';Pragma='no-cache'} -UseBasicParsing -TimeoutSec 60 -ErrorAction Stop
+    $latest=Get-LDLCAmdOfficialInstallerLinks -Html ([string]$response.Content) -PageUrl $pageUrl |
+        Where-Object {-not $_.IsFullPackage} | Sort-Object {[version]$_.Version} -Descending | Select-Object -First 1
+    if(-not $latest){throw 'Lien Auto-Detect Adrenalin actuel introuvable sur la page AMD officielle.'}
+    $latest | Add-Member -NotePropertyName Provider -NotePropertyValue 'AMD officiel (Auto-Detect)' -Force
     return $latest
+}
+
+function Resolve-LDLCAmdGpuFullOfficialSources {
+    param([Parameter(Mandatory=$true)]$AutoDetectSource)
+    # Derive the current official release note, never a pinned driver URL/version.
+    $releaseVersion=[version]$AutoDetectSource.Version
+    $releaseUrl='https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-'+($releaseVersion.ToString() -replace '\.','-')+'.html'
+    $response=Invoke-WebRequest -Uri $releaseUrl -Headers @{'Cache-Control'='no-cache';Pragma='no-cache'} -UseBasicParsing -TimeoutSec 60 -ErrorAction Stop
+    $sources=@(Get-LDLCAmdOfficialInstallerLinks -Html ([string]$response.Content) -PageUrl $releaseUrl | Where-Object {$_.IsFullPackage -and [version]$_.Version -eq $releaseVersion} | Sort-Object Url -Unique)
+    if(-not $sources.Count){throw ('Package Adrenalin complet '+$AutoDetectSource.Version+' introuvable dans la note AMD officielle. Aucun ancien package reutilise.')}
+    return $sources
 }
 
 function Test-LDLCAmdGpuInstallerFile {

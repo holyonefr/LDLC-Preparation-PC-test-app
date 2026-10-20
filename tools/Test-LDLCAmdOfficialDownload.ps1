@@ -1,6 +1,6 @@
 #requires -Version 5.1
 [CmdletBinding()]
-param([string]$ReportPath = 'artifacts/amd-official-download.json')
+param([string]$ReportPath = 'artifacts/amd-official-download.json',[switch]$FullPackage)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 . (Join-Path $root 'modules/60.Gpu.ps1')
@@ -10,6 +10,12 @@ New-Item -ItemType Directory -Path $temp | Out-Null
 try {
     [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor 3072
     $source = Resolve-LDLCAmdGpuOfficialSource
+    if($FullPackage){
+        $sources=@(Resolve-LDLCAmdGpuFullOfficialSources -AutoDetectSource $source)
+        $report.FullSources=$sources
+        $source=$sources | Where-Object {$_.FileName -match '(?i)win10|win11'} | Select-Object -First 1
+        if(-not $source){throw 'Package Windows 10/11 introuvable.'}
+    }
     $report.Source = $source
     $report.Phase='download'
     $path=Join-Path $temp $source.FileName
@@ -21,6 +27,12 @@ try {
     $report.Signer=if($signature.SignerCertificate){[string]$signature.SignerCertificate.Subject}else{''}
     $report.Phase='verification'
     if(-not (Test-LDLCAmdGpuInstallerFile -Path $path)){throw 'Fichier AMD non valide : PE, taille ou signature.'}
+    if($FullPackage){
+        $seven=Join-Path $env:ProgramFiles '7-Zip/7z.exe'
+        $listing=@(& $seven l -slt $path)
+        if($LASTEXITCODE -ne 0){throw 'Lecture archive AMD en echec.'}
+        $report.PayloadMetadataPaths=@($listing | Where-Object {$_ -match '(?i)^Path = .*?(?:\.inf$|CNext|CNBrand|ccc2|\.xml$)'} | Select-Object -First 45)
+    }
     $report.Success=$true
 }
 catch {
