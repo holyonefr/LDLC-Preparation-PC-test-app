@@ -1159,14 +1159,14 @@ function Restore-PowerSettings {
 # They are intentionally embedded so the compiled exe can report issues from any PC.
 $script:LDLCTelemetryEndpointUrl = 'https://script.google.com/macros/s/AKfycbwYe2r5-y8HeyfLjslbq7wI2BdFH0sj7TLJQSiUyeRdt_z7yytyTKsPQPPcT0HUcAci3g/exec'
 $script:LDLCTelemetryApiKey = 'LDLC-PrepTool-2026-ea2653c3d8f94cad9bbe4a2fa6fe8e18'
-$script:LDLCTelemetryToolVersion = '2.6.8'
+$script:LDLCTelemetryToolVersion = '2.6.9'
 $script:LDLCTelemetrySource = 'LDLCPreparationPC'
 $script:LDLCTelemetryApplicationSource = 'LDLC_PREPARATION_PC'
 $script:LDLCTelemetryEdition = 'LDLC'
 $script:LDLCTelemetrySendSuccessfulRuns = $true
 $script:LDLCTelemetryUpdateIntervalSeconds = 60
 $script:LDLCTelemetryRemoteWriteMode = 'live'
-$script:LDLCTelemetryNetworkTimeoutSeconds = 20
+$script:LDLCTelemetryNetworkTimeoutSeconds = 30
 
 function Test-LDLCTelemetryDisabled {
     $value = [string]$env:LDLC_TELEMETRY_DISABLED
@@ -1310,10 +1310,10 @@ function Get-LDLCTelemetryNetworkTimeoutSeconds {
     }
 
     try {
-        return [math]::Min(20, [math]::Max(2, [int]$value))
+        return [math]::Min(60, [math]::Max(2, [int]$value))
     }
     catch {
-        return 5
+        return 20
     }
 }
 
@@ -1503,6 +1503,8 @@ function Initialize-LDLCTelemetry {
     if ($script:LDLCTelemetryInitialized) {
         return
     }
+
+    $script:LDLCTelemetryLastTransportFailure = $null
 
     $script:LDLCTelemetryRunId = if (-not [string]::IsNullOrWhiteSpace($env:LDLC_TELEMETRY_RUN_ID)) {
         ConvertTo-LDLCTelemetryText $env:LDLC_TELEMETRY_RUN_ID 80
@@ -2002,11 +2004,14 @@ function SendOrQueue-LDLCTelemetryPayload {
     $payloads = @(Merge-LDLCQueuedTelemetryPayloads -Payloads ($queuedPayloads + @($Payload)))
     # Persister avant le POST : un crash ou une coupure ne doit pas perdre la fin.
     $script:LDLCTelemetryLastQueueSaved = Write-LDLCQueuedTelemetryPayloads -Payloads $payloads
+    # A previous outage must not make this final report wait behind an unbounded
+    # archive of other preparations. Only acknowledged members are removed.
+    $batch = @(Get-LDLCTelemetrySendBatch -Payloads $payloads -CurrentPayload $Payload)
 
     try {
         $script:LDLCTelemetrySending = $true
-        Send-LDLCTelemetryPayloads -Payloads $payloads
-        Clear-LDLCQueuedTelemetryPayloads -AcknowledgedPayloads $payloads
+        Send-LDLCTelemetryPayloads -Payloads $batch
+        Clear-LDLCQueuedTelemetryPayloads -AcknowledgedPayloads $batch
         $script:LDLCTelemetryLastSentAt = [datetime]::UtcNow
         return $true
     }
@@ -2182,6 +2187,44 @@ function New-LDLCTelemetryPayload {
     }
 }
 
+function Get-LDLCTelemetrySendBatch {
+    param([object[]]$Payloads, $CurrentPayload, [int]$MaxCount = 10, [int]$MaxBytes = 524288)
+    $currentId = Get-LDLCTelemetryPayloadRunId $CurrentPayload
+    $ordered = if ($currentId) {
+        @($Payloads | Where-Object { (Get-LDLCTelemetryPayloadRunId $_) -eq $currentId }) +
+        @($Payloads | Where-Object { (Get-LDLCTelemetryPayloadRunId $_) -ne $currentId })
+    } else { @($CurrentPayload) + @($Payloads | Where-Object { $_ -ne $CurrentPayload }) }
+    $selected = New-Object 'Collections.Generic.List[object]'
+    $bytes = 0
+    foreach ($item in $ordered) {
+        $size = [Text.Encoding]::UTF8.GetByteCount((ConvertTo-Json -InputObject $item -Depth 14 -Compress))
+        if ($selected.Count -and ($selected.Count -ge $MaxCount -or $bytes + $size -gt $MaxBytes)) { break }
+        $selected.Add($item); $bytes += $size
+    }
+    return @($selected.ToArray())
+}
+
+function Get-LDLCTelemetryTransportFailure {
+    param($ErrorRecord)
+    $exception = $ErrorRecord.Exception
+    if ($exception.Data['LDLCTelemetryFailure']) { return $exception.Data['LDLCTelemetryFailure'] }
+    $current = $exception; $http = $null; $network = ''
+    while ($current) {
+        try { if ($current.Response) { $http = [int]$current.Response.StatusCode } } catch {}
+        if ($current -is [Net.WebException]) { $network = [string]$current.Status }
+        $current = $current.InnerException
+    }
+    $code = 'TransportUnknown'; $message = 'Echec de transmission non identifie ; consulter le journal local.'; $transient = $false
+    if ($http -in @(401,403)) { $code='HttpAuthorization'; $message="Acces au serveur refuse (HTTP $http). Verifier le deploiement ou le proxy." }
+    elseif ($http -in @(408,429,500,502,503,504)) { $code='HttpTransient'; $message="Serveur temporairement indisponible (HTTP $http)."; $transient=$true }
+    elseif ($http) { $code='HttpError'; $message="Serveur en erreur HTTP $http." }
+    elseif ($network -eq 'Timeout' -or $exception.GetType().Name -match 'Timeout|TaskCanceled') { $code='Timeout'; $message='Delai de transmission au serveur depasse.'; $transient=$true }
+    elseif ($network -in @('NameResolutionFailure','ProxyNameResolutionFailure')) { $code='Dns'; $message='Adresse du serveur ou du proxy introuvable (DNS).'; $transient=$true }
+    elseif ($network -in @('ConnectFailure','ConnectionClosed','KeepAliveFailure','ReceiveFailure','SendFailure')) { $code='Connection'; $message='Connexion au serveur interrompue ou impossible.'; $transient=$true }
+    elseif ($network -in @('TrustFailure','SecureChannelFailure')) { $code='Tls'; $message='Connexion HTTPS refusee : certificat ou protocole TLS a verifier.' }
+    return [pscustomobject]@{ Code=$code; Message=$message; HttpStatus=$http; Transient=$transient }
+}
+
 function Send-LDLCTelemetryPayloads {
     param([object[]]$Payloads)
 
@@ -2195,16 +2238,33 @@ function Send-LDLCTelemetryPayloads {
     } | ConvertTo-Json -Depth 14 -Compress
 
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-    $script:LDLCTelemetryRemoteRequestCount++
-    $response = Invoke-RestMethod `
-        -Uri $endpointUrl `
-        -Method Post `
-        -ContentType 'application/json; charset=utf-8' `
-        -Body $body `
-        -TimeoutSec (Get-LDLCTelemetryNetworkTimeoutSeconds)
-
-    if (-not $response -or $response.ok -ne $true) {
-        throw 'Google Apps Script n a pas acquitte la telemetrie.'
+    $script:LDLCTelemetryLastTransportFailure = $null
+    for ($attempt=1; $attempt -le 2; $attempt++) {
+        try {
+            $script:LDLCTelemetryRemoteRequestCount++
+            $response = Invoke-RestMethod -Uri $endpointUrl -Method Post -ContentType 'application/json; charset=utf-8' -Body $body -TimeoutSec (Get-LDLCTelemetryNetworkTimeoutSeconds) -ErrorAction Stop
+            $failure = $null
+            if (-not $response -or $response.ok -ne $true) {
+                $serverError = [string]$response.error
+                $failure = [pscustomobject]@{ Code='InvalidAcknowledgement'; Message='Le serveur ne renvoie pas un accuse JSON valide.'; HttpStatus=200; Transient=$false }
+                if ($serverError -eq 'unauthorized') { $failure.Code='IngestAuthorization'; $failure.Message='Cle d envoi refusee par le serveur.' }
+                elseif ($serverError -match '(?i)lock|verrou') { $failure.Code='ServerBusy'; $failure.Message='Google Sheets occupe : verrou serveur indisponible.'; $failure.Transient=$true }
+                elseif ($serverError -match '(?i)quota|too many|rate.limit') { $failure.Code='ServerQuota'; $failure.Message='Quota Google Apps Script ou Sheets atteint.'; $failure.Transient=$true }
+                elseif ($serverError -match '(?i)timeout|timed.out|execution.time') { $failure.Code='ServerTimeout'; $failure.Message='Temps d execution du serveur Google depasse.'; $failure.Transient=$true }
+                elseif ($response -is [string] -and $response -match '(?i)<html|<!doctype') { $failure.Code='HtmlResponse'; $failure.Message='Page HTML recue au lieu de JSON : connexion Google ou deploiement a verifier.' }
+            } elseif ($null -ne $response.payloads -and [int]$response.payloads -ne @($Payloads).Count) {
+                $failure = [pscustomobject]@{ Code='IncompleteAcknowledgement'; Message='Accuse serveur incomplet : nombre de rapports incorrect.'; HttpStatus=200; Transient=$false }
+            }
+            if ($failure) { $transportException = New-Object InvalidOperationException $failure.Message; $transportException.Data['LDLCTelemetryFailure']=$failure; throw $transportException }
+            $script:LDLCTelemetryLastTransportFailure=$null
+            return
+        } catch {
+            $failure=Get-LDLCTelemetryTransportFailure $_
+            $script:LDLCTelemetryLastTransportFailure=$failure
+            if (Get-Command Write-LDLCLocalLog -ErrorAction SilentlyContinue) { Write-LDLCLocalLog -Level 'INFO' -Text ("Transmission rapport : {0}, HTTP={1}, tentative={2}/2. {3}" -f $failure.Code,$failure.HttpStatus,$attempt,$failure.Message) }
+            if (-not $failure.Transient -or $attempt -eq 2) { throw [InvalidOperationException]::new($failure.Message) }
+            Start-Sleep -Milliseconds 500
+        }
     }
 }
 
@@ -2299,7 +2359,8 @@ function Complete-LDLCTelemetryRun {
     }
     elseif ($script:LDLCTelemetryLastQueueSaved) {
         Write-Host "[INFO] Telemetrie LDLC non envoyee, sauvegardee pour un prochain essai." -ForegroundColor DarkCyan
-        if ($null -ne $WorkflowCompleted) { Write-LDLCFinalProgress $percent 'Validation non transmise : reseau ou serveur indisponible. Resultat sauvegarde, nouvel envoi au prochain lancement.' }
+        $cause = if ($script:LDLCTelemetryLastTransportFailure) { $script:LDLCTelemetryLastTransportFailure.Message } else { 'Envoi au serveur non acquitte.' }
+        if ($null -ne $WorkflowCompleted) { Write-LDLCFinalProgress $percent ("Validation non transmise : $cause Resultat sauvegarde, nouvel envoi au prochain lancement.") }
     }
     else {
         Write-Host '[INFO] Telemetrie non envoyee et sauvegarde locale impossible; consulter le journal local.' -ForegroundColor Yellow
@@ -8682,9 +8743,9 @@ function Close-LDLCDefaultAppsPage {
 }
 
 function Complete-LDLCDefaultAppsChoice {
-    param([string]$Association, [ValidateSet('Chrome', 'Adobe')][string]$Application)
+    param([string]$Association, [ValidateSet('Chrome', 'Adobe')][string]$Application, [int]$TimeoutMilliseconds = 12000)
     $tracking = @{ LastConfirmation = ''; Actions = @{}; Count = 0; UiError = ''; Seen = '' }
-    $confirmed = Wait-LDLCDefaultAppsCondition -TimeoutMilliseconds 12000 -Probe {
+    $confirmed = Wait-LDLCDefaultAppsCondition -TimeoutMilliseconds $TimeoutMilliseconds -Probe {
         if (Test-LDLCEffectiveAssociationTarget -State (Get-LDLCEffectiveAssociation $Association) -Application $Application) { return $true }
         try {
             foreach ($window in @(Get-LDLCDefaultAppsWindows | Sort-Object IsSettings)) {
@@ -8713,9 +8774,16 @@ function Complete-LDLCDefaultAppsChoice {
 }
 
 function Invoke-LDLCChromeBrowserDefaultAction {
-    # Activate the exact observed button; no association-confirmation polling.
-    [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 5000 -ObservedBrowserClick)
-    return [pscustomobject]@{ BrowserActionInvoked = $true }
+    # Restore UIA Invoke first: the guarded physical click can be unavailable
+    # even when Windows exposes a working, accessible Set default action.
+    [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 5000)
+    $verification = Wait-LDLCDefaultAppConfirmation -Application Chrome -TimeoutMilliseconds 750
+    if (-not $verification.Confirmed) {
+        try { [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 1000 -ObservedBrowserClick) }
+        catch { if (Test-LDLCStopRequestError $_) { throw }; Write-Info '[DEFAULT-APPS] Clic observe indisponible ; verification du resultat Windows.' }
+        $verification = Wait-LDLCDefaultAppConfirmation -Application Chrome -TimeoutMilliseconds 1000
+    }
+    return [pscustomobject]@{ BrowserActionInvoked = $true; Confirmed = $verification.Confirmed }
 }
 
 function Invoke-LDLCDefaultAppAttempt {
@@ -8732,7 +8800,9 @@ function Invoke-LDLCDefaultAppAttempt {
             Set-LDLCDefaultAppsActionProgress -Application Chrome -Association 'navigateur' -Stage Opening
             Open-LDLCDefaultAppPage -Uri $Route.Uri -Application Chrome
             Set-LDLCDefaultAppsActionProgress -Application Chrome -Association 'navigateur par defaut' -Stage Validating
-            return (Invoke-LDLCChromeBrowserDefaultAction)
+            $browserAction = Invoke-LDLCChromeBrowserDefaultAction
+            if ($browserAction.Confirmed) { return $browserAction }
+            Write-Info '[DEFAULT-APPS] Bouton transmis sans changement effectif ; utilisation des associations Windows enregistrees.'
         }
         catch {
             if (Test-LDLCStopRequestError $_) { throw }
@@ -8740,7 +8810,9 @@ function Invoke-LDLCDefaultAppAttempt {
             Write-Info ('[DEFAULT-APPS] Action navigateur non disponible ; essai du selecteur HTML enregistre : ' + $_.Exception.Message)
         }
     }
-    $associations = if ($Application -eq 'Chrome') { @('.html') } else { @($State.Missing) }
+    # Windows 10 and older Windows 11 pages may not have a browser-wide button.
+    # HTML alone does not configure HTTP, HTTPS and HTM.
+    $associations = @($State.Missing)
     foreach ($association in $associations) {
         Stop-IfRequested
         # Recheck before acting: an earlier choice may have changed several associations.
@@ -8759,7 +8831,7 @@ function Invoke-LDLCDefaultAppAttempt {
             $stage = 'Confirm'
             Set-LDLCDefaultAppsActionProgress -Application $Application -Association $association -Stage Validating
             if ($Application -eq 'Chrome') {
-                [void](Invoke-LDLCDefaultAppsUiAction -Kind Confirm -Association $association -Application Chrome -TimeoutMilliseconds 5000)
+                Complete-LDLCDefaultAppsChoice -Association $association -Application Chrome -TimeoutMilliseconds 1500
             } else { Complete-LDLCDefaultAppsChoice -Association $association -Application $Application }
         }
         catch {
@@ -8768,6 +8840,7 @@ function Invoke-LDLCDefaultAppAttempt {
         }
     }
     if ($Application -eq 'Chrome') {
+        if ((Get-LDLCDefaultAppState Chrome).Confirmed) { return [pscustomobject]@{ BrowserActionInvoked=$false; Confirmed=$true } }
         try {
             $uri = $Route.Uri
             if (-not $uri) { $uri = Get-LDLCDefaultAppUris Chrome | Select-Object -First 1 }
@@ -8883,7 +8956,7 @@ function Exit-LDLCDefaultAppsCompact {
 
 function Invoke-LDLCDefaultAppConfiguration {
     param([ValidateSet('Chrome', 'Adobe')][string]$Application, [ValidateRange(1, 3)][int]$MaxAttempts = 3, [switch]$DeferFailureWarning)
-    if ($Application -eq 'Chrome') { return Set-LDLCChromeDefaultBrowserWithUiAutomation -DeferFailureWarning:$DeferFailureWarning }
+    if ($Application -eq 'Chrome') { return Set-LDLCChromeDefaultBrowserWithUiAutomation -MaxAttempts $MaxAttempts -DeferFailureWarning:$DeferFailureWarning }
     $errors = New-Object 'Collections.Generic.List[string]'
     $verification = $null
     $attempt = 0
@@ -8954,23 +9027,23 @@ function Invoke-LDLCDefaultAppConfiguration {
 }
 
 function Set-LDLCChromeDefaultBrowserWithUiAutomation {
-    param([switch]$DeferFailureWarning)
+    param([switch]$DeferFailureWarning, [ValidateRange(1,3)][int]$MaxAttempts=3)
     Stop-IfRequested
-    # One optional read avoids touching an already configured browser. No wait,
-    # no repeated reads and no failure merely because an association is unconfirmed.
-    try { if ((Get-LDLCDefaultAppState Chrome).Confirmed) { Write-Info 'Chrome deja selectionne ; aucune action necessaire.'; return $true } } catch { }
     $entered = $false
     try {
+        $state = Get-LDLCDefaultAppState Chrome
+        if ($state.Confirmed) { Write-Info 'Chrome deja selectionne ; aucune action necessaire.'; return $true }
         Enter-LDLCDefaultAppsCompact; $entered = $true
-        $state = [pscustomobject]@{ Confirmed = $false; Missing = @('http','https','.htm','.html'); Associations = @() }
-        $routes = @(Get-LDLCDefaultAppAttemptRoutes -Application Chrome -State $state | Select-Object -First 3)
+        $routes = @(Get-LDLCDefaultAppAttemptRoutes -Application Chrome -State $state | Select-Object -First $MaxAttempts)
         $errors = @(); $attempt = 0
         foreach ($route in $routes) {
             Stop-IfRequested; $attempt++
             try {
                 [void](Invoke-LDLCDefaultAppAttempt -Application Chrome -State $state -Attempt $attempt -Route $route)
-                Write-Info 'Commande Chrome transmise a Windows ; poursuite sans confirmation des associations.'
-                return $true
+                $state=Get-LDLCDefaultAppState Chrome
+                if ($state.Confirmed) { Write-Info 'Chrome defini comme navigateur par defaut par Windows.'; return $true }
+                $errors += ('Windows n a pas applique Chrome pour : ' + ($state.Missing -join ', '))
+                break
             } catch {
                 if (Test-LDLCStopRequestError $_) { throw }
                 $errors += $_.Exception.Message
@@ -8978,7 +9051,13 @@ function Set-LDLCChromeDefaultBrowserWithUiAutomation {
             }
         }
         if (-not $routes.Count) { $errors += 'Aucune fiche Chrome ni aucun selecteur compatible.' }
-        Write-Warn ('Commande Chrome impossible : ' + ($errors -join ' | '))
+        $failure='Chrome non defini par defaut : ' + ($errors -join ' | ') + '. Verifier Parametres > Applications > Applications par defaut.'
+        if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
+        return $false
+    } catch {
+        if (Test-LDLCStopRequestError $_) { throw }
+        $failure='Configuration Chrome interrompue : ' + $_.Exception.Message
+        if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
         return $false
     } finally { if ($entered) { Close-LDLCDefaultAppsPage; Exit-LDLCDefaultAppsCompact } }
 }
@@ -9203,10 +9282,10 @@ function Invoke-LDLCChromeDefaultAppsSequence {
         Set-LDLCDefaultAppsCompactProgress -Percent $(if ($adobe) { 50 } else { 0 }) -Message 'Configuration de Chrome...'
         $chrome = Set-LDLCChromeDefaultBrowserWithUiAutomation
         if ($adobe -and $chrome) {
-            Set-LDLCDefaultAppsCompactProgress -Percent 100 -Message 'Reglages transmis' -Running $false -Success $true
-            Write-Info 'Reglages des applications par defaut termines ; aucune confirmation Chrome demandee.'
+            Set-LDLCDefaultAppsCompactProgress -Percent 100 -Message 'Configuration terminee' -Running $false -Success $true
+            Write-Info 'Applications par defaut configurees ; controle Windows termine.'
         } else {
-            $failed = @(); if (-not $adobe) { $failed += 'Adobe Acrobat Reader (.pdf)' }; if (-not $chrome) { $failed += 'Commande Chrome' }
+            $failed = @(); if (-not $adobe) { $failed += 'Adobe Acrobat Reader (.pdf)' }; if (-not $chrome) { $failed += 'Chrome (HTTP/HTTPS/.htm/.html)' }
             Set-LDLCDefaultAppsCompactProgress -Percent (50 * ([int][bool]$adobe + [int][bool]$chrome)) -Message 'Reglage non effectue' -Running $false -ErrorApplication ($failed -join ' ; ')
         }
     } finally { Exit-LDLCDefaultAppsCompact }
@@ -9277,8 +9356,8 @@ function Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate {
 }
 
 # endregion Module: 70.DefaultApps.ps1
-# Send Chrome pin commands through exposed Windows actions, without confirmation waits.
-# Report transmission only; do not force layouts or restart Explorer globally.
+# Use Windows-exposed pin actions and verify their result with a short budget.
+# Preserve other pins; never force layouts or restart Explorer globally.
 function Test-LDLCChromeTaskbarVerb {
     param([string]$Name, [switch]$Unpin)
     $text = Convert-LDLCDefaultAppsComparableText ($Name -replace '&', '')
@@ -9296,12 +9375,30 @@ function Test-LDLCChromeTaskbarPath {
     } catch { return $false }
 }
 
+function Get-LDLCChromeTaskbarLaunchPath {
+    param([string]$ChromeExecutable, [string[]]$ShortcutRoots)
+    if (-not $ShortcutRoots) { $ShortcutRoots=@([Environment]::GetFolderPath('CommonPrograms'),[Environment]::GetFolderPath('Programs')) }
+    $wscript=$null
+    foreach ($root in $ShortcutRoots) {
+        if (-not $root -or -not (Test-Path -LiteralPath $root -PathType Container)) { continue }
+        foreach ($shortcut in @(Get-ChildItem -LiteralPath $root -Filter '*Chrome*.lnk' -File -Recurse -ErrorAction SilentlyContinue)) {
+            try {
+                if (-not $wscript) { $wscript=New-Object -ComObject WScript.Shell }
+                $target=$wscript.CreateShortcut($shortcut.FullName).TargetPath
+                if (Test-LDLCChromeTaskbarPath -Actual $target -Expected $ChromeExecutable) { return $shortcut.FullName }
+            } catch { }
+        }
+    }
+    return $ChromeExecutable
+}
+
 function Get-LDLCChromeShellPinItem {
     param([string]$ChromeExecutable)
     $shell = New-Object -ComObject Shell.Application
-    $folder = $shell.Namespace((Split-Path -Parent $ChromeExecutable))
+    $launchPath=Get-LDLCChromeTaskbarLaunchPath -ChromeExecutable $ChromeExecutable
+    $folder = $shell.Namespace((Split-Path -Parent $launchPath))
     if (-not $folder) { throw 'Dossier Chrome non expose par Windows Shell.' }
-    $item = $folder.ParseName((Split-Path -Leaf $ChromeExecutable))
+    $item = $folder.ParseName((Split-Path -Leaf $launchPath))
     if (-not $item) { throw 'Executable Chrome non expose par Windows Shell.' }
     return $item
 }
@@ -9337,12 +9434,16 @@ function Invoke-LDLCChromeShellPin {
 }
 
 function Get-LDLCChromeExplorerSelection {
-    param($Shell, [string]$ChromeExecutable)
+    param($Shell, [string]$ChromeExecutable, [string]$SelectionPath = $ChromeExecutable)
     foreach ($window in @($Shell.Windows())) {
         try {
             if ((Split-Path -Leaf ([string]$window.FullName)) -ine 'explorer.exe') { continue }
             $selected = @($window.Document.SelectedItems())
-            if ($selected.Count -eq 1 -and (Test-LDLCChromeTaskbarPath -Actual ([string]$selected[0].Path) -Expected $ChromeExecutable)) {
+            if ($selected.Count -eq 1 -and (Test-LDLCChromeTaskbarPath -Actual ([string]$selected[0].Path) -Expected $SelectionPath)) {
+                if (-not (Test-LDLCChromeTaskbarPath -Actual $SelectionPath -Expected $ChromeExecutable)) {
+                    $link=(New-Object -ComObject WScript.Shell).CreateShortcut($SelectionPath)
+                    if (-not (Test-LDLCChromeTaskbarPath -Actual $link.TargetPath -Expected $ChromeExecutable)) { continue }
+                }
                 return $window
             }
         } catch { }
@@ -9357,13 +9458,16 @@ function Test-LDLCChromeExplorerForeground {
 }
 
 function Get-LDLCChromeTaskbarContextItems {
-    param([uint32]$ProcessId)
+    param([uint32]$ProcessId, [IntPtr]$OwnerHandle = [IntPtr]::Zero)
     $desktop = [System.Windows.Automation.AutomationElement]::RootElement
     $windows = $desktop.FindAll([System.Windows.Automation.TreeScope]::Children, [System.Windows.Automation.Condition]::TrueCondition)
     $condition = New-Object System.Windows.Automation.PropertyCondition ([System.Windows.Automation.AutomationElement]::ControlTypeProperty), ([System.Windows.Automation.ControlType]::MenuItem)
     foreach ($window in $windows) {
         try {
-            if ($window.Current.ProcessId -ne $ProcessId) { continue }
+            if ($window.Current.ProcessId -ne $ProcessId) {
+                $menuHandle=[IntPtr]$window.Current.NativeWindowHandle
+                if ($OwnerHandle -eq [IntPtr]::Zero -or $menuHandle -eq [IntPtr]::Zero -or [LDLCDefaultAppsNative]::GetAncestor($menuHandle,3) -ne $OwnerHandle) { continue }
+            }
             foreach ($element in $window.FindAll([System.Windows.Automation.TreeScope]::Descendants, $condition)) {
                 if (-not $element.Current.IsOffscreen -and $element.Current.IsEnabled) {
                     [pscustomobject]@{ Element = $element; Name = [string]$element.Current.Name }
@@ -9392,26 +9496,27 @@ function Invoke-LDLCChromeTaskbarContextAction {
     $previousForeground = [LDLCDefaultAppsNative]::GetForegroundWindow()
     $window = $null; $handle = [IntPtr]::Zero; $menuOpened = $false
     try {
-        Start-Process -FilePath explorer.exe -ArgumentList ('/select,"' + $ChromeExecutable + '"') -ErrorAction Stop | Out-Null
+        $selectionPath=Get-LDLCChromeTaskbarLaunchPath -ChromeExecutable $ChromeExecutable
+        Start-Process -FilePath explorer.exe -ArgumentList ('/select,"' + $selectionPath + '"') -ErrorAction Stop | Out-Null
         $window = Wait-LDLCDefaultAppsCondition -TimeoutMilliseconds 4000 -PollMilliseconds 200 -Probe {
-            Get-LDLCChromeExplorerSelection -Shell $shell -ChromeExecutable $ChromeExecutable
+            Get-LDLCChromeExplorerSelection -Shell $shell -ChromeExecutable $ChromeExecutable -SelectionPath $selectionPath
         }
         if (-not $window) { throw 'Selection de l executable Chrome non confirmee dans Explorer ; aucune touche envoyee.' }
         $handle = [IntPtr][long]$window.HWND
         [void](Set-LDLCDefaultAppsFocus -Window ([pscustomobject]@{ Handle = $handle }))
         if (-not (Test-LDLCChromeExplorerForeground -Handle $handle)) { throw 'Explorer ne possede pas le premier plan ; aucune touche envoyee.' }
-        $selected = Get-LDLCChromeExplorerSelection -Shell $shell -ChromeExecutable $ChromeExecutable
+        $selected = Get-LDLCChromeExplorerSelection -Shell $shell -ChromeExecutable $ChromeExecutable -SelectionPath $selectionPath
         if (-not $selected -or [long]$selected.HWND -ne [long]$handle) { throw 'La selection Chrome a change ; epinglage annule.' }
         [System.Windows.Forms.SendKeys]::SendWait('+{F10}')
         $menuOpened = $true
         $tracking = @{ More = $false }
         $result = Wait-LDLCDefaultAppsCondition -TimeoutMilliseconds 4000 -PollMilliseconds 200 -Probe {
             if (-not (Test-LDLCChromeExplorerForeground -Handle $handle)) { return $false }
-            $selected = Get-LDLCChromeExplorerSelection -Shell $shell -ChromeExecutable $ChromeExecutable
+            $selected = Get-LDLCChromeExplorerSelection -Shell $shell -ChromeExecutable $ChromeExecutable -SelectionPath $selectionPath
             if (-not $selected -or [long]$selected.HWND -ne [long]$handle) { return $false }
             $ownerProcess = [uint32]0
             [void][LDLCDefaultAppsNative]::GetWindowThreadProcessId($handle, [ref]$ownerProcess)
-            $items = @(Get-LDLCChromeTaskbarContextItems -ProcessId $ownerProcess)
+            $items = @(Get-LDLCChromeTaskbarContextItems -ProcessId $ownerProcess -OwnerHandle $handle)
             $unpin = @($items | Where-Object { Test-LDLCChromeTaskbarVerb -Name $_.Name -Unpin })
             if ($unpin.Count -eq 1) { return [pscustomobject]@{ ObservedPinned = $true; Invoked = $false } }
             $pin = @($items | Where-Object { Test-LDLCChromeTaskbarVerb -Name $_.Name })
@@ -9427,6 +9532,10 @@ function Invoke-LDLCChromeTaskbarContextAction {
             return $false
         }
         if (-not $result) { throw 'Commande Epingler a la barre des taches absente, desactivee ou non accessible dans le menu Windows de Chrome.' }
+        if ($result.Invoked) {
+            $confirmed=Wait-LDLCChromeTaskbarPin -ChromeExecutable $ChromeExecutable -TimeoutMilliseconds 1000
+            $result | Add-Member NoteProperty Confirmed ([bool]$confirmed)
+        }
         return $result
     }
     finally {
@@ -9456,13 +9565,14 @@ function Invoke-LDLCChromeTaskbarPin {
             return $true
         }
         $verbInvoked = Invoke-LDLCChromeShellPin -ChromeExecutable $chrome
-        if ($verbInvoked -and (Get-LDLCChromeTaskbarPinState -ChromeExecutable $chrome).Pinned) {
-            Write-Info 'Commande d epinglage Chrome transmise.'
+        if ($verbInvoked -and (Wait-LDLCChromeTaskbarPin -ChromeExecutable $chrome -TimeoutMilliseconds 1000)) {
+            Write-Info 'Chrome epingle a la barre des taches par Windows.'
             return $true
         }
         $action = Invoke-LDLCChromeTaskbarContextAction -ChromeExecutable $chrome
         if (-not $action.ObservedPinned -and -not $action.Invoked) { throw 'Aucune commande d epinglage Windows accessible.' }
-        Write-Info 'Commande d epinglage Chrome transmise ; poursuite sans attente de confirmation.'
+        if (-not $action.ObservedPinned -and -not $action.Confirmed -and -not (Wait-LDLCChromeTaskbarPin -ChromeExecutable $chrome -TimeoutMilliseconds 1000)) { throw 'Windows n a pas applique l epinglage. Utiliser le menu Chrome > Epingler a la barre des taches si les regles du poste le permettent.' }
+        Write-Info 'Chrome epingle a la barre des taches par Windows.'
         return $true
     } catch {
         if (Test-LDLCStopRequestError $_) { throw }
@@ -11309,7 +11419,7 @@ function Invoke-LDLCSecurityCleanupIsolated {
         Write-Step "McAfee/Norton : lancement isole avec limite globale de ${TimeoutSeconds}s."
         $process = Start-Process `
             -FilePath $psExe `
-            -ArgumentList @('-ExecutionPolicy', 'Bypass', '-NoProfile', '-File', $workerScript, '-SecurityCleanupWorker') `
+            -ArgumentList @('-ExecutionPolicy', 'Bypass', '-NoProfile', '-File', ('"{0}"' -f $workerScript), '-SecurityCleanupWorker') `
             -WindowStyle Hidden `
             -PassThru `
             -ErrorAction Stop
