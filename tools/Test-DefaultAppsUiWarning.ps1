@@ -19,11 +19,12 @@ function Close-LDLCDefaultAppsPage {}
 function Set-LDLCTaskbarOptionsWithRegistry {return $true}
 function Get-LDLCDefaultAppState {
  param($Application)
- $confirmed=($script:case -ne 'real-association-failure' -or $Application -ne 'Chrome')
+ $confirmed=($script:case -notin @('real-association-failure','action-sent-unconfirmed') -or $Application -ne 'Chrome')
  return [pscustomobject]@{Confirmed=$confirmed;Missing=@('https');Associations=@([pscustomobject]@{Association='https';ProgId=$(if($confirmed){'ChromeHTML'}else{'MSEdgeHTM'});Executable='test.exe';Error=''})}
 }
 function Wait-LDLCDefaultAppConfirmation {param($Application,$TimeoutMilliseconds) $state=Get-LDLCDefaultAppState $Application;return [pscustomobject]@{Confirmed=$state.Confirmed;State=$state}}
-function Get-LDLCDefaultAppAttemptRoutes {param($Application,$State) return @()}
+function Get-LDLCDefaultAppAttemptRoutes {param($Application,$State) if($script:case -eq 'action-sent-unconfirmed'){return [pscustomobject]@{Kind='RegisteredPage';Uri='fixture'}}; return @()}
+function Invoke-LDLCDefaultAppAttempt {param($Application,$State,$Attempt,$Route) return [pscustomobject]@{BrowserActionInvoked=$true}}
 $fixture=Join-Path ([IO.Path]::GetTempPath()) ('DefaultApps-UI-ACK-'+[guid]::NewGuid().ToString('N'))
 $oldUi=$env:LDLC_DEFAULT_APPS_UI
 try {
@@ -31,7 +32,7 @@ try {
  $env:LDLC_DEFAULT_APPS_UI='1';$script:ProgressFile=Join-Path $fixture 'progress.txt'
  $script:LDLCTelemetryInitialized=$true;$script:LDLCTelemetryDisabled=$false;$script:LDLCTelemetrySending=$false
  $script:LDLCTelemetryComputerInfo=[pscustomobject]@{ComputerName='TEST-ACK'}
- foreach($caseName in @('confirmed-no-ui-ack','real-association-failure','cancellation')) {
+ foreach($caseName in @('confirmed-no-ui-ack','real-association-failure','action-sent-unconfirmed','cancellation')) {
   $script:case=$caseName;$script:cancel=($caseName -eq 'cancellation');$script:infos=0
   $script:LDLCTelemetryEvents=New-Object 'System.Collections.Generic.List[object]';$script:LDLCTelemetryEventKeys=@{}
   $script:LDLCDefaultAppsCompactDepth=0;$script:LDLCDefaultAppsCompactPath=$null;$script:LDLCDefaultAppsCompactProgress=$null
@@ -50,6 +51,7 @@ try {
     Assert (-not $script:LDLCDefaultAppsCompactProgress.Success -and $script:LDLCDefaultAppsCompactProgress.Progress -lt 100) 'False success after real association failure.'
     Assert (@($script:LDLCTelemetryEvents|Where-Object Message -match 'Chrome').Count -gt 0) 'Missing precise cause of real blockage.'
    }
+   'action-sent-unconfirmed' {Assert ($status -eq 'success' -and $counts.WarningCount -eq 0 -and $script:LDLCDefaultAppsCompactProgress.Success) 'An association without confirmation must not block after its command was transmitted.'}
    'cancellation' {Assert $cancelled 'Cancellation was swallowed.'}
   }
   Assert ($script:LDLCDefaultAppsCompactDepth -eq 0 -and -not $script:LDLCDefaultAppsCompactPath) 'Compact state was not cleaned.'

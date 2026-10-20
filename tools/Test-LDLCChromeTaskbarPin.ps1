@@ -10,6 +10,7 @@ function Stop-IfRequested { if ($script:cancel) { throw [OperationCanceledExcept
 function Test-LDLCStopRequestError($ErrorRecord) { return $ErrorRecord.Exception -is [OperationCanceledException] }
 function Write-Section($Text) { }
 function Write-ProgressFile($Percent, $Text) { }
+function Write-Info($Text) { }
 function Write-Ok($Text) { $script:success++ }
 function Write-Warn($Text) { $script:warnings += $Text }
 function Get-LDLCDefaultAppsTick { return $script:tick }
@@ -47,7 +48,7 @@ Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Already pinned must suc
 Assert ($shellCalls -eq 0 -and $uiCalls -eq 0 -and $tick -eq 0 -and $warnings.Count -eq 0) 'Already pinned must not restart Explorer or open UI.'
 Reset-Case; $script:verbAvailable = $true; $script:shellWorks = $true
 Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Working exposed Shell verb must be verified.'
-Assert ($uiCalls -eq 0 -and $success -eq 1) 'No fallback UI after verified pin.'
+Assert ($uiCalls -eq 0 -and $success -eq 0) 'No fallback UI after verified pin.'
 Reset-Case; $script:verbAvailable = $true; $script:uiWorks = $true
 Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Silent no-effect Shell command must fall back to real UI action.'
 Assert ($uiCalls -eq 1 -and $warnings.Count -eq 0) 'Do not report an intermediate false warning.'
@@ -56,8 +57,8 @@ Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Missing Shell verb must
 Reset-Case; $script:menuAlreadyPinned = $true
 Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Scoped Windows Unpin menu is proof of an existing pin.'
 Reset-Case
-Assert (-not (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate)) 'Action alone is never a successful pin.'
-Assert ($success -eq 0 -and $warnings.Count -eq 1) 'No false success when Windows did not create a pin.'
+Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Continue after transmitting a Windows pin command without confirmation polling.'
+Assert ($success -eq 0 -and $warnings.Count -eq 0 -and $tick -eq 0) 'Only report transmission; no claim of verified pin and no confirmation wait.'
 Reset-Case; $script:uiFailure = $true
 Assert (-not (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate)) 'Denied pin must remain a precise warning.'
 Reset-Case; $script:missing = $true

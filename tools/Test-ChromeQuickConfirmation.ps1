@@ -22,6 +22,8 @@ function Open-LDLCDefaultAppPage($Uri, $Application) { $script:actions += 'Page'
 function Invoke-LDLCDefaultAppsUiAction {
     param($Kind, $Association, $Application, $TimeoutMilliseconds, [switch]$ObservedBrowserClick)
     $script:actions += $Kind
+    if ($script:allUiFailure) { throw 'simulated unavailable UI action' }
+    if ($Kind -eq 'Confirm') { $script:htmlReady = $true }
     if ($Kind -eq 'BrowserDefault') {
         Assert ($TimeoutMilliseconds -le 5000) 'Browser button discovery must have a bounded budget.'
         if ($script:failFirstGlobal) { $script:failFirstGlobal = $false; throw 'simulated unavailable global action' }
@@ -35,7 +37,7 @@ function Reset-Case {
     $script:cases++; $script:tick = 0; $script:cancel = $false; $script:closed = 0
     $script:warnings = @(); $script:actions = @(); $script:chromeReady = $true; $script:adobeReady = $true
     $script:htmlReady = $false; $script:failFirstGlobal = $false; $script:ignoreGlobal = $false
-    $script:physicalWorks = $false; $script:observedClicks = 0
+    $script:physicalWorks = $false; $script:observedClicks = 0; $script:allUiFailure = $false
     $script:ProgressFile = $null; $script:LDLCDefaultAppsCompactDepth = 0; $script:LDLCDefaultAppsCompactPath = $null
     $script:LDLCDefaultAppsCompactProgress = $null
 }
@@ -90,18 +92,23 @@ public static class LDLCDefaultAppsNative {
     Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'Keep the HTML picker fallback when the global action is unavailable.'
     Assert ($actions -contains 'Association' -and $actions[-1] -eq 'BrowserDefault' -and $warnings.Count -eq 0) 'Fallback must still reach the browser action and must not create an intermediate false warning.'
     Reset-Case; $script:chromeReady = $false; $script:ignoreGlobal = $true; $script:physicalWorks = $true
-    Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'Retry a guarded observed click when UIA Invoke has no effect.'
-    Assert ($observedClicks -eq 1 -and $warnings.Count -eq 0) 'A no-effect UIA activation must not create a false failure when the actual click applies Chrome.'
+    Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'Use the exact guarded observed button without waiting for association confirmation.'
+    Assert ($observedClicks -eq 1 -and $warnings.Count -eq 0) 'One observed activation must not create an association-confirmation warning.'
     Reset-Case; $script:chromeReady = $false; $script:ignoreGlobal = $true
-    Assert (-not (Invoke-LDLCDefaultAppConfiguration Chrome)) 'A click without changed effective associations must fail.'
-    Assert ($warnings.Count -eq 1 -and $tick -le 7500 -and @($actions | Where-Object { $_ -eq 'BrowserDefault' }).Count -eq 2) 'Bound the UIA attempt plus one guarded click, without repeating full browser attempts.'
-    Reset-Case; $script:chromeReady = $false; $script:ignoreGlobal = $true
+    Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'A transmitted click must continue without waiting for effective associations, as requested.'
+    Assert ($warnings.Count -eq 0 -and $tick -eq 0 -and $observedClicks -eq 1) 'No association confirmation waits or warning after a transmitted observed click.'
+    Reset-Case; $script:chromeReady = $false; $script:ignoreGlobal = $true; $script:allUiFailure = $true
     Invoke-LDLCChromeDefaultAppsSequence
-    Assert ($warnings.Count -eq 1 -and -not $script:LDLCDefaultAppsCompactProgress.Success) 'Emit one final real Chrome warning, not both provisional and final warnings.'
+    Assert ($warnings.Count -eq 1 -and -not $script:LDLCDefaultAppsCompactProgress.Success) 'A real unavailable Windows action must still create one warning and no completed UI state.'
+    Reset-Case; $script:chromeReady = $false
+    $script:savedWait = ${function:Wait-LDLCDefaultAppConfirmation}
+    function Wait-LDLCDefaultAppConfirmation { throw 'Chrome must not poll confirmation' }
+    Assert (Invoke-LDLCDefaultAppConfiguration Chrome) 'Legacy Chrome entry point must also avoid all confirmation polling.'
+    Set-Item Function:Wait-LDLCDefaultAppConfirmation $script:savedWait
     Reset-Case; $script:cancel = $true; $stopped = $false
     try { Invoke-LDLCDefaultAppConfiguration Chrome | Out-Null } catch { $stopped = Test-LDLCStopRequestError $_ }
     Assert ($stopped -and $actions.Count -eq 0) 'Cancellation must propagate before any UI action.'
-    Write-Host ('::notice title=Chrome quick confirmation::' + (@{ Cases = $cases; Assertions = $checks; Failures = 0; AlreadyConfiguredMilliseconds = $readyDuration; Mode = 'simulated Windows associations, UI actions and clock'; RealBrowserDefaultsChanged = $false } | ConvertTo-Json -Compress))
+    Write-Host ('::notice title=Chrome without confirmations::' + (@{ Cases = $cases; Assertions = $checks; Failures = 0; AlreadyConfiguredMilliseconds = $readyDuration; Mode = 'simulated Windows associations, UI actions and clock'; RealBrowserDefaultsChanged = $false } | ConvertTo-Json -Compress))
 } finally {
     $env:LDLC_DEFAULT_APPS_UI = $oldUi
     if (Test-Path -LiteralPath $fixture) { Remove-Item -LiteralPath $fixture -Recurse -Force }

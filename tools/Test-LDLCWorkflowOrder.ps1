@@ -5,7 +5,7 @@ $windowsUpdatePath = Join-Path $root 'modules\80.WindowsUpdate.ps1'
 $workflow = Get-Content -LiteralPath $workflowPath -Raw -Encoding UTF8
 $windowsUpdate = Get-Content -LiteralPath $windowsUpdatePath -Raw -Encoding UTF8
 
-$securityIndex = $workflow.IndexOf('Invoke-LDLCSecurityCleanupIsolated -StartPercent 1 -EndPercent 3 -TimeoutSeconds 90')
+$securityIndex = $workflow.IndexOf('Remove-LDLCSecurityTrialsInteractively -StartPercent 1 -EndPercent 3')
 $restoreIndex = $workflow.IndexOf('Invoke-LDLCRestorePointCreation -ProgressPercent 4')
 $windowsUpdateIndex = $workflow.IndexOf('Start-LDLCWindowsUpdatesDuringPreparation -StartPercent 5 -EndPercent 7')
 $initialSetupIndex = $workflow.IndexOf('Invoke-LDLCInitialSetup')

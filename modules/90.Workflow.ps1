@@ -351,7 +351,7 @@ function Invoke-LDLCPreparation {
 
         Stop-IfRequested
         Write-ProgressFile 1 "Detection de McAfee et Norton..."
-        [void](Invoke-LDLCSecurityCleanupIsolated -StartPercent 1 -EndPercent 3 -TimeoutSeconds 90)
+        [void](Remove-LDLCSecurityTrialsInteractively -StartPercent 1 -EndPercent 3)
 
         Stop-IfRequested
         Write-ProgressFile 4 "Creation du point de restauration avant Windows Update..."

@@ -150,7 +150,7 @@ if ($workflow -notmatch 'Point de restauration recent deja present' -or $workflo
     throw 'Le point de restauration doit gerer les cas non bloquants avec logs precis.'
 }
 
-$securityIndex = $workflow.IndexOf('Invoke-LDLCSecurityCleanupIsolated -StartPercent 1 -EndPercent 3 -TimeoutSeconds 90')
+$securityIndex = $workflow.IndexOf('Remove-LDLCSecurityTrialsInteractively -StartPercent 1 -EndPercent 3')
 $restoreIndex = $workflow.IndexOf('Invoke-LDLCRestorePointCreation -ProgressPercent 4')
 $windowsUpdateIndex = $workflow.IndexOf('Start-LDLCWindowsUpdatesDuringPreparation -StartPercent 5 -EndPercent 7')
 $initialSetupIndex = $workflow.IndexOf('Invoke-LDLCInitialSetup')

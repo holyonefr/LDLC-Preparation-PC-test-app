@@ -2,7 +2,7 @@
   "SchemaVersion": 1,
   "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
   "StableRepository": "holyonefr/LDLC-Preparation",
-  "SourceCommit": "c64600d2b896f2c7ba560eaad5e4cca2545e6fc6",
+  "SourceCommit": "c741bd350b87f0a06737ab99ba48e56b6fe9efbc",
   "SourceWorkingTreeDirty": true,
   "OverlayPaths": [
     ".gitattributes",
@@ -43,7 +43,12 @@
     "tools/Test-LDLCChromeTaskbarPin.ps1",
     "tools/Test-DefaultAppsNativeAssociation.ps1",
     "tools/Test-ChromeBrowserDefaultButton.ps1",
-    ".github/workflows/chrome-amd-release.yml"
+    ".github/workflows/chrome-amd-release.yml",
+    "modules/52.SecurityUninstall.ps1",
+    "tools/Test-SecurityInteractiveUninstall.ps1",
+    "tools/Test-LDLCHardening.ps1",
+    "tools/Test-LDLCWorkflowOrder.ps1",
+    "tools/Test-DefaultAppsUiWarning.ps1"
   ],
   "PublicationPolicy": "User authorized current Chrome/default pin and laptop AMD delivery to all three production repositories on 2026-10-20; keep beta synchronized and motherboard integration beta-only."
 }

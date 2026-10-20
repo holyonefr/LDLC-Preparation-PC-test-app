@@ -767,17 +767,8 @@ function Complete-LDLCDefaultAppsChoice {
 }
 
 function Invoke-LDLCChromeBrowserDefaultAction {
-    [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 5000)
-    Set-LDLCDefaultAppsActionProgress -Application Chrome -Association 'navigateur par defaut' -Stage Confirming
-    if (-not (Wait-LDLCDefaultAppConfirmation -Application Chrome -TimeoutMilliseconds 1000).Confirmed) {
-        # XAML may acknowledge Invoke without applying it. Reacquire the exact
-        # button for one observed click, keeping all focus, hit-test and UI ACK guards.
-        try { [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 1500 -ObservedBrowserClick) }
-        catch {
-            if (Test-LDLCStopRequestError $_) { throw }
-            Write-Info ('[DEFAULT-APPS] Clic navigateur non effectue, verification Windows conservee : ' + $_.Exception.Message)
-        }
-    }
+    # Activate the exact observed button; no association-confirmation polling.
+    [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 5000 -ObservedBrowserClick)
     return [pscustomobject]@{ BrowserActionInvoked = $true }
 }
 
@@ -821,7 +812,9 @@ function Invoke-LDLCDefaultAppAttempt {
             [void](Invoke-LDLCDefaultAppsUiAction -Kind Choice -Association $association -Application $Application)
             $stage = 'Confirm'
             Set-LDLCDefaultAppsActionProgress -Application $Application -Association $association -Stage Validating
-            Complete-LDLCDefaultAppsChoice -Association $association -Application $Application
+            if ($Application -eq 'Chrome') {
+                [void](Invoke-LDLCDefaultAppsUiAction -Kind Confirm -Association $association -Application Chrome -TimeoutMilliseconds 5000)
+            } else { Complete-LDLCDefaultAppsChoice -Association $association -Application $Application }
         }
         catch {
             $_.Exception.Data['DefaultAppsStage'] = $stage
@@ -837,7 +830,6 @@ function Invoke-LDLCDefaultAppAttempt {
             Open-LDLCDefaultAppPage -Uri $uri -Application Chrome
             Set-LDLCDefaultAppsActionProgress -Application Chrome -Association 'navigateur par defaut' -Stage Validating
             $action = Invoke-LDLCChromeBrowserDefaultAction
-            Set-LDLCDefaultAppsActionProgress -Application Chrome -Association 'navigateur par defaut' -Stage Confirming
             return $action
         }
         catch {
@@ -878,7 +870,7 @@ function Set-LDLCDefaultAppsActionProgress {
 function Set-LDLCDefaultAppsCompactProgress {
     param([ValidateRange(0,100)][int]$Percent, [string]$Message, [bool]$Running = $true,
         [bool]$Success = $false, [string]$ErrorApplication = '')
-    if ($Percent -eq 100 -and -not $Success) { throw '100 pour cent exige les deux applications confirmees.' }
+    if ($Percent -eq 100 -and -not $Success) { throw '100 pour cent exige le traitement termine sans erreur.' }
     $previous = $script:LDLCDefaultAppsCompactProgress
     if ($previous -and $previous.Progress -eq $Percent -and $previous.Message -eq $Message -and
         $previous.Running -eq $Running -and $previous.Success -eq $Success -and $previous.ErrorApplication -eq $ErrorApplication -and
@@ -945,6 +937,7 @@ function Exit-LDLCDefaultAppsCompact {
 
 function Invoke-LDLCDefaultAppConfiguration {
     param([ValidateSet('Chrome', 'Adobe')][string]$Application, [ValidateRange(1, 3)][int]$MaxAttempts = 3, [switch]$DeferFailureWarning)
+    if ($Application -eq 'Chrome') { return Set-LDLCChromeDefaultBrowserWithUiAutomation -DeferFailureWarning:$DeferFailureWarning }
     $errors = New-Object 'Collections.Generic.List[string]'
     $verification = $null
     $attempt = 0
@@ -1016,7 +1009,32 @@ function Invoke-LDLCDefaultAppConfiguration {
 
 function Set-LDLCChromeDefaultBrowserWithUiAutomation {
     param([switch]$DeferFailureWarning)
-    return Invoke-LDLCDefaultAppConfiguration -Application Chrome -DeferFailureWarning:$DeferFailureWarning
+    Stop-IfRequested
+    # One optional read avoids touching an already configured browser. No wait,
+    # no repeated reads and no failure merely because an association is unconfirmed.
+    try { if ((Get-LDLCDefaultAppState Chrome).Confirmed) { Write-Info 'Chrome deja selectionne ; aucune action necessaire.'; return $true } } catch { }
+    $entered = $false
+    try {
+        Enter-LDLCDefaultAppsCompact; $entered = $true
+        $state = [pscustomobject]@{ Confirmed = $false; Missing = @('http','https','.htm','.html'); Associations = @() }
+        $routes = @(Get-LDLCDefaultAppAttemptRoutes -Application Chrome -State $state | Select-Object -First 3)
+        $errors = @(); $attempt = 0
+        foreach ($route in $routes) {
+            Stop-IfRequested; $attempt++
+            try {
+                [void](Invoke-LDLCDefaultAppAttempt -Application Chrome -State $state -Attempt $attempt -Route $route)
+                Write-Info 'Commande Chrome transmise a Windows ; poursuite sans confirmation des associations.'
+                return $true
+            } catch {
+                if (Test-LDLCStopRequestError $_) { throw }
+                $errors += $_.Exception.Message
+                if ($_.Exception.Data['DefaultAppsStage'] -in @('Choice','Confirm','BrowserDefault')) { break }
+            }
+        }
+        if (-not $routes.Count) { $errors += 'Aucune fiche Chrome ni aucun selecteur compatible.' }
+        Write-Warn ('Commande Chrome impossible : ' + ($errors -join ' | '))
+        return $false
+    } finally { if ($entered) { Close-LDLCDefaultAppsPage; Exit-LDLCDefaultAppsCompact } }
 }
 
 function Set-LDLCAdobePdfDefaultWithUiAutomation {
@@ -1232,50 +1250,23 @@ function Set-LDLCTaskbarOptionsWithRegistry {
 }
 
 function Invoke-LDLCChromeDefaultAppsSequence {
-    Write-Section "APPLICATIONS PAR DEFAUT"
-
+    Write-Section 'APPLICATIONS PAR DEFAUT'
     try {
         Enter-LDLCDefaultAppsCompact
-        Set-LDLCDefaultAppsCompactProgress -Percent 0 -Message "Configuration d'Adobe Acrobat Reader..."
-        $adobeConfirmed = Set-LDLCAdobePdfDefaultWithUiAutomation -DeferFailureWarning
-        if ($adobeConfirmed) {
-            Set-LDLCDefaultAppsCompactProgress -Percent 50 -Message 'Configuration de Chrome...'
+        $adobe = Set-LDLCAdobePdfDefaultWithUiAutomation
+        Set-LDLCDefaultAppsCompactProgress -Percent $(if ($adobe) { 50 } else { 0 }) -Message 'Configuration de Chrome...'
+        $chrome = Set-LDLCChromeDefaultBrowserWithUiAutomation
+        if ($adobe -and $chrome) {
+            Set-LDLCDefaultAppsCompactProgress -Percent 100 -Message 'Reglages transmis' -Running $false -Success $true
+            Write-Info 'Reglages des applications par defaut termines ; aucune confirmation Chrome demandee.'
+        } else {
+            $failed = @(); if (-not $adobe) { $failed += 'Adobe Acrobat Reader (.pdf)' }; if (-not $chrome) { $failed += 'Commande Chrome' }
+            Set-LDLCDefaultAppsCompactProgress -Percent (50 * ([int][bool]$adobe + [int][bool]$chrome)) -Message 'Reglage non effectue' -Running $false -ErrorApplication ($failed -join ' ; ')
         }
-        else {
-            Set-LDLCDefaultAppsCompactProgress -Percent 0 -Message "Adobe Acrobat Reader non confirme. Configuration de Chrome..." -ErrorApplication 'Adobe Acrobat Reader (.pdf)'
-        }
-        $chromeConfirmed = Set-LDLCChromeDefaultBrowserWithUiAutomation -DeferFailureWarning
-        # La seconde configuration peut modifier des associations communes.
-        # The individual attempts already waited for Windows. Final verification
-        # is bounded separately; do not repeat two full installation waits here.
-        $chromeVerification = Wait-LDLCDefaultAppConfirmation -Application Chrome -TimeoutMilliseconds 1000
-        $adobeVerification = Wait-LDLCDefaultAppConfirmation -Application Adobe -TimeoutMilliseconds 1000
-        $chromeFinal = $chromeVerification.State
-        $adobeFinal = $adobeVerification.State
-        if ($chromeVerification.Confirmed -and $adobeVerification.Confirmed) {
-            Set-LDLCDefaultAppsCompactProgress -Percent 100 -Message 'Configuration terminee' -Running $false -Success $true
-            Write-Ok 'Applications par defaut configurees avec succes'
-        }
-        else {
-            if (-not $chromeVerification.Confirmed) { Write-Warn "Chrome non confirme par Windows au controle final : $($chromeFinal.Missing -join ', '). $(@($chromeFinal.Associations | Where-Object Error | ForEach-Object { $_.Error }) -join '; ')" }
-            if (-not $adobeVerification.Confirmed) { Write-Warn 'Adobe Reader non confirme par Windows comme application PDF au controle final.' }
-            $failed = @()
-            if (-not $adobeVerification.Confirmed) { $failed += 'Adobe Acrobat Reader (.pdf)' }
-            if (-not $chromeVerification.Confirmed) { $failed += "Chrome ($($chromeFinal.Missing -join ', '))" }
-            $completed = [int][bool]$adobeVerification.Confirmed + [int][bool]$chromeVerification.Confirmed
-            Set-LDLCDefaultAppsCompactProgress -Percent ($completed * 50) -Message 'Configuration non confirmee' -Running $false -ErrorApplication ($failed -join ' ; ')
-        }
-        # Give the independent UI process time to show the verified final state.
-        [void](Wait-LDLCDefaultAppsCondition -TimeoutMilliseconds 250 -Probe { $false })
-    }
-    finally { Exit-LDLCDefaultAppsCompact }
-
-    try {
-        [void](Set-LDLCTaskbarOptionsWithRegistry)
-    }
-    catch {
+    } finally { Exit-LDLCDefaultAppsCompact }
+    try { [void](Set-LDLCTaskbarOptionsWithRegistry) } catch {
         if (Test-LDLCStopRequestError $_) { throw }
-        Write-Warn "[TASKBAR][ERREUR] Configuration barre des taches : $($_.Exception.Message)"
+        Write-Warn ('[TASKBAR] Configuration impossible : ' + $_.Exception.Message)
     }
 }
 

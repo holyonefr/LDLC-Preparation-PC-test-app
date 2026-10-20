@@ -1,5 +1,5 @@
-# Chrome pinning uses Windows' exposed actions and verifies the resulting pin.
-# A layout file or an Explorer restart alone is never evidence of success.
+# Send Chrome pin commands through exposed Windows actions, without confirmation waits.
+# Report transmission only; do not force layouts or restart Explorer globally.
 function Test-LDLCChromeTaskbarVerb {
     param([string]$Name, [switch]$Unpin)
     $text = Convert-LDLCDefaultAppsComparableText ($Name -replace '&', '')
@@ -173,24 +173,21 @@ function Invoke-LDLCChromeTaskbarPin {
     if (-not $chrome) { Write-Warn 'Chrome introuvable : epinglage non effectue.'; return $false }
     try {
         if ((Get-LDLCChromeTaskbarPinState -ChromeExecutable $chrome).Pinned) {
-            Write-Ok 'Chrome deja epingle a la barre des taches, verifie par Windows.'
+            Write-Info 'Chrome deja epingle ; aucune action necessaire.'
             return $true
         }
         $verbInvoked = Invoke-LDLCChromeShellPin -ChromeExecutable $chrome
-        if ($verbInvoked -and (Wait-LDLCChromeTaskbarPin -ChromeExecutable $chrome -TimeoutMilliseconds 1500)) {
-            Write-Ok 'Chrome epingle a la barre des taches, resultat Windows verifie.'
+        if ($verbInvoked -and (Get-LDLCChromeTaskbarPinState -ChromeExecutable $chrome).Pinned) {
+            Write-Info 'Commande d epinglage Chrome transmise.'
             return $true
         }
         $action = Invoke-LDLCChromeTaskbarContextAction -ChromeExecutable $chrome
-        if ($action.ObservedPinned -or (Wait-LDLCChromeTaskbarPin -ChromeExecutable $chrome)) {
-            Write-Ok 'Chrome epingle a la barre des taches, resultat Windows verifie.'
-            return $true
-        }
-        throw 'La commande Windows a ete envoyee mais aucune epingle Chrome n est confirmee.'
-    }
-    catch {
+        if (-not $action.ObservedPinned -and -not $action.Invoked) { throw 'Aucune commande d epinglage Windows accessible.' }
+        Write-Info 'Commande d epinglage Chrome transmise ; poursuite sans attente de confirmation.'
+        return $true
+    } catch {
         if (Test-LDLCStopRequestError $_) { throw }
-        Write-Warn ('Chrome non epingle a la barre des taches : ' + $_.Exception.Message)
+        Write-Warn ('Commande d epinglage Chrome impossible : ' + $_.Exception.Message)
         return $false
     }
 }

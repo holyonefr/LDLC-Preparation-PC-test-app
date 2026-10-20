@@ -826,3 +826,19 @@ publication, puis sorties LF et diagnostic ajoutés avant relance complète réu
 Nouvelle synchronisation finale : seuls résultats/docs et métadonnées arrivent
 depuis LDLC ; aucun changement de code après les compilations validées.
 Les anciens agrandissements UI locaux de production sont laissés hors livraison.
+
+### Retrait des attentes Chrome et désinstallateurs visibles — 20 octobre 2026
+
+À la demande utilisateur, le parcours Chrome transmet ses commandes sans attendre
+ni recontrôler les associations ou l'épingle finale. Pas de succès vérifié inventé ;
+les vraies commandes impossibles restent signalées. Adobe conserve son parcours
+dans LDLC/Numerik's, aucune étape Adobe/AMD dans l'Addon.
+Nouveau module 52.SecurityUninstall.ps1 : ouverture normale du désinstallateur
+enregistré McAfee/Norton avant les installations, retrait des switches silencieux,
+attente de retrait et de sortie du parent sans limite de 90 s ni taskkill. Quitter
+reste réactif. Refus/annulation/redémarrage avec produit présent : arrêt et cause,
+aucune validation forcée. Addon : étape au début et antivirus exclus du nettoyage
+OEM tardif. Tests de commande, attente longue, processus parent/enfant, erreurs,
+annulation et absence d'installations après blocage ajoutés.
+Voir RESULTATS_CHROME_ANTIVIRUS_2026-10-20.md pour les résultats natifs et la portée
+des fixtures ; ne pas prétendre une désinstallation antivirus réelle sur runner.

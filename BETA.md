@@ -1,7 +1,7 @@
 # LDLC Preparation PC — version beta
 
 Depot de test : **holyonefr/LDLC-Preparation-PC-test-app**.
-Base LDLC stable : commit `c64600d2b896f2c7ba560eaad5e4cca2545e6fc6`.
+Base LDLC stable : commit `c741bd350b87f0a06737ab99ba48e56b6fe9efbc`.
 Le 20 octobre, l'utilisateur autorise aussi la livraison de la correction
 Chrome/epinglage/portables AMD dans les trois productions. Le module carte mere
 reste exclusivement dans cette beta.
@@ -28,6 +28,10 @@ Les cinq modules PowerShell utiles sont embarques dans le worker et le script du
 vrai EXE. Ils sont materialises et verifies par SHA256 uniquement a cette etape :
 aucun telechargement constructeur au demarrage de l'interface. Le raccourci GCC
 pointe uniquement vers le coeur signe, pas vers le wrapper MB Update/RGB Sync.
+
+Correction suivante : [Chrome sans attente et désinstallateurs antivirus visibles](RESULTATS_CHROME_ANTIVIRUS_2026-10-20.md).
+Elle remplace les attentes de confirmation Chrome/épingle décrites dans la
+livraison précédente ; les véritables erreurs de commandes restent signalées.
 
 ## Synchronisation pour les prochaines corrections
 

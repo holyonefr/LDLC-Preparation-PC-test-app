@@ -7,6 +7,7 @@
 40.Desktop.ps1
 45.Wallpaper.ps1
 50.Cleanup.ps1
+52.SecurityUninstall.ps1
 60.Gpu.ps1
 70.DefaultApps.ps1
 72.ChromeTaskbar.ps1

@@ -9,7 +9,7 @@ function Stop-IfRequested { if ($script:Cancelled) { throw 'LDLC_STOP_REQUESTED'
 function Test-LDLCStopRequestError($ErrorRecord) { return ($ErrorRecord.Exception.Message -match 'LDLC_STOP_REQUESTED') }
 function Write-Step($Text) {}
 function Write-Section($Text) {}
-function Write-Info($Text) {}
+function Write-Info($Text) { $script:Infos.Add($Text) }
 function Write-Ok($Text) { $script:Successes.Add($Text) }
 function Write-Warn($Text) { $script:Warnings.Add($Text) }
 function Get-LDLCDefaultAppsTick { return $script:Tick }
@@ -40,6 +40,7 @@ function Get-LDLCDefaultAppUris {
     param($Application)
     return @('ms-settings:defaultapps?registeredAppUser=Test', 'ms-settings:defaultapps?registeredAppUser=Test', 'ms-settings:defaultapps?registeredAppMachine=Test')
 }
+$script:Infos = New-Object 'Collections.Generic.List[string]'
 $script:Warnings = New-Object 'Collections.Generic.List[string]'
 $script:Successes = New-Object 'Collections.Generic.List[string]'
 $script:Tick = 0
@@ -54,7 +55,7 @@ Assert-True (($script:ApplicationOrder -join ',') -eq 'Adobe,Adobe,Chrome,Chrome
 Assert-True ($script:LDLCDefaultAppsCompactProgress.Progress -eq 100 -and $script:LDLCDefaultAppsCompactProgress.Success) '100 exige les deux resultats confirmes.'
 Assert-True ($script:Attempts.Chrome -eq 2 -and $script:Attempts.Adobe -eq 2) 'Chrome et PDF doivent reessayer apres un premier echec.'
 Assert-True ($script:Warnings.Count -eq 0) 'Une tentative recuperee ne doit pas laisser un faux avertissement.'
-Assert-True ($script:Successes.Contains('Applications par defaut configurees avec succes')) 'Le bilan exige les deux associations confirmees.'
+Assert-True ($script:Infos.Contains('Reglages des applications par defaut termines ; aucune confirmation Chrome demandee.')) 'Le bilan distingue la commande Chrome transmise et le PDF configure.'
 Assert-True ($script:LDLCDefaultAppsCompactDepth -eq 0) 'Restaurer la fenetre apres succes.'
 Assert-True ((Get-LDLCDefaultAppState Chrome).Associations.Count -eq 4) 'Verifier HTTP HTTPS .htm et .html.'
 $script:Ready = @{ Chrome = $false; Adobe = $false }

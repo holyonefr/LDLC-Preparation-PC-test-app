@@ -24,6 +24,10 @@ function Write-Section {}
 function Write-Step {}
 function Write-LDLCLocalLog {}
 function Invoke-LDLCSecurityCleanupIsolated {}
+function Remove-LDLCSecurityTrialsInteractively {
+    if ($script:Case -eq 'antivirus_refuse') { throw 'Desinstallation Norton interrompue/refusee (code 1602). Preparation arretee.' }
+    if ($script:Case -eq 'antivirus_arret') { throw 'LDLC_STOP_REQUESTED' }
+}
 function Invoke-LDLCRestorePointCreation {}
 function Get-FixtureWindowsUpdateLaunch {
     if ($script:Case -eq 'echec_lancement_windows_update') {
@@ -42,8 +46,9 @@ function Initialize-LDLCInstallerCache {}
 function Install-ChocolateyIfNeeded {}
 function Clear-InstallCaches {}
 function Install-LDLCApplication {
+    $script:ApplicationCalls++
     if ($script:Case -eq 'erreur') { Write-Err 'Google Chrome non installe : code 1603.' }
-    if ($script:Case -eq 'avertissement') { Write-Warn 'Chrome non confirme comme navigateur par defaut.' }
+    if ($script:Case -eq 'avertissement') { Write-Warn 'Commande Chrome non effectuee : controle Windows indisponible.' }
     if ($script:Case -eq 'delai' -and -not $script:TriggerOnly) { Write-Warn 'Verification partielle avant expiration du delai.' }
 }
 function Install-Or-ReinstallWithChoco { Install-LDLCApplication }
@@ -120,10 +125,11 @@ try {
     $env:LDLC_TELEMETRY_DISABLED='0'; $env:LDLC_TELEMETRY_REMOTE_MODE='start-final'
     Remove-Item Env:\LDLC_TELEMETRY_RUN_ID -ErrorAction SilentlyContinue
     $cases = @('fin_normale','fermeture_apres_fin','erreur','avertissement','delai','fermeture_anticipee','hors_ligne')
+    if ('Remove-LDLCSecurityTrialsInteractively' -in $mainCommands) { $cases += @('antivirus_refuse','antivirus_arret') }
     if ($script:TriggerOnly) { $cases += 'echec_lancement_windows_update' }
     if (Get-Command Initialize-LDLCProgressOwner -ErrorAction SilentlyContinue) { $cases += @('relance_post_acquitte','relance_hors_ligne','relance_sauvegarde_impossible') }
     foreach ($caseName in $cases) {
-        $script:WaitCalls=0
+        $script:WaitCalls=0; $script:ApplicationCalls=0
         $script:Case=$caseName; $script:RuntimeRoot=Join-Path $testRoot $caseName
         New-Item -ItemType Directory -Path $script:RuntimeRoot -Force | Out-Null
         $script:ProgressFile=Join-Path $script:RuntimeRoot 'LDLC_PROGRESS.txt'
@@ -135,11 +141,12 @@ try {
         Initialize-LDLCTelemetry
         Invoke-LDLCPreparation | Out-Null
         $run=$script:Final.Run
-        $expected=switch($caseName){'erreur' {'failed'} 'avertissement' {'warning'} 'delai' {if ($script:TriggerOnly) {'success'} else {'timeout'}} 'echec_lancement_windows_update' {'failed'} 'fermeture_anticipee' {'stopped'} default {'success'}}
+        $expected=switch($caseName){'antivirus_refuse' {'failed'} 'antivirus_arret' {'stopped'} 'erreur' {'failed'} 'avertissement' {'warning'} 'delai' {if ($script:TriggerOnly) {'success'} else {'timeout'}} 'echec_lancement_windows_update' {'failed'} 'fermeture_anticipee' {'stopped'} default {'success'}}
         Check ($run.Status -eq $expected) "$caseName : statut $expected (observe $($run.Status))"
         Check ([bool]$run.IsFinal -and [bool]$run.FinishedAt) "$caseName : resultat final explicite"
-        Check ($run.CompletionConfirmed -eq ($caseName -ne 'fermeture_anticipee')) "$caseName : preuve de fin exacte"
+        Check ($run.CompletionConfirmed -eq ($caseName -notin @('fermeture_anticipee','antivirus_refuse','antivirus_arret'))) "$caseName : preuve de fin exacte"
         if ($expected -ne 'success') { Check (-not [string]::IsNullOrWhiteSpace($run.BlockingReason)) "$caseName : cause du blocage conservee" }
+        if ($caseName -like 'antivirus_*') { Check ($script:ApplicationCalls -eq 0) 'Antivirus: aucune installation apres refus/arret'; if($caseName -eq 'antivirus_refuse'){Check ($run.BlockingReason -match '1602') 'Antivirus: cause 1602 conservee'} }
         if ($caseName -eq 'erreur') { Check ($run.LastMessage -match '1603') 'Erreur : code 1603 visible' }
         if ($caseName -eq 'delai' -and -not $script:TriggerOnly) { Check ($run.BlockingReason -match 'Delai|delai') 'Delai : cause non masquee par avertissement' }
         if ($script:TriggerOnly) { Check ($script:WaitCalls -eq 0) "$caseName : aucune attente Windows Update" }
