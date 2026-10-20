@@ -42,12 +42,15 @@ try {
         $ids=New-Object 'Collections.Generic.List[string]'
         foreach($inf in $infs){
             $text=[IO.File]::ReadAllText($inf.FullName)
-            foreach($m in [regex]::Matches($text,'(?i)PCI\\VEN_1002&DEV_[0-9A-F]{4}')){[void]$ids.Add($m.Value)}
+            foreach($m in [regex]::Matches($text,'(?i)PCI\\VEN_1002&DEV_[0-9A-F]{4}(?:&(?:SUBSYS_[0-9A-F]{8}|REV_[0-9A-F]{2}))*')){[void]$ids.Add($m.Value)}
         }
-        $targets=@();foreach($id in @($ids|Select-Object -Unique -First 3)){
-            try{$targets+=@(Get-LDLCAmdPackageDriverTargets -MetadataPath $metadata -PnpDeviceIds @($id) -WindowsBuild 26100)}catch{}
+        $targets=@();foreach($id in @($ids|Select-Object -Unique -First 50)){
+            try{$targets+=@(Get-LDLCAmdPackageDriverTargets -MetadataPath $metadata -PnpDeviceIds @($id) -WindowsBuild 26100);if($targets.Count -ge 3){break}}catch{}
         }
-        if(-not $targets.Count){throw 'Aucune cible de version INF lisible pour les GPU proposes.'}
+        if(-not $targets.Count){
+            $report.InfExamples=@($infs|Select-Object -First 2|ForEach-Object {@{Name=$_.Name;Lines=@([IO.File]::ReadAllLines($_.FullName)|Where-Object {$_ -match '^DriverVer|^Class|^\[|PCI\\VEN_1002'}|Select-Object -First 20)}})
+            throw 'Aucune cible de version INF lisible pour les GPU proposes.'
+        }
         $report.DisplayInfCount=$infs.Count
         $report.SampleTargets=@($targets|Select-Object PnpDeviceId,DriverVersion,HardwareId)
         $report.ExtractedUiFiles=@(Get-ChildItem -LiteralPath $metadata -Include RadeonSoftware.exe,AMDSoftware.exe -File -Recurse | ForEach-Object {@{FileName=$_.Name;Version=(Get-LDLCFileVersionText -Path $_.FullName)}})

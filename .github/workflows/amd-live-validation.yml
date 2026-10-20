@@ -19,11 +19,28 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - name: Native AMD regression diagnostics without installing hardware
         shell: powershell
-        run: ./tools/Test-LDLCAmdUpdateRegression.ps1
+        run: |
+          $ErrorActionPreference='Stop'
+          $powershell=Join-Path $env:WINDIR 'System32/WindowsPowerShell/v1.0/powershell.exe'
+          $testRoot=Join-Path $env:RUNNER_TEMP 'amd-native-child-fixture'
+          [void](New-Item -ItemType Directory -Path $testRoot -Force)
+          $env:ProgramData=$testRoot;$env:LOCALAPPDATA=$testRoot
+          $result=@(& $powershell -STA -NoProfile -ExecutionPolicy Bypass -File ./tools/Test-LDLCAmdUpdateRegression.ps1 2>&1)
+          $code=$LASTEXITCODE
+          $result|ForEach-Object {Write-Host $_}
+          if($code -ne 0){
+            $message=($result|Out-String).Replace('%','%25').Replace("`r",'%0D').Replace("`n",'%0A')
+            Write-Host ('::error title=Native AMD child failure::'+$message)
+            throw "AMD child failed: $code"
+          }
       - name: Inspect Chocolatey published package without executing its installation script
         if: always()
         shell: powershell
         run: ./tools/Test-LDLCAmdChocolateyPackage.ps1
+      - name: Inspect the requested Guru3D source without running any installer
+        if: always()
+        shell: powershell
+        run: ./tools/Test-LDLCAmdGuru3dSource.ps1
       - name: Verify current official complete package without running its installer
         if: inputs.full_package
         shell: powershell
