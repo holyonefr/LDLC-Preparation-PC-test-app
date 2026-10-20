@@ -1159,7 +1159,7 @@ function Restore-PowerSettings {
 # They are intentionally embedded so the compiled exe can report issues from any PC.
 $script:LDLCTelemetryEndpointUrl = 'https://script.google.com/macros/s/AKfycbwYe2r5-y8HeyfLjslbq7wI2BdFH0sj7TLJQSiUyeRdt_z7yytyTKsPQPPcT0HUcAci3g/exec'
 $script:LDLCTelemetryApiKey = 'LDLC-PrepTool-2026-ea2653c3d8f94cad9bbe4a2fa6fe8e18'
-$script:LDLCTelemetryToolVersion = '2.6.6'
+$script:LDLCTelemetryToolVersion = '2.6.7'
 $script:LDLCTelemetrySource = 'LDLCPreparationPC'
 $script:LDLCTelemetryApplicationSource = 'LDLC_PREPARATION_PC'
 $script:LDLCTelemetryEdition = 'LDLC'
@@ -6469,6 +6469,76 @@ function Remove-LDLCMicrosoftOffice {
 
 # endregion Module: 50.Cleanup.ps1
 
+# Open each detected vendor's registered uninstaller, visibly and without silent flags.
+function Get-LDLCSecurityInteractiveCommand {
+    param($Program)
+    $raw = [Environment]::ExpandEnvironmentVariables([string]$Program.UninstallString).Trim()
+    if ($raw -notmatch '^(?:"(?<File>[^"]+\.exe)"|(?<File>.+?\.exe))(?<Args>(?:\s.*)?)$') {
+        throw "Commande de desinstallation interactive absente/invalide pour $($Program.DisplayName)."
+    }
+    $file = $matches.File; $arguments = $matches.Args.Trim()
+    $leaf = [IO.Path]::GetFileName($file)
+    if ($leaf -ieq 'msiexec.exe') {
+        $file = Join-Path $env:SystemRoot 'System32/msiexec.exe'
+        $arguments = [regex]::Replace($arguments, '(?i)(^|\s)/I(?=\s|\{)', '$1/X')
+        if ($arguments -notmatch '(?i)(^|\s)/X(?=\s|\{)') { throw 'Commande MSI de desinstallation sans produit /X.' }
+        if ($arguments -notmatch '(?i)(^|\s)/norestart\b') { $arguments += ' /norestart' }
+    }
+    # Remove only standalone silent switches; retain the vendor's original uninstall arguments.
+    $arguments = [regex]::Replace($arguments, '(?i)(^|\s)/(?:quiet|silent|verysilent|passive|suppressmsgboxes|s|q[nbrf]?[+!-]?)(?=\s|$)', ' ').Trim()
+    if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { throw "Desinstallateur introuvable pour $($Program.DisplayName) : $file" }
+    return [pscustomobject]@{ FilePath = $file; Arguments = $arguments }
+}
+
+function Start-LDLCSecurityInteractiveUninstaller {
+    param($Command)
+    $launch = @{ FilePath = $Command.FilePath; WindowStyle = 'Normal'; PassThru = $true; ErrorAction = 'Stop' }
+    if ($Command.Arguments) { $launch.ArgumentList = $Command.Arguments }
+    return Start-Process @launch
+}
+
+function Remove-LDLCSecurityTrialsInteractively {
+    param([int]$StartPercent = 1, [int]$EndPercent = 3)
+    Stop-IfRequested
+    Write-Section 'DESINSTALLATION MCAFEE / NORTON'
+    $targets = @(Get-LDLCOemRemovalTargets | Where-Object { $_.Profile.Group -in @('McAfee', 'Norton') })
+    $removed = 0
+    foreach ($target in $targets) {
+        Stop-IfRequested
+        $program = $target.Program
+        if (-not (Test-LDLCProgramStillInstalled -Program $program)) { $removed++; continue }
+        $command = Get-LDLCSecurityInteractiveCommand -Program $program
+        Write-ProgressFile $StartPercent "Desinstallation de $($program.DisplayName) : terminer dans sa fenetre."
+        Write-Step "Ouverture du desinstallateur de $($program.DisplayName)."
+        $process = Start-LDLCSecurityInteractiveUninstaller -Command $command
+        if (-not $process) { throw "Le desinstallateur de $($program.DisplayName) n'a pas demarre." }
+        try {
+            while ($true) {
+                Stop-IfRequested
+                Clear-LDLCDetectionCaches
+                $stillInstalled = Test-LDLCProgramStillInstalled -Program $program
+                $process.Refresh()
+                if ($process.HasExited) {
+                    $code = $process.ExitCode
+                    if (-not $stillInstalled -and $code -in @(0, 1605, 1614, 3010, 1641)) { $removed++; break }
+                    if ($code -in @(3010, 1641)) { throw "$($program.DisplayName) demande un redemarrage et reste present. Reprendre apres redemarrage." }
+                    if ($code -notin @(0, 1605, 1614)) { throw "Desinstallation de $($program.DisplayName) interrompue/refusee (code $code). Preparation arretee." }
+                    # A launcher may exit before its visible child. Wait for removal,
+                    # not the launcher's lifetime; Quit remains available via Stop-IfRequested.
+                    Write-ProgressFile $StartPercent "$($program.DisplayName) encore present : terminer sa desinstallation ou Quitter."
+                }
+                Start-Sleep -Milliseconds 500
+            }
+        } finally { $process.Dispose() }
+        Write-Info "Desinstallation terminee : $($program.DisplayName)."
+    }
+    $remaining = @(Get-LDLCOemRemovalTargets | Where-Object {
+        $_.Profile.Group -in @('McAfee', 'Norton') -and (Test-LDLCProgramStillInstalled -Program $_.Program)
+    })
+    if ($remaining.Count) { throw 'McAfee/Norton encore detecte apres desinstallation ; preparation arretee avant les installations.' }
+    Write-ProgressFile $EndPercent 'Etape McAfee/Norton terminee.'
+    return [pscustomobject]@{ Detected = $targets.Count; Removed = $removed; Pending = 0; Success = $true }
+}
 # region Module: 60.Gpu.ps1
 # GPU detection and driver helpers.
 
@@ -8637,17 +8707,8 @@ function Complete-LDLCDefaultAppsChoice {
 }
 
 function Invoke-LDLCChromeBrowserDefaultAction {
-    [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 5000)
-    Set-LDLCDefaultAppsActionProgress -Application Chrome -Association 'navigateur par defaut' -Stage Confirming
-    if (-not (Wait-LDLCDefaultAppConfirmation -Application Chrome -TimeoutMilliseconds 1000).Confirmed) {
-        # XAML may acknowledge Invoke without applying it. Reacquire the exact
-        # button for one observed click, keeping all focus, hit-test and UI ACK guards.
-        try { [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 1500 -ObservedBrowserClick) }
-        catch {
-            if (Test-LDLCStopRequestError $_) { throw }
-            Write-Info ('[DEFAULT-APPS] Clic navigateur non effectue, verification Windows conservee : ' + $_.Exception.Message)
-        }
-    }
+    # Activate the exact observed button; no association-confirmation polling.
+    [void](Invoke-LDLCDefaultAppsUiAction -Kind BrowserDefault -Application Chrome -TimeoutMilliseconds 5000 -ObservedBrowserClick)
     return [pscustomobject]@{ BrowserActionInvoked = $true }
 }
 
@@ -8691,7 +8752,9 @@ function Invoke-LDLCDefaultAppAttempt {
             [void](Invoke-LDLCDefaultAppsUiAction -Kind Choice -Association $association -Application $Application)
             $stage = 'Confirm'
             Set-LDLCDefaultAppsActionProgress -Application $Application -Association $association -Stage Validating
-            Complete-LDLCDefaultAppsChoice -Association $association -Application $Application
+            if ($Application -eq 'Chrome') {
+                [void](Invoke-LDLCDefaultAppsUiAction -Kind Confirm -Association $association -Application Chrome -TimeoutMilliseconds 5000)
+            } else { Complete-LDLCDefaultAppsChoice -Association $association -Application $Application }
         }
         catch {
             $_.Exception.Data['DefaultAppsStage'] = $stage
@@ -8707,7 +8770,6 @@ function Invoke-LDLCDefaultAppAttempt {
             Open-LDLCDefaultAppPage -Uri $uri -Application Chrome
             Set-LDLCDefaultAppsActionProgress -Application Chrome -Association 'navigateur par defaut' -Stage Validating
             $action = Invoke-LDLCChromeBrowserDefaultAction
-            Set-LDLCDefaultAppsActionProgress -Application Chrome -Association 'navigateur par defaut' -Stage Confirming
             return $action
         }
         catch {
@@ -8748,7 +8810,7 @@ function Set-LDLCDefaultAppsActionProgress {
 function Set-LDLCDefaultAppsCompactProgress {
     param([ValidateRange(0,100)][int]$Percent, [string]$Message, [bool]$Running = $true,
         [bool]$Success = $false, [string]$ErrorApplication = '')
-    if ($Percent -eq 100 -and -not $Success) { throw '100 pour cent exige les deux applications confirmees.' }
+    if ($Percent -eq 100 -and -not $Success) { throw '100 pour cent exige le traitement termine sans erreur.' }
     $previous = $script:LDLCDefaultAppsCompactProgress
     if ($previous -and $previous.Progress -eq $Percent -and $previous.Message -eq $Message -and
         $previous.Running -eq $Running -and $previous.Success -eq $Success -and $previous.ErrorApplication -eq $ErrorApplication -and
@@ -8815,6 +8877,7 @@ function Exit-LDLCDefaultAppsCompact {
 
 function Invoke-LDLCDefaultAppConfiguration {
     param([ValidateSet('Chrome', 'Adobe')][string]$Application, [ValidateRange(1, 3)][int]$MaxAttempts = 3, [switch]$DeferFailureWarning)
+    if ($Application -eq 'Chrome') { return Set-LDLCChromeDefaultBrowserWithUiAutomation -DeferFailureWarning:$DeferFailureWarning }
     $errors = New-Object 'Collections.Generic.List[string]'
     $verification = $null
     $attempt = 0
@@ -8886,7 +8949,32 @@ function Invoke-LDLCDefaultAppConfiguration {
 
 function Set-LDLCChromeDefaultBrowserWithUiAutomation {
     param([switch]$DeferFailureWarning)
-    return Invoke-LDLCDefaultAppConfiguration -Application Chrome -DeferFailureWarning:$DeferFailureWarning
+    Stop-IfRequested
+    # One optional read avoids touching an already configured browser. No wait,
+    # no repeated reads and no failure merely because an association is unconfirmed.
+    try { if ((Get-LDLCDefaultAppState Chrome).Confirmed) { Write-Info 'Chrome deja selectionne ; aucune action necessaire.'; return $true } } catch { }
+    $entered = $false
+    try {
+        Enter-LDLCDefaultAppsCompact; $entered = $true
+        $state = [pscustomobject]@{ Confirmed = $false; Missing = @('http','https','.htm','.html'); Associations = @() }
+        $routes = @(Get-LDLCDefaultAppAttemptRoutes -Application Chrome -State $state | Select-Object -First 3)
+        $errors = @(); $attempt = 0
+        foreach ($route in $routes) {
+            Stop-IfRequested; $attempt++
+            try {
+                [void](Invoke-LDLCDefaultAppAttempt -Application Chrome -State $state -Attempt $attempt -Route $route)
+                Write-Info 'Commande Chrome transmise a Windows ; poursuite sans confirmation des associations.'
+                return $true
+            } catch {
+                if (Test-LDLCStopRequestError $_) { throw }
+                $errors += $_.Exception.Message
+                if ($_.Exception.Data['DefaultAppsStage'] -in @('Choice','Confirm','BrowserDefault')) { break }
+            }
+        }
+        if (-not $routes.Count) { $errors += 'Aucune fiche Chrome ni aucun selecteur compatible.' }
+        Write-Warn ('Commande Chrome impossible : ' + ($errors -join ' | '))
+        return $false
+    } finally { if ($entered) { Close-LDLCDefaultAppsPage; Exit-LDLCDefaultAppsCompact } }
 }
 
 function Set-LDLCAdobePdfDefaultWithUiAutomation {
@@ -9102,50 +9190,23 @@ function Set-LDLCTaskbarOptionsWithRegistry {
 }
 
 function Invoke-LDLCChromeDefaultAppsSequence {
-    Write-Section "APPLICATIONS PAR DEFAUT"
-
+    Write-Section 'APPLICATIONS PAR DEFAUT'
     try {
         Enter-LDLCDefaultAppsCompact
-        Set-LDLCDefaultAppsCompactProgress -Percent 0 -Message "Configuration d'Adobe Acrobat Reader..."
-        $adobeConfirmed = Set-LDLCAdobePdfDefaultWithUiAutomation -DeferFailureWarning
-        if ($adobeConfirmed) {
-            Set-LDLCDefaultAppsCompactProgress -Percent 50 -Message 'Configuration de Chrome...'
+        $adobe = Set-LDLCAdobePdfDefaultWithUiAutomation
+        Set-LDLCDefaultAppsCompactProgress -Percent $(if ($adobe) { 50 } else { 0 }) -Message 'Configuration de Chrome...'
+        $chrome = Set-LDLCChromeDefaultBrowserWithUiAutomation
+        if ($adobe -and $chrome) {
+            Set-LDLCDefaultAppsCompactProgress -Percent 100 -Message 'Reglages transmis' -Running $false -Success $true
+            Write-Info 'Reglages des applications par defaut termines ; aucune confirmation Chrome demandee.'
+        } else {
+            $failed = @(); if (-not $adobe) { $failed += 'Adobe Acrobat Reader (.pdf)' }; if (-not $chrome) { $failed += 'Commande Chrome' }
+            Set-LDLCDefaultAppsCompactProgress -Percent (50 * ([int][bool]$adobe + [int][bool]$chrome)) -Message 'Reglage non effectue' -Running $false -ErrorApplication ($failed -join ' ; ')
         }
-        else {
-            Set-LDLCDefaultAppsCompactProgress -Percent 0 -Message "Adobe Acrobat Reader non confirme. Configuration de Chrome..." -ErrorApplication 'Adobe Acrobat Reader (.pdf)'
-        }
-        $chromeConfirmed = Set-LDLCChromeDefaultBrowserWithUiAutomation -DeferFailureWarning
-        # La seconde configuration peut modifier des associations communes.
-        # The individual attempts already waited for Windows. Final verification
-        # is bounded separately; do not repeat two full installation waits here.
-        $chromeVerification = Wait-LDLCDefaultAppConfirmation -Application Chrome -TimeoutMilliseconds 1000
-        $adobeVerification = Wait-LDLCDefaultAppConfirmation -Application Adobe -TimeoutMilliseconds 1000
-        $chromeFinal = $chromeVerification.State
-        $adobeFinal = $adobeVerification.State
-        if ($chromeVerification.Confirmed -and $adobeVerification.Confirmed) {
-            Set-LDLCDefaultAppsCompactProgress -Percent 100 -Message 'Configuration terminee' -Running $false -Success $true
-            Write-Ok 'Applications par defaut configurees avec succes'
-        }
-        else {
-            if (-not $chromeVerification.Confirmed) { Write-Warn "Chrome non confirme par Windows au controle final : $($chromeFinal.Missing -join ', '). $(@($chromeFinal.Associations | Where-Object Error | ForEach-Object { $_.Error }) -join '; ')" }
-            if (-not $adobeVerification.Confirmed) { Write-Warn 'Adobe Reader non confirme par Windows comme application PDF au controle final.' }
-            $failed = @()
-            if (-not $adobeVerification.Confirmed) { $failed += 'Adobe Acrobat Reader (.pdf)' }
-            if (-not $chromeVerification.Confirmed) { $failed += "Chrome ($($chromeFinal.Missing -join ', '))" }
-            $completed = [int][bool]$adobeVerification.Confirmed + [int][bool]$chromeVerification.Confirmed
-            Set-LDLCDefaultAppsCompactProgress -Percent ($completed * 50) -Message 'Configuration non confirmee' -Running $false -ErrorApplication ($failed -join ' ; ')
-        }
-        # Give the independent UI process time to show the verified final state.
-        [void](Wait-LDLCDefaultAppsCondition -TimeoutMilliseconds 250 -Probe { $false })
-    }
-    finally { Exit-LDLCDefaultAppsCompact }
-
-    try {
-        [void](Set-LDLCTaskbarOptionsWithRegistry)
-    }
-    catch {
+    } finally { Exit-LDLCDefaultAppsCompact }
+    try { [void](Set-LDLCTaskbarOptionsWithRegistry) } catch {
         if (Test-LDLCStopRequestError $_) { throw }
-        Write-Warn "[TASKBAR][ERREUR] Configuration barre des taches : $($_.Exception.Message)"
+        Write-Warn ('[TASKBAR] Configuration impossible : ' + $_.Exception.Message)
     }
 }
 
@@ -9210,8 +9271,8 @@ function Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate {
 }
 
 # endregion Module: 70.DefaultApps.ps1
-# Chrome pinning uses Windows' exposed actions and verifies the resulting pin.
-# A layout file or an Explorer restart alone is never evidence of success.
+# Send Chrome pin commands through exposed Windows actions, without confirmation waits.
+# Report transmission only; do not force layouts or restart Explorer globally.
 function Test-LDLCChromeTaskbarVerb {
     param([string]$Name, [switch]$Unpin)
     $text = Convert-LDLCDefaultAppsComparableText ($Name -replace '&', '')
@@ -9385,24 +9446,21 @@ function Invoke-LDLCChromeTaskbarPin {
     if (-not $chrome) { Write-Warn 'Chrome introuvable : epinglage non effectue.'; return $false }
     try {
         if ((Get-LDLCChromeTaskbarPinState -ChromeExecutable $chrome).Pinned) {
-            Write-Ok 'Chrome deja epingle a la barre des taches, verifie par Windows.'
+            Write-Info 'Chrome deja epingle ; aucune action necessaire.'
             return $true
         }
         $verbInvoked = Invoke-LDLCChromeShellPin -ChromeExecutable $chrome
-        if ($verbInvoked -and (Wait-LDLCChromeTaskbarPin -ChromeExecutable $chrome -TimeoutMilliseconds 1500)) {
-            Write-Ok 'Chrome epingle a la barre des taches, resultat Windows verifie.'
+        if ($verbInvoked -and (Get-LDLCChromeTaskbarPinState -ChromeExecutable $chrome).Pinned) {
+            Write-Info 'Commande d epinglage Chrome transmise.'
             return $true
         }
         $action = Invoke-LDLCChromeTaskbarContextAction -ChromeExecutable $chrome
-        if ($action.ObservedPinned -or (Wait-LDLCChromeTaskbarPin -ChromeExecutable $chrome)) {
-            Write-Ok 'Chrome epingle a la barre des taches, resultat Windows verifie.'
-            return $true
-        }
-        throw 'La commande Windows a ete envoyee mais aucune epingle Chrome n est confirmee.'
-    }
-    catch {
+        if (-not $action.ObservedPinned -and -not $action.Invoked) { throw 'Aucune commande d epinglage Windows accessible.' }
+        Write-Info 'Commande d epinglage Chrome transmise ; poursuite sans attente de confirmation.'
+        return $true
+    } catch {
         if (Test-LDLCStopRequestError $_) { throw }
-        Write-Warn ('Chrome non epingle a la barre des taches : ' + $_.Exception.Message)
+        Write-Warn ('Commande d epinglage Chrome impossible : ' + $_.Exception.Message)
         return $false
     }
 }
@@ -11308,7 +11366,7 @@ function Invoke-LDLCPreparation {
 
         Stop-IfRequested
         Write-ProgressFile 1 "Detection de McAfee et Norton..."
-        [void](Invoke-LDLCSecurityCleanupIsolated -StartPercent 1 -EndPercent 3 -TimeoutSeconds 90)
+        [void](Remove-LDLCSecurityTrialsInteractively -StartPercent 1 -EndPercent 3)
 
         Stop-IfRequested
         Write-ProgressFile 4 "Creation du point de restauration avant Windows Update..."
