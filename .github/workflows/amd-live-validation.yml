@@ -2,6 +2,10 @@ name: AMD - Chocolatey catalog and official package verification on Windows
 on:
   workflow_dispatch:
     inputs:
+      inspect_guru3d:
+        description: 'Sonde facultative Guru3D (actuellement HTTP 403 sur runner)'
+        type: boolean
+        default: false
       full_package:
         description: 'Verifier aussi le package complet officiel et ses metadonnees'
         type: boolean
@@ -40,7 +44,7 @@ jobs:
         shell: powershell
         run: ./tools/Test-LDLCAmdChocolateyPackage.ps1
       - name: Inspect the requested Guru3D source without running any installer
-        if: always()
+        if: always() && inputs.inspect_guru3d
         shell: powershell
         run: ./tools/Test-LDLCAmdGuru3dSource.ps1
       - name: Verify current official complete package without running its installer

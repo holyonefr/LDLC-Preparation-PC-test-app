@@ -1,9 +1,11 @@
 #requires -Version 5.1
 [CmdletBinding()]
-param([string]$GpuModulePath=(Join-Path (Split-Path -Parent $PSScriptRoot) 'modules/60.Gpu.ps1'),[switch]$Historical,[string]$ReportPath='')
+param([string]$GpuModulePath='',[switch]$Historical,[string]$ReportPath='')
 $ErrorActionPreference='Stop'
 trap { Write-Host ('::error title=AMD regression failure::'+$_.Exception.Message.Replace('%','%25').Replace("`r",'%0D').Replace("`n",'%0A')+'; '+$_.ScriptStackTrace.Replace("`r",'%0D').Replace("`n",'%0A')); throw }
 
+# Windows PowerShell 5.1 -File does not populate PSScriptRoot during advanced parameter defaults.
+if(-not $GpuModulePath){$GpuModulePath=Join-Path (Split-Path -Parent $PSScriptRoot) 'modules/60.Gpu.ps1'}
 . $GpuModulePath
 $cases=New-Object 'Collections.Generic.List[object]';$script:checks=0
 function Assert($v,$m){$script:checks++;if(-not $v){throw $m}}

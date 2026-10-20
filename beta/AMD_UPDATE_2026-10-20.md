@@ -57,3 +57,25 @@ mais job arrêté à 15 minutes pendant le téléchargement. Aucun succès décl
 La progression HTTP native PowerShell est désormais supprimée localement pour
 éviter son coût sur les gros fichiers ; la progression de l’application est conservée.
 Un nouvel essai réel est requis avant publication de l’EXE.
+
+## Résultats complémentaires — source officielle et Guru3D
+
+Run `39487792508` : le package complet officiel 26.10.1 a été téléchargé et vérifié,
+1 782 243 424 octets, signature AMD valide, SHA-256
+`EAF0B61DE6CE31793D05222FD57B50C6A55095F52796A33683093381F9345B82`.
+Deux INF DISPLAY détectés ; plusieurs identifiants PCI complets donnent une cible
+`32.0.32015.7029`. Aucun installateur matériel n’a été exécuté.
+Le premier échantillonnage de test tronquait les attributs SUBSYS/REV des identifiants
+PCI ; le test utilise maintenant les identifiants complets. Le filtre Include de
+Get-ChildItem avec LiteralPath est remplacé pour PowerShell 5.1 afin de borner
+correctement le rapport aux exécutables UI.
+
+Le même passage identifie un défaut du nouveau test en processus enfant : le chemin
+PSScriptRoot utilisé dans la valeur par défaut d’un paramètre avancé est vide sous
+Windows PowerShell 5.1 avec -File. Son calcul est déplacé dans le corps du test.
+Cette erreur empêchait la suite de terminer, sans prouver un défaut d’installation.
+
+La page Guru3D fournie par l’utilisateur a été demandée réellement sur ce runner :
+HTTP **403 Forbidden**, aucun fichier Guru3D téléchargé. Elle n’est pas retenue
+comme repli automatique non testé. La source officielle complète fonctionne.
+La sonde Guru3D reste disponible à la demande, indépendante des validations requises.

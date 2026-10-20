@@ -53,7 +53,7 @@ try {
         }
         $report.DisplayInfCount=$infs.Count
         $report.SampleTargets=@($targets|Select-Object PnpDeviceId,DriverVersion,HardwareId)
-        $report.ExtractedUiFiles=@(Get-ChildItem -LiteralPath $metadata -Include RadeonSoftware.exe,AMDSoftware.exe -File -Recurse | ForEach-Object {@{FileName=$_.Name;Version=(Get-LDLCFileVersionText -Path $_.FullName)}})
+        $report.ExtractedUiFiles=@(Get-ChildItem -LiteralPath $metadata -File -Recurse | Where-Object {$_.Name -in @('RadeonSoftware.exe','AMDSoftware.exe')} | Select-Object -First 4 | ForEach-Object {@{FileName=$_.Name;Version=(Get-LDLCFileVersionText -Path $_.FullName)}})
 
     }
     $report.Success=$true
