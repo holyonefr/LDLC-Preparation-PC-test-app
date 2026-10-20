@@ -44,3 +44,72 @@ n est pas certifie par le test live. Des candidats de transmission pour les troi
 productions sont prepares en patchs et seront testes sans publication production.
 Aucun test ne pretend qu'une VM Windows Server reproduit toutes les pages
 Parametres de Windows 10/11, ni qu'un vrai McAfee a ete desinstalle.
+
+La tentative de checkout croise de trois depots prives depuis la beta a echoue
+avant compilation (Git 128 : repository not found). Aucun code applicatif n est
+execute dans ces trois jobs. Les tests candidats utilisent desormais les runners
+de chaque depot et le patch beta transmis comme parametre, avec publication
+explicitement interdite. Aucun nouveau jeton GitHub n est demande.
+
+Dashboard permanent publie en version 46 : en-tetes/causes de validation,
+details repliees et fin de la reconstruction de mise en forme a chaque POST ;
+attente de verrou ingestion ramenee de 30 s a 5 s. Source relue identique au
+canonique, manifeste/configuration/autres fichiers preserves. La version 45 est
+sauvegardee hors Git. Le probleme de delai et la mise en forme repetees sont
+confirmes dans le code distant ; leur responsabilite exacte dans la photo du
+poste ne peut pas etre prouvee sans son journal.
+
+## Resultats finaux et portee
+
+Les trois productions ont leurs sources Chrome/McAfee et leurs vrais EXE publies
+apres reussite de la suite native et de quatre ouvertures/fermetures chacune.
+Les empreintes des binaires LFS recuperes correspondent aux preuves des runners :
+voir evidence/corrections-2026-10-20/three-production-releases.json.
+ADDON garde son lanceur PS2EXE avec ressources actualisees et controlees, sa
+version 2.0, Chrome seul, NVIDIA seul et aucun validateur/Adobe. LDLC et Numerik's
+sont compiles nativement en 2.6.9. Le constructeur de carte mere reste beta seul.
+
+Le renforcement client de transmission est aussi valide dans chaque production
+comme candidat non publie : suite complete, 12 cas/35 assertions de transport,
+quatre vrais lancements de chaque EXE candidat et trois echanges reels avec le
+serveur 46. Les etats observes sont validated pour la fin normale, blocked pour
+l'erreur 1603 et blocked pour l'arret. Nettoyage des seuls rapports CODEX-TEST
+confirme. L'etape de publication est verifiee skipped dans les trois jobs :
+voir evidence/corrections-2026-10-20/transmission-candidates-windows.json.
+Les patchs sont dans beta/patches/transmission, egalement prepares localement dans
+les trois autres checkouts. Ils ne sont pas commits/pushes dans leurs sources
+applicatives. L'instruction /workspace/AGENTS.md n'autorise pour le moment en
+production que Chrome/epinglage/AMD-portables et le retour McAfee ; une autorisation
+explicite est encore requise pour publier ce renforcement client de transmission.
+
+Tests reels : EXE/Preview, enfants PowerShell et dispatch du worker genere,
+raccourcis COM en dossier isole, POST/GET dashboard et nettoyage propre, lecture
+API du code Apps Script publie et page HTML live. Tests simules : effets des clics
+Chrome/epinglage, inventaire/desinstallation antivirus, erreurs HTTP/interruption
+et horloge. Aucun vrai McAfee/Norton ni pilote/BIOS/logiciel constructeur installe
+ou desinstalle sur les runners. Windows Server 2025 ne valide pas un clic reel
+dans les pages Parametres d'un poste Windows 10 ou 11 ; essai technicien requis.
+
+Erreurs rencontrees puis resolues :
+- Code 1 de la premiere suite LDLC/Numerik's : un test propre a la beta etait
+  reference dans la suite de production. Liste restauree puis tests passes.
+- Git 128/repository not found lors du checkout croise de depots prives : methode
+  remplacee par des runs propres a chaque depot, sans jeton supplementaire.
+- Trois timeouts GET a 45 s observes pendant le run de livraison Numerik's ; les
+  reessais de lecture ont reussi. Aucun faux acquittement ni perte de rapport.
+  Le meme run termine avec succes. Aucune promesse d'absence de panne reseau.
+- La premiere relecture API apres publication Google etait transitoirement
+  differente ; la relecture suivante confirme la version 46 et chaque fichier
+  strictement identique au contenu prepare. Ni manifeste ni configuration changes.
+
+Le code distant 45 confirme l'attente de verrou 30 s et la remise en forme de
+Synthese a chaque POST. Le client ancien imposait 20 s meme si la configuration
+prevoyait davantage. Ces defauts sont corriges respectivement sur le serveur 46
+et dans les clients candidats. Ils expliquent un risque reel de non-acquittement ;
+la cause exacte du message photographie reste impossible a etablir sans le journal
+du poste. Ni validation forcee, ni disparition d'une erreur reelle.
+
+Les jetons OAuth fournis sont utilises dans les processus cloud uniquement,
+aucun n'est ajoute a Git ou aux jobs Windows. L'acces de modification Google est
+confirme pour cette session ; le binding personnel de l'environnement n'est pas
+encore enregistre. Les sauvegardes du code Google sont privees et hors Git.

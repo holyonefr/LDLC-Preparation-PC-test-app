@@ -1,3 +1,14 @@
+# Etat final du 20 octobre 2026
+
+Lire beta/CORRECTIONS_2026-10-20.md : beta 2.6.9 livree, productions Chrome/McAfee
+publiees avec quatre lancements par edition, dashboard Google publie en version 46.
+Les clients de transmission durcis passent aussi les tests natifs/les trois vrais
+echanges dans chaque edition mais restent non publies en production, conformement
+a /workspace/AGENTS.md. Patchs et preuves regroupes dans beta/patches/transmission
+et beta/evidence/corrections-2026-10-20. Les autres checkouts gardent ces modifications
+locales et les anciens changements UI non publies ; ne pas les ecraser ni les pousser
+par inadvertance. L'integration carte mere reste exclusivement beta.
+
 # Passation 2.6.9 beta — corrections validees sous Windows
 
 Voir beta/CORRECTIONS_2026-10-20.md et ses preuves natives : compilation, suite

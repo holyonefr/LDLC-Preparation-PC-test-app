@@ -1,0 +1,113 @@
+{
+  "Success": true,
+  "Commit": null,
+  "Checks": [
+    {
+      "Validation": "validated",
+      "FinalVisible": true,
+      "InitialVisible": true,
+      "Acknowledged": true,
+      "ToolVersion": "2.6.9",
+      "Status": "success",
+      "ApplicationSource": "LDLC_PREPARATION_PC",
+      "Scenario": "success"
+    },
+    {
+      "Validation": "blocked",
+      "FinalVisible": true,
+      "InitialVisible": true,
+      "Acknowledged": true,
+      "ToolVersion": "2.6.9",
+      "Status": "error",
+      "ApplicationSource": "LDLC_PREPARATION_PC",
+      "Scenario": "failed"
+    },
+    {
+      "Validation": "blocked",
+      "FinalVisible": true,
+      "InitialVisible": true,
+      "Acknowledged": true,
+      "ToolVersion": "2.6.9",
+      "Status": "stopped",
+      "ApplicationSource": "LDLC_PREPARATION_PC",
+      "Scenario": "stopped"
+    }
+  ],
+  "Cleaned": true,
+  "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+  "Phase": "scenario stopped",
+  "ReadAttempts": [
+    {
+      "Stage": "preflight",
+      "Attempt": 1,
+      "Success": true,
+      "HttpStatus": 200,
+      "NetworkStatus": "OK",
+      "Transient": false,
+      "Milliseconds": 8095
+    },
+    {
+      "Stage": "scenario_success_initial",
+      "Attempt": 1,
+      "Success": true,
+      "HttpStatus": 200,
+      "NetworkStatus": "OK",
+      "Transient": false,
+      "Milliseconds": 10422
+    },
+    {
+      "Stage": "scenario_success_final",
+      "Attempt": 1,
+      "Success": true,
+      "HttpStatus": 200,
+      "NetworkStatus": "OK",
+      "Transient": false,
+      "Milliseconds": 7071
+    },
+    {
+      "Stage": "scenario_failed_initial",
+      "Attempt": 1,
+      "Success": true,
+      "HttpStatus": 200,
+      "NetworkStatus": "OK",
+      "Transient": false,
+      "Milliseconds": 10567
+    },
+    {
+      "Stage": "scenario_failed_final",
+      "Attempt": 1,
+      "Success": true,
+      "HttpStatus": 200,
+      "NetworkStatus": "OK",
+      "Transient": false,
+      "Milliseconds": 7472
+    },
+    {
+      "Stage": "scenario_stopped_initial",
+      "Attempt": 1,
+      "Success": true,
+      "HttpStatus": 200,
+      "NetworkStatus": "OK",
+      "Transient": false,
+      "Milliseconds": 7259
+    },
+    {
+      "Stage": "scenario_stopped_final",
+      "Attempt": 1,
+      "Success": true,
+      "HttpStatus": 200,
+      "NetworkStatus": "OK",
+      "Transient": false,
+      "Milliseconds": 11010
+    },
+    {
+      "Stage": "cleanup_verify",
+      "Attempt": 1,
+      "Success": true,
+      "HttpStatus": 200,
+      "NetworkStatus": "OK",
+      "Transient": false,
+      "Milliseconds": 6760
+    }
+  ]
+}

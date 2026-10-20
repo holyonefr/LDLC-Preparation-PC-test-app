@@ -1,0 +1,170 @@
+{
+  "RunId": 39449343629,
+  "RunURL": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39449343629",
+  "Proofs": {
+    "Chrome AMD Windows delivery": [
+      {
+        "ActualUserTaskbarChanged": false,
+        "UIFailures": 0,
+        "BrowserUIActionsSimulated": true,
+        "DriverInstallersExecuted": false,
+        "RealExecutablePreviewCount": 4,
+        "ExecutableSHA256": "25C2A85E395BAE74C26F5BE3154D5558926D643E037E98C969870D4649B01E5D",
+        "NativeAssociationFixturePassed": true,
+        "DeliveryCommit": "c0f623e6d7aed78268e0a8e06beb9c04f30cfea5",
+        "Repository": "holyonefr/LDLC-Preparation",
+        "TestedSource": "0b7c369853c47c1e495f1c0efb3a64d29346dc98",
+        "ReleaseSuitePassed": true
+      }
+    ],
+    "PrepTool dashboard roundtrip": [
+      {
+        "Success": true,
+        "Commit": "0b7c369853c47c1e495f1c0efb3a64d29346dc98",
+        "Checks": [
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "non_exposee",
+            "ToolVersion": "2.6.9",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "success",
+            "FinalVisible": true,
+            "Scenario": "success"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "non_exposee",
+            "ToolVersion": "2.6.9",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "error",
+            "FinalVisible": true,
+            "Scenario": "failed"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "non_exposee",
+            "ToolVersion": "2.6.9",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "stopped",
+            "FinalVisible": true,
+            "Scenario": "stopped"
+          }
+        ],
+        "Cleaned": true,
+        "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+        "Phase": "scenario stopped",
+        "ReadAttempts": [
+          {
+            "Stage": "preflight",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 12738
+          },
+          {
+            "Stage": "scenario_success_initial",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 11368
+          },
+          {
+            "Stage": "scenario_success_final",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 5766
+          },
+          {
+            "Stage": "scenario_failed_initial",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 6789
+          },
+          {
+            "Stage": "scenario_failed_final",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 8518
+          },
+          {
+            "Stage": "scenario_stopped_initial",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 7340
+          },
+          {
+            "Stage": "scenario_stopped_final",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 12977
+          },
+          {
+            "Stage": "cleanup_verify",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 9495
+          }
+        ]
+      }
+    ],
+    "McAfee historical rollback": [
+      {
+        "HistoricalCommit": "3aec296b7468e7634815eccec5d549fc90689c9f",
+        "Failures": 0,
+        "RealMcAfeeInstalled": false,
+        "LegacyTimeoutSeconds": 90,
+        "RealMcAfeeRemoved": false,
+        "Assertions": 36,
+        "NortonChanged": false,
+        "NativeWorker": "real PowerShell child plus generated security worker; inventory/preparation stubbed; no real antivirus installed or removed",
+        "Cases": 14
+      }
+    ],
+    "Chrome taskbar pin": [
+      {
+        "NativeShortcutCheck": "real WScript shortcut write/read in isolated folder; no taskbar changed",
+        "Cases": 11,
+        "ActualUserTaskbarChanged": false,
+        "Assertions": 26,
+        "Failures": 0,
+        "Mode": "controller and Windows actions simulated"
+      }
+    ],
+    "Chrome default actions": [
+      {
+        "Cases": 10,
+        "AlreadyConfiguredMilliseconds": 250,
+        "Assertions": 28,
+        "Failures": 0,
+        "Mode": "simulated Windows associations, UI actions and clock",
+        "RealBrowserDefaultsChanged": false
+      }
+    ]
+  },
+  "LocalExecutableHashVerified": true
+}

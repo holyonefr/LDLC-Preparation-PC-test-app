@@ -1,0 +1,11 @@
+{
+  "published": true,
+  "previousVersion": 45,
+  "version": 46,
+  "verifiedAfterPropagation": true,
+  "manifestPreserved": true,
+  "otherFilesPreserved": true,
+  "configurationPreserved": true,
+  "permanentDeploymentPreserved": true,
+  "codeSHA256": "0b18ef73a8fc90cfb55b8b0cbc4c71ded0904edb698b8665b71b86dff3d578a9"
+}

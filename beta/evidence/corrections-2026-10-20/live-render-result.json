@@ -1,0 +1,8 @@
+{
+  "HttpStatus": 200,
+  "Milliseconds": 8012,
+  "OldLastMessageColumnAbsent": true,
+  "CompactDetailsPresent": true,
+  "ValidationReasonPresent": true,
+  "NoCustomerDataExported": true
+}

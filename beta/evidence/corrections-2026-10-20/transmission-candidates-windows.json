@@ -1,0 +1,465 @@
+{
+  "LDLC-Preparation": {
+    "RunId": 39450906744,
+    "RunURL": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39450906744",
+    "Proofs": {
+      "Transmission candidate Windows": [
+        {
+          "PreviewCount": 4,
+          "RealDashboardRoundTrip": true,
+          "ExecutableSHA256": "35B4381A2BF2C52019410D88B45CC75A064B88BFBF2CAD4212638B668F2F2033",
+          "PatchSHA256": "20447A94546EBDC0640B10D8171720477B783612ECD201E75528914613BA0468",
+          "RealAntivirusRemoved": false,
+          "ProductionPublished": false,
+          "Repository": "holyonefr/LDLC-Preparation",
+          "TestedSource": "f05e50c9b1744f81faaac7e33946a0094c669b39",
+          "ReleaseSuitePassed": true
+        }
+      ],
+      "PrepTool dashboard roundtrip": [
+        {
+          "Success": true,
+          "Commit": "f05e50c9b1744f81faaac7e33946a0094c669b39",
+          "Checks": [
+            {
+              "ApplicationSource": "LDLC_PREPARATION_PC",
+              "Validation": "validated",
+              "ToolVersion": "2.6.9",
+              "Acknowledged": true,
+              "InitialVisible": true,
+              "Status": "success",
+              "FinalVisible": true,
+              "Scenario": "success"
+            },
+            {
+              "ApplicationSource": "LDLC_PREPARATION_PC",
+              "Validation": "blocked",
+              "ToolVersion": "2.6.9",
+              "Acknowledged": true,
+              "InitialVisible": true,
+              "Status": "error",
+              "FinalVisible": true,
+              "Scenario": "failed"
+            },
+            {
+              "ApplicationSource": "LDLC_PREPARATION_PC",
+              "Validation": "blocked",
+              "ToolVersion": "2.6.9",
+              "Acknowledged": true,
+              "InitialVisible": true,
+              "Status": "stopped",
+              "FinalVisible": true,
+              "Scenario": "stopped"
+            }
+          ],
+          "Cleaned": true,
+          "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+          "Phase": "scenario stopped",
+          "ReadAttempts": [
+            {
+              "Stage": "preflight",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 9355
+            },
+            {
+              "Stage": "scenario_success_initial",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 9592
+            },
+            {
+              "Stage": "scenario_success_final",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 8197
+            },
+            {
+              "Stage": "scenario_failed_initial",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 10319
+            },
+            {
+              "Stage": "scenario_failed_final",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 10573
+            },
+            {
+              "Stage": "scenario_stopped_initial",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 10532
+            },
+            {
+              "Stage": "scenario_stopped_final",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 7743
+            },
+            {
+              "Stage": "cleanup_verify",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 5291
+            }
+          ]
+        }
+      ],
+      "Telemetry delivery recovery": [
+        {
+          "Assertions": 35,
+          "RealDashboardModified": false,
+          "Cases": 12,
+          "Mode": "simulated HTTP responses and real isolated durable queue",
+          "Failures": 0
+        }
+      ],
+      "Transmission candidate source": [
+        {
+          "TestedSource": "f05e50c9b1744f81faaac7e33946a0094c669b39",
+          "ProductionPublished": false,
+          "PatchSHA256": "20447A94546EBDC0640B10D8171720477B783612ECD201E75528914613BA0468",
+          "Repository": "holyonefr/LDLC-Preparation"
+        }
+      ]
+    },
+    "PublicationStepSkipped": true
+  },
+  "Numerik-s-Preparation-PC": {
+    "RunId": 39451210873,
+    "RunURL": "https://github.com/holyonefr/Numerik-s-Preparation-PC/actions/runs/39451210873",
+    "Proofs": {
+      "Transmission candidate Windows": [
+        {
+          "PreviewCount": 4,
+          "RealDashboardRoundTrip": true,
+          "ExecutableSHA256": "52060E483873E7ED0FEAF767F06E883C6553BA10F66FF89DC046AC4BE18239F7",
+          "PatchSHA256": "20447A94546EBDC0640B10D8171720477B783612ECD201E75528914613BA0468",
+          "RealAntivirusRemoved": false,
+          "ProductionPublished": false,
+          "Repository": "holyonefr/Numerik-s-Preparation-PC",
+          "TestedSource": "46871be482f6ea8219010af40bce9d86a7dedfb7",
+          "ReleaseSuitePassed": true
+        }
+      ],
+      "PrepTool dashboard roundtrip": [
+        {
+          "Success": true,
+          "Commit": "46871be482f6ea8219010af40bce9d86a7dedfb7",
+          "Checks": [
+            {
+              "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+              "Validation": "validated",
+              "ToolVersion": "2.6.9",
+              "Acknowledged": true,
+              "InitialVisible": true,
+              "Status": "success",
+              "FinalVisible": true,
+              "Scenario": "success"
+            },
+            {
+              "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+              "Validation": "blocked",
+              "ToolVersion": "2.6.9",
+              "Acknowledged": true,
+              "InitialVisible": true,
+              "Status": "error",
+              "FinalVisible": true,
+              "Scenario": "failed"
+            },
+            {
+              "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+              "Validation": "blocked",
+              "ToolVersion": "2.6.9",
+              "Acknowledged": true,
+              "InitialVisible": true,
+              "Status": "stopped",
+              "FinalVisible": true,
+              "Scenario": "stopped"
+            }
+          ],
+          "Cleaned": true,
+          "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+          "Phase": "scenario stopped",
+          "ReadAttempts": [
+            {
+              "Stage": "preflight",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 6181
+            },
+            {
+              "Stage": "scenario_success_initial",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 5964
+            },
+            {
+              "Stage": "scenario_success_final",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 11601
+            },
+            {
+              "Stage": "scenario_failed_initial",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 9357
+            },
+            {
+              "Stage": "scenario_failed_final",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 6752
+            },
+            {
+              "Stage": "scenario_stopped_initial",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 9063
+            },
+            {
+              "Stage": "scenario_stopped_final",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 7359
+            },
+            {
+              "Stage": "cleanup_verify",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 10353
+            }
+          ]
+        }
+      ],
+      "Telemetry delivery recovery": [
+        {
+          "Assertions": 35,
+          "RealDashboardModified": false,
+          "Cases": 12,
+          "Mode": "simulated HTTP responses and real isolated durable queue",
+          "Failures": 0
+        }
+      ],
+      "Transmission candidate source": [
+        {
+          "TestedSource": "46871be482f6ea8219010af40bce9d86a7dedfb7",
+          "ProductionPublished": false,
+          "PatchSHA256": "20447A94546EBDC0640B10D8171720477B783612ECD201E75528914613BA0468",
+          "Repository": "holyonefr/Numerik-s-Preparation-PC"
+        }
+      ]
+    },
+    "PublicationStepSkipped": true
+  },
+  "LDLC-Preparation-Addon": {
+    "RunId": 39450912339,
+    "RunURL": "https://github.com/holyonefr/LDLC-Preparation-Addon/actions/runs/39450912339",
+    "Proofs": {
+      "Transmission candidate Windows": [
+        {
+          "PreviewCount": 4,
+          "RealDashboardRoundTrip": true,
+          "ExecutableSHA256": "BA2C8EF10C02CECEA8A7EC389ED0F0669B760264605F8B7F8334C6BF8C9BE8D9",
+          "PatchSHA256": "6F892898C61C42C6FE946BC9913B728AC358FF685696430418FBD0726BE04463",
+          "RealAntivirusRemoved": false,
+          "ProductionPublished": false,
+          "Repository": "holyonefr/LDLC-Preparation-Addon",
+          "TestedSource": "d0f5160dd0928139a831b5d5267a1803b74ddbf3",
+          "ReleaseSuitePassed": true
+        }
+      ],
+      "PrepTool dashboard roundtrip": [
+        {
+          "Success": true,
+          "Commit": "d0f5160dd0928139a831b5d5267a1803b74ddbf3",
+          "Checks": [
+            {
+              "ApplicationSource": "LDLC_PREPARATION_ADDON",
+              "Validation": "validated",
+              "ToolVersion": "2.0",
+              "Acknowledged": true,
+              "InitialVisible": true,
+              "Status": "success",
+              "FinalVisible": true,
+              "Scenario": "success"
+            },
+            {
+              "ApplicationSource": "LDLC_PREPARATION_ADDON",
+              "Validation": "blocked",
+              "ToolVersion": "2.0",
+              "Acknowledged": true,
+              "InitialVisible": true,
+              "Status": "error",
+              "FinalVisible": true,
+              "Scenario": "failed"
+            },
+            {
+              "ApplicationSource": "LDLC_PREPARATION_ADDON",
+              "Validation": "blocked",
+              "ToolVersion": "2.0",
+              "Acknowledged": true,
+              "InitialVisible": true,
+              "Status": "stopped",
+              "FinalVisible": true,
+              "Scenario": "stopped"
+            }
+          ],
+          "Cleaned": true,
+          "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+          "Phase": "scenario stopped",
+          "ReadAttempts": [
+            {
+              "Stage": "preflight",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 5740
+            },
+            {
+              "Stage": "scenario_success_initial",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 10331
+            },
+            {
+              "Stage": "scenario_success_final",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 10584
+            },
+            {
+              "Stage": "scenario_failed_initial",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 10691
+            },
+            {
+              "Stage": "scenario_failed_final",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 7874
+            },
+            {
+              "Stage": "scenario_stopped_initial",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 9911
+            },
+            {
+              "Stage": "scenario_stopped_final",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 7924
+            },
+            {
+              "Stage": "cleanup_verify",
+              "Attempt": 1,
+              "Success": true,
+              "HttpStatus": 200,
+              "NetworkStatus": "OK",
+              "Transient": false,
+              "Milliseconds": 7162
+            }
+          ]
+        }
+      ],
+      "Telemetry delivery recovery": [
+        {
+          "Assertions": 35,
+          "RealDashboardModified": false,
+          "Cases": 12,
+          "Mode": "simulated HTTP responses and real isolated durable queue",
+          "Failures": 0
+        },
+        {
+          "Assertions": 35,
+          "RealDashboardModified": false,
+          "Cases": 12,
+          "Mode": "simulated HTTP responses and real isolated durable queue",
+          "Failures": 0
+        }
+      ],
+      "Transmission candidate source": [
+        {
+          "TestedSource": "d0f5160dd0928139a831b5d5267a1803b74ddbf3",
+          "ProductionPublished": false,
+          "PatchSHA256": "6F892898C61C42C6FE946BC9913B728AC358FF685696430418FBD0726BE04463",
+          "Repository": "holyonefr/LDLC-Preparation-Addon"
+        }
+      ]
+    },
+    "PublicationStepSkipped": true
+  }
+}

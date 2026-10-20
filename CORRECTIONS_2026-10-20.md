@@ -1,7 +1,7 @@
 # Corrections Chrome et McAfee — 20 octobre 2026
 
-Sources preparees ; resultats Windows et empreintes de livraison a ajouter apres
-validation native. La publication de ces deux corrections est autorisee dans les
+Livraison native Windows validee et publiee ; preuves dans
+evidence/corrections-2026-10-20/windows.json. La publication de ces deux corrections est autorisee dans les
 trois productions. La correction de transmission reste pour le moment en beta.
 
 Chrome : la regression du clic physique force contournait InvokePattern. Le
@@ -28,3 +28,9 @@ ordre du workflow et syntaxe. Actions Windows et inventaires sont simules ; aucu
 vrai antivirus n'est retire. Les tests natifs ajouteront quatre ouvertures de
 chaque vrai EXE et trois rapports CODEX-TEST acquittes sur le dashboard permanent,
 puis supprimeront uniquement ces propres rapports.
+
+Run valide : https://github.com/holyonefr/LDLC-Preparation/actions/runs/39449343629
+EXE SHA-256 : 25C2A85E395BAE74C26F5BE3154D5558926D643E037E98C969870D4649B01E5D
+Suite release, quatre vrais lancements Preview et trois rapports reels
+acquittes sur le dashboard (success/error/stopped), puis nettoyage confirme.
+Le binaire LFS recupere correspond a l empreinte du runner.
