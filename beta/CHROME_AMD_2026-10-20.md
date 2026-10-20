@@ -64,8 +64,16 @@ Les quatre nouveaux contrôles natifs passent : Chrome 9 scénarios/27 assertion
 API d'associations 3 assertions réelles sur fixture isolée. Preuves :
 [evidence/chrome-amd-2026-10-20/windows-evidence.json](evidence/chrome-amd-2026-10-20/windows-evidence.json).
 
-Nouvelle compilation requise après synchronisation du cœur de production 2.6.6 ;
-ses résultats remplaceront l'empreinte de première livraison ci-dessus.
+Synchronisation 2.6.6 validée à nouveau :
+[run 39407935800](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39407935800),
+source `862340d`, livraison `93ba2d6`. Suite complète et quatre nouveaux vrais
+Preview/fermetures réussis, contrôles Chrome/AMD/API/COM et intégration carte mère
+préservés. SHA256 de l'EXE bêta courant :
+`79C2C4C288A23191A492C647347EE25434DE5C8F7FF6C0BE5554D6A5833C9BF5`.
+Cette empreinte remplace la première livraison ci-dessus. Preuve :
+[evidence/chrome-amd-2026-10-20/windows-synchronized-evidence.json](evidence/chrome-amd-2026-10-20/windows-synchronized-evidence.json).
+Les trois productions sont également publiées et vérifiées : voir
+[../RESULTATS_CHROME_AMD_2026-10-20.md](../RESULTATS_CHROME_AMD_2026-10-20.md).
 Le workflow utilise `live_vendor_downloads=false` : aucun installateur matériel
 n'est exécuté, aucun appel de télémétrie n'est envoyé.
 

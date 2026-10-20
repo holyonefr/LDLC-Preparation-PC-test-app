@@ -815,3 +815,14 @@ Cœur 2.6.6 intégré depuis LDLC/Numerik's ; les overlays Chrome sont identique
 module carte mère et tests/rendu bêta préservés. Workflow de livraison production
 volontairement absent de la bêta (overlay) : beta-validation.yml reste sa voie
 de build. Nouvelle validation native après synchronisation requise.
+
+Validation synchronisée 2.6.6 terminée : run 39407935800 sur 862340d, suite release,
+intégration carte mère et quatre vrais Preview/fermetures réussis. Livraison bêta
+93ba2d6, SHA256 79C2C4C288A23191A492C647347EE25434DE5C8F7FF6C0BE5554D6A5833C9BF5.
+Productions : LDLC run 39407672991, Numerik's 39407677065, Addon 39408146830,
+quatre lancements par édition et suites complètes passés, EXE effectivement publiés
+puis empreintes vérifiées. Premier essai Addon validé en tests mais refusé en
+publication, puis sorties LF et diagnostic ajoutés avant relance complète réussie.
+Nouvelle synchronisation finale : seuls résultats/docs et métadonnées arrivent
+depuis LDLC ; aucun changement de code après les compilations validées.
+Les anciens agrandissements UI locaux de production sont laissés hors livraison.

@@ -1,0 +1,145 @@
+{
+  "RunId": 39407935800,
+  "URL": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39407935800",
+  "SourceCommit": "862340dd59b3793acf379b8f0404c94df4e930cb",
+  "Checks": [
+    {
+      "title": "AMD laptop bypass",
+      "result": {
+        "Cases": 17,
+        "PortableNetworkRequests": 0,
+        "Assertions": 17,
+        "Failures": 0,
+        "NvidiaPreserved": true,
+        "Mode": "simulated SMBIOS and GPU boundaries; no driver installed"
+      }
+    },
+    {
+      "title": "Chrome taskbar pin",
+      "result": {
+        "NativeShortcutCheck": "real WScript shortcut write/read in isolated folder; no taskbar changed",
+        "Cases": 10,
+        "ActualUserTaskbarChanged": false,
+        "Assertions": 22,
+        "Failures": 0,
+        "Mode": "controller and Windows actions simulated"
+      }
+    },
+    {
+      "title": "Native association API",
+      "result": {
+        "Assertions": 3,
+        "Status": "passed",
+        "FixtureExecuted": false,
+        "BrowserDefaultsChanged": false,
+        "Mode": "real Windows association APIs, isolated temporary file extension and class"
+      }
+    },
+    {
+      "title": "Chrome quick confirmation",
+      "result": {
+        "Cases": 9,
+        "AlreadyConfiguredMilliseconds": 1250,
+        "Assertions": 27,
+        "Failures": 0,
+        "Mode": "simulated Windows associations, UI actions and clock",
+        "RealBrowserDefaultsChanged": false
+      }
+    }
+  ],
+  "Evidence": {
+    "beta_delivery": {
+      "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+      "PublishedExecutable": true,
+      "ExecutableSHA256": "79C2C4C288A23191A492C647347EE25434DE5C8F7FF6C0BE5554D6A5833C9BF5",
+      "DeliveryCommit": "93ba2d6146a34cd1a498811b1b1004b0eb5dad29",
+      "TestedSource": "862340dd59b3793acf379b8f0404c94df4e930cb",
+      "VendorInstallerExecuted": false
+    },
+    "beta_ui_launches": {
+      "Passes": [
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1845,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 410,
+          "QuitTop": 197,
+          "QuitWidth": 57,
+          "QuitHeight": 22,
+          "QuitPreferredWidth": 57,
+          "QuitPreferredHeight": 22,
+          "QuitWhitePixels": 66,
+          "QuitGlyphTop": 8,
+          "QuitGlyphBottom": 15,
+          "ProgressPanelBottom": 192,
+          "FooterGap": 5,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1625,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 410,
+          "QuitTop": 197,
+          "QuitWidth": 57,
+          "QuitHeight": 22,
+          "QuitPreferredWidth": 57,
+          "QuitPreferredHeight": 22,
+          "QuitWhitePixels": 66,
+          "QuitGlyphTop": 8,
+          "QuitGlyphBottom": 15,
+          "ProgressPanelBottom": 192,
+          "FooterGap": 5,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1628,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 410,
+          "QuitTop": 197,
+          "QuitWidth": 57,
+          "QuitHeight": 22,
+          "QuitPreferredWidth": 57,
+          "QuitPreferredHeight": 22,
+          "QuitWhitePixels": 66,
+          "QuitGlyphTop": 8,
+          "QuitGlyphBottom": 15,
+          "ProgressPanelBottom": 192,
+          "FooterGap": 5,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        },
+        {
+          "Visible": true,
+          "MillisecondsToPreview": 1622,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 410,
+          "QuitTop": 197,
+          "QuitWidth": 57,
+          "QuitHeight": 22,
+          "QuitPreferredWidth": 57,
+          "QuitPreferredHeight": 22,
+          "QuitWhitePixels": 66,
+          "QuitGlyphTop": 8,
+          "QuitGlyphBottom": 15,
+          "ProgressPanelBottom": 192,
+          "FooterGap": 5,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      ],
+      "Mode": "real_compiled_executable_preview_and_quit_isolated_processes",
+      "VendorInstallerExecuted": false,
+      "Count": 4,
+      "Failures": 0
+    },
+    "beta_release": {
+      "Status": "passed",
+      "Suite": "Test-LDLCRelease.ps1",
+      "VendorInstallerExecuted": false
+    }
+  }
+}

@@ -1,0 +1,374 @@
+[
+  {
+    "Repository": "holyonefr/LDLC-Preparation",
+    "SourceCommit": "32034ccaae157db08fd5880df33b24ad0039b1a0",
+    "RunId": 39407672991,
+    "URL": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39407672991",
+    "Conclusion": "success",
+    "Checks": [
+      {
+        "Title": "Chrome AMD Windows delivery",
+        "Result": {
+          "ActualUserTaskbarChanged": false,
+          "UIFailures": 0,
+          "BrowserUIActionsSimulated": true,
+          "DriverInstallersExecuted": false,
+          "RealExecutablePreviewCount": 4,
+          "ExecutableSHA256": "C3C63CB0F17AD84111BF02294D3272727F4F5A5DFB61786CFC3B800526E13068",
+          "NativeAssociationFixturePassed": true,
+          "DeliveryCommit": "711989f0737d0ce6df0fdd7086e1f5e596cbc4a3",
+          "Repository": "holyonefr/LDLC-Preparation",
+          "TestedSource": "32034ccaae157db08fd5880df33b24ad0039b1a0",
+          "ReleaseSuitePassed": true
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 1086,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 1119,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 1089,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 1275,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "AMD laptop bypass",
+        "Result": {
+          "Cases": 17,
+          "PortableNetworkRequests": 0,
+          "Assertions": 17,
+          "Failures": 0,
+          "NvidiaPreserved": true,
+          "Mode": "simulated SMBIOS and GPU boundaries; no driver installed"
+        }
+      },
+      {
+        "Title": "Chrome taskbar pin",
+        "Result": {
+          "NativeShortcutCheck": "real WScript shortcut write/read in isolated folder; no taskbar changed",
+          "Cases": 10,
+          "ActualUserTaskbarChanged": false,
+          "Assertions": 22,
+          "Failures": 0,
+          "Mode": "controller and Windows actions simulated"
+        }
+      },
+      {
+        "Title": "Native association API",
+        "Result": {
+          "Assertions": 3,
+          "Status": "passed",
+          "FixtureExecuted": false,
+          "BrowserDefaultsChanged": false,
+          "Mode": "real Windows association APIs, isolated temporary file extension and class"
+        }
+      },
+      {
+        "Title": "Chrome quick confirmation",
+        "Result": {
+          "Cases": 9,
+          "AlreadyConfiguredMilliseconds": 1250,
+          "Assertions": 27,
+          "Failures": 0,
+          "Mode": "simulated Windows associations, UI actions and clock",
+          "RealBrowserDefaultsChanged": false
+        }
+      }
+    ]
+  },
+  {
+    "Repository": "holyonefr/Numerik-s-Preparation-PC",
+    "SourceCommit": "ff58debc44dff29c987cdc157de58929ddc29479",
+    "RunId": 39407677065,
+    "URL": "https://github.com/holyonefr/Numerik-s-Preparation-PC/actions/runs/39407677065",
+    "Conclusion": "success",
+    "Checks": [
+      {
+        "Title": "Chrome AMD Windows delivery",
+        "Result": {
+          "ActualUserTaskbarChanged": false,
+          "UIFailures": 0,
+          "BrowserUIActionsSimulated": true,
+          "DriverInstallersExecuted": false,
+          "RealExecutablePreviewCount": 4,
+          "ExecutableSHA256": "CA700563C995A256F1AF85F62F009623C8BF5BF9CE021308434D516798D68A3E",
+          "NativeAssociationFixturePassed": true,
+          "DeliveryCommit": "59b519c9d68fb4c38c4f417a3f1735818f240463",
+          "Repository": "holyonefr/Numerik-s-Preparation-PC",
+          "TestedSource": "ff58debc44dff29c987cdc157de58929ddc29479",
+          "ReleaseSuitePassed": true
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 2017,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 2037,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 2014,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 1958,
+          "WindowWidth": 481,
+          "WindowHeight": 222,
+          "QuitLeft": 417,
+          "QuitTop": 204,
+          "QuitWidth": 50,
+          "QuitHeight": 14,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "AMD laptop bypass",
+        "Result": {
+          "Cases": 17,
+          "PortableNetworkRequests": 0,
+          "Assertions": 17,
+          "Failures": 0,
+          "NvidiaPreserved": true,
+          "Mode": "simulated SMBIOS and GPU boundaries; no driver installed"
+        }
+      },
+      {
+        "Title": "Chrome taskbar pin",
+        "Result": {
+          "NativeShortcutCheck": "real WScript shortcut write/read in isolated folder; no taskbar changed",
+          "Cases": 10,
+          "ActualUserTaskbarChanged": false,
+          "Assertions": 22,
+          "Failures": 0,
+          "Mode": "controller and Windows actions simulated"
+        }
+      },
+      {
+        "Title": "Native association API",
+        "Result": {
+          "Assertions": 3,
+          "Status": "passed",
+          "FixtureExecuted": false,
+          "BrowserDefaultsChanged": false,
+          "Mode": "real Windows association APIs, isolated temporary file extension and class"
+        }
+      },
+      {
+        "Title": "Chrome quick confirmation",
+        "Result": {
+          "Cases": 9,
+          "AlreadyConfiguredMilliseconds": 1250,
+          "Assertions": 27,
+          "Failures": 0,
+          "Mode": "simulated Windows associations, UI actions and clock",
+          "RealBrowserDefaultsChanged": false
+        }
+      }
+    ]
+  },
+  {
+    "Repository": "holyonefr/LDLC-Preparation-Addon",
+    "SourceCommit": "72c92e6c985c924d0ed64aabb60b0aba1b782fd2",
+    "FirstSourceCommit": "7a9ebf4ce2b02f7050052834408b4cbb0457a8e3",
+    "FirstRunId": 39407680610,
+    "RunId": 39408146830,
+    "URL": "https://github.com/holyonefr/LDLC-Preparation-Addon/actions/runs/39408146830",
+    "Conclusion": "success",
+    "Checks": [
+      {
+        "Title": "Chrome AMD Windows delivery",
+        "Result": {
+          "ActualUserTaskbarChanged": false,
+          "UIFailures": 0,
+          "BrowserUIActionsSimulated": true,
+          "DriverInstallersExecuted": false,
+          "RealExecutablePreviewCount": 4,
+          "ExecutableSHA256": "2346700DD7BEABD84F9263B179A8C42F732CAE48BB6BD508FE013907BDC0B33A",
+          "NativeAssociationFixturePassed": true,
+          "DeliveryCommit": "ebb08929ebc61c46dcb2f7ff82cfe4568182fc5d",
+          "Repository": "holyonefr/LDLC-Preparation-Addon",
+          "TestedSource": "72c92e6c985c924d0ed64aabb60b0aba1b782fd2",
+          "ReleaseSuitePassed": true
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 1448,
+          "WindowWidth": 512,
+          "WindowHeight": 236,
+          "QuitLeft": 438,
+          "QuitTop": 209,
+          "QuitWidth": 64,
+          "QuitHeight": 17,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 1751,
+          "WindowWidth": 512,
+          "WindowHeight": 236,
+          "QuitLeft": 438,
+          "QuitTop": 209,
+          "QuitWidth": 64,
+          "QuitHeight": 17,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 992,
+          "WindowWidth": 512,
+          "WindowHeight": 236,
+          "QuitLeft": 438,
+          "QuitTop": 209,
+          "QuitWidth": 64,
+          "QuitHeight": 17,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "PrepTool compiled preview",
+        "Result": {
+          "Visible": true,
+          "MillisecondsToPreview": 1323,
+          "WindowWidth": 512,
+          "WindowHeight": 236,
+          "QuitLeft": 438,
+          "QuitTop": 209,
+          "QuitWidth": 64,
+          "QuitHeight": 17,
+          "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+        }
+      },
+      {
+        "Title": "Chrome taskbar pin",
+        "Result": {
+          "NativeShortcutCheck": "real WScript shortcut write/read in isolated folder; no taskbar changed",
+          "Cases": 10,
+          "ActualUserTaskbarChanged": false,
+          "Assertions": 22,
+          "Failures": 0,
+          "Mode": "controller and Windows actions simulated"
+        }
+      },
+      {
+        "Title": "Native association API",
+        "Result": {
+          "Assertions": 3,
+          "Status": "passed",
+          "FixtureExecuted": false,
+          "BrowserDefaultsChanged": false,
+          "Mode": "real Windows association APIs, isolated temporary file extension and class"
+        }
+      },
+      {
+        "Title": "Chrome quick confirmation",
+        "Result": {
+          "Cases": 9,
+          "AlreadyConfiguredMilliseconds": 750,
+          "Assertions": 27,
+          "Failures": 0,
+          "Mode": "simulated Windows associations, UI actions and clock",
+          "RealBrowserDefaultsChanged": false
+        }
+      }
+    ],
+    "FirstRun": {
+      "RunId": 39407680610,
+      "BuildPassed": true,
+      "ReleaseSuitePassed": true,
+      "RealExecutablePreviewCount": 4,
+      "PublicationPassed": false,
+      "DetailedLogs": "unavailable from cloud: HTTP 403",
+      "Correction": "Normalize generated scripts and indexes to LF, add explicit publication error annotation; rerun all checks."
+    }
+  }
+]

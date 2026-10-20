@@ -1,7 +1,7 @@
 # LDLC Preparation PC — version beta
 
 Depot de test : **holyonefr/LDLC-Preparation-PC-test-app**.
-Base LDLC stable : commit `a2a57ee2d28203fded79802eae2a58883d996c7e`.
+Base LDLC stable : commit `c64600d2b896f2c7ba560eaad5e4cca2545e6fc6`.
 Le 20 octobre, l'utilisateur autorise aussi la livraison de la correction
 Chrome/epinglage/portables AMD dans les trois productions. Le module carte mere
 reste exclusivement dans cette beta.
@@ -31,10 +31,10 @@ pointe uniquement vers le coeur signe, pas vers le wrapper MB Update/RGB Sync.
 
 ## Synchronisation pour les prochaines corrections
 
-La beta doit rester a jour a chaque modification demandee. Pendant le gel de
-publication des autres applications, pousser uniquement ici. Exception de travail
-local demandee le 19 octobre : agrandir les deux textes de progression dans LDLC
-et Addon, en conservant Numerik's intact ; leurs EXE et publications restent geles.
+La beta reste synchronisee pour chaque correction demandee. La publication de
+cette correction Chrome/epinglage/portables AMD dans les trois productions est
+autorisee le 20 octobre. L'integration carte mere reste reservee a la beta.
+Les anciens agrandissements UI locaux de production sont laisses hors livraison.
 `beta/sync.json` indique le commit stable et les adaptations beta a conserver.
 
 ```powershell
