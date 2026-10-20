@@ -2,7 +2,7 @@
   "SchemaVersion": 1,
   "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
   "StableRepository": "holyonefr/LDLC-Preparation",
-  "SourceCommit": "7c032a55cad4672394aca95a3350bbf4b41d2eca",
+  "SourceCommit": "b505d5b659da9d4cd66dd1cbc18870bfe4ac0267",
   "SourceWorkingTreeDirty": true,
   "OverlayPaths": [
     ".gitattributes",
@@ -56,5 +56,5 @@
     "tools/Test-TelemetryDeliveryRecovery.ps1",
     "tools/Test-PreparationRegressionComparison.ps1"
   ],
-  "PublicationPolicy": "Production exceptions authorize the Chrome/default/taskbar/laptop-AMD fixes and historical McAfee rollback. Transmission recovery is beta-only until explicitly authorized for production. Preserve beta-only motherboard integration."
+  "PublicationPolicy": "2026-10-20 explicit user authorization \"Oui envoie sur les 4\": publish current transmission recovery and tested EXEs in all four repositories. Preserve beta-only motherboard integration and unrelated unpublished UI edits."
 }

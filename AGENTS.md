@@ -26,3 +26,7 @@ is authorized; preserve the beta-only motherboard feature and resynchronize beta
 2026-10-20: the user also authorized the historical McAfee rollback in all three
 production repositories, with Norton parity checks. Transmission recovery is
 currently prepared in beta; other publication restrictions remain in effect.
+
+2026-10-20: the user explicitly said "Oui envoie sur les 4" for transmission
+recovery. Publish this correction and its Windows-tested deliveries in all four
+repositories. Preserve beta-only motherboard integration and unrelated local UI.

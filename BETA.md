@@ -1,3 +1,5 @@
+Publication courante autorisee dans les quatre depots : [transmission 2.6.10](TRANSMISSION_2026-10-20.md).
+
 Derniere campagne validee : [corrections 2.6.9](beta/CORRECTIONS_2026-10-20.md).
 
 # LDLC Preparation PC — version beta

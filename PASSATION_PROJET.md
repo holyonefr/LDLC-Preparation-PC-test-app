@@ -1,3 +1,10 @@
+# Publication transmission — 20 octobre 2026
+
+L'utilisateur autorise maintenant les quatre depots. Voir TRANSMISSION_2026-10-20.md.
+La correction precedemment en attente est publiee en sources ; les livraisons
+Windows ne seront publiees qu'apres reussite des suites et des echanges reels.
+Les anciens changements UI locaux sont conserves hors livraison.
+
 # Etat final du 20 octobre 2026
 
 Lire beta/CORRECTIONS_2026-10-20.md : beta 2.6.9 livree, productions Chrome/McAfee
