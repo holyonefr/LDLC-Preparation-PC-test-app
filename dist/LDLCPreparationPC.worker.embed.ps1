@@ -1159,7 +1159,7 @@ function Restore-PowerSettings {
 # They are intentionally embedded so the compiled exe can report issues from any PC.
 $script:LDLCTelemetryEndpointUrl = 'https://script.google.com/macros/s/AKfycbwYe2r5-y8HeyfLjslbq7wI2BdFH0sj7TLJQSiUyeRdt_z7yytyTKsPQPPcT0HUcAci3g/exec'
 $script:LDLCTelemetryApiKey = 'LDLC-PrepTool-2026-ea2653c3d8f94cad9bbe4a2fa6fe8e18'
-$script:LDLCTelemetryToolVersion = '2.6.10'
+$script:LDLCTelemetryToolVersion = '2.6.11'
 $script:LDLCTelemetrySource = 'LDLCPreparationPC'
 $script:LDLCTelemetryApplicationSource = 'LDLC_PREPARATION_PC'
 $script:LDLCTelemetryEdition = 'LDLC'
@@ -6905,29 +6905,154 @@ function Get-LDLCGpuAdapterVendor {
     return ''
 }
 
+function Get-LDLCAmdOfficialInstallerLinks {
+    param([Parameter(Mandatory=$true)][string]$Html,[Parameter(Mandatory=$true)][string]$PageUrl)
+    $decoded=[Net.WebUtility]::HtmlDecode($Html).Replace('\/','/')
+    $links=New-Object 'Collections.Generic.List[string]'
+    foreach($m in [regex]::Matches($decoded,'(?i)(?:href|data-href)\s*=\s*["''](?<url>[^"''<>]+)["'']')){[void]$links.Add($m.Groups['url'].Value)}
+    foreach($m in [regex]::Matches($decoded,'(?i)https://(?:drivers|download)\.amd\.com/[^"''<>\s]+\.exe(?:\?[^"''<>\s]*)?')){[void]$links.Add($m.Value)}
+    foreach($link in @($links | Select-Object -Unique)){
+        try{$uri=[uri]::new([uri]$PageUrl,$link)}catch{continue}
+        if($uri.Scheme -ne 'https' -or $uri.Host -notin @('drivers.amd.com','download.amd.com') -or $uri.UserInfo -or $uri.Port -ne 443){continue}
+        $name=[IO.Path]::GetFileName($uri.AbsolutePath)
+        $m=[regex]::Match($name,'(?i)^(?:whql-)?amd-software-adrenalin-edition-(?<v>\d+(?:\.\d+){1,3})-[\w.-]+\.exe$')
+        if(-not $m.Success){continue}
+        [pscustomobject]@{Url=$uri.AbsoluteUri;FileName=$name;Version=$m.Groups['v'].Value;PageUrl=$PageUrl;IsFullPackage=($name -notmatch '(?i)minimalsetup|_web\.exe$')}
+    }
+}
+
 function Resolve-LDLCAmdGpuOfficialSource {
-    # GPU-131: Auto-Detect selects the latest compatible package for each GPU,
-    # unlike a generic full RDNA package which may not support an older iGPU.
-    $pageUrl = 'https://www.amd.com/en/support/download/drivers.html'
-    $response = Invoke-WebRequest -Uri $pageUrl -Headers @{ 'Cache-Control' = 'no-cache'; Pragma = 'no-cache' } -UseBasicParsing -TimeoutSec 60 -ErrorAction Stop
-    $html = [System.Net.WebUtility]::HtmlDecode([string]$response.Content)
-    $sources = foreach ($match in [regex]::Matches($html, '(?i)href\s*=\s*["''](?<url>https://(?:drivers|download)\.amd\.com/[^"''<>\s]+)["'']')) {
-        $uri = [uri]$match.Groups['url'].Value
-        $fileName = [System.IO.Path]::GetFileName($uri.AbsolutePath)
-        if ($uri.UserInfo -or $uri.Port -ne 443 -or $fileName -notmatch '(?i)^amd-software-adrenalin-edition-(?<version>\d+(?:\.\d+){1,3})-minimalsetup-[\w-]+_web\.exe$') {
-            continue
-        }
-        [pscustomobject]@{
-            Url = $uri.AbsoluteUri
-            FileName = $fileName
-            Version = $Matches['version']
-            Provider = 'AMD officiel (Auto-Detect)'
-            PageUrl = $pageUrl
+    # Auto-Detect is discovery metadata only; it is not proof that a driver updated.
+    $pageUrl='https://www.amd.com/en/support/download/drivers.html'
+    $response=Invoke-WebRequest -Uri $pageUrl -Headers @{'Cache-Control'='no-cache';Pragma='no-cache'} -UseBasicParsing -TimeoutSec 60 -ErrorAction Stop
+    $latest=Get-LDLCAmdOfficialInstallerLinks -Html ([string]$response.Content) -PageUrl $pageUrl |
+        Where-Object {-not $_.IsFullPackage} | Sort-Object {[version]$_.Version} -Descending | Select-Object -First 1
+    if(-not $latest){throw 'Lien Auto-Detect Adrenalin actuel introuvable sur la page AMD officielle.'}
+    $latest | Add-Member -NotePropertyName Provider -NotePropertyValue 'AMD officiel (Auto-Detect)' -Force
+    return $latest
+}
+
+function Resolve-LDLCAmdGpuFullOfficialSources {
+    param([Parameter(Mandatory=$true)]$AutoDetectSource)
+    # Derive the current official release note, never a pinned driver URL/version.
+    $releaseVersion=[version]$AutoDetectSource.Version
+    $releaseUrl='https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-'+($releaseVersion.ToString() -replace '\.','-')+'.html'
+    $response=Invoke-WebRequest -Uri $releaseUrl -Headers @{'Cache-Control'='no-cache';Pragma='no-cache'} -UseBasicParsing -TimeoutSec 60 -ErrorAction Stop
+    $sources=@(Get-LDLCAmdOfficialInstallerLinks -Html ([string]$response.Content) -PageUrl $releaseUrl | Where-Object {$_.IsFullPackage -and [version]$_.Version -eq $releaseVersion} | Sort-Object Url -Unique)
+    if(-not $sources.Count){throw ('Package Adrenalin complet '+$AutoDetectSource.Version+' introuvable dans la note AMD officielle. Aucun ancien package reutilise.')}
+    return $sources
+}
+
+function Get-LDLCAmdArchiveTool {
+    foreach($folder in @($env:ProgramFiles,${env:ProgramFiles(x86)})){
+        if(-not $folder){continue}
+        $path=Join-Path $folder '7-Zip/7z.exe'
+        if(Test-Path -LiteralPath $path -PathType Leaf){return $path}
+    }
+    $command=Get-Command 7z.exe -ErrorAction SilentlyContinue
+    if($command){return $command.Source}
+    throw '7-Zip indisponible : impossible de verifier le contenu du package AMD avant installation.'
+}
+
+function Expand-LDLCAmdPackageMetadata {
+    param([Parameter(Mandatory=$true)][string]$Path,[Parameter(Mandatory=$true)][string]$Destination)
+    Stop-IfRequested
+    $seven=Get-LDLCAmdArchiveTool
+    [void][IO.Directory]::CreateDirectory($Destination)
+    $output=@(& $seven x '-y' '-bd' '-r' ('-o'+$Destination) $Path '*.inf' 'RadeonSoftware.exe' 'AMDSoftware.exe' 2>&1)
+    if($LASTEXITCODE -ne 0){throw ('Lecture du package AMD impossible (7-Zip '+$LASTEXITCODE+'). Aucun pilote installe.')}
+    Stop-IfRequested
+    if(-not @(Get-ChildItem -LiteralPath $Destination -Filter '*.inf' -File -Recurse).Count){throw 'Aucun manifeste pilote INF dans le package AMD complet. Installation non lancee.'}
+}
+
+function Test-LDLCAmdInfHardwareMatch {
+    param([string]$HardwareId,[string]$PnpDeviceId)
+    if($HardwareId -notmatch '(?i)^PCI\\VEN_1002&DEV_[0-9A-F]{4}(?:&(?:SUBSYS_[0-9A-F]{8}|REV_[0-9A-F]{2}))*$'){return $false}
+    $device=([string]$PnpDeviceId).ToUpperInvariant().Split('\')
+    if($device.Count -lt 2 -or $device[0] -ne 'PCI'){return $false}
+    $attributes=@($device[1].Split('&'))
+    foreach($part in $HardwareId.ToUpperInvariant().Substring(4).Split('&')){if($part -notin $attributes){return $false}}
+    return $true
+}
+
+function Get-LDLCAmdPackageDriverTargets {
+    param([Parameter(Mandatory=$true)][string]$MetadataPath,[Parameter(Mandatory=$true)][string[]]$PnpDeviceIds,[int]$WindowsBuild=[Environment]::OSVersion.Version.Build)
+    $targets=@{}
+    foreach($inf in @(Get-ChildItem -LiteralPath $MetadataPath -Filter '*.inf' -File -Recurse)){
+        $text=[IO.File]::ReadAllText($inf.FullName)
+        if($text -notmatch '(?im)^\s*Class\s*=\s*Display\s*(?:;.*)?$'){continue}
+        $versionMatch=[regex]::Match($text,'(?im)^\s*DriverVer\s*=\s*[^,\r\n]+,\s*(?<v>\d+\.\d+\.\d+\.\d+)\s*(?:;.*)?$')
+        if(-not $versionMatch.Success){continue}
+        $version=$versionMatch.Groups['v'].Value
+        # Only eligible x64 models sections: x86/ARM and newer Windows builds cannot supply a target.
+        $eligible=$false
+        foreach($line in ($text -split '\r?\n')){
+            $section=[regex]::Match($line,'^\s*\[(?<name>[^]]+)\]')
+            if($section.Success){
+                $sectionName=$section.Groups['name'].Value
+                $eligible=($sectionName -match '(?i)\.NTamd64(?:\.|$)')
+                $build=[regex]::Match($sectionName,'(?i)\.NTamd64\.\d+\.\d+\.[^.]*\.[^.]*\.(?<build>\d+)(?:\.|$)')
+                if($build.Success -and [int]$build.Groups['build'].Value -gt $WindowsBuild){$eligible=$false}
+                continue
+            }
+            if(-not $eligible){continue}
+            # Match a complete hardware ID on a models entry, never a comment or substring.
+            foreach($m in [regex]::Matches($line,'(?i)^\s*[^;=]+=[^;]*?,\s*(?<id>PCI\\VEN_1002&DEV_[0-9A-F]{4}(?:&(?:SUBSYS_[0-9A-F]{8}|REV_[0-9A-F]{2}))*)\s*(?:,|;|$)')){
+                foreach($id in $PnpDeviceIds){
+                    if((Test-LDLCAmdInfHardwareMatch -HardwareId $m.Groups['id'].Value -PnpDeviceId $id) -and
+                        (-not $targets.ContainsKey($id) -or [version]$version -gt [version]$targets[$id].DriverVersion)){
+                        $targets[$id]=[pscustomobject]@{PnpDeviceId=$id;DriverVersion=$version;InfPath=$inf.FullName;HardwareId=$m.Groups['id'].Value}
+                    }
+                }
+            }
         }
     }
-    $latest = $sources | Sort-Object { [version]$_.Version } -Descending | Select-Object -First 1
-    if (-not $latest) { throw 'Lien Auto-Detect Adrenalin actuel introuvable sur la page AMD officielle.' }
-    return $latest
+    foreach($id in $PnpDeviceIds){
+        if(-not $targets.ContainsKey($id)){throw ('GPU '+$id+' non pris en charge par ce package AMD actuel. Aucun ancien pilote installe en repli.')}
+    }
+    return @($PnpDeviceIds | ForEach-Object {$targets[$_]})
+}
+
+function Test-LDLCAmdDriverTargetsReady {
+    param([Parameter(Mandatory=$true)][object[]]$Targets)
+    if(-not $Targets.Count){return $false}
+    if(-not (Test-LDLCAmdGpuDriversReady -PnpDeviceIds @($Targets | ForEach-Object {$_.PnpDeviceId}))){return $false}
+    try{
+        $drivers=@(Get-LDLCGpuHardwareRecords -ClassName 'Win32_PnPSignedDriver')
+        foreach($target in $Targets){
+            $driver=$drivers | Where-Object {$_.DeviceID -eq $target.PnpDeviceId -and $_.DeviceClass -eq 'DISPLAY' -and $_.IsSigned -eq $true} | Select-Object -First 1
+            if(-not $driver -or [version]$driver.DriverVersion -lt [version]$target.DriverVersion){return $false}
+        }
+        return $true
+    }catch{return $false}
+}
+
+function Test-LDLCAmdSoftwareTargetReady {
+    param($Software,[Parameter(Mandatory=$true)][string]$ReleaseVersion,[Parameter(Mandatory=$true)][string]$MetadataPath)
+    if(-not $Software -or -not $Software.ExePath){return $false}
+    # Compare UI executable versions only to the same executable in the package.
+    $name=[IO.Path]::GetFileName([string]$Software.ExePath)
+    $uiFiles=@(Get-ChildItem -LiteralPath $MetadataPath -Filter $name -File -Recurse)
+    foreach($file in $uiFiles){
+        $target=Get-LDLCFileVersionText -Path $file.FullName
+        $installed=Get-LDLCFileVersionText -Path $Software.ExePath
+        if($target -match '^\d+(?:\.\d+){1,3}$' -and $installed -match '^\d+(?:\.\d+){1,3}$'){
+            return ([version]$target -gt [version]'0.0' -and [version]$installed -ge [version]$target)
+        }
+    }
+    # AMD's marketing version and the Windows driver version are different scales.
+    # Accept only an unambiguous three-component Adrenalin release, never a 4-part driver build.
+    $versions=@([string]$Software.DisplayVersion)
+    foreach($key in @('HKLM:\SOFTWARE\AMD\CN','HKLM:\SOFTWARE\WOW6432Node\AMD\CN')){
+        try{
+            $cn=Get-ItemProperty -LiteralPath $key -ErrorAction Stop
+            foreach($property in @('RadeonSoftwareVersion','ReleaseVersion')){if($cn.PSObject.Properties[$property]){$versions += [string]$cn.$property}}
+        }catch{}
+    }
+    foreach($v in $versions){
+        if($v -match '^\s*\d{2}\.(?:[1-9]|1[0-2])\.\d{1,2}\s*$' -and [version]$v.Trim() -ge [version]$ReleaseVersion){return $true}
+    }
+    return $false
 }
 
 function Test-LDLCAmdGpuInstallerFile {
@@ -7855,66 +7980,87 @@ function Get-LDLCGpuComputerFormFactor {
 
 function Install-LDLCAmdStack {
     param([int]$StartPercent = 84)
-
     Stop-IfRequested
-    $amdAdapters = @(Get-LDLCGpuAdapters | Where-Object { (Get-LDLCGpuAdapterVendor -Adapter $_) -eq 'AMD' })
-    if (-not $amdAdapters.Count) {
-        Write-Step 'AMD non applicable : aucun adaptateur graphique AMD present.'
-        return
-    }
-    $formFactor = Get-LDLCGpuComputerFormFactor
-    if ($formFactor.Portable -or -not $formFactor.Known) {
-        Write-Step ('AMD Adrenalin ignore : ' + $formFactor.Reason)
-        return
-    }
-    $deviceIds = @($amdAdapters | ForEach-Object { [string]$_.PNPDeviceID } | Select-Object -Unique)
-    Write-Step "GPU AMD detectes : $(($amdAdapters.Name) -join ', ')"
-    Write-ProgressFile $StartPercent 'Recherche de AMD Software: Adrenalin Edition actuel'
-    Write-Step 'Recherche et telechargement AMD systematiques, meme si un pilote ou Adrenalin est deja installe.'
-
-    $downloadPath = $null
+    $amdAdapters=@(Get-LDLCGpuAdapters | Where-Object {(Get-LDLCGpuAdapterVendor -Adapter $_) -eq 'AMD'})
+    if(-not $amdAdapters.Count){Write-Step 'AMD non applicable : aucun adaptateur graphique AMD present.';return}
+    $formFactor=Get-LDLCGpuComputerFormFactor
+    if($formFactor.Portable -or -not $formFactor.Known){Write-Step ('AMD Adrenalin ignore : '+$formFactor.Reason);return}
+    $deviceIds=@($amdAdapters | ForEach-Object {[string]$_.PNPDeviceID} | Select-Object -Unique)
+    $tempRoot=$null
+    # Scope-local: Windows PowerShell HTTP progress can severely slow large packages.
+    # Application progress still comes from Write-ProgressFile.
+    $ProgressPreference='SilentlyContinue'
     try {
-        $definition = Get-LDLCAmdAdrenalinInstallerDefinition
-        $source = Resolve-LDLCAmdGpuOfficialSource
-        Write-Step "Auto-Detect Adrenalin actuel : $($source.Version), source $($source.PageUrl)"
-        Write-Step "Telechargement AMD officiel : $($source.Url)"
-        # No unversioned/offline cache fallback: it cannot prove freshness.
-        $downloadPath = Join-Path ([System.IO.Path]::GetTempPath()) ('LDLC-AMD-' + [guid]::NewGuid().ToString('N') + '.exe')
-        Invoke-WebRequest -Uri $source.Url -Headers @{ Referer = $source.PageUrl; 'Cache-Control' = 'no-cache'; Pragma = 'no-cache' } -OutFile $downloadPath `
-            -UseBasicParsing -TimeoutSec $definition.DownloadTimeoutSeconds -ErrorAction Stop | Out-Null
-        if (-not (Test-LDLCAmdGpuInstallerFile -Path $downloadPath -MinBytes $definition.MinBytes)) {
-            throw 'Installateur AMD refuse : taille, entetes MZ/PE ou signature AMD valide non confirmes.'
+        if(@($deviceIds | Where-Object {[string]::IsNullOrWhiteSpace($_)}).Count){throw 'Identifiant PCI du GPU AMD indisponible : compatibilite impossible a verifier.'}
+        Write-Step ('GPU AMD detectes : '+($amdAdapters.Name -join ', '))
+        Write-ProgressFile $StartPercent 'Recherche de la derniere version AMD Adrenalin officielle'
+        $definition=Get-LDLCAmdAdrenalinInstallerDefinition
+        $discovery=Resolve-LDLCAmdGpuOfficialSource
+        $sources=@(Resolve-LDLCAmdGpuFullOfficialSources -AutoDetectSource $discovery)
+        Write-Step ('Version Adrenalin officielle actuelle : '+$discovery.Version+'. Recherche du package complet compatible, sans ancien cache.')
+        $tempRoot=Join-Path ([IO.Path]::GetTempPath()) ('LDLC-AMD-'+[guid]::NewGuid().ToString('N'))
+        [void][IO.Directory]::CreateDirectory($tempRoot)
+        $selected=$null;$targets=@();$failures=@();$index=0
+        foreach($source in $sources){
+            Stop-IfRequested
+            # Every candidate belongs to the current release; no fallback to an older cached driver.
+            $index++;$downloadPath=Join-Path $tempRoot $source.FileName;$metadata=Join-Path $tempRoot ('metadata-'+$index)
+            Write-ProgressFile $StartPercent ('Telechargement AMD Adrenalin '+$source.Version+' (package complet)')
+            Write-Step ('Telechargement AMD officiel : '+$source.Url)
+            try {
+                Invoke-WebRequest -Uri $source.Url -Headers @{Referer=$source.PageUrl;'Cache-Control'='no-cache';Pragma='no-cache'} -OutFile $downloadPath -UseBasicParsing -TimeoutSec $definition.DownloadTimeoutSeconds -ErrorAction Stop | Out-Null
+                if(-not (Test-LDLCAmdGpuInstallerFile -Path $downloadPath -MinBytes $definition.MinBytes)){throw 'Installateur AMD refuse : taille, entetes MZ/PE ou signature AMD valide non confirmes.'}
+                Expand-LDLCAmdPackageMetadata -Path $downloadPath -Destination $metadata
+                $targets=@(Get-LDLCAmdPackageDriverTargets -MetadataPath $metadata -PnpDeviceIds $deviceIds)
+                $selected=$source;break
+            }catch{
+                if(Test-LDLCStopRequestError -ErrorRecord $_){throw}
+                $failures += $_.Exception.Message
+                Write-Step ('Package AMD non retenu : '+$_.Exception.Message)
+                if(Test-Path -LiteralPath $downloadPath){Remove-Item -LiteralPath $downloadPath -Force -ErrorAction SilentlyContinue}
+            }
         }
-        Write-Ok "Installateur AMD PE signe valide, $((Get-Item -LiteralPath $downloadPath).Length) octets."
-        Write-ProgressFile $StartPercent 'Installation AMD et attente de tous ses sous-processus'
-        $exitCode = Invoke-LDLCAmdGpuInstaller -Path $downloadPath -Installer $definition
-        $deadline = (Get-Date).AddSeconds([int]$definition.ValidationTimeoutSeconds)
+        if(-not $selected){throw ('Aucun package AMD '+$discovery.Version+' verifie pour tous les GPU : '+($failures -join ' | '))}
+        foreach($target in $targets){Write-Step ('Cible pilote AMD '+$target.PnpDeviceId+' : '+$target.DriverVersion+' (INF du package signe).')}
+        $beforeSoftware=Get-LDLCAmdSoftwareInstallation -Refresh
+        if((Test-LDLCAmdSoftwareTargetReady -Software $beforeSoftware -ReleaseVersion $selected.Version -MetadataPath $metadata) -and (Test-LDLCAmdDriverTargetsReady -Targets $targets)){
+            Write-Ok ('AMD Adrenalin '+$selected.Version+' : versions cibles deja atteintes ou depassees ; aucun ancien pilote impose.')
+            Ensure-LDLCGpuDesktopShortcut -Vendor 'AMD';return
+        }
+        $installedDrivers=@(Get-LDLCGpuHardwareRecords -ClassName 'Win32_PnPSignedDriver')
+        foreach($target in $targets){
+            $installed=$installedDrivers | Where-Object {$_.DeviceID -eq $target.PnpDeviceId -and $_.DeviceClass -eq 'DISPLAY'} | Select-Object -First 1
+            if($installed -and [string]$installed.DriverVersion -match '^\d+(?:\.\d+){1,3}$' -and [version]$installed.DriverVersion -gt [version]$target.DriverVersion){
+                throw ('Pilote AMD '+$installed.DriverVersion+' deja plus recent que le package officiel '+$target.DriverVersion+'. Aucun retour a une ancienne version ; application a verifier manuellement.')
+            }
+        }
+        if($beforeSoftware -and [string]$beforeSoftware.DisplayVersion -match '^\s*\d{2}\.(?:[1-9]|1[0-2])\.\d{1,2}\s*$' -and [version]$beforeSoftware.DisplayVersion.Trim() -gt [version]$selected.Version){
+            throw ('Adrenalin '+$beforeSoftware.DisplayVersion+' deja plus recent que le package '+$selected.Version+'. Aucun retour a une ancienne version ; pilote a verifier manuellement.')
+        }
+        Write-ProgressFile $StartPercent ('Installation du package complet AMD Adrenalin '+$selected.Version)
+        $exitCode=Invoke-LDLCAmdGpuInstaller -Path $downloadPath -Installer $definition
+        $deadline=(Get-Date).AddSeconds([int]$definition.ValidationTimeoutSeconds)
         do {
             Stop-IfRequested
-            if (Get-Command Clear-LDLCDetectionCaches -ErrorAction SilentlyContinue) { Clear-LDLCDetectionCaches }
-            $software = Get-LDLCAmdSoftwareInstallation -Refresh
-            if ($software -and (Test-LDLCAmdGpuDriversReady -PnpDeviceIds $deviceIds)) {
-                Write-Ok "AMD Adrenalin confirme apres fin de l'installation (code $exitCode), pilote signe et peripherique sain pour chaque GPU AMD."
-                Ensure-LDLCGpuDesktopShortcut -Vendor 'AMD'
-                return
+            if(Get-Command Clear-LDLCDetectionCaches -ErrorAction SilentlyContinue){Clear-LDLCDetectionCaches}
+            $software=Get-LDLCAmdSoftwareInstallation -Refresh
+            if((Test-LDLCAmdSoftwareTargetReady -Software $software -ReleaseVersion $selected.Version -MetadataPath $metadata) -and (Test-LDLCAmdDriverTargetsReady -Targets $targets)){
+                Write-Ok ('AMD Adrenalin '+$selected.Version+' confirme : application actuelle et versions pilotes du package atteintes pour chaque GPU (code '+$exitCode+').')
+                Ensure-LDLCGpuDesktopShortcut -Vendor 'AMD';return
             }
-            if ((Get-Date) -ge $deadline) { break }
+            if((Get-Date) -ge $deadline){break}
             Start-Sleep -Seconds 2
-        } while ($true)
-        if ($exitCode -in @(3010, 1641)) {
-            Write-Warn 'AMD demande un redemarrage : pilote/application pas encore confirmes. Verification requise apres redemarrage; aucun succes declare.'
-            return
+        }while($true)
+        if($exitCode -in @(3010,1641)){
+            Write-Warn ('AMD '+$selected.Version+' demande un redemarrage : versions cibles non confirmees. Verification requise apres redemarrage ; aucun succes declare.');return
         }
-        throw "AMD non confirme : application Adrenalin et pilote DISPLAY AMD signe/sain requis pour chaque GPU. Code $exitCode."
-    }
-    catch {
-        if (Test-LDLCStopRequestError -ErrorRecord $_) { throw }
-        Write-Err "Installation AMD non confirmee : $($_.Exception.Message)"
-    }
-    finally {
-        if ($downloadPath -and (Test-Path -LiteralPath $downloadPath)) {
-            Remove-Item -LiteralPath $downloadPath -Force -ErrorAction SilentlyContinue
-        }
+        $observed=if($software){[string]$software.DisplayVersion}else{'absente'}
+        throw ('AMD non confirme : application Adrenalin actuelle '+$selected.Version+' attendue (observee : '+$observed+'), pilote DISPLAY AMD signe/sain a la version INF requise pour chaque GPU. Code '+$exitCode+'.')
+    }catch{
+        if(Test-LDLCStopRequestError -ErrorRecord $_){throw}
+        Write-Err ('Installation AMD non confirmee : '+$_.Exception.Message)
+    }finally{
+        if($tempRoot -and (Test-Path -LiteralPath $tempRoot)){Remove-Item -LiteralPath $tempRoot -Recurse -Force -ErrorAction SilentlyContinue}
     }
 }
 
