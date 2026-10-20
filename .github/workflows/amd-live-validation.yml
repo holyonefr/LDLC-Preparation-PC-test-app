@@ -25,8 +25,10 @@ jobs:
           $testRoot=Join-Path $env:RUNNER_TEMP 'amd-native-child-fixture'
           [void](New-Item -ItemType Directory -Path $testRoot -Force)
           $env:ProgramData=$testRoot;$env:LOCALAPPDATA=$testRoot
+          $ErrorActionPreference='Continue'
           $result=@(& $powershell -STA -NoProfile -ExecutionPolicy Bypass -File ./tools/Test-LDLCAmdUpdateRegression.ps1 2>&1)
           $code=$LASTEXITCODE
+          $ErrorActionPreference='Stop'
           $result|ForEach-Object {Write-Host $_}
           if($code -ne 0){
             $message=($result|Out-String).Replace('%','%25').Replace("`r",'%0D').Replace("`n",'%0A')
