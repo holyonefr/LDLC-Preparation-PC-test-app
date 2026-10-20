@@ -23,11 +23,11 @@ try {
     foreach ($test in $tests) {
         $env:LDLC_TELEMETRY_DISABLED = if ($test -eq 'Test-LDLCTelemetryStatus') { '0' } else { '1' }
         & $powershell -STA -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot ($test + '.ps1'))
-        if ($LASTEXITCODE -ne 0) { throw "Test en echec : $test" }
+        if ($LASTEXITCODE -ne 0) { Write-Host ("::error title=Release test failure::$test, exit code $LASTEXITCODE"); throw "Test en echec : $test" }
     }
     foreach ($test in @('Test-LDLCDashboardCompatibility.cjs', 'Test-LDLCTelemetryIngestion.cjs', 'Test-PreparationCompletion.cjs')) {
         & node (Join-Path $PSScriptRoot $test)
-        if ($LASTEXITCODE -ne 0) { throw "Test en echec : $test" }
+        if ($LASTEXITCODE -ne 0) { Write-Host ("::error title=Release test failure::$test, exit code $LASTEXITCODE"); throw "Test en echec : $test" }
     }
     # Execute the compiled launcher's real entry point in this isolated process.
     # Reflection avoids an elevation prompt for diagnostic-only modes.

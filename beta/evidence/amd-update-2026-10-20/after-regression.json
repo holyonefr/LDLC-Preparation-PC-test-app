@@ -1,0 +1,121 @@
+{
+  "Assertions": 43,
+  "Cases": [
+    {
+      "Scenario": "no-op-old",
+      "InstallerCalls": 1,
+      "Expected": "error",
+      "Observed": "error",
+      "Shortcuts": 0,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "update-both",
+      "InstallerCalls": 1,
+      "Expected": "success",
+      "Observed": "success",
+      "Shortcuts": 1,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "application-only",
+      "InstallerCalls": 1,
+      "Expected": "error",
+      "Observed": "error",
+      "Shortcuts": 0,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "driver-only",
+      "InstallerCalls": 1,
+      "Expected": "error",
+      "Observed": "error",
+      "Shortcuts": 0,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "already-current",
+      "InstallerCalls": 0,
+      "Expected": "success",
+      "Observed": "success",
+      "Shortcuts": 1,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "wrong-device",
+      "InstallerCalls": 0,
+      "Expected": "error",
+      "Observed": "error",
+      "Shortcuts": 0,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "signature-error",
+      "InstallerCalls": 0,
+      "Expected": "error",
+      "Observed": "error",
+      "Shortcuts": 0,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "installer-1603",
+      "InstallerCalls": 1,
+      "Expected": "error",
+      "Observed": "error",
+      "Shortcuts": 0,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "reboot-incomplete",
+      "InstallerCalls": 1,
+      "Expected": "reboot_pending",
+      "Observed": "reboot_pending",
+      "Shortcuts": 0,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "source-offline",
+      "InstallerCalls": 0,
+      "Expected": "error",
+      "Observed": "error",
+      "Shortcuts": 0,
+      "Downloads": 0
+    },
+    {
+      "Scenario": "download-interrupted",
+      "InstallerCalls": 0,
+      "Expected": "error",
+      "Observed": "error",
+      "Shortcuts": 0,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "newer-driver-older-app",
+      "InstallerCalls": 0,
+      "Expected": "error",
+      "Observed": "error",
+      "Shortcuts": 0,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "newer-app-older-driver",
+      "InstallerCalls": 0,
+      "Expected": "error",
+      "Observed": "error",
+      "Shortcuts": 0,
+      "Downloads": 1
+    },
+    {
+      "Scenario": "laptop",
+      "InstallerCalls": 0,
+      "Expected": "skipped",
+      "Observed": "skipped",
+      "Shortcuts": 0,
+      "Downloads": 0
+    }
+  ],
+  "Historical": false,
+  "Scope": "Same scenarios against actual module; HTTP, SMBIOS, signature and hardware installation simulated; real isolated PE/INF files and cleanup.",
+  "RealDriverInstalled": false,
+  "Failures": 0
+}

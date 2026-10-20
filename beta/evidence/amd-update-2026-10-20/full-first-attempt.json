@@ -1,0 +1,25 @@
+{
+  "Success": false,
+  "Commit": "09f329ea69b8a939fae944ec14200377942f78ea",
+  "Platform": "Microsoft Windows NT 10.0.26100.0",
+  "RealNetwork": true,
+  "InstallerExecuted": false,
+  "DriverInstalled": false,
+  "Phase": "download",
+  "FullSources": [
+    {
+      "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+      "FileName": "whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+      "Version": "26.10.1",
+      "PageUrl": "https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-10-1.html",
+      "IsFullPackage": true
+    }
+  ],
+  "Source": {
+    "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+    "FileName": "whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+    "Version": "26.10.1",
+    "PageUrl": "https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-10-1.html",
+    "IsFullPackage": true
+  }
+}

@@ -40,3 +40,20 @@ runner ; cela ne prouve pas son installation sur le PC signalé.
 Les résultats du package complet, de la comparaison avant/après et de la suite
 native seront ajoutés après leur exécution. Aucun EXE 2.6.11 n’est publié avant
 réussite de ces vérifications.
+
+## Vérification de la proposition Chocolatey
+
+Tests réels Windows des runs `39460474378` et `39460667608` : Chocolatey 2.7.4,
+recherche de toutes les versions, préversions incluses. Le dernier paquet publié
+`amd-software-adrenalin-edition` est **26.8.1**, son URL AMD vise bien ce numéro,
+avec somme SHA-256 et argument `-install`. La source officielle propose **26.10.1**.
+Ce paquet n’est donc pas utilisé pour satisfaire une demande de dernière version.
+`choco install` ne garantit pas non plus l’actualisation d’un paquet déjà présent ;
+il faudrait `choco upgrade`, puis toujours vérifier version et compatibilité.
+Aucun script Chocolatey d’installation matérielle n’a été exécuté sur le runner.
+
+Premier téléchargement du package complet : version et URL 26.10.1 résolues,
+mais job arrêté à 15 minutes pendant le téléchargement. Aucun succès déclaré.
+La progression HTTP native PowerShell est désormais supprimée localement pour
+éviter son coût sur les gros fichiers ; la progression de l’application est conservée.
+Un nouvel essai réel est requis avant publication de l’EXE.

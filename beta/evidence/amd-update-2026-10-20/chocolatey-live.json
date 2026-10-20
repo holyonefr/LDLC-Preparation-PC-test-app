@@ -1,0 +1,30 @@
+{
+  "Success": true,
+  "RealNetwork": true,
+  "ChocolateyInstallExecuted": false,
+  "HardwareInstallerExecuted": false,
+  "Package": "amd-software-adrenalin-edition",
+  "Commit": "74e8c4e215a2678c4d0c9e9dbb968aec16208d93",
+  "ChocolateyVersion": "2.7.4",
+  "PublishedVersions": [
+    "26.8.1",
+    "26.7.1",
+    "26.6.4",
+    "26.6.2",
+    "26.6.1",
+    "26.5.2",
+    "26.5.1",
+    "26.3.1",
+    "26.2.2",
+    "26.1.1",
+    "25.11.1"
+  ],
+  "LatestIncludingPrerelease": "26.8.1",
+  "LatestStable": "26.8.1",
+  "InstallerUrl": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.8.1-win11-c.exe",
+  "InstallerSHA256": "00c416cd03697ba203ebd794980331c3777eaade979b8afb533e33e74ae02c50",
+  "SilentArgs": "-install",
+  "InstallerVersion": "26.8.1",
+  "OfficialLatestVersion": "26.10.1",
+  "CurrentEnough": false
+}

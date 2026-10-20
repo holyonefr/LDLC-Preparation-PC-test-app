@@ -1,4 +1,4 @@
-name: AMD - official download on Windows without hardware installation
+name: AMD - Chocolatey catalog and official package verification on Windows
 on:
   workflow_dispatch:
     inputs:
@@ -12,7 +12,7 @@ jobs:
   download:
     if: github.repository == 'holyonefr/LDLC-Preparation-PC-test-app'
     runs-on: windows-2025
-    timeout-minutes: 15
+    timeout-minutes: 25
     env:
       LDLC_TELEMETRY_DISABLED: '1'
     steps:
@@ -24,3 +24,7 @@ jobs:
         if: always()
         shell: powershell
         run: ./tools/Test-LDLCAmdChocolateyPackage.ps1
+      - name: Verify current official complete package without running its installer
+        if: inputs.full_package
+        shell: powershell
+        run: ./tools/Test-LDLCAmdOfficialDownload.ps1 -FullPackage

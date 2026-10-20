@@ -1,0 +1,20 @@
+{
+  "Success": true,
+  "Commit": "652ae6a644e25deca0494e713c47ea596fe236d1",
+  "Platform": "Microsoft Windows NT 10.0.26100.0",
+  "RealNetwork": true,
+  "InstallerExecuted": false,
+  "DriverInstalled": false,
+  "Phase": "verification",
+  "Source": {
+    "Url": "https://drivers.amd.com/drivers/installer/26.20/whql/amd-software-adrenalin-edition-26.10.1-minimalsetup-261018_web.exe",
+    "FileName": "amd-software-adrenalin-edition-26.10.1-minimalsetup-261018_web.exe",
+    "Version": "26.10.1",
+    "Provider": "AMD officiel (Auto-Detect)",
+    "PageUrl": "https://www.amd.com/en/support/download/drivers.html"
+  },
+  "Bytes": 47859040,
+  "SHA256": "00F2D9AC862181944784FDF3DBD33BC0C05BAA0975BFF13D16EB0DFAF42A5E6A",
+  "SignatureStatus": "Valid",
+  "Signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US"
+}
