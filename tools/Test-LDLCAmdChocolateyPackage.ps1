@@ -1,4 +1,4 @@
-#requires -Version 5.1
+﻿#requires -Version 5.1
 [CmdletBinding()]
 param([string]$ReportPath='artifacts/amd-chocolatey-package.json')
 $ErrorActionPreference='Stop';$ProgressPreference='SilentlyContinue'
@@ -31,9 +31,26 @@ try {
   $report.InstallerVersion=[regex]::Match($report.InstallerUrl,'(?i)adrenalin-edition-(?<v>\d+(?:\.\d+){1,3})-').Groups['v'].Value
  }finally{$zip.Dispose()}
  . (Join-Path (Split-Path -Parent $PSScriptRoot) 'modules/60.Gpu.ps1')
+ $runtimeInfo=Get-LDLCAmdChocolateyPackageMetadata -PackagePath $path
+ if($runtimeInfo.Url -cne $report.InstallerUrl -or $runtimeInfo.SHA256 -ine $report.InstallerSHA256 -or $runtimeInfo.ChecksumType -ine 'sha256' -or $runtimeInfo.SilentArgs -cne '-install'){throw 'Runtime package reader does not confirm the real Chocolatey package metadata'}
+ $report.RuntimeMetadataReaderVerified=$true
  $amd=Resolve-LDLCAmdGpuOfficialSource
  $report.OfficialLatestVersion=$amd.Version
  $report.CurrentEnough=($report.InstallerVersion -and [version]$report.InstallerVersion -ge [version]$amd.Version)
+ $exact=Join-Path $temp 'official-version.nupkg'
+ $report.ExactOfficialPackageUrl='https://community.chocolatey.org/api/v2/package/amd-software-adrenalin-edition/'+[uri]::EscapeDataString([string]$amd.Version)
+ try{
+  Invoke-WebRequest -Uri $report.ExactOfficialPackageUrl -OutFile $exact -UseBasicParsing -TimeoutSec 120
+  $report.ExactOfficialPackageAvailable=$true
+  $exactInfo=Get-LDLCAmdChocolateyPackageMetadata -PackagePath $exact
+  $report.ExactOfficialPackageMetadata=$exactInfo
+ }catch{
+  $status=0;try{$status=[int]$_.Exception.Response.StatusCode}catch{}
+  $report.ExactOfficialPackageStatus=$status
+  $report.ExactOfficialPackageAvailable=$false
+  $report.ExactOfficialPackageReason=$_.Exception.Message
+  if($status -ne 404){throw}
+ }
  $report.Success=$true
 }catch{$report.ErrorType=$_.Exception.GetType().Name;$report.Reason=$_.Exception.Message}
 finally {

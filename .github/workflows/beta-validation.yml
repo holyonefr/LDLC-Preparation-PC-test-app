@@ -64,6 +64,9 @@ jobs:
       - name: Verify current AMD complete package and expected driver versions without running the installer
         shell: powershell
         run: ./tools/Test-LDLCAmdOfficialDownload.ps1 -FullPackage
+      - name: Inspect the real Chocolatey AMD package and current-release fallback availability without installation
+        shell: powershell
+        run: ./tools/Test-LDLCAmdChocolateyPackage.ps1
       - name: Compare the AMD no-op bug before and after the correction
         shell: powershell
         run: |

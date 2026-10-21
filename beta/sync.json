@@ -60,7 +60,8 @@
     "tools/Test-LDLCAmdPackageMetadata.ps1",
     "tools/Test-LDLCAmdUpdateRegression.ps1",
     "tools/Test-LDLCAmdChocolateyPackage.ps1",
-    "tools/Test-LDLCAmdGuru3dSource.ps1"
+    "tools/Test-LDLCAmdGuru3dSource.ps1",
+    "tools/Test-LDLCAmdChocolateyFallback.ps1"
   ],
-  "PublicationPolicy": "2026-10-20 explicit user authorization \"Oui envoie sur les 4\": publish current transmission recovery and tested EXEs in all four repositories. Preserve beta-only motherboard integration and unrelated unpublished UI edits."
+  "PublicationPolicy": "2026-10-21: AMD Chocolatey fallback only in beta. Preserve production repositories, unpublished UI edits and beta motherboard integration."
 }

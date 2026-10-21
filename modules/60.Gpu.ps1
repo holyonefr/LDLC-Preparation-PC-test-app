@@ -509,6 +509,7 @@ function Invoke-LDLCAmdGpuInstaller {
     $quietSince = $null
     $process = Start-Process -FilePath $Path -ArgumentList $Installer.ExeArguments -PassThru -WindowStyle Hidden -ErrorAction Stop
     $known[[int]$process.Id] = $true
+    $completed = $false
     try {
         do {
             Stop-IfRequested
@@ -540,10 +541,17 @@ function Invoke-LDLCAmdGpuInstaller {
             }
             Start-Sleep -Milliseconds 1000
         } while ($true)
+        $completed = $true
         $process.WaitForExit()
         if ($process.ExitCode -notin @(0, 3010, 1641)) { throw "Installation AMD en echec, code $($process.ExitCode)." }
         if ($process.ExitCode -in @(3010, 1641)) { $script:PendingReboot = $true }
         return [int]$process.ExitCode
+    }
+    catch {
+        # A timeout/query failure may leave the installer running. Never start a
+        # second installer in that case, even when the root extractor has exited.
+        if (-not $completed) { $_.Exception.Data['LDLCAmdInstallerStillActive'] = $true }
+        throw
     }
     finally { $process.Dispose() }
 }
@@ -1370,6 +1378,93 @@ function Get-LDLCGpuComputerFormFactor {
     return [pscustomobject]@{ Portable = $false; Known = $false; Reason = 'Format du PC non confirme par Windows ; installation AMD automatique ignoree par precaution.' }
 }
 
+
+function Wait-LDLCAmdTargetVersions {
+    param([string]$ReleaseVersion,[string]$MetadataPath,[object[]]$Targets,[int]$TimeoutSeconds)
+    $deadline=(Get-Date).AddSeconds($TimeoutSeconds)
+    do {
+        Stop-IfRequested
+        if(Get-Command Clear-LDLCDetectionCaches -ErrorAction SilentlyContinue){Clear-LDLCDetectionCaches}
+        $software=Get-LDLCAmdSoftwareInstallation -Refresh
+        if((Test-LDLCAmdSoftwareTargetReady -Software $software -ReleaseVersion $ReleaseVersion -MetadataPath $MetadataPath) -and
+            (Test-LDLCAmdDriverTargetsReady -Targets $Targets)){return $true}
+        if((Get-Date) -ge $deadline){return $false}
+        Start-Sleep -Seconds 2
+    }while($true)
+}
+
+function Assert-LDLCAmdNoDowngrade {
+    param([string]$ReleaseVersion,[object[]]$Targets,$Software)
+    $drivers=@(Get-LDLCGpuHardwareRecords -ClassName 'Win32_PnPSignedDriver')
+    foreach($target in $Targets){
+        $installed=$drivers | Where-Object {$_.DeviceID -eq $target.PnpDeviceId -and $_.DeviceClass -eq 'DISPLAY'} | Select-Object -First 1
+        if($installed -and [string]$installed.DriverVersion -match '^\d+(?:\.\d+){1,3}$' -and [version]$installed.DriverVersion -gt [version]$target.DriverVersion){
+            throw ('Pilote AMD '+$installed.DriverVersion+' deja plus recent que le package officiel '+$target.DriverVersion+'. Aucun retour a une ancienne version ; application a verifier manuellement.')
+        }
+    }
+    if($Software -and [string]$Software.DisplayVersion -match '^\s*\d{2}\.(?:[1-9]|1[0-2])\.\d{1,2}\s*$' -and [version]$Software.DisplayVersion.Trim() -gt [version]$ReleaseVersion){
+        throw ('Adrenalin '+$Software.DisplayVersion+' deja plus recent que le package '+$ReleaseVersion+'. Aucun retour a une ancienne version ; pilote a verifier manuellement.')
+    }
+}
+
+function Get-LDLCAmdChocolateyPackageMetadata {
+    param([string]$PackagePath)
+    # Read metadata only: never evaluate the downloaded PowerShell script.
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $zip=[IO.Compression.ZipFile]::OpenRead($PackagePath)
+    try {
+        $scripts=@($zip.Entries | Where-Object {$_.FullName -match '(?i)^tools/chocolateyinstall\.ps1$'})
+        if($scripts.Count -ne 1 -or $scripts[0].Length -gt 131072){throw 'Script du package Chocolatey AMD absent ou ambigu.'}
+        $reader=New-Object IO.StreamReader($scripts[0].Open())
+        try{$content=$reader.ReadToEnd()}finally{$reader.Dispose()}
+        $values=@{}
+        foreach($key in @('url64','checksum64','checksumType64','silentArgs')){
+            $matches=[regex]::Matches($content,('(?im)^\s*'+$key+'\s*=\s*["''](?<v>[^"'']+)["'']\s*(?:#.*)?$'))
+            if($matches.Count -ne 1){throw ('Metadonnee Chocolatey AMD non verifiable : '+$key)}
+            $values[$key]=$matches[0].Groups['v'].Value
+        }
+        return [pscustomobject]@{Url=$values.url64;SHA256=$values.checksum64;ChecksumType=$values.checksumType64;SilentArgs=$values.silentArgs}
+    }finally{$zip.Dispose()}
+}
+
+function Invoke-LDLCAmdChocolateyFallback {
+    param($Source,[string]$InstallerPath,[string]$WorkDirectory,$Definition,[object[]]$Targets,[int]$StartPercent)
+    Stop-IfRequested
+    # Both method and post-install validation use the exact same current signed
+    # full package and matching INF targets. No fallback to an unknown/older release.
+    if(-not $Source -or [string]$Source.Version -notmatch '^\d+(?:\.\d+){1,3}$' -or -not $Targets.Count){throw 'Repli Chocolatey refuse : derniere version AMD et compatibilite non verifiees.'}
+    $choco=Get-Command choco.exe -ErrorAction SilentlyContinue
+    if(-not $choco){throw 'Repli Chocolatey indisponible : Chocolatey non installe.'}
+    Assert-LDLCAmdNoDowngrade -ReleaseVersion $Source.Version -Targets $Targets -Software (Get-LDLCAmdSoftwareInstallation -Refresh)
+    $feed=Join-Path $WorkDirectory 'chocolatey-feed'
+    [void][IO.Directory]::CreateDirectory($feed)
+    $name='amd-software-adrenalin-edition';$version=[string]$Source.Version
+    $package=Join-Path $feed ($name+'.'+$version+'.nupkg')
+    $url='https://community.chocolatey.org/api/v2/package/'+$name+'/'+[uri]::EscapeDataString($version)
+    Write-ProgressFile $StartPercent ('Repli Chocolatey : verification AMD Adrenalin '+$version)
+    try{Invoke-WebRequest -Uri $url -OutFile $package -UseBasicParsing -TimeoutSec 120 -ErrorAction Stop | Out-Null}
+    catch{
+        if(Test-LDLCStopRequestError -ErrorRecord $_){throw}
+        throw ('Package Chocolatey AMD '+$version+' indisponible ou inaccessible : '+$_.Exception.Message+'. Aucune ancienne version utilisee.')
+    }
+    $info=Get-LDLCAmdChocolateyPackageMetadata -PackagePath $package
+    if($info.Url -cne [string]$Source.Url -or $info.ChecksumType -ine 'sha256' -or $info.SHA256 -notmatch '^[a-fA-F0-9]{64}$' -or $info.SilentArgs -cne '-install'){
+        throw 'Repli Chocolatey refuse : URL officielle, SHA256 ou mode installation differents du package AMD verifie.'
+    }
+    if(-not (Test-LDLCAmdGpuInstallerFile -Path $InstallerPath -MinBytes $Definition.MinBytes) -or
+        (Get-FileHash -LiteralPath $InstallerPath -Algorithm SHA256).Hash -ine $info.SHA256){
+        throw 'Repli Chocolatey refuse : empreinte ou signature du package AMD non conforme.'
+    }
+    # A local feed pins the inspected nupkg, rather than fetching a different
+    # script between inspection and execution. Keep Chocolatey's checksum checks.
+    $installer=@{};foreach($key in $Definition.Keys){$installer[$key]=$Definition[$key]}
+    $installer.ExeArguments=@('upgrade',$name,('--version='+$version),('--source="'+$feed+'"'),'--yes','--force','--ignore-dependencies','--no-progress','--limit-output',('--execution-timeout='+$Definition.TimeoutSeconds))
+    Write-Step ('Repli Chocolatey : installation AMD '+$version+', package et SHA256 verifies ; aucun pilote anterieur autorise.')
+    Write-ProgressFile $StartPercent ('Installation AMD Adrenalin '+$version+' via Chocolatey')
+    # This also waits for AMD descendants after Chocolatey/the extractor exits.
+    return Invoke-LDLCAmdGpuInstaller -Path $choco.Source -Installer $installer
+}
+
 function Install-LDLCAmdStack {
     param([int]$StartPercent = 84)
     Stop-IfRequested
@@ -1378,7 +1473,7 @@ function Install-LDLCAmdStack {
     $formFactor=Get-LDLCGpuComputerFormFactor
     if($formFactor.Portable -or -not $formFactor.Known){Write-Step ('AMD Adrenalin ignore : '+$formFactor.Reason);return}
     $deviceIds=@($amdAdapters | ForEach-Object {[string]$_.PNPDeviceID} | Select-Object -Unique)
-    $tempRoot=$null
+    $tempRoot=$null;$fallbackAllowed=$false;$exitCode=$null
     # Scope-local: Windows PowerShell HTTP progress can severely slow large packages.
     # Application progress still comes from Write-ProgressFile.
     $ProgressPreference='SilentlyContinue'
@@ -1419,38 +1514,42 @@ function Install-LDLCAmdStack {
             Write-Ok ('AMD Adrenalin '+$selected.Version+' : versions cibles deja atteintes ou depassees ; aucun ancien pilote impose.')
             Ensure-LDLCGpuDesktopShortcut -Vendor 'AMD';return
         }
-        $installedDrivers=@(Get-LDLCGpuHardwareRecords -ClassName 'Win32_PnPSignedDriver')
-        foreach($target in $targets){
-            $installed=$installedDrivers | Where-Object {$_.DeviceID -eq $target.PnpDeviceId -and $_.DeviceClass -eq 'DISPLAY'} | Select-Object -First 1
-            if($installed -and [string]$installed.DriverVersion -match '^\d+(?:\.\d+){1,3}$' -and [version]$installed.DriverVersion -gt [version]$target.DriverVersion){
-                throw ('Pilote AMD '+$installed.DriverVersion+' deja plus recent que le package officiel '+$target.DriverVersion+'. Aucun retour a une ancienne version ; application a verifier manuellement.')
-            }
-        }
-        if($beforeSoftware -and [string]$beforeSoftware.DisplayVersion -match '^\s*\d{2}\.(?:[1-9]|1[0-2])\.\d{1,2}\s*$' -and [version]$beforeSoftware.DisplayVersion.Trim() -gt [version]$selected.Version){
-            throw ('Adrenalin '+$beforeSoftware.DisplayVersion+' deja plus recent que le package '+$selected.Version+'. Aucun retour a une ancienne version ; pilote a verifier manuellement.')
-        }
+        Assert-LDLCAmdNoDowngrade -ReleaseVersion $selected.Version -Targets $targets -Software $beforeSoftware
+        $fallbackAllowed=$true
         Write-ProgressFile $StartPercent ('Installation du package complet AMD Adrenalin '+$selected.Version)
         $exitCode=Invoke-LDLCAmdGpuInstaller -Path $downloadPath -Installer $definition
-        $deadline=(Get-Date).AddSeconds([int]$definition.ValidationTimeoutSeconds)
-        do {
-            Stop-IfRequested
-            if(Get-Command Clear-LDLCDetectionCaches -ErrorAction SilentlyContinue){Clear-LDLCDetectionCaches}
-            $software=Get-LDLCAmdSoftwareInstallation -Refresh
-            if((Test-LDLCAmdSoftwareTargetReady -Software $software -ReleaseVersion $selected.Version -MetadataPath $metadata) -and (Test-LDLCAmdDriverTargetsReady -Targets $targets)){
-                Write-Ok ('AMD Adrenalin '+$selected.Version+' confirme : application actuelle et versions pilotes du package atteintes pour chaque GPU (code '+$exitCode+').')
-                Ensure-LDLCGpuDesktopShortcut -Vendor 'AMD';return
-            }
-            if((Get-Date) -ge $deadline){break}
-            Start-Sleep -Seconds 2
-        }while($true)
+        if(Wait-LDLCAmdTargetVersions -ReleaseVersion $selected.Version -MetadataPath $metadata -Targets $targets -TimeoutSeconds $definition.ValidationTimeoutSeconds){
+            Write-Ok ('AMD Adrenalin '+$selected.Version+' confirme : application actuelle et versions pilotes du package atteintes pour chaque GPU (code '+$exitCode+').')
+            Ensure-LDLCGpuDesktopShortcut -Vendor 'AMD';return
+        }
         if($exitCode -in @(3010,1641)){
             Write-Warn ('AMD '+$selected.Version+' demande un redemarrage : versions cibles non confirmees. Verification requise apres redemarrage ; aucun succes declare.');return
         }
+        $software=Get-LDLCAmdSoftwareInstallation -Refresh
         $observed=if($software){[string]$software.DisplayVersion}else{'absente'}
         throw ('AMD non confirme : application Adrenalin actuelle '+$selected.Version+' attendue (observee : '+$observed+'), pilote DISPLAY AMD signe/sain a la version INF requise pour chaque GPU. Code '+$exitCode+'.')
     }catch{
         if(Test-LDLCStopRequestError -ErrorRecord $_){throw}
-        Write-Err ('Installation AMD non confirmee : '+$_.Exception.Message)
+        $officialError=$_.Exception.Message
+        if($fallbackAllowed -and $exitCode -notin @(3010,1641) -and -not $_.Exception.Data['LDLCAmdInstallerStillActive']){
+            try {
+                Write-Step ('Installation AMD officielle non confirmee : '+$officialError+'. Tentative Chocolatey de la meme version actuelle verifiee.')
+                $exitCode=Invoke-LDLCAmdChocolateyFallback -Source $selected -InstallerPath $downloadPath -WorkDirectory $tempRoot -Definition $definition -Targets $targets -StartPercent $StartPercent
+                if(Wait-LDLCAmdTargetVersions -ReleaseVersion $selected.Version -MetadataPath $metadata -Targets $targets -TimeoutSeconds $definition.ValidationTimeoutSeconds){
+                    Write-Ok ('AMD Adrenalin '+$selected.Version+' confirme apres repli Chocolatey : application et pilotes a la version requise pour chaque GPU (code '+$exitCode+').')
+                    Ensure-LDLCGpuDesktopShortcut -Vendor 'AMD';return
+                }
+                if($exitCode -in @(3010,1641)){
+                    Write-Warn ('AMD '+$selected.Version+' via Chocolatey demande un redemarrage : versions non confirmees, aucun succes declare.');return
+                }
+                throw 'Chocolatey termine mais versions actuelles de l application et des pilotes AMD non confirmees.'
+            }catch{
+                if(Test-LDLCStopRequestError -ErrorRecord $_){throw}
+                Write-Err ('Installation AMD non confirmee : officiel : '+$officialError+' | repli Chocolatey : '+$_.Exception.Message)
+            }
+        }else{
+            Write-Err ('Installation AMD non confirmee : '+$officialError+' Repli Chocolatey non lance : package actuel/compatibilite non verifies ou installateur encore actif.')
+        }
     }finally{
         if($tempRoot -and (Test-Path -LiteralPath $tempRoot)){Remove-Item -LiteralPath $tempRoot -Recurse -Force -ErrorAction SilentlyContinue}
     }

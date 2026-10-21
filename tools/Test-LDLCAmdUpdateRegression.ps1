@@ -1,4 +1,4 @@
-#requires -Version 5.1
+﻿#requires -Version 5.1
 [CmdletBinding()]
 param([string]$GpuModulePath='',[switch]$Historical,[string]$ReportPath='')
 $ErrorActionPreference='Stop'
@@ -9,6 +9,8 @@ if(-not $GpuModulePath){$GpuModulePath=Join-Path (Split-Path -Parent $PSScriptRo
 . $GpuModulePath
 $cases=New-Object 'Collections.Generic.List[object]';$script:checks=0
 function Assert($v,$m){$script:checks++;if(-not $v){throw $m}}
+# Baseline cases isolate the optional fallback; its own suite covers both methods.
+function Invoke-LDLCAmdChocolateyFallback { throw 'Chocolatey fallback unavailable in isolated baseline scenario' }
 function Stop-IfRequested {}
 function Test-LDLCStopRequestError($ErrorRecord){return $false}
 function Write-Step($Text){}

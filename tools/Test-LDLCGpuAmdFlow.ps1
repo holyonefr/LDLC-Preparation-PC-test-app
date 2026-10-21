@@ -14,6 +14,8 @@ function Assert-Throws {
     try { & $Action | Out-Null } catch { $failure = $_.Exception.Message }
     Assert-True ($failure -and $failure -match $Pattern) "Expected '$Pattern', got '$failure'"
 }
+# Baseline cases isolate the optional fallback; its own suite covers both methods.
+function Invoke-LDLCAmdChocolateyFallback { throw 'Chocolatey fallback unavailable in isolated baseline scenario' }
 function Stop-IfRequested { if ($script:Cancel) { throw 'simulated cancellation' } }
 function Test-LDLCStopRequestError($ErrorRecord) { return ($ErrorRecord.Exception.Message -match 'simulated cancellation') }
 function Write-Step { param($Text) }
@@ -258,6 +260,16 @@ try {
     $script:ChildEndsAt = 100
     Assert-Throws { Install-LDLCAmdStack } 'delai limite'
     Assert-True ($script:Shortcuts -eq 0 -and -not ($script:Messages -match 'confirme')) 'Active child cannot pass using existing software'
+    Reset-Scenario
+    $script:ChildEndsAt = 100
+    $failure=$null
+    try { Invoke-LDLCAmdGpuInstaller -Path $exe -Installer $script:Definition | Out-Null } catch { $failure=$_ }
+    Assert-True ($failure -and $failure.Exception.Data['LDLCAmdInstallerStillActive']) 'Late AMD child timeout must forbid a second installer/fallback'
+    Reset-Scenario
+    $script:ExitCode = 1603
+    $failure=$null
+    try { Invoke-LDLCAmdGpuInstaller -Path $exe -Installer $script:Definition | Out-Null } catch { $failure=$_ }
+    Assert-True ($failure -and -not $failure.Exception.Data['LDLCAmdInstallerStillActive']) 'Completed installer error may use the guarded fallback'
     Reset-Scenario
     $script:ExitCode = 1603
     Assert-Throws { Install-LDLCAmdStack } 'code 1603'

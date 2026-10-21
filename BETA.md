@@ -1,3 +1,8 @@
+Candidate **2.6.12** : repli Chocolatey AMD apres echec de l installation officielle.
+Meme version actuelle, URL et SHA256 que le package signe verifie ; versions application
+et pilotes controlees apres installation. Ancienne version et portables refuses.
+Validation Windows en cours ; voir [le rapport](beta/AMD_CHOCO_FALLBACK_2026-10-21.md).
+
 Livraison actuelle **2.6.11** : [correction AMD et résultats Windows](beta/AMD_UPDATE_2026-10-20.md).
 Package AMD complet actuel, compatibilité et versions contrôlées. Publication
 exclusivement dans cette bêta. Quatre lancements EXE et trois échanges dashboard validés.
