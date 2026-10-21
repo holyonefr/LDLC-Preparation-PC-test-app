@@ -1,3 +1,14 @@
+# Livraison AMD — bêta 2.6.12, 21 octobre 2026
+
+Voir beta/AMD_CHOCO_FALLBACK_2026-10-21.md : repli Chocolatey après échec officiel,
+version actuelle/URL/SHA256 liés au package AMD signé et compatible. Aucun retour
+à un ancien pilote, aucun second installateur actif, portables exclus. 29 scénarios
+natifs, suite complète, quatre lancements du vrai EXE et dashboard réussis. EXE
+publié puis récupéré, hash vérifié. Chocolatey propose maintenant 26.10.1,
+avec la même URL et le même SHA256 que le package AMD signé téléchargé. Installation matérielle simulée ; essai sur PC AMD à faire.
+Publication bêta seulement ; productions et leurs changements UI locaux préservés.
+Les notes ci-dessous retracent les livraisons précédentes.
+
 # Livraison AMD — bêta 2.6.11, 20 octobre 2026
 
 Voir beta/AMD_UPDATE_2026-10-20.md : package complet officiel 26.10.1 réellement

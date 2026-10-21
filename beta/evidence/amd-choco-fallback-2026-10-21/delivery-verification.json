@@ -1,0 +1,9 @@
+{
+  "Version": "2.6.12",
+  "Run": 39552519014,
+  "TestedSource": "731013aa2a0c7e53982e2ccba411ec23c8c20ad9",
+  "DeliveryCommit": "1fcc6eb6b3a5c293d3cc4e360d00e51e3b2d3664",
+  "ExecutableSHA256": "0679A886F29F21DC8E73A9C3D585C20380CBE7D08B1B8ADD15E001CCDA6388DB",
+  "ActualExecutableHashMatched": true,
+  "RealGpuInstallationVerified": false
+}

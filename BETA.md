@@ -1,12 +1,8 @@
-Candidate **2.6.12** : repli Chocolatey AMD apres echec de l installation officielle.
-Meme version actuelle, URL et SHA256 que le package signe verifie ; versions application
-et pilotes controlees apres installation. Ancienne version et portables refuses.
-Validation Windows en cours ; voir [le rapport](beta/AMD_CHOCO_FALLBACK_2026-10-21.md).
-
-Livraison actuelle **2.6.11** : [correction AMD et résultats Windows](beta/AMD_UPDATE_2026-10-20.md).
-Package AMD complet actuel, compatibilité et versions contrôlées. Publication
-exclusivement dans cette bêta. Quatre lancements EXE et trois échanges dashboard validés.
-L’installation matérielle sur un véritable GPU AMD reste à confirmer.
+Livraison actuelle **2.6.12** : [repli Chocolatey AMD et résultats Windows](beta/AMD_CHOCO_FALLBACK_2026-10-21.md).
+Repli après échec officiel, même version actuelle et SHA256 vérifiés, portables exclus.
+29 scénarios, suite Windows complète, quatre lancements EXE et dashboard validés.
+Chocolatey et AMD proposent 26.10.1, même SHA256 vérifié ; GPU physique à confirmer.
+Livraison précédente : [AMD 2.6.11](beta/AMD_UPDATE_2026-10-20.md).
 
 Livraison précédente : [transmission 2.6.10](TRANSMISSION_2026-10-20.md), autorisée
 alors dans les quatre dépôts. Dashboard permanent en version 47.
@@ -43,7 +39,7 @@ aucun telechargement constructeur au demarrage de l'interface. Le raccourci GCC
 pointe uniquement vers le coeur signe, pas vers le wrapper MB Update/RGB Sync.
 
 Livraison historique precedente : [retour au traitement historique McAfee](beta/MCAFEE_ROLLBACK_2026-10-20.md),
-version beta 2.6.8. La livraison historique 2.6.9 est décrite dans son rapport ; la livraison courante est 2.6.11. McAfee quitte le nouveau parcours interactif et retrouve le
+version beta 2.6.8. La livraison historique 2.6.9 est décrite dans son rapport ; la livraison courante est 2.6.12. McAfee quitte le nouveau parcours interactif et retrouve le
 worker historique limite a 90 secondes. Norton et les autres corrections restent
 conserves. Cette nouvelle publication est limitee au depot beta.
 

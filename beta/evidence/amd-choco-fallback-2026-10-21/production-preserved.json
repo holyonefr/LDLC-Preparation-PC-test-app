@@ -1,0 +1,20 @@
+{
+  "LDLC-Preparation": {
+    "Head": "978b498608586efffb173bee237a294b1452fa0a",
+    "StatusUnchanged": true,
+    "UIUnchanged": true,
+    "Pushed": false
+  },
+  "Numerik-s-Preparation-PC": {
+    "Head": "a8c2826e0e7ccbaaff4ecd96dfe5eeb54f60a247",
+    "StatusUnchanged": true,
+    "UIUnchanged": true,
+    "Pushed": false
+  },
+  "LDLC-Preparation-Addon": {
+    "Head": "f4f8203f907a20aa5c99f239279b4769896cb123",
+    "StatusUnchanged": true,
+    "UIUnchanged": true,
+    "Pushed": false
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "Failures": 0,
+  "Assertions": 162,
+  "Simulated": true,
+  "HardwareInstallerExecuted": false,
+  "Success": true,
+  "Cases": [
+    {
+      "PackageReads": 0,
+      "Observed": "success",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "official-success",
+      "Expected": "success"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "success",
+      "ChocolateyCalls": 1,
+      "OfficialCalls": 1,
+      "Scenario": "installer-failure-choco-success",
+      "Expected": "success"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "success",
+      "ChocolateyCalls": 1,
+      "OfficialCalls": 1,
+      "Scenario": "no-op-choco-success",
+      "Expected": "success"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "choco-stale-99.9.1",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "missing-choco",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "wrong-url",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "wrong-sha256",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "wrong-arguments",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "duplicate-url",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "missing-checksum",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "corrupt-package",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "interrupted-package",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "error",
+      "ChocolateyCalls": 1,
+      "OfficialCalls": 1,
+      "Scenario": "choco-error-1603",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "error",
+      "ChocolateyCalls": 1,
+      "OfficialCalls": 1,
+      "Scenario": "choco-no-op",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "reboot_pending",
+      "ChocolateyCalls": 1,
+      "OfficialCalls": 1,
+      "Scenario": "choco-reboot",
+      "Expected": "reboot_pending"
+    },
+    {
+      "PackageReads": 1,
+      "Observed": "error",
+      "ChocolateyCalls": 1,
+      "OfficialCalls": 1,
+      "Scenario": "choco-timeout",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "official-still-active",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "reboot_pending",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "official-reboot",
+      "Expected": "reboot_pending"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "cancelled",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "cancelled",
+      "Expected": "cancelled"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 0,
+      "Scenario": "newer-driver",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 0,
+      "Scenario": "newer-application",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 1,
+      "Scenario": "newer-driver-after-partial",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 0,
+      "Scenario": "source-offline",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 0,
+      "Scenario": "download-interrupted",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 0,
+      "Scenario": "bad-signature",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "error",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 0,
+      "Scenario": "wrong-device",
+      "Expected": "error"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "skipped",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 0,
+      "Scenario": "laptop",
+      "Expected": "skipped"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "skipped",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 0,
+      "Scenario": "unknown-form-factor",
+      "Expected": "skipped"
+    },
+    {
+      "PackageReads": 0,
+      "Observed": "skipped",
+      "ChocolateyCalls": 0,
+      "OfficialCalls": 0,
+      "Scenario": "no-amd",
+      "Expected": "skipped"
+    }
+  ],
+  "ChocolateyInstallExecuted": false,
+  "Scope": "Real runtime module, ZIP/PE/INF files, SHA256 and cleanup; HTTP, registry, SMBIOS, signatures and installer processes simulated."
+}
