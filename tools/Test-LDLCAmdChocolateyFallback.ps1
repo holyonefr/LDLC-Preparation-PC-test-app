@@ -99,6 +99,7 @@ function Invoke-LDLCAmdGpuInstaller($Path,$Installer){
  if($script:officialReboot){$script:PendingReboot=$true;return 3010}
  return 0
 }
+Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $script:source=[pscustomobject]@{Version='99.10.1';Url='https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-99.10.1-win11-c.exe';PageUrl='https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-99-10-1.html';FileName='whql-amd-software-adrenalin-edition-99.10.1-win11-c.exe';IsFullPackage=$true}
 foreach($name in @('official-success','installer-failure-choco-success','no-op-choco-success','choco-stale-99.9.1','missing-choco','wrong-url','wrong-sha256','wrong-arguments','duplicate-url','missing-checksum','corrupt-package','interrupted-package','choco-error-1603','choco-no-op','choco-reboot','choco-timeout','official-still-active','official-reboot','cancelled','newer-driver','newer-application','newer-driver-after-partial','source-offline','download-interrupted','bad-signature','wrong-device','laptop','unknown-form-factor','no-amd')){
