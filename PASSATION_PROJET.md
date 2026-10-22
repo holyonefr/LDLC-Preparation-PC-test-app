@@ -1,3 +1,10 @@
+# Candidate bêta 2.6.13 — AMD et Chrome historique, 22 octobre 2026
+
+Publication autorisée sur les trois productions pour AMD (hors ADDON NVIDIA) et
+retour au layout Chrome historique. Bêta synchronisée ; ses tests et sa carte mère
+restent préservés. Voir AMD_CHROME_TASKBAR_2026-10-22.md après synchronisation.
+Validation Windows, quatre ouvertures et dashboard en cours.
+
 # Livraison AMD — bêta 2.6.12, 21 octobre 2026
 
 Voir beta/AMD_CHOCO_FALLBACK_2026-10-21.md : repli Chocolatey après échec officiel,

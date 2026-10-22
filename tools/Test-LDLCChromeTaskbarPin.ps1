@@ -1,100 +1,85 @@
 #requires -Version 5.1
-param([string]$ModuleRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) 'modules'))
-$ErrorActionPreference = 'Stop'
-$root = Split-Path -Parent $PSScriptRoot
+[CmdletBinding()]
+param([string]$ModuleRoot='')
+$ErrorActionPreference='Stop'
+if(-not $ModuleRoot){$ModuleRoot=Join-Path (Split-Path -Parent $PSScriptRoot) 'modules'}
 . (Join-Path $ModuleRoot '70.DefaultApps.ps1')
 . (Join-Path $ModuleRoot '72.ChromeTaskbar.ps1')
-$script:realState = ${function:Get-LDLCChromeTaskbarPinState}
-$script:checks = 0; $script:cases = 0
-function Assert($Value, $Reason) { $script:checks++; if (-not $Value) { throw $Reason } }
-function Stop-IfRequested { if ($script:cancel) { throw [OperationCanceledException]::new('test stop') } }
-function Test-LDLCStopRequestError($ErrorRecord) { return $ErrorRecord.Exception -is [OperationCanceledException] }
-function Write-Section($Text) { }
-function Write-ProgressFile($Percent, $Text) { }
-function Write-Info($Text) { }
-function Write-Ok($Text) { $script:success++ }
-function Write-Warn($Text) { $script:warnings += $Text }
-function Get-LDLCDefaultAppsTick { return $script:tick }
-function Start-Sleep([int]$Milliseconds) { $script:tick += $Milliseconds }
-function Get-LDLCChromeExecutablePath { if ($script:missing) { return $null }; return 'C:\Fixture\chrome.exe' }
-function Get-LDLCChromeTaskbarPinState {
-    param($ChromeExecutable)
-    if ($script:readFailure) { throw 'simulated Shell read failure' }
-    if ($script:pinAt -gt 0 -and $script:tick -ge $script:pinAt) { $script:pinned=$true }
-    return [pscustomobject]@{ Pinned = $script:pinned }
+$script:checks=0;$cases=New-Object 'Collections.Generic.List[object]'
+function Assert($Value,$Message){$script:checks++;if(-not $Value){throw $Message}}
+function Write-Section($Text){}
+function Write-ProgressFile($Percent,$Text){$script:progress++}
+function Write-Info($Text){$script:info+=[string]$Text}
+function Write-Ok($Text){$script:ok+=[string]$Text}
+function Write-Warn($Text){$script:warn+=[string]$Text}
+function Stop-IfRequested {$script:stopChecks++;if($script:stopAt -gt 0 -and $script:stopChecks -ge $script:stopAt){throw [OperationCanceledException]::new('fixture stop')}}
+function Test-LDLCStopRequestError($ErrorRecord){return $ErrorRecord.Exception -is [OperationCanceledException]}
+function Get-LDLCChromeExecutablePath {if($script:missing){return $null};return 'C:\Fixture\chrome.exe'}
+function Start-Sleep {param([int]$Milliseconds)$script:elapsed+=$Milliseconds}
+function Get-Process {param($Name)Assert ($Name -eq 'explorer') 'Only Explorer may be refreshed';return [pscustomobject]@{Name='explorer';Id=123}}
+function Stop-Process {
+ [CmdletBinding()]param([Parameter(ValueFromPipeline=$true)]$InputObject,[switch]$Force,[switch]$Confirm)
+ process{$script:stopCalls++;Assert ($Force -and -not $Confirm) 'Preserve historical Explorer refresh contract'}
 }
-function Invoke-LDLCChromeShellPin {
-    param($ChromeExecutable)
-    $script:shellCalls++
-    if ($script:shellWorks) { $script:pinned = $true }
-    if ($script:shellDelayed) { $script:pinAt=200 }
-    return $script:verbAvailable
+function Start-Process {param($FilePath)$script:startCalls++;Assert ($FilePath -eq 'explorer') 'Never start another program';if($script:restartFailure){throw 'fixture Explorer restart denied'}}
+function Close-LDLCExplorerFileWindows {$script:closeCalls++;if($script:closeFailure){throw 'fixture Explorer cleanup failed'}}
+# Any restored call to the recent UIA/confirmation path fails this suite.
+function Get-LDLCChromeTaskbarPinState {throw 'Unexpected recent pin-state confirmation'}
+function Invoke-LDLCChromeTaskbarContextAction {throw 'Unexpected recent Explorer UI menu'}
+function Wait-LDLCChromeTaskbarPin {throw 'Unexpected recent pin timeout'}
+
+# Compare the actual function body to the historical fixture. Only the public
+# implementation name and stop-request checks are deliberately different.
+$fixture=Get-Content (Join-Path $PSScriptRoot 'fixtures/chrome-taskbar-before-changes.json') -Raw | ConvertFrom-Json
+$historical=$fixture.HistoricalFunction.Replace('function Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate','function Invoke-LDLCChromeTaskbarPin').Replace("`r`n","`n").Trim()
+$current=(Get-Command Invoke-LDLCChromeTaskbarPin).ScriptBlock.Ast.Parent.Extent.Text.Replace("`r`n","`n")
+$current=[regex]::Replace($current,'(?m)^[ \t]*Stop-IfRequested\n','')
+$current=[regex]::Replace($current,'(?m)^[ \t]*if \(Test-LDLCStopRequestError \$_\) \{ throw \}\n','')
+Assert ($current.Trim() -ceq $historical) 'Chrome taskbar implementation differs from the historical method beyond stop handling'
+
+$saved=[Environment]::GetEnvironmentVariable('LOCALAPPDATA','Process')
+$temp=Join-Path ([IO.Path]::GetTempPath()) ('Chrome-Historical-'+[guid]::NewGuid().ToString('N'))
+[void][IO.Directory]::CreateDirectory($temp)
+try {
+ foreach($name in @('normal','pre-existing-layout','missing-chrome','layout-write-denied','explorer-restart-denied','explorer-cleanup-denied','cancel-before-layout','cancel-before-restart','cancel-after-restart')){
+  $script:missing=$false;$script:restartFailure=$false;$script:closeFailure=$false;$script:stopAt=0;$script:stopChecks=0;$script:progress=0;$script:elapsed=0;$script:stopCalls=0;$script:startCalls=0;$script:closeCalls=0;$script:warn=@();$script:ok=@();$script:info=@()
+  $env:LOCALAPPDATA=Join-Path $temp $name
+  [void][IO.Directory]::CreateDirectory($env:LOCALAPPDATA)
+  $layout=Join-Path $env:LOCALAPPDATA 'Microsoft/Windows/Shell/LayoutModification.xml'
+  $expected='prepared';$expectedWarning=0
+  switch($name){
+   'pre-existing-layout' {[void][IO.Directory]::CreateDirectory((Split-Path -Parent $layout));[IO.File]::WriteAllText($layout,'<old/>')}
+   'missing-chrome' {$script:missing=$true;$expected='not_prepared';$expectedWarning=1}
+   'layout-write-denied' {[void][IO.Directory]::CreateDirectory($layout);$expected='not_prepared';$expectedWarning=1}
+   'explorer-restart-denied' {$script:restartFailure=$true;$expectedWarning=1}
+   'explorer-cleanup-denied' {$script:closeFailure=$true;$expectedWarning=1}
+   'cancel-before-layout' {$script:stopAt=1;$expected='cancelled'}
+   'cancel-before-restart' {$script:stopAt=2;$expected='cancelled'}
+   'cancel-after-restart' {$script:stopAt=3;$expected='cancelled'}
+  }
+  $result=$false;$stopped=$false
+  try{$result=Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate -ProgressPercent 90}catch{if(Test-LDLCStopRequestError $_){$stopped=$true}else{throw}}
+  $observed=if($stopped){'cancelled'}elseif($result){'prepared'}else{'not_prepared'}
+  Assert ($observed -eq $expected) ($name+': unexpected result '+$observed)
+  Assert ($script:warn.Count -eq $expectedWarning) ($name+': false warning or hidden real failure')
+  Assert ($script:elapsed -le 2800) ($name+': recent confirmation timeout returned')
+  Assert (-not (($script:ok+$script:info) -match '^Chrome epingle')) ($name+': layout must not claim visual pin verification')
+  if(Test-Path -LiteralPath $layout -PathType Leaf){
+   $bytes=[IO.File]::ReadAllBytes($layout);Assert (-not ($bytes[0] -eq 239 -and $bytes[1] -eq 187 -and $bytes[2] -eq 191)) 'Historical layout is UTF8 without BOM'
+   [xml]$xml=[IO.File]::ReadAllText($layout)
+   $ns=New-Object Xml.XmlNamespaceManager($xml.NameTable)
+   $ns.AddNamespace('l','http://schemas.microsoft.com/Start/2014/LayoutModification');$ns.AddNamespace('t','http://schemas.microsoft.com/Start/2014/TaskbarLayout')
+   Assert ($xml.SelectSingleNode('//l:CustomTaskbarLayoutCollection',$ns).PinListPlacement -eq 'Append') 'Append Chrome; never replace the current pin list'
+   Assert ($xml.SelectSingleNode('//t:DesktopApp',$ns).DesktopApplicationID -eq 'Chrome') 'Historical layout must select Chrome'
+   Assert ($script:ok.Count -eq 1 -and $script:ok[0] -match 'Layout taskbar Chrome prepare') 'Report layout preparation accurately'
+  }
+  if($name -in @('normal','pre-existing-layout')){Assert ($script:stopCalls -eq 1 -and $script:startCalls -eq 1 -and $script:closeCalls -eq 1) 'Complete the historical Explorer refresh without opening the recent pin menu'}
+  if($name -in @('missing-chrome','layout-write-denied','cancel-before-layout','cancel-before-restart')){Assert ($script:stopCalls -eq 0 -and $script:startCalls -eq 0) 'Never refresh Explorer when layout preparation fails or stop is requested'}
+  if($name -eq 'cancel-after-restart'){Assert ($script:stopCalls -eq 1 -and $script:startCalls -eq 1) 'Stop must never leave Explorer killed without restarting it'}
+  $cases.Add(@{Scenario=$name;Result=$observed;Warnings=$script:warn.Count;ExplorerRestartRequests=$script:startCalls;VisualPinVerified=$false})
+ }
+}finally{
+ [Environment]::SetEnvironmentVariable('LOCALAPPDATA',$saved,'Process')
+ Remove-Item -LiteralPath $temp -Force -Recurse
 }
-function Invoke-LDLCChromeTaskbarContextAction {
-    param($ChromeExecutable)
-    $script:uiCalls++
-    if ($script:uiFailure) { throw 'Windows pin command unavailable or denied' }
-    if ($script:uiWorks) { $script:pinned = $true }
-    return [pscustomobject]@{ ObservedPinned = $script:menuAlreadyPinned; Invoked = $true }
-}
-function Reset-Case {
-    $script:cases++; $script:tick = 0; $script:pinned = $false; $script:cancel = $false
-    $script:missing = $false; $script:readFailure = $false; $script:shellWorks = $false
-    $script:verbAvailable = $false; $script:uiWorks = $false; $script:uiFailure = $false
-    $script:menuAlreadyPinned = $false; $script:shellCalls = 0; $script:uiCalls = 0; $script:success = 0; $script:warnings = @()
-    $script:pinAt=0; $script:shellDelayed=$false
-}
-foreach ($label in @('&Pin to taskbar', ('&' + [char]0xC9 + 'pingler ' + [char]0xE0 + ' la barre des t' + [char]0xE2 + 'ches'))) { Assert (Test-LDLCChromeTaskbarVerb $label) 'Recognize Windows pin command in English and French.' }
-foreach ($label in @('&Unpin from taskbar', ('D&' + [char]0xE9 + 'tacher de la barre des t' + [char]0xE2 + 'ches'))) { Assert (Test-LDLCChromeTaskbarVerb $label -Unpin) 'Recognize Windows unpin command.' }
-Assert (-not (Test-LDLCChromeTaskbarVerb 'Pin to Start')) 'Never invoke Start pin or Quick Access instead of taskbar.'
-Reset-Case; $script:pinned = $true
-Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Already pinned must succeed immediately.'
-Assert ($shellCalls -eq 0 -and $uiCalls -eq 0 -and $tick -eq 0 -and $warnings.Count -eq 0) 'Already pinned must not restart Explorer or open UI.'
-Reset-Case; $script:verbAvailable = $true; $script:shellWorks = $true
-Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Working exposed Shell verb must be verified.'
-Assert ($uiCalls -eq 0 -and $success -eq 0) 'No fallback UI after verified pin.'
-Reset-Case; $script:verbAvailable = $true; $script:uiWorks = $true
-Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Silent no-effect Shell command must fall back to real UI action.'
-Assert ($uiCalls -eq 1 -and $warnings.Count -eq 0) 'Do not report an intermediate false warning.'
-Reset-Case; $script:uiWorks = $true
-Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Missing Shell verb must use the scoped Explorer menu.'
-Reset-Case; $script:menuAlreadyPinned = $true
-Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Scoped Windows Unpin menu is proof of an existing pin.'
-Reset-Case
-Assert (-not (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate)) 'A no-effect pin command must not be reported as successful.'
-Assert ($warnings.Count -eq 1 -and $tick -le 1000) 'Surface a short precise warning when Windows does not apply the pin.'
-Reset-Case; $script:verbAvailable=$true; $script:shellDelayed=$true
-Assert (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate) 'Allow Windows to apply an asynchronous Shell pin.'
-Assert ($uiCalls -eq 0 -and $tick -eq 200) 'Do not race the asynchronous Shell command by opening another context menu immediately.'
-Reset-Case; $script:uiFailure = $true
-Assert (-not (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate)) 'Denied pin must remain a precise warning.'
-Reset-Case; $script:missing = $true
-Assert (-not (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate)) 'Missing browser must not create an invalid layout.'
-Assert ($shellCalls -eq 0 -and $uiCalls -eq 0) 'No attempt with missing Chrome.'
-Reset-Case; $script:readFailure = $true
-Assert (-not (Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate)) 'Unreadable pin state must not mean success.'
-Reset-Case; $script:cancel = $true; $stopped = $false
-try { Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate | Out-Null } catch { $stopped = Test-LDLCStopRequestError $_ }
-Assert ($stopped) 'Cancellation must propagate.'
-$native = 'not executed on Linux'
-if ($env:OS -eq 'Windows_NT') {
-    # Native WScript links in an isolated folder; never alter the real taskbar.
-    $directory = Join-Path ([IO.Path]::GetTempPath()) ('Chrome-Pin-Read-' + [guid]::NewGuid().ToString('N'))
-    try {
-        [void](New-Item -ItemType Directory -Path $directory)
-        $exe = Join-Path $directory 'chrome.exe'; [IO.File]::WriteAllBytes($exe, (New-Object byte[] 128))
-        $other = Join-Path $directory 'msedge.exe'; [IO.File]::WriteAllBytes($other, (New-Object byte[] 128))
-        function Get-LDLCChromeShellPinItem { param($ChromeExecutable) $item = [pscustomobject]@{}; $item | Add-Member ScriptMethod Verbs { return @() }; return $item }
-        $ws = New-Object -ComObject WScript.Shell
-        $linkPath = Join-Path $directory 'Chrome.lnk'; $link = $ws.CreateShortcut($linkPath); $link.TargetPath = $other; $link.Save()
-        Assert (-not (& $script:realState -ChromeExecutable $exe -PinDirectory $directory).Pinned) 'A shortcut named Chrome pointing to Edge must not confirm a pin.'
-        $link.TargetPath = $exe; $link.Save()
-        Assert (& $script:realState -ChromeExecutable $exe -PinDirectory $directory).Pinned 'Read actual COM shortcut target without changing real pins.'
-        $link.TargetPath=$other; $link.Save()
-        Assert ((Get-LDLCChromeTaskbarLaunchPath -ChromeExecutable $exe -ShortcutRoots @($directory)) -eq $exe) 'Do not select a shortcut named Chrome that targets another application.'
-        $link.TargetPath=$exe; $link.Save()
-        Assert ((Get-LDLCChromeTaskbarLaunchPath -ChromeExecutable $exe -ShortcutRoots @($directory)) -eq $linkPath) 'Prefer the verified Chrome Start Menu shortcut to the raw executable for Windows pin actions.'
-        $native = 'real WScript shortcut write/read in isolated folder; no taskbar changed'
-    } finally { if (Test-Path -LiteralPath $directory) { Remove-Item -LiteralPath $directory -Recurse -Force } }
-}
-Write-Host ('::notice title=Chrome taskbar pin::' + (@{ Cases = $cases; Assertions = $checks; Failures = 0; Mode = 'controller and Windows actions simulated'; NativeShortcutCheck = $native; ActualUserTaskbarChanged = $false } | ConvertTo-Json -Compress))
+Write-Host ('::notice title=Chrome historical taskbar::'+(@{Success=$true;Assertions=$script:checks;Cases=@($cases.ToArray());HistoricalReference=$fixture.Revision;HistoricalBodyVerified=$true;RealXMLWriteRead=$true;ExplorerActionsSimulated=$true;ActualUserTaskbarChanged=$false;VisualPinVerified=$false}|ConvertTo-Json -Depth 8 -Compress))

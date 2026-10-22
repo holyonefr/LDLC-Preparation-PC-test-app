@@ -1,3 +1,7 @@
+Candidate **2.6.13**, 22 octobre 2026 : AMD officiel/Chocolatey porté en production
+et retour au layout Chrome historique dans les quatre éditions. Validation Windows
+en cours ; intégration carte mère conservée uniquement dans cette bêta.
+
 Livraison actuelle **2.6.12** : [repli Chocolatey AMD et résultats Windows](beta/AMD_CHOCO_FALLBACK_2026-10-21.md).
 Repli après échec officiel, même version actuelle et SHA256 vérifiés, portables exclus.
 29 scénarios, suite Windows complète, quatre lancements EXE et dashboard validés.

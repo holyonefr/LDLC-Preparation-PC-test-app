@@ -30,3 +30,9 @@ currently prepared in beta; other publication restrictions remain in effect.
 2026-10-20: the user explicitly said "Oui envoie sur les 4" for transmission
 recovery. Publish this correction and its Windows-tested deliveries in all four
 repositories. Preserve beta-only motherboard integration and unrelated local UI.
+
+2026-10-22 explicit user authorization: "Ok push sur les trois" for the verified
+AMD official/Chocolatey correction, plus restoration of historical Chrome taskbar
+preparation. Publish LDLC and Numerik's AMD changes, and Chrome changes in all three
+production editions. ADDON stays NVIDIA-only. Keep beta synchronized, preserve
+beta-only motherboard integration and pre-existing unpublished UI edits.

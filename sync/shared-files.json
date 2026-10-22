@@ -89,7 +89,13 @@
     "tools/Test-SecurityInteractiveUninstall.ps1",
     "tools/Test-McAfeeHistoricalRollback.ps1",
     "tools/fixtures/mcafee-before-changes.json",
-    "tools/Test-TelemetryDeliveryRecovery.ps1"
+    "tools/Test-TelemetryDeliveryRecovery.ps1",
+    "tools/Test-LDLCAmdPackageMetadata.ps1",
+    "tools/Test-LDLCAmdUpdateRegression.ps1",
+    "tools/Test-LDLCAmdChocolateyFallback.ps1",
+    "tools/Test-LDLCAmdChocolateyPackage.ps1",
+    "tools/Test-LDLCAmdOfficialDownload.ps1",
+    "tools/fixtures/chrome-taskbar-before-changes.json"
   ],
   "ProtectedPaths": [
     "assets/**",
