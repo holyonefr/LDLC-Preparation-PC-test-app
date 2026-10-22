@@ -15,7 +15,7 @@ try {
     foreach($test in @(
         @{File='Test-TelemetryDeliveryRecovery.ps1';Failure='synthetic-credential-never-log'},
         @{File='Test-ChromeQuickConfirmation.ps1';Failure='working UIA Invoke'},
-        @{File='Test-LDLCChromeTaskbarPin.ps1';Failure='no-effect pin command'}
+        @{File='Test-LDLCChromeTaskbarPin.ps1';Failure='Chrome taskbar implementation differs from the historical method'}
     )) {
         foreach($phase in @('before','after')) {
             $moduleRoot=if($phase -eq 'before'){$directory}else{Join-Path $root 'modules'}
@@ -37,7 +37,7 @@ try {
             $checks+=@{Test=$test.File;Phase=$phase;ExitCode=$code;ExpectedResult=$true}
         }
     }
-    $evidence=@{ReferenceRevision=$ReferenceRevision;Checks=$checks;Failures=0;Mode='same simulated OS/HTTP fixtures before and after; native isolated shortcuts on Windows';RealDefaultsOrTaskbarChanged=$false}
+    $evidence=@{ReferenceRevision=$ReferenceRevision;Checks=$checks;Failures=0;Mode='same simulated OS/HTTP fixtures before and after; historical Chrome layout written/read in isolated directories';RealDefaultsOrTaskbarChanged=$false}
     Write-Host ('::notice title=Preparation regression comparison::'+($evidence|ConvertTo-Json -Depth 5 -Compress))
 } finally {
     if(Test-Path $directory){Remove-Item $directory -Recurse -Force}
