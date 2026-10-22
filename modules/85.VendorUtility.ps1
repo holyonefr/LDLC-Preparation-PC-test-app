@@ -1,8 +1,8 @@
-# Beta-only integration. Payloads are filled at build time, not at UI startup.
+# Manufacturer utility integration. Payloads are filled at build time, not at UI startup.
 $script:LDLCVendorUtilityPayloads = @()
 
 function Initialize-LDLCVendorUtilityModule {
-    if (-not $script:LDLCVendorUtilityPayloads.Count) { throw 'Modules constructeurs absents de cette compilation beta.' }
+    if (-not $script:LDLCVendorUtilityPayloads.Count) { throw 'Modules constructeurs absents de cette compilation.' }
     $identity=($script:LDLCVendorUtilityPayloads | ForEach-Object { $_.Sha256 }) -join ''
     $sha=[Security.Cryptography.SHA256]::Create()
     try { $id=([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($identity)))).Replace('-','') } finally { $sha.Dispose() }
@@ -51,4 +51,3 @@ function Invoke-LDLCVendorUtility {
         return [pscustomobject]@{Status='failed';Reason=$_.Exception.Message;Installed=$false;InstallerShortcut=''}
     }
 }
-

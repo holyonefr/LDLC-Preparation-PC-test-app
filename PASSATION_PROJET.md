@@ -1,3 +1,11 @@
+# Candidate 2.6.14 — promotion des fonctions bêta, 22 octobre 2026
+
+Voir PROMOTION_BETA_2026-10-22.md : carte mère et correction des fausses erreurs
+Edge portées aux trois éditions sur autorisation utilisateur. Interfaces propres
+préservées, portables exclus et installation constructeur manuelle. ADDON NVIDIA
+uniquement. Nettoyage des rapports de TESTS durci ; transmission produit inchangée.
+Validation Windows native en cours ; la bêta reste synchronisée.
+
 # Candidate bêta 2.6.13 — AMD et Chrome historique, 22 octobre 2026
 
 Publication autorisée sur les trois productions pour AMD (hors ADDON NVIDIA) et

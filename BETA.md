@@ -1,3 +1,12 @@
+Candidate **2.6.14**, promotion autorisée le 22 octobre 2026.
+Les fonctions validées de cette bêta, dont le module carte mère et la détection des
+épingles Edge, sont désormais autorisées dans LDLC, Numerik’s et ADDON. Les anciennes
+mentions « carte mère uniquement en bêta » ci-dessous décrivent les livraisons
+historiques ; cette restriction est levée par la nouvelle demande utilisateur.
+Voir [PROMOTION_BETA_2026-10-22.md](PROMOTION_BETA_2026-10-22.md).
+Interfaces propres préservées, portables exclus, installation constructeur manuelle.
+ADDON conserve NVIDIA uniquement et Trackman. Validation Windows en cours.
+
 Candidate **2.6.13**, 22 octobre 2026 : AMD officiel/Chocolatey porté en production
 et retour au layout Chrome historique dans les quatre éditions. Validation Windows
 en cours ; intégration carte mère conservée uniquement dans cette bêta.

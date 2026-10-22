@@ -16,7 +16,7 @@ jobs:
   beta:
     if: github.repository == 'holyonefr/LDLC-Preparation-PC-test-app'
     runs-on: windows-2025
-    timeout-minutes: 35
+    timeout-minutes: 45
     env:
       LDLC_TELEMETRY_DISABLED: '1'
     steps:
@@ -27,6 +27,11 @@ jobs:
       - name: Compile the standalone beta executable on native Windows
         shell: powershell
         run: ./tools/Build-LDLCPreparationPCExe.ps1
+      - name: Verify edition-independent manufacturer integration in both delivered scripts
+        shell: powershell
+        run: |
+          ./tools/Test-LDLCVendorUtilityIntegration.ps1 -Source main -OutputDirectory artifacts/vendor-main
+          ./tools/Test-LDLCVendorUtilityIntegration.ps1 -Source worker -OutputDirectory artifacts/vendor-worker
       - name: Check embedded integration, laptop exclusion and error reporting
         shell: powershell
         run: ./tools/Test-LDLCBetaVendorUtility.ps1

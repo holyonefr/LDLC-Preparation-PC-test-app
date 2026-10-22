@@ -1,4 +1,4 @@
-param(
+﻿param(
     [ValidateSet('main', 'worker')]
     [string]$Source = 'main',
 
@@ -37,7 +37,7 @@ $parts = foreach ($entry in (Get-Content -LiteralPath $orderPath)) {
 
 $content = ($parts -join '')
 
-# Beta payloads travel inside both worker and main script, so the EXE remains
+# Vendor payloads travel inside both worker and main script, so the EXE remains
 # standalone. Only five audited PowerShell sources are packaged, no vendor EXE.
 $vendorMarker='$script:LDLCVendorUtilityPayloads = @()'
 if ($content.Contains($vendorMarker)) {

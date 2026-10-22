@@ -4,6 +4,8 @@ $root=Split-Path -Parent $PSScriptRoot
 . (Join-Path $root 'modules/00.Core.ps1')
 . (Join-Path $root 'modules/05.Telemetry.ps1')
 . (Join-Path $PSScriptRoot 'PreparationDashboardRead.Common.ps1')
+. (Join-Path $PSScriptRoot 'PreparationDashboardControl.Common.ps1')
+$script:dashboardControlAttempts=New-Object 'Collections.Generic.List[object]'
 $script:dashboardReads = New-Object 'Collections.Generic.List[object]'
 $report=[ordered]@{Success=$false;Commit=$env:GITHUB_SHA;Checks=@();Cleaned=$false;Scope='Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.'}
 $testRoot=Join-Path ([IO.Path]::GetTempPath()) ('Preparation-Live-'+[guid]::NewGuid().ToString('N'))
@@ -15,8 +17,7 @@ function Get-LDLCComputerTelemetryInfo { [pscustomobject]@{ComputerName='CODEX-T
 function Get-LDLCEntryPointPath { return 'CODEX-TEST-CORRECTION' }
 function Post-Control($body) {
  $body.apiKey=Get-LDLCTelemetryApiKey
- $response=Invoke-RestMethod -Uri (Get-LDLCTelemetryEndpointUrl) -Method Post -ContentType 'application/json; charset=utf-8' -Body ($body|ConvertTo-Json -Depth 14 -Compress) -TimeoutSec 45
- if(-not $response -or $response.ok -ne $true){throw 'Controle serveur non acquitte'}
+ $response=Invoke-LDLCDashboardTestControl -Uri (Get-LDLCTelemetryEndpointUrl) -Body $body -Diagnostics $script:dashboardControlAttempts
  return $response
 }
 function Snapshot {
@@ -82,8 +83,11 @@ try {
 catch { $report.ErrorType=$_.Exception.GetType().Name; $report.Reason=if($_.Exception.Message -match '^(Debut|Fin|Statut|Edition|Cause|Dashboard|Controle|Configuration|Lecture dashboard)'){$_.Exception.Message}else{'Erreur reseau ou serveur, details sensibles masques.'} }
 finally {
  $cleanupOk=$true
- foreach($id in $ids){try{[void](Post-Control @{action='deleterun';adminKey=$script:dashboardKey;RunId=$id})}catch{$cleanupOk=$false}}
- if($ids.Count){try{$after=Snapshot -Stage 'cleanup_verify';if(@($after.runs|Where-Object{$_.runId -in $ids}).Count){$cleanupOk=$false}}catch{$cleanupOk=$false}}
+ $cleanupWarnings=@()
+ foreach($id in $ids){try{[void](Post-Control @{action='deleterun';adminKey=$script:dashboardKey;RunId=$id})}catch{$cleanupWarnings+='Owned test report delete not acknowledged; final server state will be checked.'}}
+ if($ids.Count){try{$after=Snapshot -Stage 'cleanup_verify';$cleanupOk=(@($after.runs|Where-Object{$_.runId -in $ids}).Count -eq 0)}catch{$cleanupOk=$false}}
+ $report.CleanupWarnings=$cleanupWarnings
+ $report.ControlAttempts=@($script:dashboardControlAttempts.ToArray())
  $report.ReadAttempts=@($script:dashboardReads.ToArray())
  $report.Cleaned=$cleanupOk
  if(-not $cleanupOk){$report.Success=$false;$report.CleanupRunIds=$ids}

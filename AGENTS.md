@@ -36,3 +36,10 @@ AMD official/Chocolatey correction, plus restoration of historical Chrome taskba
 preparation. Publish LDLC and Numerik's AMD changes, and Chrome changes in all three
 production editions. ADDON stays NVIDIA-only. Keep beta synchronized, preserve
 beta-only motherboard integration and pre-existing unpublished UI edits.
+
+2026-10-22 further explicit authorization: the user requested synchronizing all
+working beta features into Numeriks, LDLC and ADDON. The motherboard installer/
+Desktop-shortcut feature is now authorized in all three productions (no longer
+beta-only). Keep laptops excluded, manual vendor installation, each edition's
+branding and existing exceptions; ADDON remains NVIDIA-only. Keep beta synchronized.
+Preserve the canceled font enlargement and other unpublished UI edits.
