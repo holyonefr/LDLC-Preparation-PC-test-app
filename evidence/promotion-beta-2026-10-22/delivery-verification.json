@@ -1,0 +1,46 @@
+{
+  "LDLC-Preparation": {
+    "DeliveryCommit": "b0b8d5835158d69238532119d46e47fd616a4231",
+    "TestedSource": "e70eade11e3a1366bee691a01ebe4dec6c5a2f7f",
+    "Run": 39784261656,
+    "RunAttempt": 1,
+    "File": "dist/LDLCPreparationPC.exe",
+    "Bytes": 5024768,
+    "SHA256": "F4EFEB2D9D5E53B70F1B0E41C60B50FBC63EE8210D98C701C1B2C5DD1C718420",
+    "PEHeaderVerified": true,
+    "NativeTestHashMatchesDownloadedGitFile": true
+  },
+  "Numerik-s-Preparation-PC": {
+    "DeliveryCommit": "ab1bff60a9cfac8cce69b8f1cbd541a8719f3e9c",
+    "TestedSource": "d55f606cbcea96c1aed45e583583fc39fd40ac26",
+    "Run": 39784276767,
+    "RunAttempt": 2,
+    "File": "dist/Numerik'sPreparationPC.exe",
+    "Bytes": 11136512,
+    "SHA256": "5374D6DAD95C95A232BDDC8D430D4B456484F8702451259A20F43A6DD9281F3A",
+    "PEHeaderVerified": true,
+    "NativeTestHashMatchesDownloadedGitFile": true
+  },
+  "LDLC-Preparation-Addon": {
+    "DeliveryCommit": "b0f62795e37732d453dd1c42b352da5f23b2aadc",
+    "TestedSource": "99655d1398c79ec513567bbfe5d10cffbdc2819b",
+    "Run": 39784290420,
+    "RunAttempt": 1,
+    "File": "dist/LDLCPreparationPC_ADDON.exe",
+    "Bytes": 2841088,
+    "SHA256": "C1DA720781FE76E3A0D405161D4D8E3276BC17A7FC631BABC54AB78A61B8AF19",
+    "PEHeaderVerified": true,
+    "NativeTestHashMatchesDownloadedGitFile": true
+  },
+  "LDLC-Preparation-PC-test-app": {
+    "DeliveryCommit": "cb847a623285385a20e1705ba0d823b359a932be",
+    "TestedSource": "4ecba8042195624b139b6d749580f0171c9eac46",
+    "Run": 39783467473,
+    "RunAttempt": 1,
+    "File": "dist/LDLCPreparationPC.exe",
+    "Bytes": 5032448,
+    "SHA256": "3413FE276A2327F4203607ABDE5E0C159DB4619C59E66F0F59202C349F338118",
+    "PEHeaderVerified": true,
+    "NativeTestHashMatchesDownloadedGitFile": true
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "InitialPromotionCompletionFixture": {
+    "Affected": [
+      "LDLC-Preparation",
+      "Numerik-s-Preparation-PC",
+      "LDLC-Preparation-Addon"
+    ],
+    "Cause": "The isolated completion test had no stub for the newly added manufacturer phase. Beta already had it.",
+    "Correction": "Added the no-op test fixture only; no runtime bypass.",
+    "FinalNativeSuitesPassed": true
+  },
+  "NumeriksFinalAttempt1": {
+    "Run": 39784276767,
+    "Attempt": 1,
+    "Result": "Failed at dashboard final acknowledgement for the error scenario; executable publication blocked.",
+    "CauseEstablished": false,
+    "FinalAttempt": 2,
+    "FinalResult": "All three scenarios acknowledged, final dashboard values verified, own reports absent; EXE then published.",
+    "InterventionValidationForced": false
+  },
+  "PreviousCandidateCleanup": {
+    "Observation": "Previous Numeriks candidate acknowledged all three scenarios but its test cleanup check failed.",
+    "Correction": "Bounded transient retries for test administration only; final server snapshot must acknowledge absence of owned CODEX-TEST reports.",
+    "ProductionTransportModified": false,
+    "OrphanReportsRemaining": 0
+  },
+  "BetaEarlierComparisonFixture": {
+    "Observation": "Earlier candidate still expected the retired Chrome confirmation failure.",
+    "Correction": "Compare against the restored historical Chrome layout behavior; final native comparison passed."
+  }
+}

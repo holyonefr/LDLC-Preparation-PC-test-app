@@ -1,10 +1,15 @@
-# Candidate 2.6.14 — promotion des fonctions bêta, 22 octobre 2026
+# Livraison 2.6.14 — promotion bêta publiée, 22 octobre 2026
 
-Voir PROMOTION_BETA_2026-10-22.md : carte mère et correction des fausses erreurs
-Edge portées aux trois éditions sur autorisation utilisateur. Interfaces propres
-préservées, portables exclus et installation constructeur manuelle. ADDON NVIDIA
-uniquement. Nettoyage des rapports de TESTS durci ; transmission produit inchangée.
-Validation Windows native en cours ; la bêta reste synchronisée.
+Voir [PROMOTION_BETA_2026-10-22.md](PROMOTION_BETA_2026-10-22.md) et ses preuves.
+Les fonctions carte mère/Bureau et correction des fausses épingles Edge sont
+publiées dans LDLC, Numerik’s et ADDON ; la bêta reste synchronisée. Installation
+constructeur manuelle, portables exclus ; ADDON conserve NVIDIA/Trackman et son
+identité. AMD officiel/Chocolatey courant et Chrome historique livrés selon édition.
+Quatre vrais lancements EXE et trois échanges dashboard acquittés par édition ;
+empreintes des EXE récupérés identiques aux tests. L’incident intermittent de
+transport Numerik’s au premier essai et les tests corrigés restent documentés.
+Les modifications UI locales non publiées restent intactes. Les notes candidates
+et restrictions bêta ci-dessous sont historiques et remplacées pour cette livraison.
 
 # Candidate bêta 2.6.13 — AMD et Chrome historique, 22 octobre 2026
 

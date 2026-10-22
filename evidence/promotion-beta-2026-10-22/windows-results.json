@@ -1,0 +1,3334 @@
+{
+  "LDLC-Preparation": {
+    "Repository": "holyonefr/LDLC-Preparation",
+    "Run": 39784261656,
+    "RunAttempt": 1,
+    "URL": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39784261656",
+    "Conclusion": "success",
+    "Job": 119843145312,
+    "TestedSource": "e70eade11e3a1366bee691a01ebe4dec6c5a2f7f",
+    "Steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Apply an optional candidate without publishing production files",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Build this edition with its own branding",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify embedded manufacturer module in main worker and applications-phase placement",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify manufacturer discovery outages future versions and official manual fallbacks",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify real downloads signatures and Desktop installer shortcuts for all four brands",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Release regressions and Windows association APIs without installations",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify current official AMD package and Chocolatey availability without installing hardware",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify real dashboard acknowledgement for success error and cancellation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Open and close the actual executable four times",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Publish only after all Windows checks pass",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Record unpublished candidate evidence",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "Keep preview evidence",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "Delivery": {
+      "ActualUserTaskbarChanged": false,
+      "UIFailures": 0,
+      "BrowserUIActionsSimulated": true,
+      "DriverInstallersExecuted": false,
+      "RealExecutablePreviewCount": 4,
+      "ExecutableSHA256": "F4EFEB2D9D5E53B70F1B0E41C60B50FBC63EE8210D98C701C1B2C5DD1C718420",
+      "NativeAssociationFixturePassed": true,
+      "DeliveryCommit": "b0b8d5835158d69238532119d46e47fd616a4231",
+      "Repository": "holyonefr/LDLC-Preparation",
+      "TestedSource": "e70eade11e3a1366bee691a01ebe4dec6c5a2f7f",
+      "ReleaseSuitePassed": true
+    },
+    "ChromeHistoricalTests": [
+      {
+        "HistoricalReference": "a2a57ee2d28203fded79802eae2a58883d996c7e",
+        "HistoricalBodyVerified": true,
+        "ActualUserTaskbarChanged": false,
+        "VisualPinVerified": false,
+        "Assertions": 83,
+        "RealXMLWriteRead": true,
+        "Success": true,
+        "ExplorerActionsSimulated": true,
+        "Cases": [
+          {
+            "Scenario": "normal",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "pre-existing-layout",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "missing-chrome",
+            "Result": "not_prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "layout-write-denied",
+            "Result": "not_prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "explorer-restart-denied",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "explorer-cleanup-denied",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "cancel-before-layout",
+            "Result": "cancelled",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "cancel-before-restart",
+            "Result": "cancelled",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "cancel-after-restart",
+            "Result": "cancelled",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 1
+          }
+        ]
+      }
+    ],
+    "ChromeSuiteCoverage": {
+      "DirectNativeAnnotations": 1,
+      "VerifiedByPassedSuite": true
+    },
+    "VendorIntegration": [
+      {
+        "Cases": [
+          {
+            "Result": "passed",
+            "Name": "Five actual utility sources are embedded with valid hashes"
+          },
+          {
+            "Result": "passed",
+            "Name": "Portable is excluded by the real embedded utility before network and app probe"
+          },
+          {
+            "Result": "passed",
+            "Name": "Changed extracted source is refused before import"
+          },
+          {
+            "Result": "passed",
+            "Name": "Verified installer shortcut is a normal manual result"
+          },
+          {
+            "Result": "passed",
+            "Name": "Official web fallback remains a visible warning, never installer success"
+          },
+          {
+            "Result": "passed",
+            "Name": "Already installed application keeps its verified shortcut"
+          },
+          {
+            "Result": "passed",
+            "Name": "Laptop or unsupported PC is skipped without blocking warning"
+          },
+          {
+            "Result": "passed",
+            "Name": "Real detection/download failure exposes the blocking cause"
+          },
+          {
+            "Result": "passed",
+            "Name": "Module error does not masquerade as installation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Thrown failure is visible and does not abort the base preparation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Quit before this step prevents module/network work"
+          },
+          {
+            "Result": "passed",
+            "Name": "The real workflow calls the beta step exactly once after apps and before defaults"
+          }
+        ],
+        "Source": "worker",
+        "VendorInstallerExecuted": false,
+        "Assertions": 29,
+        "Failures": 0,
+        "Kind": "vendor_integration",
+        "Mode": "real_embedded_import_with_simulated_hardware_and_adapter_results"
+      },
+      {
+        "Cases": [
+          {
+            "Result": "passed",
+            "Name": "Five actual utility sources are embedded with valid hashes"
+          },
+          {
+            "Result": "passed",
+            "Name": "Portable is excluded by the real embedded utility before network and app probe"
+          },
+          {
+            "Result": "passed",
+            "Name": "Changed extracted source is refused before import"
+          },
+          {
+            "Result": "passed",
+            "Name": "Verified installer shortcut is a normal manual result"
+          },
+          {
+            "Result": "passed",
+            "Name": "Official web fallback remains a visible warning, never installer success"
+          },
+          {
+            "Result": "passed",
+            "Name": "Already installed application keeps its verified shortcut"
+          },
+          {
+            "Result": "passed",
+            "Name": "Laptop or unsupported PC is skipped without blocking warning"
+          },
+          {
+            "Result": "passed",
+            "Name": "Real detection/download failure exposes the blocking cause"
+          },
+          {
+            "Result": "passed",
+            "Name": "Module error does not masquerade as installation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Thrown failure is visible and does not abort the base preparation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Quit before this step prevents module/network work"
+          },
+          {
+            "Result": "passed",
+            "Name": "The real workflow calls the beta step exactly once after apps and before defaults"
+          }
+        ],
+        "Source": "main",
+        "VendorInstallerExecuted": false,
+        "Assertions": 29,
+        "Failures": 0,
+        "Kind": "vendor_integration",
+        "Mode": "real_embedded_import_with_simulated_hardware_and_adapter_results"
+      }
+    ],
+    "VendorLive": [
+      {
+        "Kind": "utility_installer_shortcut_tests",
+        "Assertions": 130,
+        "Cases": [
+          {
+            "Name": "Verified ASRock installer becomes a manual Desktop shortcut",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Verified MSI installer becomes a manual Desktop shortcut",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Verified ASUS installer becomes a manual Desktop shortcut",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Verified GIGABYTE installer becomes a manual Desktop shortcut",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Repeated preparation reuses the same stable installer target",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Installer target survives removal of the temporary download",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Changed downloaded installer cannot receive a shortcut",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Invalid signature prevents any shortcut",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Changed persistent installer is rejected without overwrite",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Wrong file version is rejected even if the hash is known",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Invalid version or hash cannot form a cache path",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "GIGABYTE full bundle cannot be offered as a minimal installer shortcut",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Inaccessible Desktop reports an explicit error",
+            "Mode": "simulation",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Actual ASRock download and installer shortcut: Bureau",
+            "Mode": "real_download_signature_and_com_with_hardware_fixture",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Actual ASRock download and installer shortcut: OneDrive - Fixture/Bureau",
+            "Mode": "real_download_signature_and_com_with_hardware_fixture",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Actual MSI download and installer shortcut: Bureau",
+            "Mode": "real_download_signature_and_com_with_hardware_fixture",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Actual MSI download and installer shortcut: OneDrive - Fixture/Bureau",
+            "Mode": "real_download_signature_and_com_with_hardware_fixture",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Actual ASUS download and installer shortcut: Bureau",
+            "Mode": "real_download_signature_and_com_with_hardware_fixture",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Actual ASUS download and installer shortcut: OneDrive - Fixture/Bureau",
+            "Mode": "real_download_signature_and_com_with_hardware_fixture",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Actual GIGABYTE download and installer shortcut: Bureau",
+            "Mode": "real_download_signature_and_com_with_hardware_fixture",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Actual GIGABYTE download and installer shortcut: OneDrive - Fixture/Bureau",
+            "Mode": "real_download_signature_and_com_with_hardware_fixture",
+            "Result": "passed",
+            "Error": ""
+          },
+          {
+            "Name": "Original Windows Desktop is restored after native tests",
+            "Mode": "real_com",
+            "Result": "passed",
+            "Error": ""
+          }
+        ],
+        "Failures": 0,
+        "VendorInstallerExecuted": false,
+        "ActualVendorInstallations": 0,
+        "Live": [
+          {
+            "Vendor": "ASRock",
+            "HardwareSimulated": true,
+            "DesktopMode": "Bureau",
+            "OfficialDownloadReal": true,
+            "SignatureReal": true,
+            "ShortcutCOMReal": true,
+            "CatalogueMode": "live",
+            "InstallerVersion": "2.0.0.10",
+            "InstallerSHA256": "E859D10FAA1B82D9820A6A8D4591F63BF18A0ED2ED0090CC680DA54910DE2CAA",
+            "Signer": "ASROCK INC.",
+            "DetectionMethod": "official_asrock_model_xml",
+            "DetectionSource": "https://www.asrock.com/support/LiveUpdate.asp?Platform=App&Model=B650M%20Pro%20RS",
+            "InstallerSource": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.10).zip",
+            "ShortcutFileName": "Installer ASRock APP Shop 2.0.0.10.lnk",
+            "TargetExistedAtCheck": true,
+            "Arguments": "",
+            "ReusedWithoutDuplicate": true,
+            "UnrelatedShortcutPreserved": true,
+            "VendorInstallerExecuted": false,
+            "Installed": false
+          },
+          {
+            "Vendor": "ASRock",
+            "HardwareSimulated": true,
+            "DesktopMode": "OneDrive - Fixture/Bureau",
+            "OfficialDownloadReal": true,
+            "SignatureReal": true,
+            "ShortcutCOMReal": true,
+            "CatalogueMode": "live",
+            "InstallerVersion": "2.0.0.10",
+            "InstallerSHA256": "E859D10FAA1B82D9820A6A8D4591F63BF18A0ED2ED0090CC680DA54910DE2CAA",
+            "Signer": "ASROCK INC.",
+            "DetectionMethod": "official_asrock_model_xml",
+            "DetectionSource": "https://www.asrock.com/support/LiveUpdate.asp?Platform=App&Model=B650M%20Pro%20RS",
+            "InstallerSource": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.10).zip",
+            "ShortcutFileName": "Installer ASRock APP Shop 2.0.0.10.lnk",
+            "TargetExistedAtCheck": true,
+            "Arguments": "",
+            "ReusedWithoutDuplicate": true,
+            "UnrelatedShortcutPreserved": true,
+            "VendorInstallerExecuted": false,
+            "Installed": false
+          },
+          {
+            "Vendor": "MSI",
+            "HardwareSimulated": true,
+            "DesktopMode": "Bureau",
+            "OfficialDownloadReal": true,
+            "SignatureReal": true,
+            "ShortcutCOMReal": true,
+            "CatalogueMode": "live",
+            "InstallerVersion": "2.0.75.0",
+            "InstallerSHA256": "3B81A188B1444452A3C207CE078FDE35A2DCDA7D3912A5B57837C45F2778B1B9",
+            "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+            "DetectionMethod": "",
+            "DetectionSource": "",
+            "InstallerSource": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+            "ShortcutFileName": "Installer MSI Center 2.0.75.0.lnk",
+            "TargetExistedAtCheck": true,
+            "Arguments": "",
+            "ReusedWithoutDuplicate": true,
+            "UnrelatedShortcutPreserved": true,
+            "VendorInstallerExecuted": false,
+            "Installed": false
+          },
+          {
+            "Vendor": "MSI",
+            "HardwareSimulated": true,
+            "DesktopMode": "OneDrive - Fixture/Bureau",
+            "OfficialDownloadReal": true,
+            "SignatureReal": true,
+            "ShortcutCOMReal": true,
+            "CatalogueMode": "live",
+            "InstallerVersion": "2.0.75.0",
+            "InstallerSHA256": "3B81A188B1444452A3C207CE078FDE35A2DCDA7D3912A5B57837C45F2778B1B9",
+            "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+            "DetectionMethod": "",
+            "DetectionSource": "",
+            "InstallerSource": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+            "ShortcutFileName": "Installer MSI Center 2.0.75.0.lnk",
+            "TargetExistedAtCheck": true,
+            "Arguments": "",
+            "ReusedWithoutDuplicate": true,
+            "UnrelatedShortcutPreserved": true,
+            "VendorInstallerExecuted": false,
+            "Installed": false
+          },
+          {
+            "Vendor": "ASUS",
+            "HardwareSimulated": true,
+            "DesktopMode": "Bureau",
+            "OfficialDownloadReal": true,
+            "SignatureReal": true,
+            "ShortcutCOMReal": true,
+            "CatalogueMode": "live",
+            "InstallerVersion": "1.0.7.1",
+            "InstallerSHA256": "C52343E16B608359223DF33EDC8D5789E7FEF4D2612986A883D29D915B76FF90",
+            "Signer": "ASUSTeK COMPUTER INC.",
+            "DetectionMethod": "official_asus_json",
+            "DetectionSource": "https://driverhub.asus.com/download/ASUS-DriverHub-Installer.json",
+            "InstallerSource": "https://driverhub.asus.com/download/1.0.7.1/ASUS-DriverHub-Installer.exe",
+            "ShortcutFileName": "Installer ASUS DriverHub 1.0.7.1.lnk",
+            "TargetExistedAtCheck": true,
+            "Arguments": "",
+            "ReusedWithoutDuplicate": true,
+            "UnrelatedShortcutPreserved": true,
+            "VendorInstallerExecuted": false,
+            "Installed": false
+          },
+          {
+            "Vendor": "ASUS",
+            "HardwareSimulated": true,
+            "DesktopMode": "OneDrive - Fixture/Bureau",
+            "OfficialDownloadReal": true,
+            "SignatureReal": true,
+            "ShortcutCOMReal": true,
+            "CatalogueMode": "live",
+            "InstallerVersion": "1.0.7.1",
+            "InstallerSHA256": "C52343E16B608359223DF33EDC8D5789E7FEF4D2612986A883D29D915B76FF90",
+            "Signer": "ASUSTeK COMPUTER INC.",
+            "DetectionMethod": "official_asus_json",
+            "DetectionSource": "https://driverhub.asus.com/download/ASUS-DriverHub-Installer.json",
+            "InstallerSource": "https://driverhub.asus.com/download/1.0.7.1/ASUS-DriverHub-Installer.exe",
+            "ShortcutFileName": "Installer ASUS DriverHub 1.0.7.1.lnk",
+            "TargetExistedAtCheck": true,
+            "Arguments": "",
+            "ReusedWithoutDuplicate": true,
+            "UnrelatedShortcutPreserved": true,
+            "VendorInstallerExecuted": false,
+            "Installed": false
+          },
+          {
+            "Vendor": "GIGABYTE",
+            "HardwareSimulated": true,
+            "DesktopMode": "Bureau",
+            "OfficialDownloadReal": true,
+            "SignatureReal": true,
+            "ShortcutCOMReal": true,
+            "CatalogueMode": "live",
+            "InstallerVersion": "26.08.28.01",
+            "InstallerSHA256": "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+            "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+            "DetectionMethod": "official_gcc_software_update_manifest",
+            "DetectionSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+            "InstallerSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+            "ShortcutFileName": "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+            "TargetExistedAtCheck": true,
+            "Arguments": "",
+            "ReusedWithoutDuplicate": true,
+            "UnrelatedShortcutPreserved": true,
+            "VendorInstallerExecuted": false,
+            "Installed": false
+          },
+          {
+            "Vendor": "GIGABYTE",
+            "HardwareSimulated": true,
+            "DesktopMode": "OneDrive - Fixture/Bureau",
+            "OfficialDownloadReal": true,
+            "SignatureReal": true,
+            "ShortcutCOMReal": true,
+            "CatalogueMode": "live",
+            "InstallerVersion": "26.08.28.01",
+            "InstallerSHA256": "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+            "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+            "DetectionMethod": "official_gcc_software_update_manifest",
+            "DetectionSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+            "InstallerSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+            "ShortcutFileName": "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+            "TargetExistedAtCheck": true,
+            "Arguments": "",
+            "ReusedWithoutDuplicate": true,
+            "UnrelatedShortcutPreserved": true,
+            "VendorInstallerExecuted": false,
+            "Installed": false
+          }
+        ],
+        "DesktopCapture": null
+      }
+    ],
+    "Dashboard": {
+      "Success": true,
+      "Commit": "e70eade11e3a1366bee691a01ebe4dec6c5a2f7f",
+      "Checks": [
+        {
+          "ApplicationSource": "LDLC_PREPARATION_PC",
+          "Validation": "validated",
+          "ToolVersion": "2.6.14",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "success",
+          "FinalVisible": true,
+          "Scenario": "success"
+        },
+        {
+          "ApplicationSource": "LDLC_PREPARATION_PC",
+          "Validation": "blocked",
+          "ToolVersion": "2.6.14",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "error",
+          "FinalVisible": true,
+          "Scenario": "failed"
+        },
+        {
+          "ApplicationSource": "LDLC_PREPARATION_PC",
+          "Validation": "blocked",
+          "ToolVersion": "2.6.14",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "stopped",
+          "FinalVisible": true,
+          "Scenario": "stopped"
+        }
+      ],
+      "Cleaned": true,
+      "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+      "Phase": "scenario stopped",
+      "CleanupWarnings": [],
+      "ControlAttempts": [
+        {
+          "Action": "auditruns",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        }
+      ],
+      "ReadAttempts": [
+        {
+          "Stage": "preflight",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 6959
+        },
+        {
+          "Stage": "scenario_success_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 8325
+        },
+        {
+          "Stage": "scenario_success_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 9059
+        },
+        {
+          "Stage": "scenario_failed_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 8128
+        },
+        {
+          "Stage": "scenario_failed_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 8162
+        },
+        {
+          "Stage": "scenario_stopped_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 6929
+        },
+        {
+          "Stage": "scenario_stopped_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 7889
+        },
+        {
+          "Stage": "cleanup_verify",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 8095
+        }
+      ]
+    },
+    "ExecutablePreviews": [
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1194,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 417,
+        "QuitTop": 204,
+        "QuitWidth": 50,
+        "QuitHeight": 14,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1129,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 417,
+        "QuitTop": 204,
+        "QuitWidth": 50,
+        "QuitHeight": 14,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1167,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 417,
+        "QuitTop": 204,
+        "QuitWidth": 50,
+        "QuitHeight": 14,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 2071,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 417,
+        "QuitTop": 204,
+        "QuitWidth": 50,
+        "QuitHeight": 14,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    ],
+    "AMD": {
+      "Fallback": {
+        "Failures": 0,
+        "Assertions": 162,
+        "Simulated": true,
+        "HardwareInstallerExecuted": false,
+        "Success": true,
+        "Cases": [
+          {
+            "PackageReads": 0,
+            "Observed": "success",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "official-success",
+            "Expected": "success"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "success",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "installer-failure-choco-success",
+            "Expected": "success"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "success",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "no-op-choco-success",
+            "Expected": "success"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "choco-stale-99.9.1",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "missing-choco",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "wrong-url",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "wrong-sha256",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "wrong-arguments",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "duplicate-url",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "missing-checksum",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "corrupt-package",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "interrupted-package",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-error-1603",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-no-op",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "reboot_pending",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-reboot",
+            "Expected": "reboot_pending"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-timeout",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "official-still-active",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "reboot_pending",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "official-reboot",
+            "Expected": "reboot_pending"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "cancelled",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "cancelled",
+            "Expected": "cancelled"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "newer-driver",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "newer-application",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "newer-driver-after-partial",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "source-offline",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "download-interrupted",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "bad-signature",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "wrong-device",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "skipped",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "laptop",
+            "Expected": "skipped"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "skipped",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "unknown-form-factor",
+            "Expected": "skipped"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "skipped",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "no-amd",
+            "Expected": "skipped"
+          }
+        ],
+        "ChocolateyInstallExecuted": false,
+        "Scope": "Real runtime module, ZIP/PE/INF files, SHA256 and cleanup; HTTP, registry, SMBIOS, signatures and installer processes simulated."
+      },
+      "Official": {
+        "Success": true,
+        "Commit": "e70eade11e3a1366bee691a01ebe4dec6c5a2f7f",
+        "Platform": "Microsoft Windows NT 10.0.26100.0",
+        "RealNetwork": true,
+        "InstallerExecuted": false,
+        "DriverInstalled": false,
+        "Phase": "verification",
+        "FullSources": [
+          {
+            "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+            "FileName": "whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+            "Version": "26.10.1",
+            "PageUrl": "https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-10-1.html",
+            "IsFullPackage": true
+          }
+        ],
+        "Source": {
+          "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+          "FileName": "whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+          "Version": "26.10.1",
+          "PageUrl": "https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-10-1.html",
+          "IsFullPackage": true
+        },
+        "Bytes": 1782243424,
+        "SHA256": "EAF0B61DE6CE31793D05222FD57B50C6A55095F52796A33683093381F9345B82",
+        "SignatureStatus": "Valid",
+        "Signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "UiPackagePaths": [
+          "Path = Packages\\Apps\\CCC2",
+          "Path = Packages\\Apps\\CCC2\\Branding",
+          "Path = Packages\\Apps\\CNBranding",
+          "Path = Bin64\\AMDSoftwareCloud.ico",
+          "Path = Bin64\\AMDSoftwareConsumer.ico",
+          "Path = Bin64\\AMDSoftwarePro.ico",
+          "Path = Packages\\Apps\\CCC2\\Branding\\Branding.msi",
+          "Path = Packages\\Apps\\CNBranding\\CNBranding64.msi",
+          "Path = Bin64\\AMDSoftwareCompatibilityTool.exe",
+          "Path = Bin64\\AMDSoftwareInstaller.exe",
+          "Path = Packages\\Drivers\\Display\\WT6A_INF\\B026676\\ccc2_install.exe",
+          "Path = Packages\\Drivers\\Display2\\WT6A_INF\\B026653\\ccc2_install.exe"
+        ],
+        "DisplayInfCount": 2,
+        "SampleTargets": [
+          {
+            "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C2",
+            "DriverVersion": "32.0.32015.7029",
+            "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C2"
+          },
+          {
+            "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C3",
+            "DriverVersion": "32.0.32015.7029",
+            "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C3"
+          },
+          {
+            "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_D2",
+            "DriverVersion": "32.0.32015.7029",
+            "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_D2"
+          }
+        ],
+        "ExtractedUiFiles": []
+      },
+      "Chocolatey": {
+        "Success": true,
+        "RealNetwork": true,
+        "ChocolateyInstallExecuted": false,
+        "HardwareInstallerExecuted": false,
+        "Package": "amd-software-adrenalin-edition",
+        "Commit": "e70eade11e3a1366bee691a01ebe4dec6c5a2f7f",
+        "ChocolateyVersion": "2.7.4",
+        "PublishedVersions": [
+          "26.10.1",
+          "26.8.1",
+          "26.7.1",
+          "26.6.4",
+          "26.6.2",
+          "26.6.1",
+          "26.5.2",
+          "26.5.1",
+          "26.3.1",
+          "26.2.2",
+          "26.1.1",
+          "25.11.1"
+        ],
+        "LatestIncludingPrerelease": "26.10.1",
+        "LatestStable": "26.10.1",
+        "InstallerUrl": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+        "InstallerSHA256": "eaf0b61de6ce31793d05222fd57b50c6a55095f52796a33683093381f9345b82",
+        "SilentArgs": "-install",
+        "InstallerVersion": "26.10.1",
+        "RuntimeMetadataReaderVerified": true,
+        "OfficialLatestVersion": "26.10.1",
+        "CurrentEnough": true,
+        "ExactOfficialPackageUrl": "https://community.chocolatey.org/api/v2/package/amd-software-adrenalin-edition/26.10.1",
+        "ExactOfficialPackageAvailable": true,
+        "ExactOfficialPackageMetadata": {
+          "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+          "SHA256": "eaf0b61de6ce31793d05222fd57b50c6a55095f52796a33683093381f9345b82",
+          "ChecksumType": "sha256",
+          "SilentArgs": "-install"
+        }
+      }
+    },
+    "InstallerExecuted": false,
+    "RealChromePinVerified": false
+  },
+  "Numerik-s-Preparation-PC": {
+    "Repository": "holyonefr/Numerik-s-Preparation-PC",
+    "Run": 39784276767,
+    "RunAttempt": 2,
+    "URL": "https://github.com/holyonefr/Numerik-s-Preparation-PC/actions/runs/39784276767",
+    "Conclusion": "success",
+    "Job": 119848321455,
+    "TestedSource": "d55f606cbcea96c1aed45e583583fc39fd40ac26",
+    "Steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Apply an optional candidate without publishing production files",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Build this edition with its own branding",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify embedded manufacturer module in main worker and applications-phase placement",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify manufacturer discovery outages future versions and official manual fallbacks",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify real downloads signatures and Desktop installer shortcuts for all four brands",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "Release regressions and Windows association APIs without installations",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify current official AMD package and Chocolatey availability without installing hardware",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify real dashboard acknowledgement for success error and cancellation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Open and close the actual executable four times",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Publish only after all Windows checks pass",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Record unpublished candidate evidence",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "Keep preview evidence",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "Delivery": {
+      "ActualUserTaskbarChanged": false,
+      "UIFailures": 0,
+      "BrowserUIActionsSimulated": true,
+      "DriverInstallersExecuted": false,
+      "RealExecutablePreviewCount": 4,
+      "ExecutableSHA256": "5374D6DAD95C95A232BDDC8D430D4B456484F8702451259A20F43A6DD9281F3A",
+      "NativeAssociationFixturePassed": true,
+      "DeliveryCommit": "ab1bff60a9cfac8cce69b8f1cbd541a8719f3e9c",
+      "Repository": "holyonefr/Numerik-s-Preparation-PC",
+      "TestedSource": "d55f606cbcea96c1aed45e583583fc39fd40ac26",
+      "ReleaseSuitePassed": true
+    },
+    "ChromeHistoricalTests": [
+      {
+        "HistoricalReference": "a2a57ee2d28203fded79802eae2a58883d996c7e",
+        "HistoricalBodyVerified": true,
+        "ActualUserTaskbarChanged": false,
+        "VisualPinVerified": false,
+        "Assertions": 83,
+        "RealXMLWriteRead": true,
+        "Success": true,
+        "ExplorerActionsSimulated": true,
+        "Cases": [
+          {
+            "Scenario": "normal",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "pre-existing-layout",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "missing-chrome",
+            "Result": "not_prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "layout-write-denied",
+            "Result": "not_prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "explorer-restart-denied",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "explorer-cleanup-denied",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "cancel-before-layout",
+            "Result": "cancelled",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "cancel-before-restart",
+            "Result": "cancelled",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "cancel-after-restart",
+            "Result": "cancelled",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 1
+          }
+        ]
+      }
+    ],
+    "ChromeSuiteCoverage": {
+      "DirectNativeAnnotations": 1,
+      "VerifiedByPassedSuite": true
+    },
+    "VendorIntegration": [
+      {
+        "Cases": [
+          {
+            "Result": "passed",
+            "Name": "Five actual utility sources are embedded with valid hashes"
+          },
+          {
+            "Result": "passed",
+            "Name": "Portable is excluded by the real embedded utility before network and app probe"
+          },
+          {
+            "Result": "passed",
+            "Name": "Changed extracted source is refused before import"
+          },
+          {
+            "Result": "passed",
+            "Name": "Verified installer shortcut is a normal manual result"
+          },
+          {
+            "Result": "passed",
+            "Name": "Official web fallback remains a visible warning, never installer success"
+          },
+          {
+            "Result": "passed",
+            "Name": "Already installed application keeps its verified shortcut"
+          },
+          {
+            "Result": "passed",
+            "Name": "Laptop or unsupported PC is skipped without blocking warning"
+          },
+          {
+            "Result": "passed",
+            "Name": "Real detection/download failure exposes the blocking cause"
+          },
+          {
+            "Result": "passed",
+            "Name": "Module error does not masquerade as installation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Thrown failure is visible and does not abort the base preparation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Quit before this step prevents module/network work"
+          },
+          {
+            "Result": "passed",
+            "Name": "The real workflow calls the beta step exactly once after apps and before defaults"
+          }
+        ],
+        "Source": "worker",
+        "VendorInstallerExecuted": false,
+        "Assertions": 29,
+        "Failures": 0,
+        "Kind": "vendor_integration",
+        "Mode": "real_embedded_import_with_simulated_hardware_and_adapter_results"
+      },
+      {
+        "Cases": [
+          {
+            "Result": "passed",
+            "Name": "Five actual utility sources are embedded with valid hashes"
+          },
+          {
+            "Result": "passed",
+            "Name": "Portable is excluded by the real embedded utility before network and app probe"
+          },
+          {
+            "Result": "passed",
+            "Name": "Changed extracted source is refused before import"
+          },
+          {
+            "Result": "passed",
+            "Name": "Verified installer shortcut is a normal manual result"
+          },
+          {
+            "Result": "passed",
+            "Name": "Official web fallback remains a visible warning, never installer success"
+          },
+          {
+            "Result": "passed",
+            "Name": "Already installed application keeps its verified shortcut"
+          },
+          {
+            "Result": "passed",
+            "Name": "Laptop or unsupported PC is skipped without blocking warning"
+          },
+          {
+            "Result": "passed",
+            "Name": "Real detection/download failure exposes the blocking cause"
+          },
+          {
+            "Result": "passed",
+            "Name": "Module error does not masquerade as installation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Thrown failure is visible and does not abort the base preparation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Quit before this step prevents module/network work"
+          },
+          {
+            "Result": "passed",
+            "Name": "The real workflow calls the beta step exactly once after apps and before defaults"
+          }
+        ],
+        "Source": "main",
+        "VendorInstallerExecuted": false,
+        "Assertions": 29,
+        "Failures": 0,
+        "Kind": "vendor_integration",
+        "Mode": "real_embedded_import_with_simulated_hardware_and_adapter_results"
+      }
+    ],
+    "VendorLive": [],
+    "Dashboard": {
+      "Success": true,
+      "Commit": "d55f606cbcea96c1aed45e583583fc39fd40ac26",
+      "Checks": [
+        {
+          "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+          "Validation": "validated",
+          "ToolVersion": "2.6.14",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "success",
+          "FinalVisible": true,
+          "Scenario": "success"
+        },
+        {
+          "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+          "Validation": "blocked",
+          "ToolVersion": "2.6.14",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "error",
+          "FinalVisible": true,
+          "Scenario": "failed"
+        },
+        {
+          "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+          "Validation": "blocked",
+          "ToolVersion": "2.6.14",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "stopped",
+          "FinalVisible": true,
+          "Scenario": "stopped"
+        }
+      ],
+      "Cleaned": true,
+      "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+      "Phase": "scenario stopped",
+      "CleanupWarnings": [],
+      "ControlAttempts": [
+        {
+          "Action": "auditruns",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        }
+      ],
+      "ReadAttempts": [
+        {
+          "Stage": "preflight",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 12343
+        },
+        {
+          "Stage": "scenario_success_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 12371
+        },
+        {
+          "Stage": "scenario_success_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 9357
+        },
+        {
+          "Stage": "scenario_failed_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 7196
+        },
+        {
+          "Stage": "scenario_failed_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 6597
+        },
+        {
+          "Stage": "scenario_stopped_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 10511
+        },
+        {
+          "Stage": "scenario_stopped_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 5509
+        },
+        {
+          "Stage": "cleanup_verify",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 7053
+        }
+      ]
+    },
+    "ExecutablePreviews": [
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1459,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 417,
+        "QuitTop": 204,
+        "QuitWidth": 50,
+        "QuitHeight": 14,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1495,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 417,
+        "QuitTop": 204,
+        "QuitWidth": 50,
+        "QuitHeight": 14,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1493,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 417,
+        "QuitTop": 204,
+        "QuitWidth": 50,
+        "QuitHeight": 14,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1479,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 417,
+        "QuitTop": 204,
+        "QuitWidth": 50,
+        "QuitHeight": 14,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    ],
+    "AMD": {
+      "Fallback": {
+        "Failures": 0,
+        "Assertions": 162,
+        "Simulated": true,
+        "HardwareInstallerExecuted": false,
+        "Success": true,
+        "Cases": [
+          {
+            "PackageReads": 0,
+            "Observed": "success",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "official-success",
+            "Expected": "success"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "success",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "installer-failure-choco-success",
+            "Expected": "success"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "success",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "no-op-choco-success",
+            "Expected": "success"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "choco-stale-99.9.1",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "missing-choco",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "wrong-url",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "wrong-sha256",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "wrong-arguments",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "duplicate-url",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "missing-checksum",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "corrupt-package",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "interrupted-package",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-error-1603",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-no-op",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "reboot_pending",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-reboot",
+            "Expected": "reboot_pending"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-timeout",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "official-still-active",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "reboot_pending",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "official-reboot",
+            "Expected": "reboot_pending"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "cancelled",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "cancelled",
+            "Expected": "cancelled"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "newer-driver",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "newer-application",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "newer-driver-after-partial",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "source-offline",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "download-interrupted",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "bad-signature",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "wrong-device",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "skipped",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "laptop",
+            "Expected": "skipped"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "skipped",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "unknown-form-factor",
+            "Expected": "skipped"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "skipped",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "no-amd",
+            "Expected": "skipped"
+          }
+        ],
+        "ChocolateyInstallExecuted": false,
+        "Scope": "Real runtime module, ZIP/PE/INF files, SHA256 and cleanup; HTTP, registry, SMBIOS, signatures and installer processes simulated."
+      },
+      "Official": {
+        "Success": true,
+        "Commit": "d55f606cbcea96c1aed45e583583fc39fd40ac26",
+        "Platform": "Microsoft Windows NT 10.0.26100.0",
+        "RealNetwork": true,
+        "InstallerExecuted": false,
+        "DriverInstalled": false,
+        "Phase": "verification",
+        "FullSources": [
+          {
+            "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+            "FileName": "whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+            "Version": "26.10.1",
+            "PageUrl": "https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-10-1.html",
+            "IsFullPackage": true
+          }
+        ],
+        "Source": {
+          "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+          "FileName": "whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+          "Version": "26.10.1",
+          "PageUrl": "https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-10-1.html",
+          "IsFullPackage": true
+        },
+        "Bytes": 1782243424,
+        "SHA256": "EAF0B61DE6CE31793D05222FD57B50C6A55095F52796A33683093381F9345B82",
+        "SignatureStatus": "Valid",
+        "Signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "UiPackagePaths": [
+          "Path = Packages\\Apps\\CCC2",
+          "Path = Packages\\Apps\\CCC2\\Branding",
+          "Path = Packages\\Apps\\CNBranding",
+          "Path = Bin64\\AMDSoftwareCloud.ico",
+          "Path = Bin64\\AMDSoftwareConsumer.ico",
+          "Path = Bin64\\AMDSoftwarePro.ico",
+          "Path = Packages\\Apps\\CCC2\\Branding\\Branding.msi",
+          "Path = Packages\\Apps\\CNBranding\\CNBranding64.msi",
+          "Path = Bin64\\AMDSoftwareCompatibilityTool.exe",
+          "Path = Bin64\\AMDSoftwareInstaller.exe",
+          "Path = Packages\\Drivers\\Display\\WT6A_INF\\B026676\\ccc2_install.exe",
+          "Path = Packages\\Drivers\\Display2\\WT6A_INF\\B026653\\ccc2_install.exe"
+        ],
+        "DisplayInfCount": 2,
+        "SampleTargets": [
+          {
+            "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C2",
+            "DriverVersion": "32.0.32015.7029",
+            "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C2"
+          },
+          {
+            "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C3",
+            "DriverVersion": "32.0.32015.7029",
+            "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C3"
+          },
+          {
+            "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_D2",
+            "DriverVersion": "32.0.32015.7029",
+            "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_D2"
+          }
+        ],
+        "ExtractedUiFiles": []
+      },
+      "Chocolatey": {
+        "Success": true,
+        "RealNetwork": true,
+        "ChocolateyInstallExecuted": false,
+        "HardwareInstallerExecuted": false,
+        "Package": "amd-software-adrenalin-edition",
+        "Commit": "d55f606cbcea96c1aed45e583583fc39fd40ac26",
+        "ChocolateyVersion": "2.7.4",
+        "PublishedVersions": [
+          "26.10.1",
+          "26.8.1",
+          "26.7.1",
+          "26.6.4",
+          "26.6.2",
+          "26.6.1",
+          "26.5.2",
+          "26.5.1",
+          "26.3.1",
+          "26.2.2",
+          "26.1.1",
+          "25.11.1"
+        ],
+        "LatestIncludingPrerelease": "26.10.1",
+        "LatestStable": "26.10.1",
+        "InstallerUrl": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+        "InstallerSHA256": "eaf0b61de6ce31793d05222fd57b50c6a55095f52796a33683093381f9345b82",
+        "SilentArgs": "-install",
+        "InstallerVersion": "26.10.1",
+        "RuntimeMetadataReaderVerified": true,
+        "OfficialLatestVersion": "26.10.1",
+        "CurrentEnough": true,
+        "ExactOfficialPackageUrl": "https://community.chocolatey.org/api/v2/package/amd-software-adrenalin-edition/26.10.1",
+        "ExactOfficialPackageAvailable": true,
+        "ExactOfficialPackageMetadata": {
+          "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+          "SHA256": "eaf0b61de6ce31793d05222fd57b50c6a55095f52796a33683093381f9345b82",
+          "ChecksumType": "sha256",
+          "SilentArgs": "-install"
+        }
+      }
+    },
+    "InstallerExecuted": false,
+    "RealChromePinVerified": false
+  },
+  "LDLC-Preparation-Addon": {
+    "Repository": "holyonefr/LDLC-Preparation-Addon",
+    "Run": 39784290420,
+    "RunAttempt": 1,
+    "URL": "https://github.com/holyonefr/LDLC-Preparation-Addon/actions/runs/39784290420",
+    "Conclusion": "success",
+    "Job": 119843241165,
+    "TestedSource": "99655d1398c79ec513567bbfe5d10cffbdc2819b",
+    "Steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Apply an optional candidate without publishing production files",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Build this edition with its own branding",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify embedded manufacturer module in main worker and applications-phase placement",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify manufacturer discovery outages future versions and official manual fallbacks",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify real downloads signatures and Desktop installer shortcuts for all four brands",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "Release regressions and Windows association APIs without installations",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify real dashboard acknowledgement for success error and cancellation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Open and close the actual executable four times",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Publish only after all Windows checks pass",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Record unpublished candidate evidence",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "Keep preview evidence",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "Delivery": {
+      "ActualUserTaskbarChanged": false,
+      "UIFailures": 0,
+      "BrowserUIActionsSimulated": true,
+      "DriverInstallersExecuted": false,
+      "RealExecutablePreviewCount": 4,
+      "ExecutableSHA256": "C1DA720781FE76E3A0D405161D4D8E3276BC17A7FC631BABC54AB78A61B8AF19",
+      "NativeAssociationFixturePassed": true,
+      "DeliveryCommit": "b0f62795e37732d453dd1c42b352da5f23b2aadc",
+      "Repository": "holyonefr/LDLC-Preparation-Addon",
+      "TestedSource": "99655d1398c79ec513567bbfe5d10cffbdc2819b",
+      "ReleaseSuitePassed": true
+    },
+    "ChromeHistoricalTests": [],
+    "ChromeSuiteCoverage": {
+      "DirectNativeAnnotations": 0,
+      "VerifiedByPassedSuite": true,
+      "ModuleRoots": [
+        "modules",
+        "worker-modules"
+      ],
+      "PassedSuite": "Test-AddonSync.ps1",
+      "SourceVerified": "99655d1398c79ec513567bbfe5d10cffbdc2819b",
+      "IndividualNoticesExposed": false
+    },
+    "VendorIntegration": [
+      {
+        "Cases": [
+          {
+            "Result": "passed",
+            "Name": "Five actual utility sources are embedded with valid hashes"
+          },
+          {
+            "Result": "passed",
+            "Name": "Portable is excluded by the real embedded utility before network and app probe"
+          },
+          {
+            "Result": "passed",
+            "Name": "Changed extracted source is refused before import"
+          },
+          {
+            "Result": "passed",
+            "Name": "Verified installer shortcut is a normal manual result"
+          },
+          {
+            "Result": "passed",
+            "Name": "Official web fallback remains a visible warning, never installer success"
+          },
+          {
+            "Result": "passed",
+            "Name": "Already installed application keeps its verified shortcut"
+          },
+          {
+            "Result": "passed",
+            "Name": "Laptop or unsupported PC is skipped without blocking warning"
+          },
+          {
+            "Result": "passed",
+            "Name": "Real detection/download failure exposes the blocking cause"
+          },
+          {
+            "Result": "passed",
+            "Name": "Module error does not masquerade as installation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Thrown failure is visible and does not abort the base preparation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Quit before this step prevents module/network work"
+          },
+          {
+            "Result": "passed",
+            "Name": "The real workflow calls the beta step exactly once after apps and before defaults"
+          }
+        ],
+        "Source": "worker",
+        "VendorInstallerExecuted": false,
+        "Assertions": 29,
+        "Failures": 0,
+        "Kind": "vendor_integration",
+        "Mode": "real_embedded_import_with_simulated_hardware_and_adapter_results"
+      },
+      {
+        "Cases": [
+          {
+            "Result": "passed",
+            "Name": "Five actual utility sources are embedded with valid hashes"
+          },
+          {
+            "Result": "passed",
+            "Name": "Portable is excluded by the real embedded utility before network and app probe"
+          },
+          {
+            "Result": "passed",
+            "Name": "Changed extracted source is refused before import"
+          },
+          {
+            "Result": "passed",
+            "Name": "Verified installer shortcut is a normal manual result"
+          },
+          {
+            "Result": "passed",
+            "Name": "Official web fallback remains a visible warning, never installer success"
+          },
+          {
+            "Result": "passed",
+            "Name": "Already installed application keeps its verified shortcut"
+          },
+          {
+            "Result": "passed",
+            "Name": "Laptop or unsupported PC is skipped without blocking warning"
+          },
+          {
+            "Result": "passed",
+            "Name": "Real detection/download failure exposes the blocking cause"
+          },
+          {
+            "Result": "passed",
+            "Name": "Module error does not masquerade as installation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Thrown failure is visible and does not abort the base preparation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Quit before this step prevents module/network work"
+          },
+          {
+            "Result": "passed",
+            "Name": "The real workflow calls the beta step exactly once after apps and before defaults"
+          }
+        ],
+        "Source": "main",
+        "VendorInstallerExecuted": false,
+        "Assertions": 29,
+        "Failures": 0,
+        "Kind": "vendor_integration",
+        "Mode": "real_embedded_import_with_simulated_hardware_and_adapter_results"
+      }
+    ],
+    "VendorLive": [],
+    "Dashboard": {
+      "Success": true,
+      "Commit": "99655d1398c79ec513567bbfe5d10cffbdc2819b",
+      "Checks": [
+        {
+          "ApplicationSource": "LDLC_PREPARATION_ADDON",
+          "Validation": "validated",
+          "ToolVersion": "2.0.3",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "success",
+          "FinalVisible": true,
+          "Scenario": "success"
+        },
+        {
+          "ApplicationSource": "LDLC_PREPARATION_ADDON",
+          "Validation": "blocked",
+          "ToolVersion": "2.0.3",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "error",
+          "FinalVisible": true,
+          "Scenario": "failed"
+        },
+        {
+          "ApplicationSource": "LDLC_PREPARATION_ADDON",
+          "Validation": "blocked",
+          "ToolVersion": "2.0.3",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "stopped",
+          "FinalVisible": true,
+          "Scenario": "stopped"
+        }
+      ],
+      "Cleaned": true,
+      "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+      "Phase": "scenario stopped",
+      "CleanupWarnings": [],
+      "ControlAttempts": [
+        {
+          "Action": "auditruns",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        }
+      ],
+      "ReadAttempts": [
+        {
+          "Stage": "preflight",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 11541
+        },
+        {
+          "Stage": "scenario_success_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 7913
+        },
+        {
+          "Stage": "scenario_success_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 8489
+        },
+        {
+          "Stage": "scenario_failed_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 7316
+        },
+        {
+          "Stage": "scenario_failed_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 7105
+        },
+        {
+          "Stage": "scenario_stopped_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 7518
+        },
+        {
+          "Stage": "scenario_stopped_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 7528
+        },
+        {
+          "Stage": "cleanup_verify",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 16303
+        }
+      ]
+    },
+    "ExecutablePreviews": [
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 984,
+        "WindowWidth": 512,
+        "WindowHeight": 236,
+        "QuitLeft": 438,
+        "QuitTop": 209,
+        "QuitWidth": 64,
+        "QuitHeight": 17,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 985,
+        "WindowWidth": 512,
+        "WindowHeight": 236,
+        "QuitLeft": 438,
+        "QuitTop": 209,
+        "QuitWidth": 64,
+        "QuitHeight": 17,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 972,
+        "WindowWidth": 512,
+        "WindowHeight": 236,
+        "QuitLeft": 438,
+        "QuitTop": 209,
+        "QuitWidth": 64,
+        "QuitHeight": 17,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1260,
+        "WindowWidth": 512,
+        "WindowHeight": 236,
+        "QuitLeft": 438,
+        "QuitTop": 209,
+        "QuitWidth": 64,
+        "QuitHeight": 17,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    ],
+    "AMD": null,
+    "InstallerExecuted": false,
+    "RealChromePinVerified": false
+  },
+  "LDLC-Preparation-PC-test-app": {
+    "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+    "Run": 39783467473,
+    "RunAttempt": 1,
+    "URL": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39783467473",
+    "Conclusion": "success",
+    "Job": 119840391465,
+    "TestedSource": "4ecba8042195624b139b6d749580f0171c9eac46",
+    "Steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Compile the standalone beta executable on native Windows",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify edition-independent manufacturer integration in both delivered scripts",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Check embedded integration, laptop exclusion and error reporting",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Check manufacturer step stays at the end of the applications phase",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Check synchronization preserves beta and never writes to stable",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify temporary outages and future releases for every manufacturer",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run the full release regression suite without installing software",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Reproduce the historical failures and test the same cases after correction",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify current AMD complete package and expected driver versions without running the installer",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Inspect the real Chocolatey AMD package and current-release fallback availability without installation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Compare the AMD no-op bug before and after the correction",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify real acknowledgement and dashboard status for success error and cancellation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify live downloads and real Desktop shortcuts for all four vendors",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "name": "Open and close the actual beta UI four times",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Publish only verified beta delivery files",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Preserve test evidence and Windows build",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "Delivery": {
+      "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+      "PublishedExecutable": true,
+      "ExecutableSHA256": "3413FE276A2327F4203607ABDE5E0C159DB4619C59E66F0F59202C349F338118",
+      "DeliveryCommit": "cb847a623285385a20e1705ba0d823b359a932be",
+      "TestedSource": "4ecba8042195624b139b6d749580f0171c9eac46",
+      "VendorInstallerExecuted": false
+    },
+    "ChromeHistoricalTests": [
+      {
+        "HistoricalReference": "a2a57ee2d28203fded79802eae2a58883d996c7e",
+        "HistoricalBodyVerified": true,
+        "ActualUserTaskbarChanged": false,
+        "VisualPinVerified": false,
+        "Assertions": 83,
+        "RealXMLWriteRead": true,
+        "Success": true,
+        "ExplorerActionsSimulated": true,
+        "Cases": [
+          {
+            "Scenario": "normal",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "pre-existing-layout",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "missing-chrome",
+            "Result": "not_prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "layout-write-denied",
+            "Result": "not_prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "explorer-restart-denied",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "explorer-cleanup-denied",
+            "Result": "prepared",
+            "VisualPinVerified": false,
+            "Warnings": 1,
+            "ExplorerRestartRequests": 1
+          },
+          {
+            "Scenario": "cancel-before-layout",
+            "Result": "cancelled",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "cancel-before-restart",
+            "Result": "cancelled",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 0
+          },
+          {
+            "Scenario": "cancel-after-restart",
+            "Result": "cancelled",
+            "VisualPinVerified": false,
+            "Warnings": 0,
+            "ExplorerRestartRequests": 1
+          }
+        ]
+      }
+    ],
+    "ChromeSuiteCoverage": {
+      "DirectNativeAnnotations": 1,
+      "VerifiedByPassedSuite": true
+    },
+    "VendorIntegration": [
+      {
+        "Cases": [
+          {
+            "Result": "passed",
+            "Name": "Five actual utility sources are embedded with valid hashes"
+          },
+          {
+            "Result": "passed",
+            "Name": "Portable is excluded by the real embedded utility before network and app probe"
+          },
+          {
+            "Result": "passed",
+            "Name": "Changed extracted source is refused before import"
+          },
+          {
+            "Result": "passed",
+            "Name": "Verified installer shortcut is a normal manual result"
+          },
+          {
+            "Result": "passed",
+            "Name": "Official web fallback remains a visible warning, never installer success"
+          },
+          {
+            "Result": "passed",
+            "Name": "Already installed application keeps its verified shortcut"
+          },
+          {
+            "Result": "passed",
+            "Name": "Laptop or unsupported PC is skipped without blocking warning"
+          },
+          {
+            "Result": "passed",
+            "Name": "Real detection/download failure exposes the blocking cause"
+          },
+          {
+            "Result": "passed",
+            "Name": "Module error does not masquerade as installation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Thrown failure is visible and does not abort the base preparation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Quit before this step prevents module/network work"
+          },
+          {
+            "Result": "passed",
+            "Name": "The real workflow calls the beta step exactly once after apps and before defaults"
+          }
+        ],
+        "Source": "worker",
+        "VendorInstallerExecuted": false,
+        "Assertions": 29,
+        "Failures": 0,
+        "Kind": "vendor_integration",
+        "Mode": "real_embedded_import_with_simulated_hardware_and_adapter_results"
+      },
+      {
+        "Cases": [
+          {
+            "Result": "passed",
+            "Name": "Five actual utility sources are embedded with valid hashes"
+          },
+          {
+            "Result": "passed",
+            "Name": "Portable is excluded by the real embedded utility before network and app probe"
+          },
+          {
+            "Result": "passed",
+            "Name": "Changed extracted source is refused before import"
+          },
+          {
+            "Result": "passed",
+            "Name": "Verified installer shortcut is a normal manual result"
+          },
+          {
+            "Result": "passed",
+            "Name": "Official web fallback remains a visible warning, never installer success"
+          },
+          {
+            "Result": "passed",
+            "Name": "Already installed application keeps its verified shortcut"
+          },
+          {
+            "Result": "passed",
+            "Name": "Laptop or unsupported PC is skipped without blocking warning"
+          },
+          {
+            "Result": "passed",
+            "Name": "Real detection/download failure exposes the blocking cause"
+          },
+          {
+            "Result": "passed",
+            "Name": "Module error does not masquerade as installation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Thrown failure is visible and does not abort the base preparation"
+          },
+          {
+            "Result": "passed",
+            "Name": "Quit before this step prevents module/network work"
+          },
+          {
+            "Result": "passed",
+            "Name": "The real workflow calls the beta step exactly once after apps and before defaults"
+          }
+        ],
+        "Source": "main",
+        "VendorInstallerExecuted": false,
+        "Assertions": 29,
+        "Failures": 0,
+        "Kind": "vendor_integration",
+        "Mode": "real_embedded_import_with_simulated_hardware_and_adapter_results"
+      }
+    ],
+    "VendorLive": [],
+    "Dashboard": {
+      "Success": true,
+      "Commit": "4ecba8042195624b139b6d749580f0171c9eac46",
+      "Checks": [
+        {
+          "ApplicationSource": "LDLC_PREPARATION_PC",
+          "Validation": "validated",
+          "ToolVersion": "2.6.14",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "success",
+          "FinalVisible": true,
+          "Scenario": "success"
+        },
+        {
+          "ApplicationSource": "LDLC_PREPARATION_PC",
+          "Validation": "blocked",
+          "ToolVersion": "2.6.14",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "error",
+          "FinalVisible": true,
+          "Scenario": "failed"
+        },
+        {
+          "ApplicationSource": "LDLC_PREPARATION_PC",
+          "Validation": "blocked",
+          "ToolVersion": "2.6.14",
+          "Acknowledged": true,
+          "InitialVisible": true,
+          "Status": "stopped",
+          "FinalVisible": true,
+          "Scenario": "stopped"
+        }
+      ],
+      "Cleaned": true,
+      "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+      "Phase": "scenario stopped",
+      "CleanupWarnings": [],
+      "ControlAttempts": [
+        {
+          "Action": "auditruns",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        },
+        {
+          "Action": "deleterun",
+          "Attempt": 1,
+          "Transient": false,
+          "Success": true,
+          "NetworkStatus": "OK",
+          "HttpStatus": 200
+        }
+      ],
+      "ReadAttempts": [
+        {
+          "Stage": "preflight",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 9190
+        },
+        {
+          "Stage": "scenario_success_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 8659
+        },
+        {
+          "Stage": "scenario_success_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 15463
+        },
+        {
+          "Stage": "scenario_failed_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 9482
+        },
+        {
+          "Stage": "scenario_failed_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 6937
+        },
+        {
+          "Stage": "scenario_stopped_initial",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 11878
+        },
+        {
+          "Stage": "scenario_stopped_final",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 9073
+        },
+        {
+          "Stage": "cleanup_verify",
+          "Attempt": 1,
+          "Success": true,
+          "HttpStatus": 200,
+          "NetworkStatus": "OK",
+          "Transient": false,
+          "Milliseconds": 6816
+        }
+      ]
+    },
+    "ExecutablePreviews": [
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1672,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1661,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1664,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1871,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    ],
+    "AMD": {
+      "Fallback": {
+        "Failures": 0,
+        "Assertions": 162,
+        "Simulated": true,
+        "HardwareInstallerExecuted": false,
+        "Success": true,
+        "Cases": [
+          {
+            "PackageReads": 0,
+            "Observed": "success",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "official-success",
+            "Expected": "success"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "success",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "installer-failure-choco-success",
+            "Expected": "success"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "success",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "no-op-choco-success",
+            "Expected": "success"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "choco-stale-99.9.1",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "missing-choco",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "wrong-url",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "wrong-sha256",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "wrong-arguments",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "duplicate-url",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "missing-checksum",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "corrupt-package",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "interrupted-package",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-error-1603",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-no-op",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "reboot_pending",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-reboot",
+            "Expected": "reboot_pending"
+          },
+          {
+            "PackageReads": 1,
+            "Observed": "error",
+            "ChocolateyCalls": 1,
+            "OfficialCalls": 1,
+            "Scenario": "choco-timeout",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "official-still-active",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "reboot_pending",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "official-reboot",
+            "Expected": "reboot_pending"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "cancelled",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "cancelled",
+            "Expected": "cancelled"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "newer-driver",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "newer-application",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 1,
+            "Scenario": "newer-driver-after-partial",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "source-offline",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "download-interrupted",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "bad-signature",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "error",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "wrong-device",
+            "Expected": "error"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "skipped",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "laptop",
+            "Expected": "skipped"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "skipped",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "unknown-form-factor",
+            "Expected": "skipped"
+          },
+          {
+            "PackageReads": 0,
+            "Observed": "skipped",
+            "ChocolateyCalls": 0,
+            "OfficialCalls": 0,
+            "Scenario": "no-amd",
+            "Expected": "skipped"
+          }
+        ],
+        "ChocolateyInstallExecuted": false,
+        "Scope": "Real runtime module, ZIP/PE/INF files, SHA256 and cleanup; HTTP, registry, SMBIOS, signatures and installer processes simulated."
+      },
+      "Official": {
+        "Success": true,
+        "Commit": "4ecba8042195624b139b6d749580f0171c9eac46",
+        "Platform": "Microsoft Windows NT 10.0.26100.0",
+        "RealNetwork": true,
+        "InstallerExecuted": false,
+        "DriverInstalled": false,
+        "Phase": "verification",
+        "FullSources": [
+          {
+            "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+            "FileName": "whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+            "Version": "26.10.1",
+            "PageUrl": "https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-10-1.html",
+            "IsFullPackage": true
+          }
+        ],
+        "Source": {
+          "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+          "FileName": "whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+          "Version": "26.10.1",
+          "PageUrl": "https://www.amd.com/en/resources/support-articles/release-notes/RN-RAD-WIN-26-10-1.html",
+          "IsFullPackage": true
+        },
+        "Bytes": 1782243424,
+        "SHA256": "EAF0B61DE6CE31793D05222FD57B50C6A55095F52796A33683093381F9345B82",
+        "SignatureStatus": "Valid",
+        "Signer": "CN=Advanced Micro Devices, O=Advanced Micro Devices, S=California, C=US",
+        "UiPackagePaths": [
+          "Path = Packages\\Apps\\CCC2",
+          "Path = Packages\\Apps\\CCC2\\Branding",
+          "Path = Packages\\Apps\\CNBranding",
+          "Path = Bin64\\AMDSoftwareCloud.ico",
+          "Path = Bin64\\AMDSoftwareConsumer.ico",
+          "Path = Bin64\\AMDSoftwarePro.ico",
+          "Path = Packages\\Apps\\CCC2\\Branding\\Branding.msi",
+          "Path = Packages\\Apps\\CNBranding\\CNBranding64.msi",
+          "Path = Bin64\\AMDSoftwareCompatibilityTool.exe",
+          "Path = Bin64\\AMDSoftwareInstaller.exe",
+          "Path = Packages\\Drivers\\Display\\WT6A_INF\\B026676\\ccc2_install.exe",
+          "Path = Packages\\Drivers\\Display2\\WT6A_INF\\B026653\\ccc2_install.exe"
+        ],
+        "DisplayInfCount": 2,
+        "SampleTargets": [
+          {
+            "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C2",
+            "DriverVersion": "32.0.32015.7029",
+            "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C2"
+          },
+          {
+            "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C3",
+            "DriverVersion": "32.0.32015.7029",
+            "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_C3"
+          },
+          {
+            "PnpDeviceId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_D2",
+            "DriverVersion": "32.0.32015.7029",
+            "HardwareId": "PCI\\VEN_1002&DEV_1114&SUBSYS_A10B1019&REV_D2"
+          }
+        ],
+        "ExtractedUiFiles": []
+      },
+      "Chocolatey": {
+        "Success": true,
+        "RealNetwork": true,
+        "ChocolateyInstallExecuted": false,
+        "HardwareInstallerExecuted": false,
+        "Package": "amd-software-adrenalin-edition",
+        "Commit": "4ecba8042195624b139b6d749580f0171c9eac46",
+        "ChocolateyVersion": "2.7.4",
+        "PublishedVersions": [
+          "26.10.1",
+          "26.8.1",
+          "26.7.1",
+          "26.6.4",
+          "26.6.2",
+          "26.6.1",
+          "26.5.2",
+          "26.5.1",
+          "26.3.1",
+          "26.2.2",
+          "26.1.1",
+          "25.11.1"
+        ],
+        "LatestIncludingPrerelease": "26.10.1",
+        "LatestStable": "26.10.1",
+        "InstallerUrl": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+        "InstallerSHA256": "eaf0b61de6ce31793d05222fd57b50c6a55095f52796a33683093381f9345b82",
+        "SilentArgs": "-install",
+        "InstallerVersion": "26.10.1",
+        "RuntimeMetadataReaderVerified": true,
+        "OfficialLatestVersion": "26.10.1",
+        "CurrentEnough": true,
+        "ExactOfficialPackageUrl": "https://community.chocolatey.org/api/v2/package/amd-software-adrenalin-edition/26.10.1",
+        "ExactOfficialPackageAvailable": true,
+        "ExactOfficialPackageMetadata": {
+          "Url": "https://drivers.amd.com/drivers/whql-amd-software-adrenalin-edition-26.10.1-win11-c.exe",
+          "SHA256": "eaf0b61de6ce31793d05222fd57b50c6a55095f52796a33683093381f9345b82",
+          "ChecksumType": "sha256",
+          "SilentArgs": "-install"
+        }
+      }
+    },
+    "InstallerExecuted": false,
+    "RealChromePinVerified": false
+  }
+}

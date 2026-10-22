@@ -1,3 +1,10 @@
+# Exception de publication autorisée — 22 octobre 2026
+
+La promotion des fonctions acceptées de la bêta (dont la carte mère) dans les trois
+productions est autorisée pour cette livraison. Voir BETA.md et
+PROMOTION_BETA_2026-10-22.md. Garder la bêta synchronisée ; ses EXE se recompilent
+indépendamment. Les anciennes restrictions ci-dessous décrivent l’historique.
+
 # Priorite beta — instruction utilisateur du 18 octobre 2026
 
 Pour ce depot, suivre BETA.md et tools/Sync-LDLCBeta.ps1. La commande de publication sur les deux depots ci-dessous est historique et ne doit pas etre utilisee pour la beta. Pousser uniquement LDLC-Preparation-PC-test-app, garder cette beta synchronisee pour les prochaines corrections.

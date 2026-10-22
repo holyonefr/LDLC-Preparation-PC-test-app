@@ -1,0 +1,101 @@
+{
+  "LDLC-Preparation": {
+    "Protected": {
+      "modules/99.UI.ps1": {
+        "WorkingFileUnchanged": true,
+        "CommittedUIUnchanged": true
+      },
+      "modules/45.Wallpaper.ps1": {
+        "WorkingFileUnchanged": true
+      },
+      "telemetry.config.json": {
+        "WorkingFileUnchanged": true
+      },
+      "sync/edition.json": {
+        "WorkingFileUnchanged": true
+      }
+    },
+    "BrandingConfigurationChanges": []
+  },
+  "Numerik-s-Preparation-PC": {
+    "Protected": {
+      "modules/99.UI.ps1": {
+        "WorkingFileUnchanged": true,
+        "CommittedUIUnchanged": true
+      },
+      "modules/45.Wallpaper.ps1": {
+        "WorkingFileUnchanged": true
+      },
+      "telemetry.config.json": {
+        "WorkingFileUnchanged": true
+      },
+      "sync/edition.json": {
+        "WorkingFileUnchanged": true
+      }
+    },
+    "BrandingConfigurationChanges": []
+  },
+  "LDLC-Preparation-Addon": {
+    "Protected": {
+      "modules/99.UI.ps1": {
+        "WorkingFileUnchanged": true,
+        "CommittedUIUnchanged": true
+      },
+      "worker-modules/99.UI.ps1": {
+        "WorkingFileUnchanged": true,
+        "CommittedUIUnchanged": true
+      },
+      "modules/45.Wallpaper.ps1": {
+        "WorkingFileUnchanged": true
+      },
+      "telemetry.config.json": {
+        "WorkingFileUnchanged": true
+      }
+    },
+    "BrandingConfigurationChanges": [],
+    "NvidiaOnlyGPUModulesUnchanged": true
+  },
+  "LDLC-Preparation-PC-test-app": {
+    "Protected": {
+      "modules/99.UI.ps1": {
+        "WorkingFileUnchanged": true,
+        "CommittedUIUnchanged": true
+      },
+      "modules/45.Wallpaper.ps1": {
+        "WorkingFileUnchanged": true
+      },
+      "telemetry.config.json": {
+        "WorkingFileUnchanged": true
+      },
+      "sync/edition.json": {
+        "WorkingFileUnchanged": true
+      }
+    },
+    "BrandingConfigurationChanges": []
+  },
+  "SharedVendorSources": {
+    "IdenticalInAllFourEditions": true,
+    "NormalizedSHA256": {
+      "motherboard/MotherboardExperiment.psm1": "8277C81A9AE58EDF1DE84B0ACF28120E7FA73C47384556E90839171B7FA13CBA",
+      "vendor-utility/VendorUtility.psm1": "6F2216015D80A260BBF0D58A617179B136F2DCA61D149A1183C9A3D1456D6009",
+      "vendor-utility/VendorDiscovery.Gigabyte.ps1": "C6D799990CAB23EBAD784F097BCE1D3523D0DCB06A6FBD7F5E33EC8F5C698846",
+      "vendor-utility/VendorDiscovery.Asrock.ps1": "14F9389DE58DDB31DA2D55BBBD7699ACD2492C53C4F38B38DB0D68F55AC7E8A6",
+      "vendor-utility/VendorPackage.Gigabyte.ps1": "99B09F031F2C0354EC94662D51709952BB3EAF8D67EC1BEE20240705CA140E5A"
+    }
+  },
+  "RuntimeParity": {
+    "LDLCNumeriksBeta": [
+      "20.WindowsLayout",
+      "60.Gpu",
+      "72.ChromeTaskbar",
+      "85.VendorUtility",
+      "90.Workflow"
+    ],
+    "AddonMainAndWorker": [
+      "20.WindowsLayout",
+      "72.ChromeTaskbar",
+      "85.VendorUtility"
+    ],
+    "ExcludedEditionSpecificFilesPreserved": true
+  }
+}
