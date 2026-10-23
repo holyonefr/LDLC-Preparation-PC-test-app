@@ -1,0 +1,1706 @@
+{
+  "Date": "2026-10-23",
+  "AllFourWindowsWorkflowsPassed": true,
+  "RealCompiledExePreviewCount": 16,
+  "UnexpectedWorkflowFailures": 0,
+  "ProductionCodePublished": false,
+  "ProductionUiEditsPreserved": true,
+  "ProductionTelemetryTestReportsCreatedAndRemoved": 9,
+  "BetaLiveDashboardTestExecuted": false,
+  "Scope": "Native Windows Server 2025 regression and Preview tests; simulated system changes and hardware; not four complete Windows 11 preparations",
+  "Editions": {
+    "LDLC-Preparation": {
+      "Repository": "holyonefr/LDLC-Preparation",
+      "Run": {
+        "conclusion": "success",
+        "headSha": "b17115bb5eb87647c71ab642079e769eda801af6",
+        "jobs": [
+          {
+            "completedAt": "2026-10-23T12:06:57Z",
+            "conclusion": "success",
+            "databaseId": 120400478181,
+            "name": "release",
+            "startedAt": "2026-10-23T11:55:59Z",
+            "status": "completed",
+            "steps": [
+              {
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                "number": 2,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Apply an optional candidate without publishing production files",
+                "number": 3,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Build this edition with its own branding",
+                "number": 4,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify embedded manufacturer module in main worker and applications-phase placement",
+                "number": 5,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify manufacturer discovery outages future versions and official manual fallbacks",
+                "number": 6,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify real downloads signatures and Desktop installer shortcuts for all four brands",
+                "number": 7,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Release regressions and Windows association APIs without installations",
+                "number": 8,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify current official AMD package and Chocolatey availability without installing hardware",
+                "number": 9,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify real dashboard acknowledgement for success error and cancellation",
+                "number": 10,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Open and close the actual executable four times",
+                "number": 11,
+                "status": "completed"
+              },
+              {
+                "conclusion": "skipped",
+                "name": "Publish only after all Windows checks pass",
+                "number": 12,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Record unpublished candidate evidence",
+                "number": 13,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Keep preview evidence",
+                "number": 14,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                "number": 28,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 29,
+                "status": "completed"
+              }
+            ],
+            "url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39949578969/job/120400478181"
+          }
+        ],
+        "status": "completed",
+        "url": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39949578969"
+      },
+      "PublishedExecutable": {
+        "FileName": "LDLCPreparationPC.exe",
+        "SHA256": "F4EFEB2D9D5E53B70F1B0E41C60B50FBC63EE8210D98C701C1B2C5DD1C718420",
+        "ManifestVerified": true,
+        "Bytes": 5024768,
+        "ManifestPresent": true
+      },
+      "NativeEvidence": [
+        {
+          "Title": "Transmission candidate Windows",
+          "Data": {
+            "PreviewCount": 4,
+            "RealDashboardRoundTrip": true,
+            "ExecutableSHA256": "A31F3343D6F2C2CF6EA0D8E73656E5241E050EA23B04517EC86B3FAEDF7DC464",
+            "PatchSHA256": "",
+            "RealAntivirusRemoved": false,
+            "ProductionPublished": false,
+            "Repository": "holyonefr/LDLC-Preparation",
+            "TestedSource": "b17115bb5eb87647c71ab642079e769eda801af6",
+            "ReleaseSuitePassed": true
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 1825,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 1704,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 1747,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 2779,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool dashboard roundtrip",
+          "Data": {
+            "Success": true,
+            "Commit": "b17115bb5eb87647c71ab642079e769eda801af6",
+            "Checks": [
+              {
+                "ApplicationSource": "LDLC_PREPARATION_PC",
+                "Validation": "validated",
+                "ToolVersion": "2.6.14",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "success",
+                "FinalVisible": true,
+                "Scenario": "success"
+              },
+              {
+                "ApplicationSource": "LDLC_PREPARATION_PC",
+                "Validation": "blocked",
+                "ToolVersion": "2.6.14",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "error",
+                "FinalVisible": true,
+                "Scenario": "failed"
+              },
+              {
+                "ApplicationSource": "LDLC_PREPARATION_PC",
+                "Validation": "blocked",
+                "ToolVersion": "2.6.14",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "stopped",
+                "FinalVisible": true,
+                "Scenario": "stopped"
+              }
+            ],
+            "Cleaned": true,
+            "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+            "Phase": "scenario stopped",
+            "CleanupWarnings": []
+          }
+        },
+        {
+          "Title": "Native association API",
+          "Data": {
+            "Assertions": 3,
+            "Status": "passed",
+            "FixtureExecuted": false,
+            "BrowserDefaultsChanged": false,
+            "Mode": "real Windows association APIs, isolated temporary file extension and class"
+          }
+        }
+      ],
+      "CompressedEvidence": [],
+      "UnexpectedFailureAnnotations": [],
+      "RealPreviewCount": 4,
+      "PreviewMilliseconds": [
+        2779,
+        1747,
+        1704,
+        1825
+      ],
+      "Dashboard": {
+        "Success": true,
+        "Commit": "b17115bb5eb87647c71ab642079e769eda801af6",
+        "Checks": [
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "validated",
+            "ToolVersion": "2.6.14",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "success",
+            "FinalVisible": true,
+            "Scenario": "success"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "blocked",
+            "ToolVersion": "2.6.14",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "error",
+            "FinalVisible": true,
+            "Scenario": "failed"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "blocked",
+            "ToolVersion": "2.6.14",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "stopped",
+            "FinalVisible": true,
+            "Scenario": "stopped"
+          }
+        ],
+        "Cleaned": true,
+        "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+        "Phase": "scenario stopped",
+        "CleanupWarnings": []
+      },
+      "DeliveryTest": {
+        "PreviewCount": 4,
+        "RealDashboardRoundTrip": true,
+        "ExecutableSHA256": "A31F3343D6F2C2CF6EA0D8E73656E5241E050EA23B04517EC86B3FAEDF7DC464",
+        "PatchSHA256": "",
+        "RealAntivirusRemoved": false,
+        "ProductionPublished": false,
+        "Repository": "holyonefr/LDLC-Preparation",
+        "TestedSource": "b17115bb5eb87647c71ab642079e769eda801af6",
+        "ReleaseSuitePassed": true
+      },
+      "TestedExecutableMatchesPublished": false,
+      "SimulatedOldChromeWarningReproduced": true,
+      "SimulationNote": "Separate PowerShell 7 fixture test against unchanged production module: 13 historical assertions; no real Windows default changed."
+    },
+    "Numerik-s-Preparation-PC": {
+      "Repository": "holyonefr/Numerik-s-Preparation-PC",
+      "Run": {
+        "conclusion": "success",
+        "headSha": "f9e74cf0c28e1cb101ffb49754482fa386c467ac",
+        "jobs": [
+          {
+            "completedAt": "2026-10-23T12:02:44Z",
+            "conclusion": "success",
+            "databaseId": 120400474096,
+            "name": "release",
+            "startedAt": "2026-10-23T11:55:58Z",
+            "status": "completed",
+            "steps": [
+              {
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                "number": 2,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Apply an optional candidate without publishing production files",
+                "number": 3,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Build this edition with its own branding",
+                "number": 4,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify embedded manufacturer module in main worker and applications-phase placement",
+                "number": 5,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify manufacturer discovery outages future versions and official manual fallbacks",
+                "number": 6,
+                "status": "completed"
+              },
+              {
+                "conclusion": "skipped",
+                "name": "Verify real downloads signatures and Desktop installer shortcuts for all four brands",
+                "number": 7,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Release regressions and Windows association APIs without installations",
+                "number": 8,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify current official AMD package and Chocolatey availability without installing hardware",
+                "number": 9,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify real dashboard acknowledgement for success error and cancellation",
+                "number": 10,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Open and close the actual executable four times",
+                "number": 11,
+                "status": "completed"
+              },
+              {
+                "conclusion": "skipped",
+                "name": "Publish only after all Windows checks pass",
+                "number": 12,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Record unpublished candidate evidence",
+                "number": 13,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Keep preview evidence",
+                "number": 14,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                "number": 28,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 29,
+                "status": "completed"
+              }
+            ],
+            "url": "https://github.com/holyonefr/Numerik-s-Preparation-PC/actions/runs/39949579205/job/120400474096"
+          }
+        ],
+        "status": "completed",
+        "url": "https://github.com/holyonefr/Numerik-s-Preparation-PC/actions/runs/39949579205"
+      },
+      "PublishedExecutable": {
+        "FileName": "Numerik'sPreparationPC.exe",
+        "SHA256": "5374D6DAD95C95A232BDDC8D430D4B456484F8702451259A20F43A6DD9281F3A",
+        "ManifestVerified": true,
+        "Bytes": 11136512,
+        "ManifestPresent": true
+      },
+      "NativeEvidence": [
+        {
+          "Title": "Transmission candidate Windows",
+          "Data": {
+            "PreviewCount": 4,
+            "RealDashboardRoundTrip": true,
+            "ExecutableSHA256": "98C191F782337C42BE24CE429655DC0A2B49F7A8F7C056CFC2B9FACFF9E60787",
+            "PatchSHA256": "",
+            "RealAntivirusRemoved": false,
+            "ProductionPublished": false,
+            "Repository": "holyonefr/Numerik-s-Preparation-PC",
+            "TestedSource": "f9e74cf0c28e1cb101ffb49754482fa386c467ac",
+            "ReleaseSuitePassed": true
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 2083,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 2054,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 2083,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 2097,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool dashboard roundtrip",
+          "Data": {
+            "Success": true,
+            "Commit": "f9e74cf0c28e1cb101ffb49754482fa386c467ac",
+            "Checks": [
+              {
+                "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+                "Validation": "validated",
+                "ToolVersion": "2.6.14",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "success",
+                "FinalVisible": true,
+                "Scenario": "success"
+              },
+              {
+                "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+                "Validation": "blocked",
+                "ToolVersion": "2.6.14",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "error",
+                "FinalVisible": true,
+                "Scenario": "failed"
+              },
+              {
+                "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+                "Validation": "blocked",
+                "ToolVersion": "2.6.14",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "stopped",
+                "FinalVisible": true,
+                "Scenario": "stopped"
+              }
+            ],
+            "Cleaned": true,
+            "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+            "Phase": "scenario stopped",
+            "CleanupWarnings": []
+          }
+        },
+        {
+          "Title": "Native association API",
+          "Data": {
+            "Assertions": 3,
+            "Status": "passed",
+            "FixtureExecuted": false,
+            "BrowserDefaultsChanged": false,
+            "Mode": "real Windows association APIs, isolated temporary file extension and class"
+          }
+        }
+      ],
+      "CompressedEvidence": [],
+      "UnexpectedFailureAnnotations": [],
+      "RealPreviewCount": 4,
+      "PreviewMilliseconds": [
+        2097,
+        2083,
+        2054,
+        2083
+      ],
+      "Dashboard": {
+        "Success": true,
+        "Commit": "f9e74cf0c28e1cb101ffb49754482fa386c467ac",
+        "Checks": [
+          {
+            "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+            "Validation": "validated",
+            "ToolVersion": "2.6.14",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "success",
+            "FinalVisible": true,
+            "Scenario": "success"
+          },
+          {
+            "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+            "Validation": "blocked",
+            "ToolVersion": "2.6.14",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "error",
+            "FinalVisible": true,
+            "Scenario": "failed"
+          },
+          {
+            "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+            "Validation": "blocked",
+            "ToolVersion": "2.6.14",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "stopped",
+            "FinalVisible": true,
+            "Scenario": "stopped"
+          }
+        ],
+        "Cleaned": true,
+        "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+        "Phase": "scenario stopped",
+        "CleanupWarnings": []
+      },
+      "DeliveryTest": {
+        "PreviewCount": 4,
+        "RealDashboardRoundTrip": true,
+        "ExecutableSHA256": "98C191F782337C42BE24CE429655DC0A2B49F7A8F7C056CFC2B9FACFF9E60787",
+        "PatchSHA256": "",
+        "RealAntivirusRemoved": false,
+        "ProductionPublished": false,
+        "Repository": "holyonefr/Numerik-s-Preparation-PC",
+        "TestedSource": "f9e74cf0c28e1cb101ffb49754482fa386c467ac",
+        "ReleaseSuitePassed": true
+      },
+      "TestedExecutableMatchesPublished": false,
+      "SimulatedOldChromeWarningReproduced": true,
+      "SimulationNote": "Separate PowerShell 7 fixture test against unchanged production module: 13 historical assertions; no real Windows default changed."
+    },
+    "LDLC-Preparation-Addon": {
+      "Repository": "holyonefr/LDLC-Preparation-Addon",
+      "Run": {
+        "conclusion": "success",
+        "headSha": "73acc27c78287373c20dfb24b7ac14878b5c225c",
+        "jobs": [
+          {
+            "completedAt": "2026-10-23T12:01:10Z",
+            "conclusion": "success",
+            "databaseId": 120400481714,
+            "name": "release",
+            "startedAt": "2026-10-23T11:56:00Z",
+            "status": "completed",
+            "steps": [
+              {
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                "number": 2,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Apply an optional candidate without publishing production files",
+                "number": 3,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Build this edition with its own branding",
+                "number": 4,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify embedded manufacturer module in main worker and applications-phase placement",
+                "number": 5,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify manufacturer discovery outages future versions and official manual fallbacks",
+                "number": 6,
+                "status": "completed"
+              },
+              {
+                "conclusion": "skipped",
+                "name": "Verify real downloads signatures and Desktop installer shortcuts for all four brands",
+                "number": 7,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Release regressions and Windows association APIs without installations",
+                "number": 8,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify real dashboard acknowledgement for success error and cancellation",
+                "number": 9,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Open and close the actual executable four times",
+                "number": 10,
+                "status": "completed"
+              },
+              {
+                "conclusion": "skipped",
+                "name": "Publish only after all Windows checks pass",
+                "number": 11,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Record unpublished candidate evidence",
+                "number": 12,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Keep preview evidence",
+                "number": 13,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                "number": 26,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 27,
+                "status": "completed"
+              }
+            ],
+            "url": "https://github.com/holyonefr/LDLC-Preparation-Addon/actions/runs/39949581589/job/120400481714"
+          }
+        ],
+        "status": "completed",
+        "url": "https://github.com/holyonefr/LDLC-Preparation-Addon/actions/runs/39949581589"
+      },
+      "PublishedExecutable": {
+        "FileName": "LDLCPreparationPC_ADDON.exe",
+        "SHA256": "C1DA720781FE76E3A0D405161D4D8E3276BC17A7FC631BABC54AB78A61B8AF19",
+        "ManifestVerified": true,
+        "Bytes": 2841088,
+        "ManifestPresent": true,
+        "ManifestFile": "resources.addon.manifest.json"
+      },
+      "NativeEvidence": [
+        {
+          "Title": "Transmission candidate Windows",
+          "Data": {
+            "PreviewCount": 4,
+            "RealDashboardRoundTrip": true,
+            "ExecutableSHA256": "C1DA720781FE76E3A0D405161D4D8E3276BC17A7FC631BABC54AB78A61B8AF19",
+            "PatchSHA256": "",
+            "RealAntivirusRemoved": false,
+            "ProductionPublished": false,
+            "Repository": "holyonefr/LDLC-Preparation-Addon",
+            "TestedSource": "73acc27c78287373c20dfb24b7ac14878b5c225c",
+            "ReleaseSuitePassed": true
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 696,
+            "WindowWidth": 512,
+            "WindowHeight": 236,
+            "QuitLeft": 438,
+            "QuitTop": 209,
+            "QuitWidth": 64,
+            "QuitHeight": 17,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 680,
+            "WindowWidth": 512,
+            "WindowHeight": 236,
+            "QuitLeft": 438,
+            "QuitTop": 209,
+            "QuitWidth": 64,
+            "QuitHeight": 17,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 648,
+            "WindowWidth": 512,
+            "WindowHeight": 236,
+            "QuitLeft": 438,
+            "QuitTop": 209,
+            "QuitWidth": 64,
+            "QuitHeight": 17,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 2033,
+            "WindowWidth": 512,
+            "WindowHeight": 236,
+            "QuitLeft": 438,
+            "QuitTop": 209,
+            "QuitWidth": 64,
+            "QuitHeight": 17,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool dashboard roundtrip",
+          "Data": {
+            "Success": true,
+            "Commit": "73acc27c78287373c20dfb24b7ac14878b5c225c",
+            "Checks": [
+              {
+                "ApplicationSource": "LDLC_PREPARATION_ADDON",
+                "Validation": "validated",
+                "ToolVersion": "2.0.3",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "success",
+                "FinalVisible": true,
+                "Scenario": "success"
+              },
+              {
+                "ApplicationSource": "LDLC_PREPARATION_ADDON",
+                "Validation": "blocked",
+                "ToolVersion": "2.0.3",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "error",
+                "FinalVisible": true,
+                "Scenario": "failed"
+              },
+              {
+                "ApplicationSource": "LDLC_PREPARATION_ADDON",
+                "Validation": "blocked",
+                "ToolVersion": "2.0.3",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "stopped",
+                "FinalVisible": true,
+                "Scenario": "stopped"
+              }
+            ],
+            "Cleaned": true,
+            "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+            "Phase": "scenario stopped",
+            "CleanupWarnings": []
+          }
+        }
+      ],
+      "CompressedEvidence": [],
+      "UnexpectedFailureAnnotations": [],
+      "RealPreviewCount": 4,
+      "PreviewMilliseconds": [
+        2033,
+        648,
+        680,
+        696
+      ],
+      "Dashboard": {
+        "Success": true,
+        "Commit": "73acc27c78287373c20dfb24b7ac14878b5c225c",
+        "Checks": [
+          {
+            "ApplicationSource": "LDLC_PREPARATION_ADDON",
+            "Validation": "validated",
+            "ToolVersion": "2.0.3",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "success",
+            "FinalVisible": true,
+            "Scenario": "success"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_ADDON",
+            "Validation": "blocked",
+            "ToolVersion": "2.0.3",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "error",
+            "FinalVisible": true,
+            "Scenario": "failed"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_ADDON",
+            "Validation": "blocked",
+            "ToolVersion": "2.0.3",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "stopped",
+            "FinalVisible": true,
+            "Scenario": "stopped"
+          }
+        ],
+        "Cleaned": true,
+        "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+        "Phase": "scenario stopped",
+        "CleanupWarnings": []
+      },
+      "DeliveryTest": {
+        "PreviewCount": 4,
+        "RealDashboardRoundTrip": true,
+        "ExecutableSHA256": "C1DA720781FE76E3A0D405161D4D8E3276BC17A7FC631BABC54AB78A61B8AF19",
+        "PatchSHA256": "",
+        "RealAntivirusRemoved": false,
+        "ProductionPublished": false,
+        "Repository": "holyonefr/LDLC-Preparation-Addon",
+        "TestedSource": "73acc27c78287373c20dfb24b7ac14878b5c225c",
+        "ReleaseSuitePassed": true
+      },
+      "TestedExecutableMatchesPublished": true,
+      "SimulatedOldChromeWarningReproduced": true,
+      "SimulationNote": "Separate PowerShell 7 fixture test against unchanged production module: 13 historical assertions; no real Windows default changed."
+    },
+    "LDLC-Preparation-PC-test-app": {
+      "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+      "Run": {
+        "conclusion": "success",
+        "headSha": "a60fd09b1740c9f9ae294628ce583fbee362bab7",
+        "jobs": [
+          {
+            "completedAt": "2026-10-23T11:58:50Z",
+            "conclusion": "success",
+            "databaseId": 120400491965,
+            "name": "beta",
+            "startedAt": "2026-10-23T11:56:01Z",
+            "status": "completed",
+            "steps": [
+              {
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                "number": 2,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Compile the standalone beta executable on native Windows",
+                "number": 3,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify edition-independent manufacturer integration in both delivered scripts",
+                "number": 4,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Check embedded integration, laptop exclusion and error reporting",
+                "number": 5,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Check manufacturer step stays at the end of the applications phase",
+                "number": 6,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Check synchronization preserves beta and never writes to stable",
+                "number": 7,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify temporary outages and future releases for every manufacturer",
+                "number": 8,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Run the full release regression suite without installing software",
+                "number": 9,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Compare false warnings before and after correction on native Windows",
+                "number": 10,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify the final audit and native association reader with PowerShell 7",
+                "number": 11,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Reproduce the historical failures and test the same cases after correction",
+                "number": 12,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Verify current AMD complete package and expected driver versions without running the installer",
+                "number": 13,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Inspect the real Chocolatey AMD package and current-release fallback availability without installation",
+                "number": 14,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Compare the AMD no-op bug before and after the correction",
+                "number": 15,
+                "status": "completed"
+              },
+              {
+                "conclusion": "skipped",
+                "name": "Verify real acknowledgement and dashboard status for success error and cancellation",
+                "number": 16,
+                "status": "completed"
+              },
+              {
+                "conclusion": "skipped",
+                "name": "Verify live downloads and real Desktop shortcuts for all four vendors",
+                "number": 17,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Open and close the actual beta UI four times",
+                "number": 18,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Publish only verified beta delivery files",
+                "number": 19,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Preserve test evidence and Windows build",
+                "number": 20,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                "number": 40,
+                "status": "completed"
+              },
+              {
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 41,
+                "status": "completed"
+              }
+            ],
+            "url": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39949584554/job/120400491965"
+          }
+        ],
+        "status": "completed",
+        "url": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39949584554"
+      },
+      "PublishedExecutable": {
+        "FileName": "LDLCPreparationPC.exe",
+        "SHA256": "773803383B5E8F02B073150DB418D517A2C39DAB940E1C51EAB668CAE2500948",
+        "ManifestVerified": true,
+        "Bytes": 5048832,
+        "ManifestPresent": true
+      },
+      "NativeEvidence": [
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 1020,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 410,
+            "QuitTop": 197,
+            "QuitWidth": 57,
+            "QuitHeight": 22,
+            "QuitPreferredWidth": 57,
+            "QuitPreferredHeight": 22,
+            "QuitWhitePixels": 66,
+            "QuitGlyphTop": 8,
+            "QuitGlyphBottom": 15,
+            "ProgressPanelBottom": 192,
+            "FooterGap": 5,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 1035,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 410,
+            "QuitTop": 197,
+            "QuitWidth": 57,
+            "QuitHeight": 22,
+            "QuitPreferredWidth": 57,
+            "QuitPreferredHeight": 22,
+            "QuitWhitePixels": 66,
+            "QuitGlyphTop": 8,
+            "QuitGlyphBottom": 15,
+            "ProgressPanelBottom": 192,
+            "FooterGap": 5,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 1053,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 410,
+            "QuitTop": 197,
+            "QuitWidth": 57,
+            "QuitHeight": 22,
+            "QuitPreferredWidth": 57,
+            "QuitPreferredHeight": 22,
+            "QuitWhitePixels": 66,
+            "QuitGlyphTop": 8,
+            "QuitGlyphBottom": 15,
+            "ProgressPanelBottom": 192,
+            "FooterGap": 5,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "PrepTool compiled preview",
+          "Data": {
+            "Visible": true,
+            "MillisecondsToPreview": 1221,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 410,
+            "QuitTop": 197,
+            "QuitWidth": 57,
+            "QuitHeight": 22,
+            "QuitPreferredWidth": 57,
+            "QuitPreferredHeight": 22,
+            "QuitWhitePixels": 66,
+            "QuitGlyphTop": 8,
+            "QuitGlyphBottom": 15,
+            "ProgressPanelBottom": 192,
+            "FooterGap": 5,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        },
+        {
+          "Title": "Read-only PDF diagnostic",
+          "Data": {
+            "ConfigurationChanged": false,
+            "AdobeInstalledCount": 0,
+            "AdobeDefaultConfirmed": false,
+            "ReadOnly": true,
+            "EffectivePdfProgId": "MSEdgePDF",
+            "Mode": "actual runner defaults, not the customer PC",
+            "Status": "passed"
+          }
+        },
+        {
+          "Title": "Native association API",
+          "Data": {
+            "Mode": "real Windows association APIs and registry; isolated extensions; Adobe registration simulated",
+            "BrowserDefaultsChanged": false,
+            "PdfDefaultsChanged": false,
+            "ActualAdobeReaderInstalled": false,
+            "FixtureExecuted": false,
+            "Assertions": 6,
+            "Status": "passed"
+          }
+        },
+        {
+          "Title": "Final default warning regression",
+          "Data": {
+            "Result": "passed",
+            "ProductionConfigurationChanged": false,
+            "Assertions": 33,
+            "Historical": false,
+            "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+          }
+        },
+        {
+          "Title": "Final default warning regression",
+          "Data": {
+            "Assertions": 33,
+            "Historical": false,
+            "Result": "passed",
+            "ProductionConfigurationChanged": false,
+            "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+          }
+        },
+        {
+          "Title": "Final default warning regression",
+          "Data": {
+            "Assertions": 13,
+            "Historical": true,
+            "Result": "passed",
+            "ProductionConfigurationChanged": false,
+            "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+          }
+        },
+        {
+          "Title": "Native association API",
+          "Data": {
+            "FixtureExecuted": false,
+            "BrowserDefaultsChanged": false,
+            "Assertions": 6,
+            "Mode": "real Windows association APIs and registry; isolated extensions; Adobe registration simulated",
+            "ActualAdobeReaderInstalled": false,
+            "Status": "passed",
+            "PdfDefaultsChanged": false
+          }
+        },
+        {
+          "Title": "Final default warning regression",
+          "Data": {
+            "Assertions": 33,
+            "Historical": false,
+            "Result": "passed",
+            "ProductionConfigurationChanged": false,
+            "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+          }
+        },
+        {
+          "Title": "Completion regression",
+          "Data": {
+            "Assertions": 92,
+            "Scenarios": 13,
+            "Result": "passed",
+            "ActualNetworkRequests": false,
+            "Mode": "real workflow, final audit and telemetry; simulated installation and effective OS state"
+          }
+        }
+      ],
+      "CompressedEvidence": [
+        {
+          "Kind": "beta_preview_review",
+          "Data": {
+            "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+            "PublishedExecutable": false,
+            "ExecutableSHA256": "B54AC452C75EACA98F0AF4844E8B0E41C962C0C3BC0EF030602FAD841ECB8A28",
+            "DeliveryCommit": "d25e771a72ac69f086c88e95a8941dc3b487eb82",
+            "TestedSource": "a60fd09b1740c9f9ae294628ce583fbee362bab7",
+            "VendorInstallerExecuted": false
+          }
+        },
+        {
+          "Kind": "beta_ui_launches",
+          "Data": {
+            "Passes": [
+              {
+                "Visible": true,
+                "MillisecondsToPreview": 1221,
+                "WindowWidth": 481,
+                "WindowHeight": 222,
+                "QuitLeft": 410,
+                "QuitTop": 197,
+                "QuitWidth": 57,
+                "QuitHeight": 22,
+                "QuitPreferredWidth": 57,
+                "QuitPreferredHeight": 22,
+                "QuitWhitePixels": 66,
+                "QuitGlyphTop": 8,
+                "QuitGlyphBottom": 15,
+                "ProgressPanelBottom": 192,
+                "FooterGap": 5,
+                "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+              },
+              {
+                "Visible": true,
+                "MillisecondsToPreview": 1053,
+                "WindowWidth": 481,
+                "WindowHeight": 222,
+                "QuitLeft": 410,
+                "QuitTop": 197,
+                "QuitWidth": 57,
+                "QuitHeight": 22,
+                "QuitPreferredWidth": 57,
+                "QuitPreferredHeight": 22,
+                "QuitWhitePixels": 66,
+                "QuitGlyphTop": 8,
+                "QuitGlyphBottom": 15,
+                "ProgressPanelBottom": 192,
+                "FooterGap": 5,
+                "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+              },
+              {
+                "Visible": true,
+                "MillisecondsToPreview": 1035,
+                "WindowWidth": 481,
+                "WindowHeight": 222,
+                "QuitLeft": 410,
+                "QuitTop": 197,
+                "QuitWidth": 57,
+                "QuitHeight": 22,
+                "QuitPreferredWidth": 57,
+                "QuitPreferredHeight": 22,
+                "QuitWhitePixels": 66,
+                "QuitGlyphTop": 8,
+                "QuitGlyphBottom": 15,
+                "ProgressPanelBottom": 192,
+                "FooterGap": 5,
+                "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+              },
+              {
+                "Visible": true,
+                "MillisecondsToPreview": 1020,
+                "WindowWidth": 481,
+                "WindowHeight": 222,
+                "QuitLeft": 410,
+                "QuitTop": 197,
+                "QuitWidth": 57,
+                "QuitHeight": 22,
+                "QuitPreferredWidth": 57,
+                "QuitPreferredHeight": 22,
+                "QuitWhitePixels": 66,
+                "QuitGlyphTop": 8,
+                "QuitGlyphBottom": 15,
+                "ProgressPanelBottom": 192,
+                "FooterGap": 5,
+                "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+              }
+            ],
+            "Mode": "real_compiled_executable_preview_and_quit_isolated_processes",
+            "VendorInstallerExecuted": false,
+            "Count": 4,
+            "Failures": 0
+          }
+        }
+      ],
+      "UnexpectedFailureAnnotations": [],
+      "RealPreviewCount": 4,
+      "PreviewMilliseconds": [
+        1221,
+        1053,
+        1035,
+        1020
+      ],
+      "Dashboard": null,
+      "DeliveryTest": {
+        "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+        "PublishedExecutable": false,
+        "ExecutableSHA256": "B54AC452C75EACA98F0AF4844E8B0E41C962C0C3BC0EF030602FAD841ECB8A28",
+        "DeliveryCommit": "d25e771a72ac69f086c88e95a8941dc3b487eb82",
+        "TestedSource": "a60fd09b1740c9f9ae294628ce583fbee362bab7",
+        "VendorInstallerExecuted": false
+      },
+      "TestedExecutableMatchesPublished": false,
+      "SimulatedOldChromeWarningReproduced": false,
+      "SimulationNote": "Separate PowerShell 7 fixture test against unchanged production module: 13 historical assertions; no real Windows default changed."
+    }
+  },
+  "VendorRealDownloadsAndShortcuts": {
+    "Kind": "utility_installer_shortcut_tests",
+    "Assertions": 130,
+    "Cases": [
+      {
+        "Name": "Verified ASRock installer becomes a manual Desktop shortcut",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Verified MSI installer becomes a manual Desktop shortcut",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Verified ASUS installer becomes a manual Desktop shortcut",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Verified GIGABYTE installer becomes a manual Desktop shortcut",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Repeated preparation reuses the same stable installer target",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Installer target survives removal of the temporary download",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Changed downloaded installer cannot receive a shortcut",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Invalid signature prevents any shortcut",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Changed persistent installer is rejected without overwrite",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Wrong file version is rejected even if the hash is known",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Invalid version or hash cannot form a cache path",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "GIGABYTE full bundle cannot be offered as a minimal installer shortcut",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Inaccessible Desktop reports an explicit error",
+        "Mode": "simulation",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Actual ASRock download and installer shortcut: Bureau",
+        "Mode": "real_download_signature_and_com_with_hardware_fixture",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Actual ASRock download and installer shortcut: OneDrive - Fixture/Bureau",
+        "Mode": "real_download_signature_and_com_with_hardware_fixture",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Actual MSI download and installer shortcut: Bureau",
+        "Mode": "real_download_signature_and_com_with_hardware_fixture",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Actual MSI download and installer shortcut: OneDrive - Fixture/Bureau",
+        "Mode": "real_download_signature_and_com_with_hardware_fixture",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Actual ASUS download and installer shortcut: Bureau",
+        "Mode": "real_download_signature_and_com_with_hardware_fixture",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Actual ASUS download and installer shortcut: OneDrive - Fixture/Bureau",
+        "Mode": "real_download_signature_and_com_with_hardware_fixture",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Actual GIGABYTE download and installer shortcut: Bureau",
+        "Mode": "real_download_signature_and_com_with_hardware_fixture",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Actual GIGABYTE download and installer shortcut: OneDrive - Fixture/Bureau",
+        "Mode": "real_download_signature_and_com_with_hardware_fixture",
+        "Result": "passed",
+        "Error": ""
+      },
+      {
+        "Name": "Original Windows Desktop is restored after native tests",
+        "Mode": "real_com",
+        "Result": "passed",
+        "Error": ""
+      }
+    ],
+    "Failures": 0,
+    "VendorInstallerExecuted": false,
+    "ActualVendorInstallations": 0,
+    "Live": [
+      {
+        "Vendor": "ASRock",
+        "HardwareSimulated": true,
+        "DesktopMode": "Bureau",
+        "OfficialDownloadReal": true,
+        "SignatureReal": true,
+        "ShortcutCOMReal": true,
+        "CatalogueMode": "live",
+        "InstallerVersion": "2.0.0.10",
+        "InstallerSHA256": "E859D10FAA1B82D9820A6A8D4591F63BF18A0ED2ED0090CC680DA54910DE2CAA",
+        "Signer": "ASROCK INC.",
+        "DetectionMethod": "official_asrock_model_xml",
+        "DetectionSource": "https://www.asrock.com/support/LiveUpdate.asp?Platform=App&Model=B650M%20Pro%20RS",
+        "InstallerSource": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.10).zip",
+        "ShortcutFileName": "Installer ASRock APP Shop 2.0.0.10.lnk",
+        "TargetExistedAtCheck": true,
+        "Arguments": "",
+        "ReusedWithoutDuplicate": true,
+        "UnrelatedShortcutPreserved": true,
+        "VendorInstallerExecuted": false,
+        "Installed": false
+      },
+      {
+        "Vendor": "ASRock",
+        "HardwareSimulated": true,
+        "DesktopMode": "OneDrive - Fixture/Bureau",
+        "OfficialDownloadReal": true,
+        "SignatureReal": true,
+        "ShortcutCOMReal": true,
+        "CatalogueMode": "live",
+        "InstallerVersion": "2.0.0.10",
+        "InstallerSHA256": "E859D10FAA1B82D9820A6A8D4591F63BF18A0ED2ED0090CC680DA54910DE2CAA",
+        "Signer": "ASROCK INC.",
+        "DetectionMethod": "official_asrock_model_xml",
+        "DetectionSource": "https://www.asrock.com/support/LiveUpdate.asp?Platform=App&Model=B650M%20Pro%20RS",
+        "InstallerSource": "https://download.asrock.com/Utility/Others/APPShop(v2.0.0.10).zip",
+        "ShortcutFileName": "Installer ASRock APP Shop 2.0.0.10.lnk",
+        "TargetExistedAtCheck": true,
+        "Arguments": "",
+        "ReusedWithoutDuplicate": true,
+        "UnrelatedShortcutPreserved": true,
+        "VendorInstallerExecuted": false,
+        "Installed": false
+      },
+      {
+        "Vendor": "MSI",
+        "HardwareSimulated": true,
+        "DesktopMode": "Bureau",
+        "OfficialDownloadReal": true,
+        "SignatureReal": true,
+        "ShortcutCOMReal": true,
+        "CatalogueMode": "live",
+        "InstallerVersion": "2.0.75.0",
+        "InstallerSHA256": "3B81A188B1444452A3C207CE078FDE35A2DCDA7D3912A5B57837C45F2778B1B9",
+        "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+        "DetectionMethod": "",
+        "DetectionSource": "",
+        "InstallerSource": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+        "ShortcutFileName": "Installer MSI Center 2.0.75.0.lnk",
+        "TargetExistedAtCheck": true,
+        "Arguments": "",
+        "ReusedWithoutDuplicate": true,
+        "UnrelatedShortcutPreserved": true,
+        "VendorInstallerExecuted": false,
+        "Installed": false
+      },
+      {
+        "Vendor": "MSI",
+        "HardwareSimulated": true,
+        "DesktopMode": "OneDrive - Fixture/Bureau",
+        "OfficialDownloadReal": true,
+        "SignatureReal": true,
+        "ShortcutCOMReal": true,
+        "CatalogueMode": "live",
+        "InstallerVersion": "2.0.75.0",
+        "InstallerSHA256": "3B81A188B1444452A3C207CE078FDE35A2DCDA7D3912A5B57837C45F2778B1B9",
+        "Signer": "MICRO-STAR INTERNATIONAL CO., LTD.",
+        "DetectionMethod": "",
+        "DetectionSource": "",
+        "InstallerSource": "https://download-2.msi.com/uti_exe/desktop/MSI-Center.zip",
+        "ShortcutFileName": "Installer MSI Center 2.0.75.0.lnk",
+        "TargetExistedAtCheck": true,
+        "Arguments": "",
+        "ReusedWithoutDuplicate": true,
+        "UnrelatedShortcutPreserved": true,
+        "VendorInstallerExecuted": false,
+        "Installed": false
+      },
+      {
+        "Vendor": "ASUS",
+        "HardwareSimulated": true,
+        "DesktopMode": "Bureau",
+        "OfficialDownloadReal": true,
+        "SignatureReal": true,
+        "ShortcutCOMReal": true,
+        "CatalogueMode": "live",
+        "InstallerVersion": "1.0.7.1",
+        "InstallerSHA256": "C52343E16B608359223DF33EDC8D5789E7FEF4D2612986A883D29D915B76FF90",
+        "Signer": "ASUSTeK COMPUTER INC.",
+        "DetectionMethod": "official_asus_json",
+        "DetectionSource": "https://driverhub.asus.com/download/ASUS-DriverHub-Installer.json",
+        "InstallerSource": "https://driverhub.asus.com/download/1.0.7.1/ASUS-DriverHub-Installer.exe",
+        "ShortcutFileName": "Installer ASUS DriverHub 1.0.7.1.lnk",
+        "TargetExistedAtCheck": true,
+        "Arguments": "",
+        "ReusedWithoutDuplicate": true,
+        "UnrelatedShortcutPreserved": true,
+        "VendorInstallerExecuted": false,
+        "Installed": false
+      },
+      {
+        "Vendor": "ASUS",
+        "HardwareSimulated": true,
+        "DesktopMode": "OneDrive - Fixture/Bureau",
+        "OfficialDownloadReal": true,
+        "SignatureReal": true,
+        "ShortcutCOMReal": true,
+        "CatalogueMode": "live",
+        "InstallerVersion": "1.0.7.1",
+        "InstallerSHA256": "C52343E16B608359223DF33EDC8D5789E7FEF4D2612986A883D29D915B76FF90",
+        "Signer": "ASUSTeK COMPUTER INC.",
+        "DetectionMethod": "official_asus_json",
+        "DetectionSource": "https://driverhub.asus.com/download/ASUS-DriverHub-Installer.json",
+        "InstallerSource": "https://driverhub.asus.com/download/1.0.7.1/ASUS-DriverHub-Installer.exe",
+        "ShortcutFileName": "Installer ASUS DriverHub 1.0.7.1.lnk",
+        "TargetExistedAtCheck": true,
+        "Arguments": "",
+        "ReusedWithoutDuplicate": true,
+        "UnrelatedShortcutPreserved": true,
+        "VendorInstallerExecuted": false,
+        "Installed": false
+      },
+      {
+        "Vendor": "GIGABYTE",
+        "HardwareSimulated": true,
+        "DesktopMode": "Bureau",
+        "OfficialDownloadReal": true,
+        "SignatureReal": true,
+        "ShortcutCOMReal": true,
+        "CatalogueMode": "live",
+        "InstallerVersion": "26.08.28.01",
+        "InstallerSHA256": "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+        "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+        "DetectionMethod": "official_gcc_software_update_manifest",
+        "DetectionSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+        "InstallerSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+        "ShortcutFileName": "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+        "TargetExistedAtCheck": true,
+        "Arguments": "",
+        "ReusedWithoutDuplicate": true,
+        "UnrelatedShortcutPreserved": true,
+        "VendorInstallerExecuted": false,
+        "Installed": false
+      },
+      {
+        "Vendor": "GIGABYTE",
+        "HardwareSimulated": true,
+        "DesktopMode": "OneDrive - Fixture/Bureau",
+        "OfficialDownloadReal": true,
+        "SignatureReal": true,
+        "ShortcutCOMReal": true,
+        "CatalogueMode": "live",
+        "InstallerVersion": "26.08.28.01",
+        "InstallerSHA256": "886A910ABF855F947E6B92921C068CC13C06106951D3EE40CA24CC0B110D2F81",
+        "Signer": "GIGA-BYTE TECHNOLOGY CO., LTD.",
+        "DetectionMethod": "official_gcc_software_update_manifest",
+        "DetectionSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/ver2.ini",
+        "InstallerSource": "https://mb.download.gigabyte.com/FileList/Swhttp/LiveUpdate4/GCC/GIGABYTE%20Control%20Center/GIGABYTE%20Control%20Center_26.08.28.01.exe",
+        "ShortcutFileName": "Installer GIGABYTE Control Center 26.08.28.01.lnk",
+        "TargetExistedAtCheck": true,
+        "Arguments": "",
+        "ReusedWithoutDuplicate": true,
+        "UnrelatedShortcutPreserved": true,
+        "VendorInstallerExecuted": false,
+        "Installed": false
+      }
+    ],
+    "DesktopCapture": null
+  }
+}

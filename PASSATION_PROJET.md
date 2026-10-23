@@ -1,3 +1,12 @@
+# Nouveaux tests des quatre éditions — 23 octobre 2026
+
+Voir [beta/TESTS_QUATRE_APPLICATIONS_2026-10-23.md](beta/TESTS_QUATRE_APPLICATIONS_2026-10-23.md).
+Quatre workflows Windows réussis, 16 vrais Preview, aucun échec inattendu ; neuf
+rapports d'essai dashboard acquittés/validés ou bloqués selon scénario, puis nettoyés.
+Les anciennes fausses alertes Chrome restent reproductibles dans les productions,
+leur correction n'étant qu'en bêta. Aucun code de production ni ancien changement UI
+modifié. Essais de régression Windows Server, pas des préparations Windows 11 complètes.
+
 # Livraison bêta 2.6.15 — faux avertissements, 23 octobre 2026
 
 Voir [beta/DEFAULT_WARNINGS_2026-10-23.md](beta/DEFAULT_WARNINGS_2026-10-23.md).
