@@ -1,0 +1,206 @@
+{
+  "Run": 39987078747,
+  "URL": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39987078747",
+  "Conclusion": "success",
+  "Platform": "Native GitHub Windows Server 2025; not a full Windows 11 preparation",
+  "Version": "2.6.16",
+  "Delivery": {
+    "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+    "PublishedExecutable": true,
+    "ExecutableSHA256": "4113991099CCF987EA5D0F9AED80A288B426AD5E74EDFA448BB9BBAB903DAAB2",
+    "DeliveryCommit": "0e421cdbe1b66f68fc7ff6426c4418259c1c0680",
+    "TestedSource": "2e1a1eee03939393d923a6608cfbc8ddf6315365",
+    "VendorInstallerExecuted": false
+  },
+  "Launches": {
+    "Passes": [
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1609,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1357,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1267,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1259,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    ],
+    "Mode": "real_compiled_executable_preview_and_quit_isolated_processes",
+    "VendorInstallerExecuted": false,
+    "Count": 4,
+    "Failures": 0
+  },
+  "RegressionEvidence": [
+    {
+      "Title": "Read-only PDF diagnostic",
+      "Evidence": {
+        "ConfigurationChanged": false,
+        "Status": "passed",
+        "ReadOnly": true,
+        "Mode": "actual runner defaults, not the customer PC",
+        "AdobeDefaultConfirmed": false,
+        "EffectivePdfProgId": "MSEdgePDF",
+        "AdobeInstalledCount": 0
+      }
+    },
+    {
+      "Title": "Native association API",
+      "Evidence": {
+        "PdfDefaultsChanged": false,
+        "FixtureExecuted": false,
+        "Status": "passed",
+        "Assertions": 6,
+        "ActualAdobeReaderInstalled": false,
+        "Mode": "real Windows association APIs and registry; isolated extensions; Adobe registration simulated",
+        "BrowserDefaultsChanged": false
+      }
+    },
+    {
+      "Title": "Final default warning regression",
+      "Evidence": {
+        "Assertions": 39,
+        "Historical": false,
+        "Result": "passed",
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+      }
+    },
+    {
+      "Title": "Final default warning regression",
+      "Evidence": {
+        "Assertions": 39,
+        "Historical": false,
+        "Result": "passed",
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+      }
+    },
+    {
+      "Title": "Final default warning regression",
+      "Evidence": {
+        "Assertions": 13,
+        "Historical": true,
+        "Result": "passed",
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+      }
+    },
+    {
+      "Title": "Native association API",
+      "Evidence": {
+        "FixtureExecuted": false,
+        "BrowserDefaultsChanged": false,
+        "Assertions": 6,
+        "Mode": "real Windows association APIs and registry; isolated extensions; Adobe registration simulated",
+        "ActualAdobeReaderInstalled": false,
+        "Status": "passed",
+        "PdfDefaultsChanged": false
+      }
+    },
+    {
+      "Title": "Final default warning regression",
+      "Evidence": {
+        "Assertions": 39,
+        "Historical": false,
+        "Result": "passed",
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+      }
+    },
+    {
+      "Title": "Completion regression",
+      "Evidence": {
+        "Assertions": 92,
+        "Scenarios": 13,
+        "Result": "passed",
+        "ActualNetworkRequests": false,
+        "Mode": "real workflow, final audit and telemetry; simulated installation and effective OS state"
+      }
+    },
+    {
+      "Title": "Telemetry delivery recovery",
+      "Evidence": {
+        "Assertions": 42,
+        "RealDashboardModified": false,
+        "Cases": 14,
+        "Mode": "simulated HTTP responses and real isolated durable queue",
+        "Failures": 0
+      }
+    }
+  ],
+  "PublishedBinaryDownloaded": true,
+  "PublishedSHA256Matches": true,
+  "NoSyntheticDashboardReportsSent": true,
+  "ProductionRepositoriesModified": false,
+  "OriginalUserPCObserved": {
+    "Version": "2.6.8",
+    "Final": true,
+    "PhysicalRows": 1,
+    "Errors": 0,
+    "Warnings": 1,
+    "OnlyWarningCategory": "Widgets",
+    "ExactCauseOfLostAcknowledgement": "Not retained by historical client; cannot distinguish timeout, connection or server response failure."
+  }
+}

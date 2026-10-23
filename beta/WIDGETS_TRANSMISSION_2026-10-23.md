@@ -46,8 +46,24 @@ Tests ciblés locaux réussis :
   fermeture pendant le POST, erreur réelle et interruption ; installations et
   frontière HTTP simulées, vraie file locale isolée.
 
-La validation Windows, la compilation et les quatre vrais lancements Preview de
-l'EXE doivent être terminés avant de qualifier cette livraison. Les préparations
-Windows 11 complètes antérieures utilisaient la 2.6.15 et ne prouvent pas une
-préparation complète de la nouvelle 2.6.16. Aucun nouveau scénario simulé n'est
-envoyé au dashboard permanent. Publication exclusivement dans le dépôt bêta.
+La [validation native Windows 39987078747](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39987078747)
+est réussie : compilation de la version 2.6.16, suite de régression complète,
+comparaison historique, les 39 assertions des contrôles finaux sous PowerShell
+5.1 et 7, 14 cas / 42 assertions transport et 13 scénarios / 92 contrôles de clôture.
+Les quatre vraies ouvertures/fermetures Preview passent en 1,609 / 1,357 / 1,267 /
+1,259 seconde depuis EntryPoint, hors UAC et clic utilisateur. Aucun installateur
+matériel n'est exécuté. Les échanges synthétiques et téléchargements constructeurs
+facultatifs sont désactivés dans ce passage.
+
+Livraison EXE : `0e421cdbe1b66f68fc7ff6426c4418259c1c0680`, source testée :
+`2e1a1eee03939393d923a6608cfbc8ddf6315365`. L'EXE publié a été récupéré via Git LFS,
+puis son empreinte comparée au manifeste et à celle du runner :
+`4113991099CCF987EA5D0F9AED80A288B426AD5E74EDFA448BB9BBAB903DAAB2`.
+Voir [les preuves structurées](evidence/widgets-transmission-2026-10-23/windows-validation.json).
+
+Les préparations Windows 11 complètes antérieures utilisaient la 2.6.15 et ne
+prouvent pas une préparation complète de la nouvelle 2.6.16. Aucun nouveau scénario
+simulé n'est envoyé au dashboard permanent. Publication exclusivement dans le
+dépôt bêta. **Le poste utilise encore 2.6.8 : remplacer cet ancien EXE pour les
+prochaines préparations**, sans relancer une préparation uniquement pour renvoyer
+un résultat déjà enregistré.

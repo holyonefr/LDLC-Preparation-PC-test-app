@@ -11,8 +11,11 @@ Transmission sans accusé renommée « non confirmée », sans faux succès ni p
 de la copie locale. Tests ciblés : 39 assertions de contrôles finaux, 14 cas / 42
 assertions transport et 13 scénarios / 92 contrôles de clôture. Réponses HTTP,
 installations et états Windows simulés ; aucune écriture dans le dashboard.
-Compilation et vérification native Windows à compléter avant de revendiquer
-la nouvelle livraison EXE. Les trois productions restent inchangées.
+Validation Windows 39987078747 réussie : suite complète, 39 assertions des contrôles
+finaux sous PowerShell 5.1 et 7, 14 cas / 42 assertions transport, 13 scénarios / 92
+contrôles de clôture, quatre vrais Preview avec fermeture. EXE publié 0e421cd puis
+récupéré ; SHA-256 conforme aux preuves Windows et au manifeste publié. Aucun
+scénario simulé envoyé au dashboard. Les trois productions restent inchangées.
 
 # Nouveaux tests des quatre éditions — 23 octobre 2026
 
