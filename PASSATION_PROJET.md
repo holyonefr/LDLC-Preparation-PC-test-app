@@ -1,11 +1,15 @@
-# Candidate 2.6.15 — faux avertissements, 23 octobre 2026
+# Livraison bêta 2.6.15 — faux avertissements, 23 octobre 2026
 
 Voir [beta/DEFAULT_WARNINGS_2026-10-23.md](beta/DEFAULT_WARNINGS_2026-10-23.md).
 Contrôle final Chrome/Adobe/Widgets en lecture seule, variantes Adobe enregistrées
 reconnues et stratégie Widgets prise en charge. Les vrais défauts restent bloquants.
 Publication exclusivement bêta, productions/UI et données du dashboard préservées.
-Tests Windows natifs et EXE en cours ; ne pas confondre les associations simulées
-avec une sélection Adobe réelle sur le PC utilisateur, inaccessible ici.
+Validation Windows 39947432903 réussie : 49 suites PowerShell, 3 JavaScript,
+comparaison historique/correction, API natives 5.1 et 7, quatre lancements Preview.
+EXE publié 040db21 puis récupéré : SHA256 conforme. Aucun POST simulé au dashboard.
+Le premier essai échouait dans une fixture de clôture incomplète, corrigée et retestée.
+Ne pas confondre une inscription Adobe simulée avec sa sélection réelle : le
+runner n'a pas Reader, son PDF reste Edge ; le PC utilisateur est inaccessible ici.
 
 # Livraison 2.6.14 — promotion bêta publiée, 22 octobre 2026
 

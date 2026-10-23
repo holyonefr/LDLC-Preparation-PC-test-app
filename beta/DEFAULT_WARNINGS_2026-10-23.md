@@ -52,6 +52,28 @@ identifiant Adobe autrefois rejeté ou d'un contrôle exécuté dans un autre co
 - Test natif Windows : API d'association et registre réels, extensions temporaires
   isolées, inscription Adobe simulée et fichier inerte jamais exécuté. Le vrai choix
   PDF reste inchangé. Ce test ne prétend pas installer ni ouvrir Adobe Reader.
-- Suite complète, compilation et quatre lancements de l'EXE : résultats GitHub
-  Actions à compléter après l'exécution native. Aucun scénario simulé n'est envoyé
-  au dashboard de production ; ses règles de statut sont testées en mémoire.
+- [Validation Windows réussie](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39947432903)
+  le 23 octobre 2026 : compilation, **49 suites PowerShell et 3 suites JavaScript**,
+  13 assertions historiques et 33 après correction. Les 33 assertions passent aussi
+  sous PowerShell 7. Les 6 contrôles d'API natives passent sous 5.1 et 7.
+- Le vrai workflow de clôture passe **13 scénarios / 92 assertions**, y compris
+  fermeture après fin, interruption, erreur réelle, hors ligne et relance. Son
+  contrôle final réel est exécuté sur des états Windows simulés. Les tests serveur
+  utilisent le vrai code Apps Script en mémoire : aucun scénario simulé n'est envoyé
+  au dashboard de production, aucun acquittement Google réel n'est revendiqué ici.
+- **Quatre ouvertures/fermetures réelles de l'EXE compilé en mode Preview**,
+  sans erreur, affichage en 2,205 / 1,127 / 1,105 / 1,136 secondes depuis EntryPoint
+  (hors UAC). Ce ne sont pas quatre préparations complètes.
+- Le diagnostic en lecture seule sur le runner indique **0 Adobe installé** et
+  **MSEdgePDF**. Il ne modifie pas cette association et ne peut donc pas démontrer
+  une sélection réelle d'Adobe sur le PC utilisateur.
+- Premier passage [39947045335](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39947045335)
+  arrêté dans le test de clôture : sa fixture ne chargeait pas le nouveau contrôle.
+  Fixture corrigée puis suite entière relancée ; aucun EXE publié par cet essai.
+
+Les [preuves structurées](evidence/default-warnings-2026-10-23/windows-validation.json)
+conservent les étapes, limites et annotations du runner. Livraison EXE :
+`040db21f494e1fd1271d00ff50052d8f2f3b1ee8`, source testée :
+`2509ca996943d066786fd60cfcdc79fa9064057d`. Le fichier publié a été récupéré et
+son SHA256 correspond à celui testé :
+`773803383B5E8F02B073150DB418D517A2C39DAB940E1C51EAB668CAE2500948`.

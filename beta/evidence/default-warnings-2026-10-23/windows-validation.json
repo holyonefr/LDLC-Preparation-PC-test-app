@@ -1,0 +1,431 @@
+{
+  "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+  "Version": "2.6.15",
+  "Run": {
+    "conclusion": "success",
+    "headSha": "2509ca996943d066786fd60cfcdc79fa9064057d",
+    "jobs": [
+      {
+        "completedAt": "2026-10-23T11:42:44Z",
+        "conclusion": "success",
+        "databaseId": 120393416054,
+        "name": "beta",
+        "startedAt": "2026-10-23T11:38:00Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Compile the standalone beta executable on native Windows",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify edition-independent manufacturer integration in both delivered scripts",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Check embedded integration, laptop exclusion and error reporting",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Check manufacturer step stays at the end of the applications phase",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Check synchronization preserves beta and never writes to stable",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify temporary outages and future releases for every manufacturer",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run the full release regression suite without installing software",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Compare false warnings before and after correction on native Windows",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify the final audit and native association reader with PowerShell 7",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Reproduce the historical failures and test the same cases after correction",
+            "number": 12,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify current AMD complete package and expected driver versions without running the installer",
+            "number": 13,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Inspect the real Chocolatey AMD package and current-release fallback availability without installation",
+            "number": 14,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Compare the AMD no-op bug before and after the correction",
+            "number": 15,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Verify real acknowledgement and dashboard status for success error and cancellation",
+            "number": 16,
+            "status": "completed"
+          },
+          {
+            "conclusion": "skipped",
+            "name": "Verify live downloads and real Desktop shortcuts for all four vendors",
+            "number": 17,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Open and close the actual beta UI four times",
+            "number": 18,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Publish only verified beta delivery files",
+            "number": 19,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Preserve test evidence and Windows build",
+            "number": 20,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 40,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 41,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39947432903/job/120393416054"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39947432903"
+  },
+  "Delivery": {
+    "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+    "PublishedExecutable": true,
+    "ExecutableSHA256": "773803383B5E8F02B073150DB418D517A2C39DAB940E1C51EAB668CAE2500948",
+    "DeliveryCommit": "040db21f494e1fd1271d00ff50052d8f2f3b1ee8",
+    "TestedSource": "2509ca996943d066786fd60cfcdc79fa9064057d",
+    "VendorInstallerExecuted": false
+  },
+  "UiLaunches": {
+    "Passes": [
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 2205,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1127,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1105,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      },
+      {
+        "Visible": true,
+        "MillisecondsToPreview": 1136,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    ],
+    "Mode": "real_compiled_executable_preview_and_quit_isolated_processes",
+    "VendorInstallerExecuted": false,
+    "Count": 4,
+    "Failures": 0
+  },
+  "TargetedNativeEvidence": [
+    {
+      "title": "PrepTool compiled preview",
+      "data": {
+        "Visible": true,
+        "MillisecondsToPreview": 1136,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    },
+    {
+      "title": "PrepTool compiled preview",
+      "data": {
+        "Visible": true,
+        "MillisecondsToPreview": 1105,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    },
+    {
+      "title": "PrepTool compiled preview",
+      "data": {
+        "Visible": true,
+        "MillisecondsToPreview": 1127,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    },
+    {
+      "title": "PrepTool compiled preview",
+      "data": {
+        "Visible": true,
+        "MillisecondsToPreview": 2205,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    },
+    {
+      "title": "Read-only PDF diagnostic",
+      "data": {
+        "ConfigurationChanged": false,
+        "ReadOnly": true,
+        "Mode": "actual runner defaults, not the customer PC",
+        "Status": "passed",
+        "EffectivePdfProgId": "MSEdgePDF",
+        "AdobeDefaultConfirmed": false,
+        "AdobeInstalledCount": 0
+      }
+    },
+    {
+      "title": "Native association API",
+      "data": {
+        "FixtureExecuted": false,
+        "Assertions": 6,
+        "Mode": "real Windows association APIs and registry; isolated extensions; Adobe registration simulated",
+        "Status": "passed",
+        "PdfDefaultsChanged": false,
+        "BrowserDefaultsChanged": false,
+        "ActualAdobeReaderInstalled": false
+      }
+    },
+    {
+      "title": "Final default warning regression",
+      "data": {
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code",
+        "Assertions": 33,
+        "Result": "passed",
+        "Historical": false
+      }
+    },
+    {
+      "title": "Final default warning regression",
+      "data": {
+        "Assertions": 33,
+        "Historical": false,
+        "Result": "passed",
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+      }
+    },
+    {
+      "title": "Final default warning regression",
+      "data": {
+        "Assertions": 13,
+        "Historical": true,
+        "Result": "passed",
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+      }
+    },
+    {
+      "title": "Native association API",
+      "data": {
+        "FixtureExecuted": false,
+        "BrowserDefaultsChanged": false,
+        "Assertions": 6,
+        "Mode": "real Windows association APIs and registry; isolated extensions; Adobe registration simulated",
+        "ActualAdobeReaderInstalled": false,
+        "Status": "passed",
+        "PdfDefaultsChanged": false
+      }
+    },
+    {
+      "title": "Final default warning regression",
+      "data": {
+        "Assertions": 33,
+        "Historical": false,
+        "Result": "passed",
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+      }
+    },
+    {
+      "title": "Completion regression",
+      "data": {
+        "Assertions": 92,
+        "Scenarios": 13,
+        "Result": "passed",
+        "ActualNetworkRequests": false,
+        "Mode": "real workflow, final audit and telemetry; simulated installation and effective OS state"
+      }
+    }
+  ],
+  "ReleasePowerShellSuites": 49,
+  "ReleaseJavaScriptSuites": 3,
+  "DashboardMode": "actual Apps Script code tested in memory; no new production rows and no server deployment",
+  "Limitations": [
+    "No access to the customer Windows session",
+    "Adobe registration in native API tests is simulated; fixture executables never run",
+    "No real Adobe Reader installed on this Windows runner; actual PDF handler remained MSEdgePDF",
+    "Four compiled Preview launches, not four full preparations",
+    "Existing complete Windows 11 preparation evidence predates this change"
+  ],
+  "InitialFailedRun": {
+    "RunId": 39947045335,
+    "Cause": "Completion test fixture did not load module 70 containing the new final audit",
+    "Correction": "Load real final-audit module, simulate OS state, assert final audit runs before normal closure and never after interruption",
+    "ExecutablePublished": false
+  }
+}
