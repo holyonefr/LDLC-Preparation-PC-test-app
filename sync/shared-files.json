@@ -131,7 +131,8 @@
     "tools/Test-LDLCVendorUtilityIntegration.ps1",
     "tools/Test-LDLCVendorUtilityPlacement.ps1",
     "tools/PreparationDashboardControl.Common.ps1",
-    "tools/Test-PreparationDashboardControl.ps1"
+    "tools/Test-PreparationDashboardControl.ps1",
+    "tools/Test-CompletionDisplay.ps1"
   ],
   "ProtectedPaths": [
     "assets/**",

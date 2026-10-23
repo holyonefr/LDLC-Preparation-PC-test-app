@@ -1,3 +1,18 @@
+# Bêta 2.6.17 — retrait explicite des alertes dans les quatre éditions
+
+L'utilisateur a redemandé de retirer le message pour les quatre All in App.
+Widgets devient informatif, y compris lecture/refus registre impossibles ; l'état
+réel reste dans les diagnostics et aucune désactivation n'est inventée. L'alerte
+réseau de l'écran de fin est remplacée par une confirmation d'enregistrement local
+si le rapport est durablement sauvegardé. Le journal précis et la file de renvoi
+restent actifs. Erreurs réelles, interruptions et sauvegarde impossible restent
+signalées. Voir [beta/ALERTES_FIN_2026-10-23.md](beta/ALERTES_FIN_2026-10-23.md).
+Sources LDLC/Numerik’s synchronisées ; bêta liée au nouveau source stable f36cd9e,
+ses autres corrections restent préservées. Anciennes modifications UI locales
+exclues des livraisons. Tests ciblés réussis : 41 assertions de contrôles finaux,
+13 contrôles d'affichage, 14 scénarios / 100 contrôles de clôture dont erreur 1603
+avec panne réseau. Validation Windows et publication des EXE en cours.
+
 # Bêta 2.6.16 — Widgets retiré et réponse réseau non confirmée
 
 Voir [beta/WIDGETS_TRANSMISSION_2026-10-23.md](beta/WIDGETS_TRANSMISSION_2026-10-23.md).

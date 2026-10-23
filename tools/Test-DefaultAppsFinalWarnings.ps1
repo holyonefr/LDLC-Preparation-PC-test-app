@@ -148,7 +148,7 @@ if(-not $Historical){
     $script:Build=26100;$script:Policy=@{};$script:Da=1
     Reset-Case;$script:LDLCDefaultAppsPendingChecks=@{Widgets=$true}
     $result=Confirm-LDLCDefaultAppsFinalState
-    Assert (-not $result.Confirmed -and (Counts).WarningCount -eq 1) 'Still enabled Widgets without supported disable policy were silently accepted'
+    Assert ($result.Confirmed -and (Counts).WarningCount -eq 0 -and -not $result.States.Widgets.Disabled) 'Widgets must remain diagnostic-only without pretending they were disabled'
 
     Reset-Case;$script:LDLCDefaultAppsPendingChecks=@{Widgets=$true};$script:AppxNames=@()
     $state=Get-LDLCWidgetsTaskbarState
@@ -162,6 +162,12 @@ if(-not $Historical){
     $script:AppxNames=@();$script:AppxReadFailure=$true
     $state=Get-LDLCWidgetsTaskbarState
     Assert (-not $state.Disabled -and -not $state.ComponentRemoved -and $state.ComponentPresence -eq 'Unknown') 'Appx read failure was mistaken for successful removal'
+    Reset-Case;$script:LDLCDefaultAppsPendingChecks=@{Widgets=$true}
+    $result=Confirm-LDLCDefaultAppsFinalState
+    Assert ($result.Confirmed -and (Counts).WarningCount -eq 0 -and $result.States.Widgets.ComponentPresence -eq 'Unknown') 'Unreadable Widgets must remain informational, with unknown state preserved'
+    Reset-Case;$script:LDLCDefaultAppsPendingChecks=@{Widgets=$true;Chrome=$true};$script:ChromeReady=$false
+    $result=Confirm-LDLCDefaultAppsFinalState
+    Assert (-not $result.Confirmed -and (Counts).WarningCount -eq 1 -and $result.Failures[0] -match 'Chrome') 'Removing Widgets warnings also hid a real Chrome failure'
     $script:AppxReadFailure=$false;$script:Build=19045
     Assert (-not (Get-LDLCWidgetsTaskbarState).Disabled) 'Missing Windows 11 packages falsely disabled Windows 10 News and Interests'
 }

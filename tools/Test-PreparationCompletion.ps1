@@ -48,7 +48,7 @@ function Install-ChocolateyIfNeeded {}
 function Clear-InstallCaches {}
 function Install-LDLCApplication {
     $script:ApplicationCalls++
-    if ($script:Case -eq 'erreur') { Write-Err 'Google Chrome non installe : code 1603.' }
+    if ($script:Case -in @('erreur','erreur_hors_ligne')) { Write-Err 'Google Chrome non installe : code 1603.' }
     if ($script:Case -eq 'avertissement') { Write-Warn 'Commande Chrome non effectuee : controle Windows indisponible.' }
     if ($script:Case -eq 'delai' -and -not $script:TriggerOnly) { Write-Warn 'Verification partielle avant expiration du delai.' }
 }
@@ -125,7 +125,7 @@ function Send-LDLCTelemetryPayloads {
             if ($script:Case -eq 'relance_sauvegarde_impossible') { $script:ForceQueueFailure=$true }
             if ($script:Case -ne 'relance_post_acquitte') { throw 'Reseau de test indisponible apres relance' }
         }
-        if ($script:Case -eq 'hors_ligne') { throw 'Reseau de test indisponible' }
+        if ($script:Case -in @('hors_ligne','erreur_hors_ligne')) { throw 'Reseau de test indisponible' }
     }
 }
 $saved=@{}
@@ -134,7 +134,7 @@ $testRoot=Join-Path ([IO.Path]::GetTempPath()) ('LDLC-Final-Test-'+[guid]::NewGu
 try {
     $env:LDLC_TELEMETRY_DISABLED='0'; $env:LDLC_TELEMETRY_REMOTE_MODE='start-final'
     Remove-Item Env:\LDLC_TELEMETRY_RUN_ID -ErrorAction SilentlyContinue
-    $cases = @('fin_normale','fermeture_apres_fin','erreur','avertissement','delai','fermeture_anticipee','hors_ligne')
+    $cases = @('fin_normale','fermeture_apres_fin','erreur','avertissement','delai','fermeture_anticipee','hors_ligne','erreur_hors_ligne')
     if ('Remove-LDLCSecurityTrialsInteractively' -in $mainCommands) { $cases += @('antivirus_refuse','antivirus_arret') }
     if ($script:TriggerOnly) { $cases += 'echec_lancement_windows_update' }
     if (Get-Command Initialize-LDLCProgressOwner -ErrorAction SilentlyContinue) { $cases += @('relance_post_acquitte','relance_hors_ligne','relance_sauvegarde_impossible') }
@@ -152,7 +152,7 @@ try {
         Initialize-LDLCTelemetry
         Invoke-LDLCPreparation | Out-Null
         $run=$script:Final.Run
-        $expected=switch($caseName){'antivirus_refuse' {'failed'} 'antivirus_arret' {'stopped'} 'erreur' {'failed'} 'avertissement' {'warning'} 'delai' {if ($script:TriggerOnly) {'success'} else {'timeout'}} 'echec_lancement_windows_update' {'failed'} 'fermeture_anticipee' {'stopped'} default {'success'}}
+        $expected=switch($caseName){'antivirus_refuse' {'failed'} 'antivirus_arret' {'stopped'} 'erreur' {'failed'} 'erreur_hors_ligne' {'failed'} 'avertissement' {'warning'} 'delai' {if ($script:TriggerOnly) {'success'} else {'timeout'}} 'echec_lancement_windows_update' {'failed'} 'fermeture_anticipee' {'stopped'} default {'success'}}
         Check ($run.Status -eq $expected) "$caseName : statut $expected (observe $($run.Status))"
         Check ([bool]$run.IsFinal -and [bool]$run.FinishedAt) "$caseName : resultat final explicite"
         Check ($run.CompletionConfirmed -eq ($caseName -notin @('fermeture_anticipee','antivirus_refuse','antivirus_arret'))) "$caseName : preuve de fin exacte"
@@ -174,7 +174,14 @@ try {
         if ($caseName -eq 'hors_ligne') {
             $pending=@(Read-LDLCQueuedTelemetryPayloads)
             Check ($pending.Count -eq 1 -and $pending[0].Run.IsFinal) 'Hors ligne : fin durable conservee'
-            Check ((Get-Content -LiteralPath $script:ProgressFile -Raw) -match 'Transmission non confirmee') 'Hors ligne : absence de confirmation visible sans affirmer que le serveur a perdu le rapport'
+            $screen=Get-Content -LiteralPath $script:ProgressFile -Raw
+            Check ($screen -match 'Rapport enregistre localement' -and $screen -notmatch 'reseau|non transmise|non confirmee|validation automatique') 'Hors ligne : message local neutre, aucune alerte reseau ni fausse validation serveur'
+        }
+        if ($caseName -eq 'erreur_hors_ligne') {
+            $pending=@(Read-LDLCQueuedTelemetryPayloads)
+            Check ($pending.Count -eq 1 -and $pending[0].Run.Status -eq 'failed') 'Erreur hors ligne : vrai echec conserve pour renvoi'
+            $screen=Get-Content -LiteralPath $script:ProgressFile -Raw
+            Check ($screen -match '1603' -and $screen -match 'Validation bloquee' -and $screen -match 'Rapport enregistre localement') 'Erreur hors ligne : la vraie cause reste visible apres retrait de l alerte reseau'
         }
         if ($caseName -like 'relance_*') {
             Check ([IO.File]::ReadAllText($script:ProgressFile) -eq $script:NewRunProgress) "$caseName : ancien POST sans reecriture de la progression courante"

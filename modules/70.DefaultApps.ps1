@@ -210,7 +210,10 @@ function Confirm-LDLCDefaultAppsFinalState {
                 $state = Get-LDLCWidgetsTaskbarState
                 $states[$application] = $state
                 if ($state.Disabled) { Write-Info '[FINAL-CHECK] Widgets desactives : etat Windows confirme.'; continue }
-                $failure = '[TASKBAR] Widgets : desactivation non confirmee par Windows (TaskbarDa=' + $state.TaskbarDa + '; strategie reconnue=' + $state.PolicyDisabled + ').'
+                # User-requested cosmetic option: keep the real observed state
+                # in diagnostics, but it no longer blocks intervention validation.
+                Write-Info ('[FINAL-CHECK] Widgets : desactivation non confirmee (TaskbarDa=' + $state.TaskbarDa + '; strategie reconnue=' + $state.PolicyDisabled + '). Information uniquement.')
+                continue
             } else {
                 $verification = Wait-LDLCDefaultAppConfirmation -Application $application -TimeoutMilliseconds 1000
                 $states[$application] = $verification.State
@@ -220,6 +223,7 @@ function Confirm-LDLCDefaultAppsFinalState {
             }
         } catch {
             if (Test-LDLCStopRequestError $_) { throw }
+            if ($application -eq 'Widgets') { Write-Info ('[FINAL-CHECK] Widgets : verification indisponible. ' + $_.Exception.Message); continue }
             $failure = '[FINAL-CHECK] Verification ' + $application + ' impossible : ' + $_.Exception.Message
         }
         $failures.Add($failure); Write-Warn $failure
@@ -1340,9 +1344,9 @@ function Disable-LDLCWidgetsTaskbarOption {
         $details = "TaskbarDa=$($finalState.TaskbarDa); PolicyDisabled=$($finalState.PolicyDisabled)"
     }
 
-    $failure = "[TASKBAR][ERREUR] Impossible de desactiver Widgets apres verification finale. $details"
+    $failure = "[TASKBAR] Widgets : desactivation non confirmee. $details"
     Set-LDLCDefaultAppsDeferredDetail -Application Widgets -Detail $failure
-    if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
+    Write-Info $failure
     return $false
 }
 
@@ -1355,8 +1359,11 @@ function Set-LDLCTaskbarOptionsWithRegistry {
         $changed = $true
     }
 
-    if (Disable-LDLCWidgetsTaskbarOption -DeferFailureWarning:$DeferWidgetsFailureWarning) {
-        $changed = $true
+    try {
+        if (Disable-LDLCWidgetsTaskbarOption -DeferFailureWarning:$DeferWidgetsFailureWarning) { $changed = $true }
+    } catch {
+        if (Test-LDLCStopRequestError $_) { throw }
+        Write-Info ('[TASKBAR] Widgets : configuration indisponible. ' + $_.Exception.Message)
     }
 
     if ($changed) {
@@ -1374,7 +1381,11 @@ function Set-LDLCTaskbarOptionsWithRegistry {
     }
 
     $taskViewOk = ((Get-LDLCTaskbarAdvancedValue -Name 'ShowTaskViewButton') -eq 0)
-    $widgetsOk = (Get-LDLCWidgetsTaskbarState).Disabled
+    $widgetsOk = $false
+    try { $widgetsOk = (Get-LDLCWidgetsTaskbarState).Disabled } catch {
+        if (Test-LDLCStopRequestError $_) { throw }
+        Write-Info ('[TASKBAR] Widgets : verification indisponible. ' + $_.Exception.Message)
+    }
     if ($taskViewOk -and $widgetsOk) {
         Write-Ok "[TASKBAR] Configuration de la barre des taches terminee"
         return $true

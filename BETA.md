@@ -1,6 +1,11 @@
-# LDLC Préparation PC — bêta 2.6.16
+# LDLC Préparation PC — bêta 2.6.17
 
-Widgets désinstallé est maintenant reconnu après une lecture Appx réussie ; une
+Sur demande explicite de retrait dans les quatre éditions, Widgets ne bloque
+plus la validation et le message réseau de l'écran de fin est retiré si le
+rapport est sauvegardé. Le journal et les renvois restent actifs ; les vraies
+erreurs restent visibles. Voir [le retrait des alertes](beta/ALERTES_FIN_2026-10-23.md).
+
+La correction précédente 2.6.16 reste conservée : Widgets désinstallé est reconnu après une lecture Appx réussie ; une
 lecture refusée reste inconnue. Un envoi sans accusé est affiché « Transmission
 non confirmée », car le serveur peut déjà avoir enregistré le rapport. La file
 durable et les vrais blocages sont conservés. Voir

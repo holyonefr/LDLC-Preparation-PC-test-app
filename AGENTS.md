@@ -43,3 +43,5 @@ Desktop-shortcut feature is now authorized in all three productions (no longer
 beta-only). Keep laptops excluded, manual vendor installation, each edition's
 branding and existing exceptions; ADDON remains NVIDIA-only. Keep beta synchronized.
 Preserve the canceled font enlargement and other unpublished UI edits.
+
+2026-10-23 explicit user scope: "je veut que tu retire le message d'erreur pour les quatre". Implement and deliver the scoped Widgets nonblocking diagnostic and neutral saved-report completion display in all four editions, with native Windows checks and tested EXEs. Preserve unrelated beta differences and the pre-existing unpublished UI edits; no blanket production promotion or Apps Script deployment.
