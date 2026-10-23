@@ -1,3 +1,19 @@
+# Bêta 2.6.16 — Widgets retiré et réponse réseau non confirmée
+
+Voir [beta/WIDGETS_TRANSMISSION_2026-10-23.md](beta/WIDGETS_TRANSMISSION_2026-10-23.md).
+Un poste réel utilisait encore 2.6.8 : son rapport final est présent une seule fois,
+0 erreur et seul Widgets en avertissement. L'ancien catch perd le détail de
+l'exception et affiche « réseau ou serveur indisponible » par défaut : la photo
+ne démontre donc pas une panne réseau. Aucun historique de dashboard modifié.
+Reconnaissance en lecture seule de l'absence des composants Appx Widgets sur
+Windows 11 ; échec de lecture inconnu, jamais assimilé à une désinstallation.
+Transmission sans accusé renommée « non confirmée », sans faux succès ni perte
+de la copie locale. Tests ciblés : 39 assertions de contrôles finaux, 14 cas / 42
+assertions transport et 13 scénarios / 92 contrôles de clôture. Réponses HTTP,
+installations et états Windows simulés ; aucune écriture dans le dashboard.
+Compilation et vérification native Windows à compléter avant de revendiquer
+la nouvelle livraison EXE. Les trois productions restent inchangées.
+
 # Nouveaux tests des quatre éditions — 23 octobre 2026
 
 Voir [beta/TESTS_QUATRE_APPLICATIONS_2026-10-23.md](beta/TESTS_QUATRE_APPLICATIONS_2026-10-23.md).

@@ -1206,7 +1206,7 @@ function Complete-LDLCTelemetryRun {
     elseif ($script:LDLCTelemetryLastQueueSaved) {
         Write-Host "[INFO] Telemetrie LDLC non envoyee, sauvegardee pour un prochain essai." -ForegroundColor DarkCyan
         $cause = if ($script:LDLCTelemetryLastTransportFailure) { $script:LDLCTelemetryLastTransportFailure.Message } else { 'Envoi au serveur non acquitte.' }
-        if ($null -ne $WorkflowCompleted) { Write-LDLCFinalProgress $percent ("Validation non transmise : $cause Resultat sauvegarde, nouvel envoi au prochain lancement.") }
+        if ($null -ne $WorkflowCompleted) { Write-LDLCFinalProgress $percent ("Transmission non confirmee : $cause Resultat sauvegarde, nouvel envoi au prochain lancement.") }
     }
     else {
         Write-Host '[INFO] Telemetrie non envoyee et sauvegarde locale impossible; consulter le journal local.' -ForegroundColor Yellow

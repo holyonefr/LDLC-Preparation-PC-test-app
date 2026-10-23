@@ -1195,6 +1195,18 @@ function Get-LDLCWindowsBuildNumber {
     catch { return [Environment]::OSVersion.Version.Build }
 }
 
+function Get-LDLCWidgetsComponentPresence {
+    # Read the current Windows user's installed packages only. An unavailable or
+    # failed Appx query is unknown, never evidence that Widgets were removed.
+    if (-not (Get-Command Get-AppxPackage -ErrorAction SilentlyContinue)) { return 'Unknown' }
+    try {
+        $packages = @(Get-AppxPackage -ErrorAction Stop)
+        $widgets = @($packages | Where-Object { $_.Name -in @('MicrosoftWindows.Client.WebExperience', 'Microsoft.WidgetsPlatformRuntime') })
+        if ($widgets.Count -gt 0) { return 'Present' }
+        return 'Absent'
+    } catch { return 'Unknown' }
+}
+
 function Get-LDLCWidgetsTaskbarState {
     $taskbarDa = Get-LDLCTaskbarAdvancedValue -Name 'TaskbarDa'
     $taskbarMn = Get-LDLCTaskbarAdvancedValue -Name 'TaskbarMn'
@@ -1219,15 +1231,22 @@ function Get-LDLCWidgetsTaskbarState {
         elseif ($build -ge 19041) { 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds\EnableFeeds' } else { '' }
     $disabledByPolicy = ($supportedPolicy -and $null -ne $policyValues[$supportedPolicy] -and [int]$policyValues[$supportedPolicy] -eq 0)
     $disabledByUserValue = ($null -ne $taskbarDa -and [int]$taskbarDa -eq 0)
+    $componentPresence = 'NotChecked'
+    if ($build -ge 22000 -and -not $disabledByUserValue -and -not $disabledByPolicy) {
+        $componentPresence = Get-LDLCWidgetsComponentPresence
+    }
+    $componentRemoved = ($componentPresence -eq 'Absent')
 
     return [pscustomobject]@{
-        Disabled = [bool]($disabledByUserValue -or $disabledByPolicy)
+        Disabled = [bool]($disabledByUserValue -or $disabledByPolicy -or $componentRemoved)
         TaskbarDa = $taskbarDa
         TaskbarMn = $taskbarMn
         PolicyDisabled = [bool]$disabledByPolicy
         PolicyValues = $policyValues
         SupportedPolicy = $supportedPolicy
         WindowsBuild = $build
+        ComponentPresence = $componentPresence
+        ComponentRemoved = $componentRemoved
     }
 }
 

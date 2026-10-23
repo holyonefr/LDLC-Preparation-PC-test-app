@@ -174,7 +174,7 @@ try {
         if ($caseName -eq 'hors_ligne') {
             $pending=@(Read-LDLCQueuedTelemetryPayloads)
             Check ($pending.Count -eq 1 -and $pending[0].Run.IsFinal) 'Hors ligne : fin durable conservee'
-            Check ((Get-Content -LiteralPath $script:ProgressFile -Raw) -match 'non transmise') 'Hors ligne : absence de confirmation visible'
+            Check ((Get-Content -LiteralPath $script:ProgressFile -Raw) -match 'Transmission non confirmee') 'Hors ligne : absence de confirmation visible sans affirmer que le serveur a perdu le rapport'
         }
         if ($caseName -like 'relance_*') {
             Check ([IO.File]::ReadAllText($script:ProgressFile) -eq $script:NewRunProgress) "$caseName : ancien POST sans reecriture de la progression courante"

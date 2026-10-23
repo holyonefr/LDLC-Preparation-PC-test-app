@@ -1,4 +1,10 @@
-# LDLC Préparation PC — bêta 2.6.15
+# LDLC Préparation PC — bêta 2.6.16
+
+Widgets désinstallé est maintenant reconnu après une lecture Appx réussie ; une
+lecture refusée reste inconnue. Un envoi sans accusé est affiché « Transmission
+non confirmée », car le serveur peut déjà avoir enregistré le rapport. La file
+durable et les vrais blocages sont conservés. Voir
+[le diagnostic et les tests](beta/WIDGETS_TRANSMISSION_2026-10-23.md).
 
 Correction des faux avertissements Chrome, Widgets et des variantes de détection
 PDF Adobe, avec contrôle final Windows en lecture seule. Voir

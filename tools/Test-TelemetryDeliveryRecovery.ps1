@@ -11,9 +11,13 @@ function Test-LDLCTelemetryDisabled {$false}
 function Write-LDLCLocalLog($Level,$Text){$script:logs+=@($Text)}
 function Start-Sleep { }
 function New-Payload($Id){return @{Run=@{RunId=$Id;IsFinal=$true;Status='success';FinishedAt='2026-10-20T12:00:00Z';Sequence=1};Events=@()}}
-function Reset-Case($Mode){$script:cases++;$script:mode=$Mode;$script:calls=0;$script:logs=@();$script:LDLCTelemetryRemoteRequestCount=0;$script:LDLCTelemetryLastTransportFailure=$null}
+function Reset-Case($Mode){$script:cases++;$script:mode=$Mode;$script:calls=0;$script:logs=@();$script:acceptedIds=@{};$script:LDLCTelemetryRemoteRequestCount=0;$script:LDLCTelemetryLastTransportFailure=$null}
 function Invoke-RestMethod($Uri,$Method,$ContentType,$Body,$TimeoutSec,$ErrorAction){
     $script:calls++;$script:request=$Body|ConvertFrom-Json;$script:timeout=$TimeoutSec
+    if($script:mode -like 'accepted-timeout*'){
+        foreach($item in $script:request.payloads){$script:acceptedIds[[string]$item.Run.RunId]=$true}
+        if($script:mode -eq 'accepted-timeout' -or $script:calls -eq 1){throw [Net.WebException]::new('synthetic-credential-never-log',[Net.WebExceptionStatus]::Timeout)}
+    }
     if($script:mode -eq 'timeout' -or ($script:mode -eq 'timeout-once' -and $script:calls -eq 1)){throw [Net.WebException]::new('synthetic-credential-never-log',[Net.WebExceptionStatus]::Timeout)}
     if($script:mode -eq 'http503-once' -and $script:calls -eq 1){$exception=[Exception]::new('synthetic-credential-never-log');$exception|Add-Member NoteProperty Response ([pscustomobject]@{StatusCode=503});throw $exception}
     if($script:mode -eq 'busy-once' -and $script:calls -eq 1){return @{ok=$false;error='Lock timeout synthetic-credential-never-log'}}
@@ -27,12 +31,13 @@ $previous=$env:LDLC_TELEMETRY_TIMEOUT_SECONDS
 try{
     [void](New-Item -ItemType Directory -Path $directory)
     $payload=New-Payload 'current-fixture'
-    foreach($mode in @('ack','timeout-once','http503-once','busy-once')){
+    foreach($mode in @('ack','timeout-once','http503-once','busy-once','accepted-timeout-once')){
         Reset-Case $mode
         Send-LDLCTelemetryPayloads -Payloads @($payload)
         Assert ($calls -eq $(if($mode -eq 'ack'){1}else{2})) 'One retry only for temporary failures.'
         Assert (-not $script:LDLCTelemetryLastTransportFailure) 'Successful retry must clear the failure cause.'
         Assert (($logs -join '') -notmatch 'synthetic-credential-never-log') 'Do not log tokens, server response bodies or raw request exceptions.'
+        if($mode -eq 'accepted-timeout-once'){Assert ($acceptedIds.Count -eq 1 -and $acceptedIds.ContainsKey('current-fixture')) 'Lost response retry must retain the same intervention ID, never fabricate a new run.'}
     }
     foreach($mode in @('unauthorized','html','wrong-count','timeout')){
         Reset-Case $mode;$failed=$false
@@ -63,6 +68,12 @@ try{
     Reset-Case 'ack'
     Assert (SendOrQueue-LDLCTelemetryPayload -Payload $payload) 'Retry the same durable report after recovery.'
     Assert ('offline-fixture' -notin @((Read-LDLCQueuedTelemetryPayloads).Run.RunId)) 'Clear the report only after acknowledgement.'
+
+    $script:LDLCTelemetryQueuePath=Join-Path $directory 'lost-response/queue.json'
+    Reset-Case 'accepted-timeout';$payload=New-Payload 'accepted-without-response-fixture'
+    Assert (-not (SendOrQueue-LDLCTelemetryPayload -Payload $payload)) 'A simulated stored report without an HTTP acknowledgement must remain unconfirmed.'
+    Assert ($acceptedIds.Count -eq 1 -and $calls -eq 2) 'Both attempts must keep the same intervention ID after the simulated server stores the report.'
+    Assert ('accepted-without-response-fixture' -in @((Read-LDLCQueuedTelemetryPayloads).Run.RunId)) 'Keep a durable copy until acknowledgement, even if a simulated server has stored it.'
     Write-Host ('::notice title=Telemetry delivery recovery::'+(@{Cases=$cases;Assertions=$checks;Failures=0;Mode='simulated HTTP responses and real isolated durable queue';RealDashboardModified=$false}|ConvertTo-Json -Compress))
 }finally{
     $env:LDLC_TELEMETRY_TIMEOUT_SECONDS=$previous

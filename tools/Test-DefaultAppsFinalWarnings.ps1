@@ -122,6 +122,8 @@ foreach($bad in @(
 # The command mocks below model only policy data and denied writes, never change
 # the real taskbar or policy keys on a runner.
 $script:Build=26100;$script:Da=1;$script:Policy=@{};$script:DenyUserWrite=$false
+$script:AppxReadFailure=$false;$script:AppxNames=@('MicrosoftWindows.Client.WebExperience')
+function Get-AppxPackage { [CmdletBinding()]param();if($script:AppxReadFailure){throw 'Appx read denied (fixture)'};foreach($name in $script:AppxNames){[pscustomobject]@{Name=$name}} }
 function Get-LDLCWindowsBuildNumber{$script:Build}
 function Get-LDLCTaskbarAdvancedValue{param($Name);if($Name -eq 'TaskbarDa'){$script:Da}}
 function Get-LDLCTaskbarPolicyValue{param($Path,$Name);$script:Policy[$Path+'\'+$Name]}
@@ -147,5 +149,20 @@ if(-not $Historical){
     Reset-Case;$script:LDLCDefaultAppsPendingChecks=@{Widgets=$true}
     $result=Confirm-LDLCDefaultAppsFinalState
     Assert (-not $result.Confirmed -and (Counts).WarningCount -eq 1) 'Still enabled Widgets without supported disable policy were silently accepted'
+
+    Reset-Case;$script:LDLCDefaultAppsPendingChecks=@{Widgets=$true};$script:AppxNames=@()
+    $state=Get-LDLCWidgetsTaskbarState
+    Assert ($state.Disabled -and $state.ComponentRemoved -and $state.ComponentPresence -eq 'Absent') 'Removed Widgets components were not recognized'
+    $result=Confirm-LDLCDefaultAppsFinalState
+    Assert ($result.Confirmed -and (Counts).WarningCount -eq 0) 'Removed Widgets caused a false final warning'
+    foreach($name in @('MicrosoftWindows.Client.WebExperience','Microsoft.WidgetsPlatformRuntime')){
+        $script:AppxNames=@($name)
+        Assert (-not (Get-LDLCWidgetsTaskbarState).Disabled) ('An installed Widgets component was treated as absent: '+$name)
+    }
+    $script:AppxNames=@();$script:AppxReadFailure=$true
+    $state=Get-LDLCWidgetsTaskbarState
+    Assert (-not $state.Disabled -and -not $state.ComponentRemoved -and $state.ComponentPresence -eq 'Unknown') 'Appx read failure was mistaken for successful removal'
+    $script:AppxReadFailure=$false;$script:Build=19045
+    Assert (-not (Get-LDLCWidgetsTaskbarState).Disabled) 'Missing Windows 11 packages falsely disabled Windows 10 News and Interests'
 }
 Write-Host ('::notice title=Final default warning regression::'+(@{Historical=[bool]$Historical;Assertions=$script:Checks;Result='passed';Mode='simulated association and policy states, actual final audit and telemetry status code';ProductionConfigurationChanged=$false}|ConvertTo-Json -Compress))
