@@ -1,4 +1,4 @@
-# Bêta 2.6.17 — retrait explicite des alertes dans les quatre éditions
+﻿# Bêta 2.6.17 — retrait explicite des alertes dans les quatre éditions
 
 L'utilisateur a redemandé de retirer le message pour les quatre All in App.
 Widgets devient informatif, y compris lecture/refus registre impossibles ; l'état
@@ -11,7 +11,10 @@ Sources LDLC/Numerik’s synchronisées ; bêta liée au nouveau source stable f
 ses autres corrections restent préservées. Anciennes modifications UI locales
 exclues des livraisons. Tests ciblés réussis : 41 assertions de contrôles finaux,
 13 contrôles d'affichage, 14 scénarios / 100 contrôles de clôture dont erreur 1603
-avec panne réseau. Validation Windows et publication des EXE en cours.
+avec panne réseau. Validation Windows 39990326869 réussie ; EXE publié 82f6c47,
+récupéré et hash vérifié. Quatre vrais Preview, contrat d’affichage 5.1/7, suite
+complète. Les trois productions sont également publiées après vérification Windows.
+Preuves : beta/evidence/completion-display-2026-10-23/windows-validation.json.
 
 # Bêta 2.6.16 — Widgets retiré et réponse réseau non confirmée
 

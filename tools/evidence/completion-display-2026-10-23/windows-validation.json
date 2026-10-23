@@ -1,0 +1,210 @@
+{
+  "Date": "2026-10-23",
+  "Scope": "Explicit user-requested Widgets informational diagnostic and removal of saved-report network alert in all four editions",
+  "RealExecutablePreviewCount": 4,
+  "NativeFullWindows11PreparationClaimed": false,
+  "Edition": {
+    "Repository": "holyonefr/LDLC-Preparation",
+    "Version": "2.6.15",
+    "Run": 39990038354,
+    "URL": "https://github.com/holyonefr/LDLC-Preparation/actions/runs/39990038354",
+    "WindowsConclusion": "success",
+    "Delivery": {
+      "ActualUserTaskbarChanged": false,
+      "UIFailures": 0,
+      "BrowserUIActionsSimulated": true,
+      "DriverInstallersExecuted": false,
+      "RealExecutablePreviewCount": 4,
+      "ExecutableSHA256": "98DAB45B5F829328F6BC453FFF5DBEC4BBCD8ECA62A10160BB87ADB05F2BFC97",
+      "NativeAssociationFixturePassed": true,
+      "DeliveryCommit": "92fd286b7103788d0b5cdfb7878b2af298829f8e",
+      "Repository": "holyonefr/LDLC-Preparation",
+      "TestedSource": "f36cd9eb134367290385506d9f9c1a35f6527698",
+      "ReleaseSuitePassed": true
+    },
+    "Executable": "LDLCPreparationPC.exe",
+    "DownloadedPublishedSHA256Matches": true,
+    "Tests": [
+      {
+        "Title": "Telemetry delivery recovery",
+        "Evidence": {
+          "Assertions": 35,
+          "RealDashboardModified": false,
+          "Cases": 12,
+          "Mode": "simulated HTTP responses and real isolated durable queue",
+          "Failures": 0
+        }
+      },
+      {
+        "Title": "Completion display regression",
+        "Evidence": {
+          "Result": "passed",
+          "DashboardModified": false,
+          "Mode": "real completion and Widgets code, simulated Windows writes and HTTP boundary",
+          "Assertions": 12
+        }
+      },
+      {
+        "Title": "Completion display regression",
+        "Evidence": {
+          "Assertions": 12,
+          "Result": "passed",
+          "DashboardModified": false,
+          "Mode": "real completion and Widgets code, simulated Windows writes and HTTP boundary"
+        }
+      }
+    ],
+    "DashboardRoundTrip": [
+      {
+        "Success": true,
+        "Commit": "f36cd9eb134367290385506d9f9c1a35f6527698",
+        "Checks": [
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "validated",
+            "ToolVersion": "2.6.15",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "success",
+            "FinalVisible": true,
+            "Scenario": "success"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "blocked",
+            "ToolVersion": "2.6.15",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "error",
+            "FinalVisible": true,
+            "Scenario": "failed"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "blocked",
+            "ToolVersion": "2.6.15",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "stopped",
+            "FinalVisible": true,
+            "Scenario": "stopped"
+          }
+        ],
+        "Cleaned": true,
+        "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+        "Phase": "scenario stopped",
+        "CleanupWarnings": [],
+        "ControlAttempts": [
+          {
+            "Action": "auditruns",
+            "Attempt": 1,
+            "Transient": false,
+            "Success": true,
+            "NetworkStatus": "OK",
+            "HttpStatus": 200
+          },
+          {
+            "Action": "deleterun",
+            "Attempt": 1,
+            "Transient": false,
+            "Success": true,
+            "NetworkStatus": "OK",
+            "HttpStatus": 200
+          },
+          {
+            "Action": "deleterun",
+            "Attempt": 1,
+            "Transient": false,
+            "Success": true,
+            "NetworkStatus": "OK",
+            "HttpStatus": 200
+          },
+          {
+            "Action": "deleterun",
+            "Attempt": 1,
+            "Transient": false,
+            "Success": true,
+            "NetworkStatus": "OK",
+            "HttpStatus": 200
+          }
+        ],
+        "ReadAttempts": [
+          {
+            "Stage": "preflight",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 5852
+          },
+          {
+            "Stage": "scenario_success_initial",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 6653
+          },
+          {
+            "Stage": "scenario_success_final",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 5800
+          },
+          {
+            "Stage": "scenario_failed_initial",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 6506
+          },
+          {
+            "Stage": "scenario_failed_final",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 5162
+          },
+          {
+            "Stage": "scenario_stopped_initial",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 7660
+          },
+          {
+            "Stage": "scenario_stopped_final",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 5164
+          },
+          {
+            "Stage": "cleanup_verify",
+            "Attempt": 1,
+            "Success": true,
+            "HttpStatus": 200,
+            "NetworkStatus": "OK",
+            "Transient": false,
+            "Milliseconds": 4608
+          }
+        ]
+      }
+    ]
+  },
+  "UnpublishedUIIncluded": false,
+  "ProductionAppsScriptDeployed": false
+}

@@ -1,0 +1,109 @@
+{
+  "Date": "2026-10-23",
+  "Scope": "Explicit user-requested Widgets informational diagnostic and removal of saved-report network alert in all four editions",
+  "RealExecutablePreviewCount": 4,
+  "NativeFullWindows11PreparationClaimed": false,
+  "Edition": {
+    "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+    "Version": "2.6.17",
+    "Run": 39990326869,
+    "URL": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39990326869",
+    "WindowsConclusion": "success",
+    "Delivery": {
+      "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+      "PublishedExecutable": true,
+      "ExecutableSHA256": "02E3289CB7139436D8553DBEF64EEBF7154E976EB2BAEA5BDB8205C76566F257",
+      "DeliveryCommit": "82f6c473eefed0d494d6b0a392b33d2313487217",
+      "TestedSource": "76428b3afccb54398000b77c1176a5b35e99853d",
+      "VendorInstallerExecuted": false
+    },
+    "Executable": "LDLCPreparationPC.exe",
+    "DownloadedPublishedSHA256Matches": true,
+    "Tests": [
+      {
+        "Title": "Final default warning regression",
+        "Evidence": {
+          "Historical": false,
+          "ProductionConfigurationChanged": false,
+          "Assertions": 41,
+          "Result": "passed",
+          "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+        }
+      },
+      {
+        "Title": "Final default warning regression",
+        "Evidence": {
+          "Assertions": 41,
+          "Historical": false,
+          "Result": "passed",
+          "ProductionConfigurationChanged": false,
+          "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+        }
+      },
+      {
+        "Title": "Final default warning regression",
+        "Evidence": {
+          "Assertions": 13,
+          "Historical": true,
+          "Result": "passed",
+          "ProductionConfigurationChanged": false,
+          "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+        }
+      },
+      {
+        "Title": "Final default warning regression",
+        "Evidence": {
+          "Assertions": 41,
+          "Historical": false,
+          "Result": "passed",
+          "ProductionConfigurationChanged": false,
+          "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+        }
+      },
+      {
+        "Title": "Completion regression",
+        "Evidence": {
+          "Assertions": 100,
+          "Scenarios": 14,
+          "Result": "passed",
+          "ActualNetworkRequests": false,
+          "Mode": "real workflow, final audit and telemetry; simulated installation and effective OS state"
+        }
+      },
+      {
+        "Title": "Telemetry delivery recovery",
+        "Evidence": {
+          "Assertions": 42,
+          "RealDashboardModified": false,
+          "Cases": 14,
+          "Mode": "simulated HTTP responses and real isolated durable queue",
+          "Failures": 0
+        }
+      },
+      {
+        "Title": "Completion display regression",
+        "Evidence": {
+          "Mode": "real completion and Widgets code, simulated Windows writes and HTTP boundary",
+          "DashboardModified": false,
+          "Assertions": 13,
+          "Result": "passed"
+        }
+      },
+      {
+        "Title": "Completion display regression",
+        "Evidence": {
+          "Assertions": 13,
+          "Result": "passed",
+          "DashboardModified": false,
+          "Mode": "real completion and Widgets code, simulated Windows writes and HTTP boundary"
+        }
+      }
+    ],
+    "DashboardRoundTrip": {
+      "Executed": false,
+      "Reason": "Synthetic dashboard reports disabled in this beta workflow; production siblings checked live separately."
+    }
+  },
+  "UnpublishedUIIncluded": false,
+  "ProductionAppsScriptDeployed": false
+}

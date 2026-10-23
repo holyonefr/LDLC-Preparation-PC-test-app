@@ -25,3 +25,30 @@ vraies fonctions de clôture et Widgets. Les workflows Windows exécutent ce con
 sous PowerShell 5.1 et 7 avant la publication des EXE, plus la suite complète et
 quatre vrais lancements Preview par édition. Les préparations complètes Windows 11
 du dépôt VM restent distinguées de ces lancements Preview.
+
+## Livraison vérifiée
+
+| Édition | Version | Validation Windows |
+| --- | --- | --- |
+| LDLC | 2.6.15 | [Réussie — 39990038354](https://github.com/holyonefr/LDLC-Preparation/actions/runs/39990038354) |
+| Numerik’s | 2.6.15 | [Réussie — 39990044085](https://github.com/holyonefr/Numerik-s-Preparation-PC/actions/runs/39990044085) |
+| ADDON | 2.0.4 | [Réussie — 39990050694](https://github.com/holyonefr/LDLC-Preparation-Addon/actions/runs/39990050694) |
+| Bêta | 2.6.17 | [Réussie — 39990326869](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/39990326869) |
+
+Les quatre suites natives et **16 lancements/fermetures réels en Preview** passent.
+Les nouvelles vérifications d’affichage tournent sous PowerShell 5.1 et 7 :
+12 assertions par production, dans les deux arbres ADDON ; 13 en bêta. La bêta
+passe aussi 41 assertions des contrôles finaux et 14 scénarios / 100 contrôles
+de clôture, dont erreur 1603 simultanée à une coupure réseau. Les frontières
+Windows/HTTP de ces scénarios sont simulées ; les fonctions de clôture sont réelles.
+
+LDLC, Numerik’s et ADDON effectuent chacun trois vrais échanges avec le dashboard :
+fin normale → validée, erreur → bloquée, interruption → bloquée. Les rapports
+synthétiques identifiés sont ensuite nettoyés ; aucun historique client modifié.
+Le roundtrip synthétique est désactivé pour ce passage bêta. Les EXE publiés ont
+tous été récupérés et leurs SHA-256 correspondent aux preuves Windows.
+
+Ces Preview et scénarios ne constituent pas quatre préparations complètes dans
+Windows 11. Les essais complets de VM sont consignés séparément dans le dépôt VM.
+Aucun installateur de pilote matériel exécuté sur les runners. **Remplacer les
+anciens EXE pour bénéficier de la correction** ; les copies 2.6.8 restent anciennes.
