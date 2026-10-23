@@ -1,4 +1,10 @@
-# LDLC Préparation PC — bêta 2.6.14
+# LDLC Préparation PC — bêta 2.6.15
+
+Correction des faux avertissements Chrome, Widgets et des variantes de détection
+PDF Adobe, avec contrôle final Windows en lecture seule. Voir
+[les causes et les limites des tests](beta/DEFAULT_WARNINGS_2026-10-23.md).
+Cette nouvelle correction est publiée uniquement en bêta. La publication 2.6.14
+dans les productions ci-dessous reste inchangée.
 
 La livraison du 22 octobre 2026 est publiée et testée sous Windows. Sur autorisation
 explicite de l’utilisateur, ses fonctions acceptées sont aussi intégrées à LDLC,

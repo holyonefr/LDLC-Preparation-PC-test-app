@@ -444,13 +444,13 @@ function Invoke-LDLCPreparation {
         Write-ProgressFile 87 "Configuration des applications par défaut avant les pilotes GPU..."
 
         try {
-            Invoke-LDLCChromeDefaultAppsSequence
+            Invoke-LDLCChromeDefaultAppsSequence -DeferFinalValidation
             Write-Step "Courte stabilisation apres les applications par defaut..."
             Start-Sleep -Milliseconds 1200
         }
         catch {
             if (Test-LDLCStopRequestError $_) { throw }
-            Write-Warn "Etape applications par defaut ignoree suite a une erreur : $($_.Exception.Message)"
+            Write-Info "Etape applications par defaut a verifier au bilan final : $($_.Exception.Message)"
         }
 
         Stop-IfRequested
@@ -538,6 +538,7 @@ function Invoke-LDLCPreparation {
         Restore-PowerSettings -ProgressPercent 97 -IgnoreStopRequest | Out-Null
 
         Stop-IfRequested
+        [void](Confirm-LDLCDefaultAppsFinalState)
         Write-Section "FIN DU SCRIPT"
 
         $rebootRequired = $script:PendingReboot

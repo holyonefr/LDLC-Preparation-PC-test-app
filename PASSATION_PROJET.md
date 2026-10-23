@@ -1,3 +1,12 @@
+# Candidate 2.6.15 — faux avertissements, 23 octobre 2026
+
+Voir [beta/DEFAULT_WARNINGS_2026-10-23.md](beta/DEFAULT_WARNINGS_2026-10-23.md).
+Contrôle final Chrome/Adobe/Widgets en lecture seule, variantes Adobe enregistrées
+reconnues et stratégie Widgets prise en charge. Les vrais défauts restent bloquants.
+Publication exclusivement bêta, productions/UI et données du dashboard préservées.
+Tests Windows natifs et EXE en cours ; ne pas confondre les associations simulées
+avec une sélection Adobe réelle sur le PC utilisateur, inaccessible ici.
+
 # Livraison 2.6.14 — promotion bêta publiée, 22 octobre 2026
 
 Voir [PROMOTION_BETA_2026-10-22.md](PROMOTION_BETA_2026-10-22.md) et ses preuves.

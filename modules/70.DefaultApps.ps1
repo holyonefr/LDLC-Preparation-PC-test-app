@@ -154,7 +154,78 @@ function Test-LDLCEffectiveAssociationTarget {
     if ($Application -eq 'Chrome') {
         return (($State.ProgId -match '^ChromeHTML(?:\.|$)' -or $State.ProgId -ieq 'Applications\chrome.exe') -and $fileName -ieq 'chrome.exe')
     }
-    return ($State.ProgId -match '^(Acrobat|AcroExch)\.Document(?:\.|$)' -and $fileName -in @('Acrobat.exe', 'AcroRd32.exe'))
+    if ($fileName -notin @('Acrobat.exe', 'AcroRd32.exe')) { return $false }
+    if ($State.ProgId -match '^(Acrobat|AcroExch)\.Document(?:\.|$)' -or
+        $State.ProgId -match '^Applications\\(?:Acrobat|AcroRd32)\.exe$') { return $true }
+    # Adobe's registered PDF ProgID can change with its edition/package. The
+    # effective executable must still be its PDF reader, not a registered app alone.
+    return ($State.ProgId -in @(Get-LDLCRegisteredPdfProgIds -Application Adobe))
+}
+
+function Get-LDLCRegisteredPdfProgIds {
+    param([ValidateSet('Adobe')][string]$Application = 'Adobe')
+    $ids = New-Object 'Collections.Generic.List[string]'
+    foreach ($hive in @([Microsoft.Win32.RegistryHive]::CurrentUser, [Microsoft.Win32.RegistryHive]::LocalMachine)) {
+        foreach ($view in @([Microsoft.Win32.RegistryView]::Registry64, [Microsoft.Win32.RegistryView]::Registry32)) {
+            $base = $null; $registered = $null; $capabilities = $null
+            try {
+                $base = [Microsoft.Win32.RegistryKey]::OpenBaseKey($hive, $view)
+                $registered = $base.OpenSubKey('Software\RegisteredApplications')
+                if (-not $registered) { continue }
+                foreach ($name in $registered.GetValueNames()) {
+                    if (-not (Test-LDLCDefaultAppsApplicationName -Name $name -Application Adobe -RegisteredName)) { continue }
+                    try {
+                        $path = [string]$registered.GetValue($name)
+                        if (-not $path) { continue }
+                        $capabilities = $base.OpenSubKey($path.TrimEnd('\') + '\FileAssociations')
+                        if ($capabilities) {
+                            $id = [string]$capabilities.GetValue('.pdf')
+                            if ($id -and -not $ids.Contains($id)) { $ids.Add($id) }
+                        }
+                    } finally { if ($capabilities) { $capabilities.Dispose(); $capabilities = $null } }
+                }
+            } catch { Write-Verbose ('Adobe PDF registration unavailable in ' + $hive + '/' + $view) }
+            finally { if ($registered) { $registered.Dispose() }; if ($base) { $base.Dispose() } }
+        }
+    }
+    return $ids.ToArray()
+}
+
+function Set-LDLCDefaultAppsDeferredDetail {
+    param([ValidateSet('Chrome','Adobe','Widgets')][string]$Application, [string]$Detail)
+    if (-not $script:LDLCDefaultAppsDeferredDetails) { $script:LDLCDefaultAppsDeferredDetails = @{} }
+    $script:LDLCDefaultAppsDeferredDetails[$Application] = $Detail
+}
+
+function Confirm-LDLCDefaultAppsFinalState {
+    # Read-only final audit. A failed UI attempt is not a final configuration error.
+    # Do not touch unrelated errors, earlier runs, settings, UserChoice or its hash.
+    if (-not $script:LDLCDefaultAppsPendingChecks -or $script:LDLCDefaultAppsFinalAuditDone) { return }
+    $states = [ordered]@{}; $failures = New-Object 'Collections.Generic.List[string]'
+    foreach ($application in @('Adobe','Chrome','Widgets')) {
+        if (-not $script:LDLCDefaultAppsPendingChecks.ContainsKey($application)) { continue }
+        Stop-IfRequested
+        try {
+            if ($application -eq 'Widgets') {
+                $state = Get-LDLCWidgetsTaskbarState
+                $states[$application] = $state
+                if ($state.Disabled) { Write-Info '[FINAL-CHECK] Widgets desactives : etat Windows confirme.'; continue }
+                $failure = '[TASKBAR] Widgets : desactivation non confirmee par Windows (TaskbarDa=' + $state.TaskbarDa + '; strategie reconnue=' + $state.PolicyDisabled + ').'
+            } else {
+                $verification = Wait-LDLCDefaultAppConfirmation -Application $application -TimeoutMilliseconds 1000
+                $states[$application] = $verification.State
+                if ($verification.Confirmed) { Write-Info ('[FINAL-CHECK] ' + $application + ' confirme par Windows ; aucune alerte de tentative conservee.'); continue }
+                $details = @($verification.State.Associations | ForEach-Object { $_.Association + '=' + $_.ProgId + ' [' + $_.Executable + '] ' + $_.Error }) -join '; '
+                $failure = '[DEFAULT-APPS] ' + $application + ' : configuration finale non confirmee. ' + $details
+            }
+        } catch {
+            if (Test-LDLCStopRequestError $_) { throw }
+            $failure = '[FINAL-CHECK] Verification ' + $application + ' impossible : ' + $_.Exception.Message
+        }
+        $failures.Add($failure); Write-Warn $failure
+    }
+    $script:LDLCDefaultAppsFinalAuditDone = $true
+    return [pscustomobject]@{ Confirmed = ($failures.Count -eq 0); States = [pscustomobject]$states; Failures = $failures.ToArray() }
 }
 
 function Get-LDLCDefaultAppState {
@@ -1007,12 +1078,14 @@ function Invoke-LDLCDefaultAppConfiguration {
             "$($_.Association)=$($_.ProgId) [$($_.Executable)] erreur='$($_.Error)'"
         }) -join '; '
         $failure = "[DEFAULT-APPS] $Application non confirme apres $attempt tentative(s) distincte(s). Manquants : $($verification.State.Missing -join ', '). $details. $($errors -join ' | '). Corriger dans Parametres > Applications > Applications par defaut."
+        Set-LDLCDefaultAppsDeferredDetail -Application $Application -Detail $failure
         if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
         return $false
     }
     catch {
         if (Test-LDLCStopRequestError $_) { throw }
         $failure = "[DEFAULT-APPS] Verification $Application interrompue, resultat non confirme : $($_.Exception.Message). Controle manuel necessaire."
+        Set-LDLCDefaultAppsDeferredDetail -Application $Application -Detail $failure
         if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
         return $false
     }
@@ -1045,11 +1118,13 @@ function Set-LDLCChromeDefaultBrowserWithUiAutomation {
         }
         if (-not $routes.Count) { $errors += 'Aucune fiche Chrome ni aucun selecteur compatible.' }
         $failure='Chrome non defini par defaut : ' + ($errors -join ' | ') + '. Verifier Parametres > Applications > Applications par defaut.'
+        Set-LDLCDefaultAppsDeferredDetail -Application Chrome -Detail $failure
         if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
         return $false
     } catch {
         if (Test-LDLCStopRequestError $_) { throw }
         $failure='Configuration Chrome interrompue : ' + $_.Exception.Message
+        Set-LDLCDefaultAppsDeferredDetail -Application Chrome -Detail $failure
         if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
         return $false
     } finally { if ($entered) { Close-LDLCDefaultAppsPage; Exit-LDLCDefaultAppsCompact } }
@@ -1115,6 +1190,11 @@ function Set-LDLCTaskbarPolicyValue {
     New-ItemProperty -Path $Path -Name $Name -Value $Value -PropertyType DWord -Force -ErrorAction Stop | Out-Null
 }
 
+function Get-LDLCWindowsBuildNumber {
+    try { return [int](Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name CurrentBuildNumber -ErrorAction Stop).CurrentBuildNumber }
+    catch { return [Environment]::OSVersion.Version.Build }
+}
+
 function Get-LDLCWidgetsTaskbarState {
     $taskbarDa = Get-LDLCTaskbarAdvancedValue -Name 'TaskbarDa'
     $taskbarMn = Get-LDLCTaskbarAdvancedValue -Name 'TaskbarMn'
@@ -1132,15 +1212,22 @@ function Get-LDLCWidgetsTaskbarState {
         }
     }
 
-    $disabledByPolicy = ($policyValues.Values | Where-Object { $null -ne $_ -and [int]$_ -eq 0 }).Count -gt 0
+    # Computer policies supported by the corresponding Windows feature. A zero
+    # in an arbitrary legacy/guessed key is not proof that Widgets are disabled.
+    $build = Get-LDLCWindowsBuildNumber
+    $supportedPolicy = if ($build -ge 22000) { 'HKLM:\SOFTWARE\Policies\Microsoft\Dsh\AllowNewsAndInterests' }
+        elseif ($build -ge 19041) { 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds\EnableFeeds' } else { '' }
+    $disabledByPolicy = ($supportedPolicy -and $null -ne $policyValues[$supportedPolicy] -and [int]$policyValues[$supportedPolicy] -eq 0)
     $disabledByUserValue = ($null -ne $taskbarDa -and [int]$taskbarDa -eq 0)
 
     return [pscustomobject]@{
-        Disabled = [bool]$disabledByUserValue
+        Disabled = [bool]($disabledByUserValue -or $disabledByPolicy)
         TaskbarDa = $taskbarDa
         TaskbarMn = $taskbarMn
         PolicyDisabled = [bool]$disabledByPolicy
         PolicyValues = $policyValues
+        SupportedPolicy = $supportedPolicy
+        WindowsBuild = $build
     }
 }
 
@@ -1171,6 +1258,8 @@ function Disable-LDLCTaskbarOption {
 }
 
 function Disable-LDLCWidgetsTaskbarOption {
+    param([switch]$DeferFailureWarning)
+    if ($DeferFailureWarning -and $script:LDLCDefaultAppsPendingChecks) { $script:LDLCDefaultAppsPendingChecks['Widgets'] = $true }
     $initialState = Get-LDLCWidgetsTaskbarState
     if ($initialState.Disabled) {
         Write-Ok "[TASKBAR] Widgets deja desactives"
@@ -1202,7 +1291,6 @@ function Disable-LDLCWidgetsTaskbarOption {
         foreach ($policyName in @('AllowNewsAndInterests', 'AllowWidgets', 'EnableFeeds')) {
             try {
                 Set-LDLCTaskbarPolicyValue -Path $policyPath -Name $policyName -Value 0
-                Set-LDLCTaskbarAdvancedValue -Name 'TaskbarDa' -Value 0
                 Start-Sleep -Milliseconds 150
 
                 if ((Get-LDLCWidgetsTaskbarState).Disabled) {
@@ -1213,6 +1301,12 @@ function Disable-LDLCWidgetsTaskbarOption {
             catch {
                 [void]$attemptErrors.Add("${policyPath}\${policyName}: $($_.Exception.Message)")
             }
+            # A protected TaskbarDa must not turn a successful supported policy
+            # write into an error attributed to that policy.
+            try {
+                Set-LDLCTaskbarAdvancedValue -Name 'TaskbarDa' -Value 0
+                if ((Get-LDLCWidgetsTaskbarState).Disabled) { return $true }
+            } catch { [void]$attemptErrors.Add("TaskbarDa: $($_.Exception.Message)") }
         }
     }
 
@@ -1227,11 +1321,14 @@ function Disable-LDLCWidgetsTaskbarOption {
         $details = "TaskbarDa=$($finalState.TaskbarDa); PolicyDisabled=$($finalState.PolicyDisabled)"
     }
 
-    Write-Warn "[TASKBAR][ERREUR] Impossible de desactiver Widgets apres verification finale. $details"
+    $failure = "[TASKBAR][ERREUR] Impossible de desactiver Widgets apres verification finale. $details"
+    Set-LDLCDefaultAppsDeferredDetail -Application Widgets -Detail $failure
+    if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
     return $false
 }
 
 function Set-LDLCTaskbarOptionsWithRegistry {
+    param([switch]$DeferWidgetsFailureWarning)
     Write-Step "[TASKBAR] Configuration de la barre des taches"
 
     $changed = $false
@@ -1239,7 +1336,7 @@ function Set-LDLCTaskbarOptionsWithRegistry {
         $changed = $true
     }
 
-    if (Disable-LDLCWidgetsTaskbarOption) {
+    if (Disable-LDLCWidgetsTaskbarOption -DeferFailureWarning:$DeferWidgetsFailureWarning) {
         $changed = $true
     }
 
@@ -1268,12 +1365,16 @@ function Set-LDLCTaskbarOptionsWithRegistry {
 }
 
 function Invoke-LDLCChromeDefaultAppsSequence {
+    param([switch]$DeferFinalValidation)
+    $script:LDLCDefaultAppsPendingChecks = @{ Adobe = $true; Chrome = $true }
+    $script:LDLCDefaultAppsDeferredDetails = @{}
+    $script:LDLCDefaultAppsFinalAuditDone = $false
     Write-Section 'APPLICATIONS PAR DEFAUT'
     try {
         Enter-LDLCDefaultAppsCompact
-        $adobe = Set-LDLCAdobePdfDefaultWithUiAutomation
+        $adobe = Set-LDLCAdobePdfDefaultWithUiAutomation -DeferFailureWarning
         Set-LDLCDefaultAppsCompactProgress -Percent $(if ($adobe) { 50 } else { 0 }) -Message 'Configuration de Chrome...'
-        $chrome = Set-LDLCChromeDefaultBrowserWithUiAutomation
+        $chrome = Set-LDLCChromeDefaultBrowserWithUiAutomation -DeferFailureWarning
         if ($adobe -and $chrome) {
             Set-LDLCDefaultAppsCompactProgress -Percent 100 -Message 'Configuration terminee' -Running $false -Success $true
             Write-Info 'Applications par defaut configurees ; controle Windows termine.'
@@ -1282,10 +1383,11 @@ function Invoke-LDLCChromeDefaultAppsSequence {
             Set-LDLCDefaultAppsCompactProgress -Percent (50 * ([int][bool]$adobe + [int][bool]$chrome)) -Message 'Reglage non effectue' -Running $false -ErrorApplication ($failed -join ' ; ')
         }
     } finally { Exit-LDLCDefaultAppsCompact }
-    try { [void](Set-LDLCTaskbarOptionsWithRegistry) } catch {
+    try { [void](Set-LDLCTaskbarOptionsWithRegistry -DeferWidgetsFailureWarning) } catch {
         if (Test-LDLCStopRequestError $_) { throw }
         Write-Warn ('[TASKBAR] Configuration impossible : ' + $_.Exception.Message)
     }
+    if (-not $DeferFinalValidation) { [void](Confirm-LDLCDefaultAppsFinalState) }
 }
 
 function Get-LDLCChromeExecutablePath {

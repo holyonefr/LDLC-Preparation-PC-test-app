@@ -1,6 +1,6 @@
 ﻿{
-    "EndpointUrl":  "https://script.google.com/macros/s/AKfycbwYe2r5-y8HeyfLjslbq7wI2BdFH0sj7TLJQSiUyeRdt_z7yytyTKsPQPPcT0HUcAci3g/exec",
-    "ApiKey":  "LDLC-PrepTool-2026-ea2653c3d8f94cad9bbe4a2fa6fe8e18",
-    "ToolVersion":  "2.6.1",
-    "SendSuccessfulRuns":  true
+  "EndpointUrl": "https://script.google.com/macros/s/AKfycbwYe2r5-y8HeyfLjslbq7wI2BdFH0sj7TLJQSiUyeRdt_z7yytyTKsPQPPcT0HUcAci3g/exec",
+  "ApiKey": "LDLC-PrepTool-2026-ea2653c3d8f94cad9bbe4a2fa6fe8e18",
+  "ToolVersion": "2.6.15",
+  "SendSuccessfulRuns": true
 }

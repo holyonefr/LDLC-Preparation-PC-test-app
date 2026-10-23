@@ -55,12 +55,9 @@ if ($defaultApps -notmatch 'ScrollItemPattern' -or $defaultApps -notmatch 'Scrol
     throw 'Le defilement Default Apps doit utiliser les patterns UIA.'
 }
 
-if ($defaultApps -match '\$disabledByUserValue -or \$disabledByPolicy') {
-    throw 'Widgets ne doit pas etre considere desactive par policy seule : TaskbarDa doit etre a 0.'
-}
-
-if ($defaultApps -notmatch 'AllowWidgets' -or $defaultApps -notmatch 'EnableFeeds' -or $defaultApps -notmatch 'PolicyDisabled') {
-    throw 'La desactivation Widgets doit couvrir les policies Windows 11 et garder TaskbarDa comme verification principale.'
+if ($defaultApps -notmatch '\$disabledByUserValue -or \$disabledByPolicy' -or
+    $defaultApps -notmatch '\$policyValues\[\$supportedPolicy\]' -or $defaultApps -match '\$policyValues.Values\s*\|\s*Where-Object') {
+    throw 'Widgets exige TaskbarDa=0 ou une strategie prise en charge pour cette version Windows ; une cle arbitraire ne suffit pas.'
 }
 
 if ($defaultApps -notmatch 'Wait-LDLCDefaultAppsCondition' -or

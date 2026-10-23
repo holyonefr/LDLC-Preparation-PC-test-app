@@ -1,4 +1,4 @@
-{
+﻿{
   "SchemaVersion": 1,
   "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
   "StableRepository": "holyonefr/LDLC-Preparation",
@@ -61,7 +61,10 @@
     "tools/Test-LDLCAmdUpdateRegression.ps1",
     "tools/Test-LDLCAmdChocolateyPackage.ps1",
     "tools/Test-LDLCAmdGuru3dSource.ps1",
-    "tools/Test-LDLCAmdChocolateyFallback.ps1"
+    "tools/Test-LDLCAmdChocolateyFallback.ps1",
+    "telemetry.config.json",
+    "tools/Get-DefaultAppsDiagnostic.ps1",
+    "tools/Test-DefaultAppsFinalWarnings.ps1"
   ],
   "PublicationPolicy": "2026-10-22 explicit user request promotes all accepted beta functions, including motherboard installer/desktop shortcuts and Edge false-pin fix, to LDLC, Numeriks and ADDON. Manual manufacturer installation; laptops excluded. Preserve branding, canceled font enlargement and unpublished UI. ADDON remains NVIDIA-only. Keep beta synchronized."
 }
