@@ -3,6 +3,7 @@ $ErrorActionPreference = 'Stop'
 if (-not $ModuleRoot) { $ModuleRoot = Join-Path (Split-Path -Parent $PSScriptRoot) 'modules' }
 . (Join-Path $ModuleRoot '00.Core.ps1')
 . (Join-Path $ModuleRoot '05.Telemetry.ps1')
+if (Test-Path (Join-Path $ModuleRoot '70.DefaultApps.ps1')) { . (Join-Path $ModuleRoot '70.DefaultApps.ps1') }
 . (Join-Path $ModuleRoot '90.Workflow.ps1')
 $mainCommands = (Get-Item Function:\Invoke-LDLCPreparation).ScriptBlock.Ast.FindAll({ param($n) $n -is [Management.Automation.Language.CommandAst] }, $true) | ForEach-Object { $_.GetCommandName() }
 $script:TriggerOnly = 'Wait-LDLCWindowsUpdateWorkerCompletion' -notin $mainCommands -and 'Invoke-LDLCWindowsUpdatesWithTimeout' -notin $mainCommands
@@ -53,7 +54,16 @@ function Install-LDLCApplication {
 }
 function Install-Or-ReinstallWithChoco { Install-LDLCApplication }
 function Set-LDLCWallpaper {}
-function Invoke-LDLCChromeDefaultAppsSequence {}
+function Invoke-LDLCChromeDefaultAppsSequence {
+    # Exercise the actual read-only final audit within the real completion flow.
+    $script:LDLCDefaultAppsPendingChecks=@{Adobe=$true;Chrome=$true;Widgets=$true}
+    $script:LDLCDefaultAppsFinalAuditDone=$false
+}
+function Wait-LDLCDefaultAppConfirmation {
+    param($Application,$TimeoutMilliseconds)
+    [pscustomobject]@{Confirmed=$true;State=[pscustomobject]@{Associations=@();Missing=@()}}
+}
+function Get-LDLCWidgetsTaskbarState { [pscustomobject]@{Disabled=$true} }
 function Enable-DesktopSystemIcons {}
 function Invoke-LDLCVendorUtility {} # Separate beta integration suite tests this step.
 function Install-LDLCGpuDriversAndApps {}
@@ -135,6 +145,7 @@ try {
         $script:ProgressFile=Join-Path $script:RuntimeRoot 'LDLC_PROGRESS.txt'
         $script:stopFile=Join-Path $script:RuntimeRoot 'LDLC_STOP'
         $script:LDLCTelemetryInitialized=$false; $script:Final=$null
+        $script:LDLCDefaultAppsPendingChecks=$null; $script:LDLCDefaultAppsFinalAuditDone=$false
         $script:ForceQueueFailure=$false
         $script:PowerSettingsCaptured=$true; $script:PowerSettingsRestored=$false; $script:PendingReboot=$false
         $Apps=@([pscustomobject]@{Name='Chrome'})
@@ -145,6 +156,9 @@ try {
         Check ($run.Status -eq $expected) "$caseName : statut $expected (observe $($run.Status))"
         Check ([bool]$run.IsFinal -and [bool]$run.FinishedAt) "$caseName : resultat final explicite"
         Check ($run.CompletionConfirmed -eq ($caseName -notin @('fermeture_anticipee','antivirus_refuse','antivirus_arret'))) "$caseName : preuve de fin exacte"
+        if ('Confirm-LDLCDefaultAppsFinalState' -in $mainCommands) {
+            Check ($script:LDLCDefaultAppsFinalAuditDone -eq ($caseName -notin @('fermeture_anticipee','antivirus_refuse','antivirus_arret'))) "$caseName : controle final des applications execute avant cloture, jamais apres interruption"
+        }
         if ($expected -ne 'success') { Check (-not [string]::IsNullOrWhiteSpace($run.BlockingReason)) "$caseName : cause du blocage conservee" }
         if ($caseName -like 'antivirus_*') { Check ($script:ApplicationCalls -eq 0) 'Antivirus: aucune installation apres refus/arret'; if($caseName -eq 'antivirus_refuse'){Check ($run.BlockingReason -match '1602') 'Antivirus: cause 1602 conservee'} }
         if ($caseName -eq 'erreur') { Check ($run.LastMessage -match '1603') 'Erreur : code 1603 visible' }
@@ -184,9 +198,10 @@ try {
     $report=[ordered]@{Scenarios=@($script:Rows.ToArray());Checks=@($script:Checks.ToArray())}
     if ($ReportPath) { $report | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $ReportPath -Encoding UTF8 }
     $failed=@($script:Checks | Where-Object { -not $_.Passed })
-    $failed | ForEach-Object { Write-Host ('ECHEC : '+$_.Check) }
+    $failed | ForEach-Object { Write-Host ('::error title=Completion regression::'+$_.Check) }
     if ($failed.Count) { throw "$($failed.Count) controles en echec sur $($script:Checks.Count)." }
     Write-Host "OK fin intervention : $($cases.Count) scenarios, $($script:Checks.Count) controles, fermeture et relance durant le POST sans installation reelle."
+    Write-Host ('::notice title=Completion regression::'+(@{Scenarios=$cases.Count;Assertions=$script:Checks.Count;Result='passed';Mode='real workflow, final audit and telemetry; simulated installation and effective OS state';ActualNetworkRequests=$false}|ConvertTo-Json -Compress))
 }
 finally {
     foreach($name in $saved.Keys){[Environment]::SetEnvironmentVariable($name,$saved[$name],'Process')}
