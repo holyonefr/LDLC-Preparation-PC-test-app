@@ -1159,7 +1159,7 @@ function Restore-PowerSettings {
 # They are intentionally embedded so the compiled exe can report issues from any PC.
 $script:LDLCTelemetryEndpointUrl = 'https://script.google.com/macros/s/AKfycbwYe2r5-y8HeyfLjslbq7wI2BdFH0sj7TLJQSiUyeRdt_z7yytyTKsPQPPcT0HUcAci3g/exec'
 $script:LDLCTelemetryApiKey = 'LDLC-PrepTool-2026-ea2653c3d8f94cad9bbe4a2fa6fe8e18'
-$script:LDLCTelemetryToolVersion = '2.6.18'
+$script:LDLCTelemetryToolVersion = '2.6.19'
 $script:LDLCTelemetrySource = 'LDLCPreparationPC'
 $script:LDLCTelemetryApplicationSource = 'LDLC_PREPARATION_PC'
 $script:LDLCTelemetryEdition = 'LDLC'
@@ -8483,6 +8483,12 @@ function Confirm-LDLCDefaultAppsFinalState {
             if ($application -eq 'Widgets') { Write-Info ('[FINAL-CHECK] Widgets : verification indisponible. ' + $_.Exception.Message); continue }
             $failure = '[FINAL-CHECK] Verification ' + $application + ' impossible : ' + $_.Exception.Message
         }
+        if ($application -eq 'Chrome') {
+            # Keep the observed state, including unknown/Edge associations, in
+            # diagnostics without blocking the intervention for this preference.
+            Write-Info ($failure + ' Information uniquement ; ne bloque pas la validation.')
+            continue
+        }
         $failures.Add($failure); Write-Warn $failure
     }
     $script:LDLCDefaultAppsFinalAuditDone = $true
@@ -9410,13 +9416,15 @@ function Set-LDLCChromeDefaultBrowserWithUiAutomation {
         if (-not $routes.Count) { $errors += 'Aucune fiche Chrome ni aucun selecteur compatible.' }
         $failure='Chrome non defini par defaut : ' + ($errors -join ' | ') + '. Verifier Parametres > Applications > Applications par defaut.'
         Set-LDLCDefaultAppsDeferredDetail -Application Chrome -Detail $failure
-        if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
+        # Chrome preference diagnostics are nonblocking at the user's request.
+        Write-Info ('[DEFAULT-APPS][DIAGNOSTIC] ' + $failure)
         return $false
     } catch {
         if (Test-LDLCStopRequestError $_) { throw }
         $failure='Configuration Chrome interrompue : ' + $_.Exception.Message
         Set-LDLCDefaultAppsDeferredDetail -Application Chrome -Detail $failure
-        if ($DeferFailureWarning) { Write-Info $failure } else { Write-Warn $failure }
+        # Chrome preference diagnostics are nonblocking at the user's request.
+        Write-Info ('[DEFAULT-APPS][DIAGNOSTIC] ' + $failure)
         return $false
     } finally { if ($entered) { Close-LDLCDefaultAppsPage; Exit-LDLCDefaultAppsCompact } }
 }
@@ -9695,9 +9703,10 @@ function Invoke-LDLCChromeDefaultAppsSequence {
         if ($adobe -and $chrome) {
             Set-LDLCDefaultAppsCompactProgress -Percent 100 -Message 'Configuration terminee' -Running $false -Success $true
             Write-Info 'Applications par defaut configurees ; controle Windows termine.'
+        } elseif (-not $adobe) {
+            Set-LDLCDefaultAppsCompactProgress -Percent (50 * [int][bool]$chrome) -Message 'Reglage PDF non effectue' -Running $false -ErrorApplication 'Adobe Acrobat Reader (.pdf)'
         } else {
-            $failed = @(); if (-not $adobe) { $failed += 'Adobe Acrobat Reader (.pdf)' }; if (-not $chrome) { $failed += 'Chrome (HTTP/HTTPS/.htm/.html)' }
-            Set-LDLCDefaultAppsCompactProgress -Percent (50 * ([int][bool]$adobe + [int][bool]$chrome)) -Message 'Reglage non effectue' -Running $false -ErrorApplication ($failed -join ' ; ')
+            Set-LDLCDefaultAppsCompactProgress -Percent 50 -Message 'Controle Chrome termine ; details dans le journal' -Running $false
         }
     } finally { Exit-LDLCDefaultAppsCompact }
     try { [void](Set-LDLCTaskbarOptionsWithRegistry -DeferWidgetsFailureWarning) } catch {
