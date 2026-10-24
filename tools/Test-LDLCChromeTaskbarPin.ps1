@@ -37,6 +37,27 @@ $current=[regex]::Replace($current,'(?m)^[ \t]*Stop-IfRequested\n','')
 $current=[regex]::Replace($current,'(?m)^[ \t]*if \(Test-LDLCStopRequestError \$_\) \{ throw \}\n','')
 Assert ($current.Trim() -ceq $historical) 'Chrome taskbar implementation differs from the historical method beyond stop handling'
 
+# Check the actual workflow entry point and both delivered scripts as well as
+# the module, so a restored method cannot be bypassed by an older embedded path.
+$projectRoot=Split-Path -Parent ([IO.Path]::GetFullPath($ModuleRoot))
+$wrapper=(Get-Command Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate).ScriptBlock.Ast.Parent.Extent.Text
+Assert ($wrapper -match 'return Invoke-LDLCChromeTaskbarPin -ProgressPercent \$ProgressPercent') 'The historical entry point must delegate to the restored implementation'
+$workflow=[IO.File]::ReadAllText((Join-Path $ModuleRoot '90.Workflow.ps1'))
+Assert ($workflow -match 'Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate -ProgressPercent 90') 'The real workflow must still invoke the historical taskbar method'
+$delivered=@(Get-ChildItem -LiteralPath (Join-Path $projectRoot 'dist') -Filter '*.ps1' -File)
+Assert ($delivered.Count -eq 2) 'Expected main and worker delivery scripts for this edition'
+foreach($scriptFile in $delivered){
+ $ast=[Management.Automation.Language.Parser]::ParseFile($scriptFile.FullName,[ref]$null,[ref]$null)
+ $functions=@($ast.FindAll({param($n)$n -is [Management.Automation.Language.FunctionDefinitionAst] -and $n.Name -eq 'Invoke-LDLCChromeTaskbarPin'},$true))
+ Assert ($functions.Count -eq 1) ('Missing or duplicate embedded taskbar implementation: '+$scriptFile.Name)
+ $body=$functions[0].Extent.Text.Replace("`r`n","`n")
+ $body=[regex]::Replace($body,'(?m)^[ \t]*Stop-IfRequested\n','')
+ $body=[regex]::Replace($body,'(?m)^[ \t]*if \(Test-LDLCStopRequestError \$_\) \{ throw \}\n','')
+ Assert ($body.Trim() -ceq $historical) ('Embedded taskbar body is not historical: '+$scriptFile.Name)
+ $entry=$ast.Find({param($n)$n -is [Management.Automation.Language.FunctionDefinitionAst] -and $n.Name -eq 'Invoke-LDLCChromeTaskbarPinBeforeWindowsUpdate'},$true)
+ Assert ($entry.Extent.Text -match 'return Invoke-LDLCChromeTaskbarPin -ProgressPercent \$ProgressPercent') ('Embedded legacy entry point is not connected: '+$scriptFile.Name)
+}
+
 $saved=[Environment]::GetEnvironmentVariable('LOCALAPPDATA','Process')
 $temp=Join-Path ([IO.Path]::GetTempPath()) ('Chrome-Historical-'+[guid]::NewGuid().ToString('N'))
 [void][IO.Directory]::CreateDirectory($temp)
@@ -82,4 +103,4 @@ try {
  [Environment]::SetEnvironmentVariable('LOCALAPPDATA',$saved,'Process')
  Remove-Item -LiteralPath $temp -Force -Recurse
 }
-Write-Host ('::notice title=Chrome historical taskbar::'+(@{Success=$true;Assertions=$script:checks;Cases=@($cases.ToArray());HistoricalReference=$fixture.Revision;HistoricalBodyVerified=$true;RealXMLWriteRead=$true;ExplorerActionsSimulated=$true;ActualUserTaskbarChanged=$false;VisualPinVerified=$false}|ConvertTo-Json -Depth 8 -Compress))
+Write-Host ('::notice title=Chrome historical taskbar::'+(@{Success=$true;Assertions=$script:checks;Cases=@($cases.ToArray());HistoricalReference=$fixture.Revision;HistoricalBodyVerified=$true;EmbeddedScriptsVerified=$delivered.Count;LegacyEntryPointVerified=$true;RealXMLWriteRead=$true;ExplorerActionsSimulated=$true;ActualUserTaskbarChanged=$false;VisualPinVerified=$false}|ConvertTo-Json -Depth 8 -Compress))

@@ -69,6 +69,12 @@ jobs:
             pwsh -NoProfile -File ./tools/Test-CompletionDisplay.ps1 -ModuleRoot $root
             if($LASTEXITCODE -ne 0){throw 'Completion display regression failed under PowerShell 7'}
           }
+      - name: Check the requested Chrome diagnostics and historical taskbar under PowerShell 7
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          ./tools/Test-ChromeNonblockingDiagnostics.ps1
+          ./tools/Test-LDLCChromeTaskbarPin.ps1
       - name: Run the full release regression suite without installing software
         shell: powershell
         run: |

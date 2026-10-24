@@ -12,7 +12,7 @@ try {
     $env:LDLC_TELEMETRY_DISABLED = '1'
     $tests = @(
         'Test-LDLCSyntax', 'Test-LDLCTelemetryStatus', 'Test-LDLCTelemetryLifecycle', 'Test-TelemetryDeliveryRecovery', 'Test-PreparationCompletion', 'Test-PreparationStartupStop', 'Test-PreparationOutboxConcurrency', 'Test-PreparationDashboardRead', 'Test-PreparationDashboardControl',
-        'Test-LDLCDefaultApps', 'Test-DefaultAppsVmRegression', 'Test-DefaultAppsFinalWarnings', 'Test-DefaultAppsUiWarning', 'Test-ChromeBrowserDefaultButton', 'Test-ChromeQuickConfirmation', 'Test-DefaultAppsNativeAssociation', 'Test-LDLCChromeTaskbarPin', 'Test-LDLCCompactUi', 'Test-LDLCGpuAmdFlow', 'Test-LDLCGpuLaptopBypass',
+        'Test-LDLCDefaultApps', 'Test-DefaultAppsVmRegression', 'Test-DefaultAppsFinalWarnings', 'Test-DefaultAppsUiWarning', 'Test-ChromeNonblockingDiagnostics', 'Test-ChromeBrowserDefaultButton', 'Test-ChromeQuickConfirmation', 'Test-DefaultAppsNativeAssociation', 'Test-LDLCChromeTaskbarPin', 'Test-LDLCCompactUi', 'Test-LDLCGpuAmdFlow', 'Test-LDLCGpuLaptopBypass',
         'Test-LDLCAmdChocolateyFallback', 'Test-LDLCAmdPackageMetadata', 'Test-LDLCAmdUpdateRegression', 'Test-LDLCGpuAmdDetection', 'Test-LDLCAmdSoftwareDetection', 'Test-LDLCGpuInstallValidation', 'Test-NvidiaFallbackResult',
         'Test-LDLCNoValidatorDependencies', 'Test-LDLCHardening', 'Test-LDLCTaskbarPins', 'Test-LDLCWorkflowOrder',
         'Test-WindowsUpdateTrigger', 'Test-LDLCSecurityBootstrap', 'Test-SecurityInteractiveUninstall', 'Test-McAfeeHistoricalRollback', 'Test-LDLCEmbeddedAssets',

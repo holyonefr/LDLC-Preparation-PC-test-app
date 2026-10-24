@@ -1,4 +1,14 @@
-﻿# Bêta 2.6.18 — corrections après VM Windows 11, 24 octobre
+﻿# Bêta 2.6.19 — retrait ciblé des avertissements et contrôle taskbar
+
+Nouvelle demande du 24 octobre : Chrome devient informatif sans inventer une
+association correcte ni masquer les vraies erreurs d'installation/Adobe.
+L'initialisation Chocolatey normale est corrigée uniquement dans le candidat
+ADDON. Ancienne méthode d'épinglage déjà présente dans les quatre éditions,
+désormais vérifiée jusqu'aux deux scripts livrés. Voir
+beta/CHROME_DIAGNOSTICS_TASKBAR_2026-10-24.md. Publications de production interdites
+par l'instruction actuelle ; candidats séparés, UI locales préexistantes intactes.
+
+# Bêta 2.6.18 — corrections après VM Windows 11, 24 octobre
 
 Sur demande explicite, correction et publication limitées à la bêta. Le journal
 réel confirme un clic PDF refusé car la carte était masquée et un abandon de la

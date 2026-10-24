@@ -66,7 +66,9 @@
     "tools/Get-DefaultAppsDiagnostic.ps1",
     "tools/Test-DefaultAppsFinalWarnings.ps1",
     "tools/Test-DefaultAppsVmRegression.ps1",
-    "tools/Test-CompletionDisplay.ps1"
+    "tools/Test-CompletionDisplay.ps1",
+    "tools/Test-ChromeNonblockingDiagnostics.ps1",
+    "tools/fixtures/chrome-taskbar-before-changes.json"
   ],
   "PublicationPolicy": "2026-10-22 explicit user request promotes all accepted beta functions, including motherboard installer/desktop shortcuts and Edge false-pin fix, to LDLC, Numeriks and ADDON. Manual manufacturer installation; laptops excluded. Preserve branding, canceled font enlargement and unpublished UI. ADDON remains NVIDIA-only. Keep beta synchronized."
 }

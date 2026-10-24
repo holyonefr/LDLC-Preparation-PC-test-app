@@ -47,11 +47,11 @@ try {
     Assert ($script:infos -gt 0) 'UI diagnostics disappeared instead of remaining informative.'
    }
    'real-association-failure' {
-    Assert ($status -ne 'success' -and $counts.WarningCount -gt 0) 'Real association failure was hidden.'
+    Assert ($status -eq 'success' -and $counts.WarningCount -eq 0) 'Chrome preference became a blocking warning despite the requested diagnostic-only policy.'
     Assert (-not $script:LDLCDefaultAppsCompactProgress.Success -and $script:LDLCDefaultAppsCompactProgress.Progress -lt 100) 'False success after real association failure.'
-    Assert (@($script:LDLCTelemetryEvents|Where-Object Message -match 'Chrome').Count -gt 0) 'Missing precise cause of real blockage.'
+    Assert ($script:infos -gt 0) 'The unconfirmed Chrome preference must remain diagnostic.'
    }
-   'action-sent-unconfirmed' {Assert ($status -ne 'success' -and $counts.WarningCount -gt 0 -and -not $script:LDLCDefaultAppsCompactProgress.Success) 'Transmitting a command without an effective association must not claim success.'}
+   'action-sent-unconfirmed' {Assert ($status -eq 'success' -and $counts.WarningCount -eq 0 -and -not $script:LDLCDefaultAppsCompactProgress.Success) 'Chrome remains nonblocking while an unapplied association must not be reported as configured.'}
    'cancellation' {Assert $cancelled 'Cancellation was swallowed.'}
   }
   Assert ($script:LDLCDefaultAppsCompactDepth -eq 0 -and -not $script:LDLCDefaultAppsCompactPath) 'Compact state was not cleaned.'

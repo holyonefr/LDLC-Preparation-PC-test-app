@@ -60,9 +60,9 @@ if(-not $Historical){
     Reset-Case;$script:ChromeReady=$false
     Invoke-LDLCChromeDefaultAppsSequence -DeferFinalValidation
     $result=Confirm-LDLCDefaultAppsFinalState
-    Assert (-not $result.Confirmed -and (Counts).WarningCount -eq 1) 'A real remaining Chrome failure was hidden or repeated'
-    Assert (@($script:LDLCTelemetryEvents|Where-Object Message -match 'Chrome.*http').Count -eq 1) 'Real Chrome failure has no precise cause'
-    [void](Confirm-LDLCDefaultAppsFinalState);Assert ((Counts).WarningCount -eq 1) 'Final check emitted the same warning twice'
+    Assert ($result.Confirmed -and -not $result.States.Chrome.Confirmed -and (Counts).WarningCount -eq 0) 'Chrome must remain diagnostic-only without inventing confirmed associations'
+    Assert (@($script:Infos|Where-Object {$_ -match 'Chrome.*http'}).Count -gt 0) 'The actual Chrome association diagnostic disappeared'
+    [void](Confirm-LDLCDefaultAppsFinalState);Assert ((Counts).WarningCount -eq 0) 'Final check reintroduced a Chrome warning'
 
     Reset-Case;$script:AdobeReady=$false
     Invoke-LDLCChromeDefaultAppsSequence -DeferFinalValidation
@@ -86,7 +86,7 @@ if(-not $Historical){
     Invoke-LDLCChromeDefaultAppsSequence -DeferFinalValidation
     $script:ReadFailure=$true
     $result=Confirm-LDLCDefaultAppsFinalState
-    Assert (-not $result.Confirmed -and (Counts).WarningCount -eq 2) 'An unreadable Windows association was falsely accepted'
+    Assert (-not $result.Confirmed -and (Counts).WarningCount -eq 1 -and -not $result.States.Chrome.Confirmed) 'Unreadable Adobe must stay blocking; unreadable Chrome must stay unknown and diagnostic-only'
 
     Reset-Case
     Invoke-LDLCChromeDefaultAppsSequence -DeferFinalValidation
@@ -167,7 +167,7 @@ if(-not $Historical){
     Assert ($result.Confirmed -and (Counts).WarningCount -eq 0 -and $result.States.Widgets.ComponentPresence -eq 'Unknown') 'Unreadable Widgets must remain informational, with unknown state preserved'
     Reset-Case;$script:LDLCDefaultAppsPendingChecks=@{Widgets=$true;Chrome=$true};$script:ChromeReady=$false
     $result=Confirm-LDLCDefaultAppsFinalState
-    Assert (-not $result.Confirmed -and (Counts).WarningCount -eq 1 -and $result.Failures[0] -match 'Chrome') 'Removing Widgets warnings also hid a real Chrome failure'
+    Assert ($result.Confirmed -and (Counts).WarningCount -eq 0 -and -not $result.States.Chrome.Confirmed) 'The final audit must preserve the requested informational Chrome and Widgets states'
     $script:AppxReadFailure=$false;$script:Build=19045
     Assert (-not (Get-LDLCWidgetsTaskbarState).Disabled) 'Missing Windows 11 packages falsely disabled Windows 10 News and Interests'
 }
