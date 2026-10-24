@@ -35,7 +35,7 @@ modifiés. Widgets reste informatif conformément à la demande précédente.
 
 Tests ciblés locaux réussis : nouveau test des échecs VM (10 assertions), Chrome
 (10 scénarios / 28 assertions), bouton navigateur (47 contrôles), affichage
-(13 assertions), contrôle final (41 assertions), parcours PDF existant.
+(14 assertions), contrôle final (41 assertions), parcours PDF existant.
 Ces tests simulent les effets Windows, sans configurer les associations du poste.
 La comparaison historique reproduit l'abandon HTML et le clic PDF masqué.
 
@@ -57,5 +57,44 @@ Ce premier essai n'a publié aucun EXE et n'a exécuté aucune préparation rée
 
 Le [nouvel essai Windows 11 40066857427](https://github.com/holyonefr/VM/actions/runs/40066857427)
 a été lancé sur une VM neuve avec l'EXE exact ci-dessus, capsule privée
-`e8dfa908e0ad738fc72ba7c1097f2f1a73edbb98`. Résultat réel à compléter après
-exécution ; ne pas confondre la validation Server précédente avec ce test client.
+`e8dfa908e0ad738fc72ba7c1097f2f1a73edbb98`. Il est **réussi**, ainsi que son
+[analyse indépendante 40069824774](https://github.com/holyonefr/VM/actions/runs/40069824774).
+
+## Résultat réel Windows 11
+
+VM neuve Windows 11 Entreprise évaluation française, build **26300**, ProductType
+**1**. Poste `VM-LDLC-BE357A`, intervention
+`VM-LAB-LDLC-7f4caefc34f545e28e3915e79bbe357a`, du 24 octobre à 06:05:37 UTC
+à 06:18:58 UTC. Le dashboard affiche **13 min 23 s**.
+
+- Les cinq logiciels sont absents avant et installés après : Chrome
+  156.0.8078.48, LibreOffice 26.8.1.1, Adobe Reader 26.001.21691, 7-Zip
+  26.05.00.0 et VLC 3.0.23.
+- Lecture indépendante des API Windows après préparation : HTTP, HTTPS, `.htm`
+  et `.html` → `ChromeHTML` / `chrome.exe` ; `.pdf` → `Acrobat.Document.DC` /
+  `Acrobat.exe`. **Adobe est réellement l'application PDF par défaut.**
+- Fin normale, vrai clic observé sur Quitter, sortie **0**, aucune erreur du
+  contrôleur ni collecte manquante.
+- Dashboard réel : **« Validé »**, validation `validated`, **0 erreur / 0
+  avertissement**, une ligne visible et une seule ligne physique dans Sheets.
+  Identité, version et horaires correspondent au test.
+
+| Contrôle réel | Bêta 2.6.17 du 23 octobre | Bêta 2.6.18 du 24 octobre |
+| --- | --- | --- |
+| PDF | Edge | Adobe Acrobat |
+| HTTP / HTTPS | Chrome | Chrome |
+| HTM / HTML | Edge | Chrome |
+| Erreurs / avertissements | 0 / 2 | **0 / 0** |
+| Libellé du dashboard | À vérifier | **Validé** |
+
+Le bouton navigateur global n'a pas été activable dans cette VM ; le parcours
+Windows par association a réussi. Cette tentative intermédiaire reste dans le
+journal informatif, sans alerte finale périmée. L'extrait de journal des preuves
+est explicitement tronqué ; le diagnostic final et les cinq associations sont
+complets. Aucun avertissement réel n'a été effacé du compteur.
+
+[Preuves structurées du test réel](evidence/default-apps-vm-2026-10-24/windows11-result.json).
+Les comparaisons unitaires et les vrais Preview sur Server restent distincts de
+cette préparation complète sur client Windows 11. GPU physique et épingle visible
+ne sont pas qualifiés par cet essai. Les trois productions et leurs modifications
+UI locales sont inchangées ; aucun déploiement Apps Script ni historique modifié.

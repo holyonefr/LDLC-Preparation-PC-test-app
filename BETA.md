@@ -7,6 +7,9 @@ les associations HTML même si une confirmation HTTP tarde ; les alias UIA d'un
 même bouton ne créent plus une fausse ambiguïté. Seul l'état Windows final alimente
 le bilan, avec une rubrique correcte. Publication et essai VM réservés à la bêta.
 Voir [les corrections et leur validation](beta/DEFAULT_APPS_VM_2026-10-24.md).
+Essai complet sur VM Windows 11 neuve réussi : les cinq logiciels installés,
+Chrome et Adobe effectivement définis par défaut, vraie fermeture, **0 erreur /
+0 avertissement**, une seule ligne dashboard **« Validé »**.
 
 Sur demande explicite de retrait dans les quatre éditions, Widgets ne bloque
 plus la validation et le message réseau de l'écran de fin est retiré si le

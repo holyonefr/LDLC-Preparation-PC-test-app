@@ -259,6 +259,6 @@
     "UIA actions and OS association scenarios are simulated in unit comparisons.",
     "Four actual compiled EXE previews and Quit checks; no full application installation in these previews.",
     "No production dashboard writes during native fixture tests.",
-    "Full clean Windows 11 beta run still pending."
+    "The separate fresh Windows 11 full preparation is recorded in windows11-result.json (run 40066857427)."
   ]
 }

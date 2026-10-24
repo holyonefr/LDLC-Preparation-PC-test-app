@@ -1,0 +1,218 @@
+{
+  "Result": "completed_without_reported_issues",
+  "Source": {
+    "Edition": "beta",
+    "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+    "Commit": "f554e3141f7486f3129001c6084a6f411ed693be",
+    "Executable": "LDLCPreparationPC.exe",
+    "SHA256": "4A87BC25654E4C406CF009C653272C7154662149AD95FE44CA079B18F52E5FA8",
+    "ToolVersion": "2.6.18",
+    "ApplicationSource": "LDLC_PREPARATION_PC",
+    "ConfigurationSHA256": "99F3165A911E2F85B6ECD26FAF27D7A6292736C3236DD45F3469854C14C7B7E3"
+  },
+  "RunId": "VM-LAB-LDLC-7f4caefc34f545e28e3915e79bbe357a",
+  "ComputerName": "VM-LDLC-be357a",
+  "FreshVMPerAttempt": true,
+  "ActualWindowsClient": true,
+  "Windows": {
+    "Caption": "Microsoft Version d’évaluation de Windows 11 Entreprise",
+    "Version": "10.0.26300",
+    "BuildNumber": "26300",
+    "ProductType": 1
+  },
+  "GPUs": [
+    {
+      "Name": "Vidéo Microsoft Hyper-V",
+      "DriverVersion": "10.0.26100.1150",
+      "PNPDeviceID": "VMBUS\\{DA0A7802-E377-4AAC-8E77-0558EB1073F8}\\{5620E0C7-8062-4DCE-AEB7-520C7EF76171}"
+    }
+  ],
+  "Completed": true,
+  "ApplicationExitCode": 0,
+  "ClosedByRealQuitButton": true,
+  "GuestError": "",
+  "UniqueDashboardAndSheetRow": true,
+  "IdentityMatches": true,
+  "DashboardStatus": "success",
+  "Errors": 0,
+  "Warnings": 0,
+  "Criticals": 0,
+  "CurrentStep": "FIN DU SCRIPT",
+  "Software": [
+    {
+      "PresentAfter": true,
+      "Name": "Chrome",
+      "PreExisting": false,
+      "Versions": [
+        "156.0.8078.48"
+      ]
+    },
+    {
+      "PresentAfter": true,
+      "Name": "LibreOffice",
+      "PreExisting": false,
+      "Versions": [
+        "26.8.1.1"
+      ]
+    },
+    {
+      "PresentAfter": true,
+      "Name": "Adobe Reader",
+      "PreExisting": false,
+      "Versions": [
+        "26.001.21691"
+      ]
+    },
+    {
+      "PresentAfter": true,
+      "Name": "7-Zip",
+      "PreExisting": false,
+      "Versions": [
+        "26.05.00.0"
+      ]
+    },
+    {
+      "PresentAfter": true,
+      "Name": "VLC",
+      "PreExisting": false,
+      "Versions": [
+        "3.0.23"
+      ]
+    }
+  ],
+  "EffectiveBrowser": {
+    ".htm": "ChromeHTML",
+    ".html": "ChromeHTML",
+    "http": "ChromeHTML",
+    "https": "ChromeHTML"
+  },
+  "StartDifferenceSeconds": 26.1146216,
+  "FinishDifferenceSeconds": 1.6973409,
+  "RenderedDashboardVerified": true,
+  "RenderedRowText": "24/10/2026 08:05:37\t24/10/2026 08:18:58\tValidé\t13m 23s\tFIN DU SCRIPT\t24/10/2026 08:18:58\t0\tAll In App LDLC\tVM-LDLC-BE357A\t2.6.18\t\n+\nDetails\n\tX",
+  "RenderingError": "",
+  "Findings": [],
+  "LaboratoryError": "",
+  "ProductionCodeModified": false,
+  "HardwareDriverInstallationVerified": false,
+  "IntegrationAutomaticallyApproved": false,
+  "FinalPdfAssociation": "Acrobat.Document.DC",
+  "FinalEffectiveAssociations": {
+    ".htm": {
+      "ProgId": "ChromeHTML",
+      "Executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "Error": "",
+      "Authority": "Windows AssocQueryString; read-only"
+    },
+    ".pdf": {
+      "ProgId": "Acrobat.Document.DC",
+      "Executable": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\Acrobat.exe",
+      "Error": "",
+      "Authority": "Windows AssocQueryString; read-only"
+    },
+    ".html": {
+      "ProgId": "ChromeHTML",
+      "Executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "Error": "",
+      "Authority": "Windows AssocQueryString; read-only"
+    },
+    "http": {
+      "ProgId": "ChromeHTML",
+      "Executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "Error": "",
+      "Authority": "Windows AssocQueryString; read-only"
+    },
+    "https": {
+      "ProgId": "ChromeHTML",
+      "Executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "Error": "",
+      "Authority": "Windows AssocQueryString; read-only"
+    }
+  },
+  "Taskbar": {
+    "Shortcuts": [
+      {
+        "Name": "File Explorer.lnk",
+        "TargetPath": ""
+      },
+      {
+        "Name": "Google Chrome.lnk",
+        "TargetPath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      }
+    ],
+    "VisiblePinVerified": false,
+    "ReadError": "",
+    "TaskbarDa": null,
+    "WidgetsComputerPolicy": 0
+  },
+  "Desktop": [],
+  "QuitMethod": "observed_mouse_click",
+  "LastObservedClick": {
+    "InitialForegroundProcessName": "LDLCPreparationPC",
+    "ActualHitProcessId": 7916,
+    "Bounds": {
+      "Left": 430,
+      "Width": 57,
+      "Top": 675,
+      "Height": 22
+    },
+    "ActualHitProcessName": "LDLCPreparationPC",
+    "InputSent": true,
+    "InitialHitProcessName": "LDLCPreparationPC",
+    "Target": "Quitter",
+    "TargetProcessId": 7916
+  },
+  "StoreSelection": null,
+  "OverlayDismissals": [
+    {
+      "HitProcess": "SearchHost",
+      "ObservedUtc": "2026-10-24T06:05:12.8816777Z",
+      "Method": "observed_foreground_escape",
+      "WindowsSystemAppsPathsVerified": true,
+      "Phase": "before_executable_launch",
+      "ForegroundProcess": "SearchHost"
+    }
+  ],
+  "CollectionErrors": [],
+  "InitialSnapshotUtc": "2026-10-24T06:04:30.7623138Z",
+  "FinalSnapshotUtc": "2026-10-24T06:19:10.9497424Z",
+  "ValidationState": "validated",
+  "FullRun": 40066857427,
+  "FullJob": 120791829154,
+  "AnalyzerRun": 40069824774,
+  "AnalyzerJob": 120800656130,
+  "LaboratoryCommit": "42a05556e30179db5e72655315a657f7e07e1899",
+  "PayloadCommit": "e8dfa908e0ad738fc72ba7c1097f2f1a73edbb98",
+  "Validation": {
+    "state": "validated",
+    "reason": ""
+  },
+  "ActualDashboardLabel": "Validé",
+  "DashboardStartedUtc": "2026-10-24T06:05:37.876Z",
+  "DashboardFinishedUtc": "2026-10-24T06:18:58.283Z",
+  "UnchangedProductions": {
+    "LDLC-Preparation": {
+      "Commit": "3e21c92ad414b7a02a1d835ca26f2b9c0bb31a2b",
+      "UnpublishedDiffSHA256": "72876d78c6b898224da438988e16a60eccc68f0bb402ec0b1fc1ffbbbd63fb08",
+      "LocalAndRemoteCommitUnchanged": true,
+      "PreExistingLocalUIUnchanged": true
+    },
+    "Numerik-s-Preparation-PC": {
+      "Commit": "8a51c0bc4deee9ae39d895b2f88433486fd6f55f",
+      "UnpublishedDiffSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "LocalAndRemoteCommitUnchanged": true,
+      "PreExistingLocalUIUnchanged": true
+    },
+    "LDLC-Preparation-Addon": {
+      "Commit": "c5f6d57eb440ee09833a2fce78ff0f7ca3f22500",
+      "UnpublishedDiffSHA256": "896afc3e4392f12d94762df41c805bbe86f34ca4e550e94463eb182188807e35",
+      "LocalAndRemoteCommitUnchanged": true,
+      "PreExistingLocalUIUnchanged": true
+    }
+  },
+  "DefaultAppsLogObservation": {
+    "Truncated": true,
+    "LineCount": 43,
+    "Text": "10-24 08:17:20] [OK] [DEFAULT-APPS] Adobe confirme par Windows : .pdf.\r\n[2026-10-24 08:17:21] [INFO] [DEFAULT-APPS][UI] Affichage confirme r8 : 50% Configuration de Chrome...\r\n[2026-10-24 08:17:22] [INFO] [DEFAULT-APPS][UI] Affichage confirme r9 : 50% Ouverture des reglages : Chrome (navigateur)...\r\n[2026-10-24 08:17:30] [INFO] [DEFAULT-APPS][UI] Affichage confirme r10 : 50% Validation du choix : Chrome (navigateur par defaut)...\r\n[2026-10-24 08:17:35] [INFO] [DEFAULT-APPS] Action navigateur non disponible ; essai du selecteur HTML enregistre : Controle BrowserDefault introuvable/inactif pour Chrome  apres 5000ms. . UIA : ControlType.Button:applications par defaut | ControlType.Text:applications par defaut | ControlType.Button:google chrome | ControlType.Text:google chrome | ControlType.Button:google chrome | ControlType.Group:definir google chrome comme navigateur par defaut | ControlType.Text:definir google chrome comme navigateur par defaut | ControlType.Button:definir google chrome comme navigateur par defaut, definir par defaut | ControlType.Group:definir google chrome par defaut pour les fichiers .pdf | ControlType.Text:definir google chrome par defaut pour les fichiers .pdf | ControlType.Button:definir google chrome par defaut pour les fichiers .pdf, definir par defaut | ControlType.Group:definir des types de fichiers ou des types de liens par defaut | ControlType.Text:definir des types de fichiers ou des types de liens par defaut | ControlType.List:definir des types de fichiers ou des types de liens par defaut | ControlType.Group:.htm, microsoft edge, microsoft edge html document | ControlType.Button:.htm, microsoft edge, microsoft edge html document | ControlType.Text:microsoft edge html document | ControlType.Text:.html\r\n[2026-10-24 08:17:36] [INFO] [DEFAULT-APPS][UI] Affichage confirme r11 : 50% Ouverture des reglages : Chrome (http)...\r\n[2026-10-24 08:17:44] [INFO] [DEFAULT-APPS] Tentative http non confirmee ; poursuite des autres associations Windows.\r\n[2026-10-24 08:17:44] [INFO] [DEFAULT-APPS][UI] Affichage confirme r12 : 50% Ouverture des reglages : Chrome (https)...\r\n[2026-10-24 08:17:52] [INFO] [DEFAULT-APPS] Clic sur controle Windows observe : https, microsoft edge, microsoft edge html document\r\n[2026-10-24 08:17:53] [INFO] [DEFAULT-APPS][UI] Affichage confirme r13 : 50% Selection : Chrome (https)...\r\n[2026-10-24 08:17:55] [INFO] [DEFAULT-APPS] Clic sur controle Windows observe : google chrome\r\n[2026-10-24 08:17:56] [INFO] [DEFAULT-APPS][UI] Affichage confirme r14 : 50% Validation du choix : Chrome (https)...\r\n[2026-10-24 08:17:56] [INFO] [DEFAULT-APPS] Clic sur controle Windows observe : definir par defaut\r\n[2026-10-24 08:17:56] [INFO] [DEFAULT-APPS][UI] Affichage confirme r15 : 50% Confirmation du resultat : Chrome (https)...\r\n[2026-10-24 08:17:58] [INFO] [DEFAULT-APPS][UI] Affichage confirme r16 : 50% Ouverture des reglages : Chrome (.htm)...\r\n[2026-10-24 08:18:04] [INFO] [DEFAULT-APPS] Clic sur controle Windows observe : .htm, microsoft edge, microsoft edge html document\r\n[2026-10-24 08:18:05] [INFO] [DEFAULT-APPS][UI] Affichage confirme r17 : 50% Selection : Chrome (.htm)...\r\n[2026-10-24 08:18:07] [INFO] [DEFAULT-APPS] Clic sur controle Windows observe : google chrome\r\n[2026-10-24 08:18:08] [INFO] [DEFAULT-APPS][UI] Affichage confirme r18 : 50% Validation du choix : Chrome (.htm)...\r\n[2026-10-24 08:18:08] [INFO] [DEFAULT-APPS] Clic sur controle Windows observe : definir par defaut\r\n[2026-10-24 08:18:08] [INFO] [DEFAULT-APPS][UI] Affichage confirme r19 : 50% Confirmation du resultat : Chrome (.htm)...\r\n[2026-10-24 08:18:10] [INFO] [DEFAULT-APPS][UI] Affichage confirme r20 : 50% Ouverture des reglages : Chrome (.html)...\r\n[2026-10-24 08:18:16] [INFO] [DEFAULT-APPS] Clic sur controle Windows observe : .html, microsoft edge, microsoft edge html document\r\n[2026-10-24 08:18:17] [INFO] [DEFAULT-APPS][UI] Affichage confirme r21 : 50% Selection : Chrome (.html)...\r\n[2026-10-24 08:18:19] [INFO] [DEFAULT-APPS] Clic sur controle Windows observe : google chrome\r\n[2026-10-24 08:18:20] [INFO] [DEFAULT-APPS][UI] Affichage confirme r22 : 50% Validation du choix : Chrome (.html)...\r\n[2026-10-24 08:18:20] [INFO] [DEFAULT-APPS] Clic sur controle Windows observe : definir par defaut\r\n[2026-10-24 08:18:20] [INFO] [DEFAULT-APPS][UI] Affichage confirme r23 : 50% Confirmation du resultat : Chrome (.html)...\r\n[2026-10-24 08:18:23] [INFO] [DEFAULT-APPS][UI] Affichage confirme r24 : 100% Configuration terminee\r\n[2026-10-24 08:18:56] [INFO] [FINAL-CHECK] Adobe confirme par Windows ; aucune alerte de tentative conservee.\r\n[2026-10-24 08:18:56] [INFO] [FINAL-CHECK] Chrome confirme par Windows ; aucune alerte de tentative conservee.\r\n[2026-10-24 08:18:56] [INFO] [FINAL-CHECK] Widgets desactives : etat Windows confirme."
+  }
+}

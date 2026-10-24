@@ -1,13 +1,19 @@
 ﻿# Bêta 2.6.18 — corrections après VM Windows 11, 24 octobre
 
 Sur demande explicite, correction et publication limitées à la bêta. Le journal
-réel confirme une carte PDF masquée par la fenêtre compacte et un abandon de la
+réel confirme un clic PDF refusé car la carte était masquée et un abandon de la
 boucle Chrome après HTTP. Repli UIA exact, poursuite des autres associations,
 stabilisation bornée et déduplication des alias du bouton navigateur. Aucune
 alerte de tentative récupérée ; les vrais défauts finaux restent signalés.
 Voir beta/DEFAULT_APPS_VM_2026-10-24.md pour les preuves et les limites.
 Sync audité contre LDLC 3e21c92 propre ; productions/UI inchangées.
-Validation native et VM propre à terminer avant d’annoncer le résultat réel.
+Validation native 40066568005 et VM Windows 11 neuve 40066857427 réussies, analyse
+40069824774 réussie. Cinq logiciels absents avant/installés après, HTTP/HTTPS/HTM/
+HTML sur Chrome, PDF réellement sur Acrobat, vrai Quitter/sortie 0. Dashboard
+« Validé », 0 erreur/0 avertissement, une seule ligne physique et visible.
+EXE testé f554e31, SHA256 4A87BC25654E4C406CF009C653272C7154662149AD95FE44CA079B18F52E5FA8.
+Bouton navigateur global non activable dans cette VM : repli par association
+réussi. Trois refs de production et empreintes des UI locales vérifiées inchangées.
 
 # Bêta 2.6.17 — retrait explicite des alertes dans les quatre éditions
 
