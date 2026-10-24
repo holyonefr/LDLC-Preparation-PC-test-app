@@ -1,0 +1,264 @@
+{
+  "Run": 40066568005,
+  "Job": 120790966572,
+  "Conclusion": "success",
+  "Delivery": {
+    "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+    "PublishedExecutable": true,
+    "ExecutableSHA256": "4A87BC25654E4C406CF009C653272C7154662149AD95FE44CA079B18F52E5FA8",
+    "DeliveryCommit": "f554e3141f7486f3129001c6084a6f411ed693be",
+    "TestedSource": "81dfa82bfb79f2efe83459147df6013dc1c7e8aa",
+    "VendorInstallerExecuted": false
+  },
+  "Evidence": [
+    {
+      "title": "PrepTool compiled preview",
+      "data": {
+        "Visible": true,
+        "MillisecondsToPreview": 1161,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    },
+    {
+      "title": "PrepTool compiled preview",
+      "data": {
+        "Visible": true,
+        "MillisecondsToPreview": 1207,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    },
+    {
+      "title": "PrepTool compiled preview",
+      "data": {
+        "Visible": true,
+        "MillisecondsToPreview": 1163,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    },
+    {
+      "title": "PrepTool compiled preview",
+      "data": {
+        "Visible": true,
+        "MillisecondsToPreview": 1341,
+        "WindowWidth": 481,
+        "WindowHeight": 222,
+        "QuitLeft": 410,
+        "QuitTop": 197,
+        "QuitWidth": 57,
+        "QuitHeight": 22,
+        "QuitPreferredWidth": 57,
+        "QuitPreferredHeight": 22,
+        "QuitWhitePixels": 66,
+        "QuitGlyphTop": 8,
+        "QuitGlyphBottom": 15,
+        "ProgressPanelBottom": 192,
+        "FooterGap": 5,
+        "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+      }
+    },
+    {
+      "title": "Native association API",
+      "data": {
+        "BrowserDefaultsChanged": false,
+        "ActualAdobeReaderInstalled": false,
+        "Assertions": 6,
+        "Mode": "real Windows association APIs and registry; isolated extensions; Adobe registration simulated",
+        "PdfDefaultsChanged": false,
+        "Status": "passed",
+        "FixtureExecuted": false
+      }
+    },
+    {
+      "title": "VM default-app regression",
+      "data": {
+        "Result": "passed",
+        "Historical": false,
+        "Mode": "actual control/orchestration code with simulated observed VM obstruction and delayed commit",
+        "Assertions": 10,
+        "RealDefaultsChanged": false,
+        "PhysicalInputSent": false
+      }
+    },
+    {
+      "title": "Final default warning regression",
+      "data": {
+        "Assertions": 41,
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code",
+        "Result": "passed",
+        "Historical": false
+      }
+    },
+    {
+      "title": "VM default-app regression",
+      "data": {
+        "Historical": false,
+        "RealDefaultsChanged": false,
+        "Assertions": 10,
+        "Result": "passed",
+        "Mode": "actual control/orchestration code with simulated observed VM obstruction and delayed commit",
+        "PhysicalInputSent": false
+      }
+    },
+    {
+      "title": "VM default-app regression",
+      "data": {
+        "Historical": true,
+        "RealDefaultsChanged": false,
+        "Assertions": 2,
+        "Result": "passed",
+        "Mode": "actual control/orchestration code with simulated observed VM obstruction and delayed commit",
+        "PhysicalInputSent": false
+      }
+    },
+    {
+      "title": "Final default warning regression",
+      "data": {
+        "Assertions": 41,
+        "Historical": false,
+        "Result": "passed",
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+      }
+    },
+    {
+      "title": "Final default warning regression",
+      "data": {
+        "Assertions": 13,
+        "Historical": true,
+        "Result": "passed",
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+      }
+    },
+    {
+      "title": "Native association API",
+      "data": {
+        "FixtureExecuted": false,
+        "BrowserDefaultsChanged": false,
+        "Assertions": 6,
+        "Mode": "real Windows association APIs and registry; isolated extensions; Adobe registration simulated",
+        "ActualAdobeReaderInstalled": false,
+        "Status": "passed",
+        "PdfDefaultsChanged": false
+      }
+    },
+    {
+      "title": "Chrome default actions",
+      "data": {
+        "Cases": 10,
+        "AlreadyConfiguredMilliseconds": 750,
+        "Assertions": 28,
+        "Failures": 0,
+        "Mode": "simulated Windows associations, UI actions and clock",
+        "RealBrowserDefaultsChanged": false
+      }
+    },
+    {
+      "title": "Final default warning regression",
+      "data": {
+        "Assertions": 41,
+        "Historical": false,
+        "Result": "passed",
+        "ProductionConfigurationChanged": false,
+        "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+      }
+    },
+    {
+      "title": "VM default-app regression",
+      "data": {
+        "Historical": false,
+        "RealDefaultsChanged": false,
+        "Assertions": 10,
+        "Result": "passed",
+        "Mode": "actual control/orchestration code with simulated observed VM obstruction and delayed commit",
+        "PhysicalInputSent": false
+      }
+    },
+    {
+      "title": "Completion regression",
+      "data": {
+        "Assertions": 100,
+        "Scenarios": 14,
+        "Result": "passed",
+        "ActualNetworkRequests": false,
+        "Mode": "real workflow, final audit and telemetry; simulated installation and effective OS state"
+      }
+    },
+    {
+      "title": "Completion display regression",
+      "data": {
+        "Assertions": 14,
+        "Result": "passed",
+        "DashboardModified": false,
+        "Mode": "real completion and Widgets code, simulated Windows writes and HTTP boundary"
+      }
+    },
+    {
+      "title": "Completion display regression",
+      "data": {
+        "Assertions": 14,
+        "Result": "passed",
+        "DashboardModified": false,
+        "Mode": "real completion and Widgets code, simulated Windows writes and HTTP boundary"
+      }
+    },
+    {
+      "title": "beta_delivery",
+      "data": {
+        "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+        "PublishedExecutable": true,
+        "ExecutableSHA256": "4A87BC25654E4C406CF009C653272C7154662149AD95FE44CA079B18F52E5FA8",
+        "DeliveryCommit": "f554e3141f7486f3129001c6084a6f411ed693be",
+        "TestedSource": "81dfa82bfb79f2efe83459147df6013dc1c7e8aa",
+        "VendorInstallerExecuted": false
+      }
+    }
+  ],
+  "Limits": [
+    "Runner Windows Server 2025: regression target, not a Windows 11 full preparation.",
+    "UIA actions and OS association scenarios are simulated in unit comparisons.",
+    "Four actual compiled EXE previews and Quit checks; no full application installation in these previews.",
+    "No production dashboard writes during native fixture tests.",
+    "Full clean Windows 11 beta run still pending."
+  ]
+}

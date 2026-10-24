@@ -39,5 +39,23 @@ Tests ciblés locaux réussis : nouveau test des échecs VM (10 assertions), Chr
 Ces tests simulent les effets Windows, sans configurer les associations du poste.
 La comparaison historique reproduit l'abandon HTML et le clic PDF masqué.
 
-Validation native, EXE et nouvel essai Windows 11 : résultats à compléter après
-exécution ; ne pas assimiler les scénarios simulés à une préparation réelle.
+La [validation Windows native 40066568005](https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/40066568005) a réussi sous PowerShell 5.1 et 7 :
+comparaison historique (2 assertions reproduisant les deux blocages), nouveau
+contrôle (10 assertions), suite release complète et quatre vrais Preview/fermetures
+à 1,341 / 1,163 / 1,207 / 1,161 s après EntryPoint, hors UAC. Aucun installateur
+matériel n'est exécuté et aucun scénario simulé n'est envoyé au dashboard.
+
+Source testée : `81dfa82bfb79f2efe83459147df6013dc1c7e8aa`. Livraison EXE :
+`f554e3141f7486f3129001c6084a6f411ed693be`, SHA-256 récupéré et vérifié :
+`4A87BC25654E4C406CF009C653272C7154662149AD95FE44CA079B18F52E5FA8`.
+[Preuves natives](evidence/default-apps-vm-2026-10-24/native-validation.json).
+
+Le premier run 40066422541 s'est arrêté dans la fixture isolée de clôture : elle
+ne fournissait pas encore la nouvelle rubrique finale. Fixture corrigée et
+assertion de rubrique ajoutée, puis validation complète ci-dessus réussie.
+Ce premier essai n'a publié aucun EXE et n'a exécuté aucune préparation réelle.
+
+Le [nouvel essai Windows 11 40066857427](https://github.com/holyonefr/VM/actions/runs/40066857427)
+a été lancé sur une VM neuve avec l'EXE exact ci-dessus, capsule privée
+`e8dfa908e0ad738fc72ba7c1097f2f1a73edbb98`. Résultat réel à compléter après
+exécution ; ne pas confondre la validation Server précédente avec ce test client.
