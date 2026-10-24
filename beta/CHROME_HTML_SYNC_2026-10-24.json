@@ -1,0 +1,23 @@
+{
+  "StableSource": "d83809df83b55f66c425ceaab6a48520a736ec97",
+  "ChromeFunctionsEqual": {
+    "Invoke-LDLCDefaultAppAttempt": true,
+    "Invoke-LDLCDefaultAppsControl": true,
+    "Get-LDLCChromeBrowserDefaultControl": true
+  },
+  "BetaVersion": "2.6.20",
+  "StableVersion": "2.6.18",
+  "BetaAdditionalFixesPreserved": [
+    "PDF ProgId variants and effective native association detection",
+    "Deferred default preference detail and final verification",
+    "Widgets supported-policy detection",
+    "Beta tests and publication workflow",
+    "Existing UI and manufacturer integration"
+  ],
+  "StableUiExcludedFromSource": true,
+  "ProductionDocumentsKeptEditionSpecific": [
+    "CHROME_DIAGNOSTICS_TASKBAR_2026-10-24.md",
+    "CHROME_HTML_2026-10-24.md",
+    "OFFICE_CONSERVE_2026-10-24.md"
+  ]
+}

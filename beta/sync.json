@@ -2,7 +2,7 @@
   "SchemaVersion": 1,
   "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
   "StableRepository": "holyonefr/LDLC-Preparation",
-  "SourceCommit": "3e21c92ad414b7a02a1d835ca26f2b9c0bb31a2b",
+  "SourceCommit": "d83809df83b55f66c425ceaab6a48520a736ec97",
   "SourceWorkingTreeDirty": false,
   "OverlayPaths": [
     ".gitattributes",
@@ -69,7 +69,10 @@
     "tools/Test-CompletionDisplay.ps1",
     "tools/Test-ChromeNonblockingDiagnostics.ps1",
     "tools/fixtures/chrome-taskbar-before-changes.json",
-    "tools/Test-OfficePreservation.ps1"
+    "tools/Test-OfficePreservation.ps1",
+    "CHROME_DIAGNOSTICS_TASKBAR_2026-10-24.md",
+    "CHROME_HTML_2026-10-24.md",
+    "OFFICE_CONSERVE_2026-10-24.md"
   ],
   "PublicationPolicy": "2026-10-22 explicit user request promotes all accepted beta functions, including motherboard installer/desktop shortcuts and Edge false-pin fix, to LDLC, Numeriks and ADDON. Manual manufacturer installation; laptops excluded. Preserve branding, canceled font enlargement and unpublished UI. ADDON remains NVIDIA-only. Keep beta synchronized."
 }

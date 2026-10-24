@@ -1,3 +1,8 @@
+> Synchronisation HTML du 24 octobre : les trois fonctions Chrome reprises dans
+> LDLC 2.6.18 sont déjà présentes, identiques, dans cette bêta 2.6.20.
+> Les références de source sont actualisées sans remplacer ses autres correctifs
+> ni son EXE déjà validé. Voir beta/CHROME_HTML_SYNC_2026-10-24.json.
+
 # LDLC Préparation PC — bêta 2.6.20
 
 Désinstallation automatique de Microsoft Office / Microsoft 365 retirée : plus

@@ -1,4 +1,12 @@
-﻿# Bêta 2.6.20 — Microsoft Office / Microsoft 365 conservé
+﻿# Synchronisation après correction HTML de LDLC — 24 octobre 2026
+
+Source LDLC d83809df83b55f66c425ceaab6a48520a736ec97. Les trois fonctions
+reprises depuis la bêta sont identiques ; aucun code runtime, test ou EXE bêta
+ne change. Audit Sync-LDLCBeta, overlays revus et six scénarios / onze assertions
+de synchronisation réussis. Conservation de ses améliorations PDF, Widgets et
+contrôle final. Seuls les documents et états de synchronisation sont actualisés.
+
+# Bêta 2.6.20 — Microsoft Office / Microsoft 365 conservé
 
 Sur demande « enlève sur les 4 la désinstallation des office 365 », retrait de
 l'étape et des fonctions Office spécifiques, y compris fermeture des processus,

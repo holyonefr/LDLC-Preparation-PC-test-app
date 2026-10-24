@@ -45,3 +45,12 @@ branding and existing exceptions; ADDON remains NVIDIA-only. Keep beta synchroni
 Preserve the canceled font enlargement and other unpublished UI edits.
 
 2026-10-23 explicit user scope: "je veut que tu retire le message d'erreur pour les quatre". Implement and deliver the scoped Widgets nonblocking diagnostic and neutral saved-report completion display in all four editions, with native Windows checks and tested EXEs. Preserve unrelated beta differences and the pre-existing unpublished UI edits; no blanket production promotion or Apps Script deployment.
+
+2026-10-24 explicit continuation after the LDLC candidate VM diagnosis: the user
+said "Alors change .html et fait un clique chrome si tu peut, push avant ! Et
+relance une vm w11 pour voir !". Publish the requested LDLC correction and its
+Windows-validated EXE before one fresh Windows 11 test. Include the already
+reviewed LDLC candidate changes (informational Chrome diagnostics and Office
+preservation); preserve unpublished UI, branding, Google URLs and existing GPU
+behavior. This authorizes LDLC only, not Numeriks or ADDON. Keep beta synchronized
+without overwriting its additional fixes. No Apps Script deployment.
