@@ -1,4 +1,15 @@
-﻿# Bêta 2.6.17 — retrait explicite des alertes dans les quatre éditions
+﻿# Bêta 2.6.18 — corrections après VM Windows 11, 24 octobre
+
+Sur demande explicite, correction et publication limitées à la bêta. Le journal
+réel confirme une carte PDF masquée par la fenêtre compacte et un abandon de la
+boucle Chrome après HTTP. Repli UIA exact, poursuite des autres associations,
+stabilisation bornée et déduplication des alias du bouton navigateur. Aucune
+alerte de tentative récupérée ; les vrais défauts finaux restent signalés.
+Voir beta/DEFAULT_APPS_VM_2026-10-24.md pour les preuves et les limites.
+Sync audité contre LDLC 3e21c92 propre ; productions/UI inchangées.
+Validation native et VM propre à terminer avant d’annoncer le résultat réel.
+
+# Bêta 2.6.17 — retrait explicite des alertes dans les quatre éditions
 
 L'utilisateur a redemandé de retirer le message pour les quatre All in App.
 Widgets devient informatif, y compris lecture/refus registre impossibles ; l'état

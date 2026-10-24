@@ -1,4 +1,12 @@
-# LDLC Préparation PC — bêta 2.6.17
+# LDLC Préparation PC — bêta 2.6.18
+
+Correction ciblée après les vrais essais Windows 11 : la fenêtre compacte pouvait
+recouvrir la carte PDF des Paramètres et empêcher son activation. Repli sur le
+contrôle d'accessibilité exact, sans clic à travers une fenêtre. Chrome poursuit
+les associations HTML même si une confirmation HTTP tarde ; les alias UIA d'un
+même bouton ne créent plus une fausse ambiguïté. Seul l'état Windows final alimente
+le bilan, avec une rubrique correcte. Publication et essai VM réservés à la bêta.
+Voir [les corrections et leur validation](beta/DEFAULT_APPS_VM_2026-10-24.md).
 
 Sur demande explicite de retrait dans les quatre éditions, Widgets ne bloque
 plus la validation et le message réseau de l'écran de fin est retiré si le

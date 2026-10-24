@@ -102,7 +102,7 @@ public static class LDLCDefaultAppsNative {
     Assert ($observedClicks -eq 1 -and $warnings.Count -eq 0) 'One observed activation must not create an association-confirmation warning.'
     Reset-Case; $script:chromeReady = $false; $script:ignoreGlobal = $true; $script:confirmNoEffect=$true
     Assert (-not (Invoke-LDLCDefaultAppConfiguration Chrome)) 'An invoked button with unchanged associations must never report Chrome configured.'
-    Assert ($warnings.Count -eq 1 -and $tick -le 1750 -and $observedClicks -eq 1) 'Keep verification short and surface the real unchanged state.'
+    Assert ($warnings.Count -eq 1 -and $tick -le 2750 -and $observedClicks -eq 1) 'Keep verification bounded, allow one final stabilization read and surface the real unchanged state.'
     Reset-Case; $script:chromeReady = $false; $script:ignoreGlobal = $true; $script:allUiFailure = $true
     Invoke-LDLCChromeDefaultAppsSequence
     Assert ($warnings.Count -eq 1 -and -not $script:LDLCDefaultAppsCompactProgress.Success) 'A real unavailable Windows action must still create one warning and no completed UI state.'

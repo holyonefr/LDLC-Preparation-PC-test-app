@@ -89,11 +89,15 @@ jobs:
           Expand-Archive -LiteralPath $zip -DestinationPath $historical
           ./tools/Test-DefaultAppsFinalWarnings.ps1 -ModuleRoot (Join-Path $historical 'modules') -Historical
           ./tools/Test-DefaultAppsFinalWarnings.ps1
+          # Reproduce the two failures observed in the real Windows 11 guest.
+          ./tools/Test-DefaultAppsVmRegression.ps1 -ModuleRoot (Join-Path $historical 'modules') -Historical
+          ./tools/Test-DefaultAppsVmRegression.ps1
       - name: Verify the final audit and native association reader with PowerShell 7
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
           ./tools/Test-DefaultAppsFinalWarnings.ps1
+          ./tools/Test-DefaultAppsVmRegression.ps1
           ./tools/Test-DefaultAppsNativeAssociation.ps1
           $path='HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.pdf\UserChoice'
           $before=(Get-ItemProperty $path -ErrorAction SilentlyContinue).ProgId
