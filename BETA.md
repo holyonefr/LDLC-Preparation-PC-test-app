@@ -2,8 +2,9 @@
 
 Désinstallation automatique de Microsoft Office / Microsoft 365 retirée : plus
 d'étape dédiée ni de fonctions de suppression dans le principal ou le worker.
-[Périmètre et tests](beta/OFFICE_CONSERVE_2026-10-24.md). Validation Windows de
-cette nouvelle version en cours.
+[Périmètre et tests](beta/OFFICE_CONSERVE_2026-10-24.md). Validation native Windows
+40080700297 réussie ; EXE 2.6.20 publié, téléchargé et checksum vérifié. Les trois
+candidats de production passent aussi leurs suites Windows, sans push de production.
 
 ## Historique : livraison 2.6.19
 

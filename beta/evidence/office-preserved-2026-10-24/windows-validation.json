@@ -1,0 +1,384 @@
+{
+  "Date": "2026-10-24",
+  "Scope": "Remove automatic Microsoft Office / Microsoft 365 uninstallation from all four editions, preserving previously prepared Chrome/taskbar changes and edition differences",
+  "Result": "all_four_native_windows_validations_passed",
+  "NativeWindowsHost": "GitHub Windows Server 2025",
+  "ActualCompiledExecutablePreviewAndQuitCount": 16,
+  "OfficeInstalledInventoriesSimulated": true,
+  "ProtectedProductNameCount": 14,
+  "CleanupModesTested": [
+    "All",
+    "Security",
+    "Oem"
+  ],
+  "OfficeUninstallersExecuted": false,
+  "RealOfficeInstallationUsedForTesting": false,
+  "FreshFullWindows11PreparationsThisCampaign": 0,
+  "OfficeRemovalStepAndSpecificHelpersRemoved": true,
+  "ExistingOemSecurityDetectionPreserved": true,
+  "AllOriginalUIFilesPreserved": true,
+  "PreviousRequestedCorrectionsPreserved": true,
+  "PublicationPolicy": "Only beta published. Three production refs are unchanged, pending the previously requested explicit authorization.",
+  "AppsScriptDeployed": false,
+  "CustomerDashboardHistoryEdited": false,
+  "NativeResults": {
+    "holyonefr/LDLC-Preparation-PC-test-app": {
+      "Run": 40080700297,
+      "Job": 120833455770,
+      "Conclusion": "success",
+      "SourceCommit": "c4defdd00a143d93773c501cb3a6fb31323660d9",
+      "OfficeChecks": [
+        {
+          "Mode": "simulated installed products, real OEM selectors and no-target cleanup; actual source/delivery AST",
+          "ProtectedProductNames": 14,
+          "Assertions": 37,
+          "CleanupModesTested": 3,
+          "Historical": false,
+          "AnyInstallerExecuted": false,
+          "DeliveredScriptsVerified": 2,
+          "OfficeUninstallerExecuted": false,
+          "Result": "passed"
+        },
+        {
+          "Mode": "simulated installed products, real OEM selectors and no-target cleanup; actual source/delivery AST",
+          "ProtectedProductNames": 14,
+          "Assertions": 37,
+          "CleanupModesTested": 3,
+          "Historical": false,
+          "AnyInstallerExecuted": false,
+          "DeliveredScriptsVerified": 2,
+          "OfficeUninstallerExecuted": false,
+          "Result": "passed"
+        },
+        {
+          "Mode": "simulated installed products, real OEM selectors and no-target cleanup; actual source/delivery AST",
+          "Historical": false,
+          "AnyInstallerExecuted": false,
+          "Result": "passed",
+          "CleanupModesTested": 3,
+          "ProtectedProductNames": 14,
+          "OfficeUninstallerExecuted": false,
+          "Assertions": 37,
+          "DeliveredScriptsVerified": 2
+        }
+      ],
+      "PreviewCount": 4,
+      "PreviewMilliseconds": [
+        1699,
+        1743,
+        1753,
+        1941
+      ],
+      "PreviewScope": "Real compiled executable Preview and Quit; no full preparation",
+      "ToolVersion": "2.6.20",
+      "Delivery": {
+        "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+        "PublishedExecutable": true,
+        "ExecutableSHA256": "96B151A526A1E5C53DA5F13A62990D74AE967DD93CF133786ACE8746D49B0776",
+        "DeliveryCommit": "72e4979b2f1fb264c5b252064e3e8425a23462a1",
+        "TestedSource": "c4defdd00a143d93773c501cb3a6fb31323660d9",
+        "VendorInstallerExecuted": false
+      },
+      "ReceivedBetaChecksumVerified": true,
+      "HistoricalOfficeCheck": [
+        {
+          "Assertions": 7,
+          "Historical": true,
+          "Result": "historical_removal_path_detected",
+          "OfficeUninstallerExecuted": false,
+          "Mode": "actual historical source, simulated installed product names"
+        }
+      ],
+      "Artifacts": [
+        {
+          "expired": false,
+          "expires_at": "2027-01-22T09:07:21Z",
+          "id": 12555665188,
+          "name": "ldlc-beta-windows",
+          "size_in_bytes": 6519274
+        }
+      ]
+    },
+    "holyonefr/LDLC-Preparation-Addon": {
+      "Run": 40080808029,
+      "Job": 120833790613,
+      "Conclusion": "success",
+      "SourceCommit": "c5f6d57eb440ee09833a2fce78ff0f7ca3f22500",
+      "OfficeChecks": [
+        {
+          "Mode": "simulated installed products, real OEM selectors and no-target cleanup; actual source/delivery AST",
+          "ProtectedProductNames": 14,
+          "Assertions": 37,
+          "CleanupModesTested": 3,
+          "Historical": false,
+          "AnyInstallerExecuted": false,
+          "DeliveredScriptsVerified": 2,
+          "OfficeUninstallerExecuted": false,
+          "Result": "passed"
+        }
+      ],
+      "PreviewCount": 4,
+      "PreviewMilliseconds": [
+        1004,
+        972,
+        979,
+        1715
+      ],
+      "PreviewScope": "Real compiled executable Preview and Quit; no full preparation",
+      "ToolVersion": "2.0.6",
+      "Delivery": {
+        "PreviewCount": 4,
+        "RealDashboardRoundTrip": true,
+        "ExecutableSHA256": "4A4A928AF59E43890CCBF5EC940B0FC533363A733E80903B7BBB8020FAD1E82B",
+        "PatchSHA256": "1CCCA4782407FE05C9F6502E2D626AFEDAFAA8E32A3FA55882DEB97DCD147A85",
+        "RealAntivirusRemoved": false,
+        "ProductionPublished": false,
+        "Repository": "holyonefr/LDLC-Preparation-Addon",
+        "TestedSource": "c5f6d57eb440ee09833a2fce78ff0f7ca3f22500",
+        "ReleaseSuitePassed": true
+      },
+      "DashboardTest": {
+        "Success": true,
+        "OwnTestRowsCleaned": true,
+        "Scenarios": [
+          {
+            "ApplicationSource": "LDLC_PREPARATION_ADDON",
+            "Validation": "validated",
+            "ToolVersion": "2.0.6",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "success",
+            "FinalVisible": true,
+            "Scenario": "success"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_ADDON",
+            "Validation": "blocked",
+            "ToolVersion": "2.0.6",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "error",
+            "FinalVisible": true,
+            "Scenario": "failed"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_ADDON",
+            "Validation": "blocked",
+            "ToolVersion": "2.0.6",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "stopped",
+            "FinalVisible": true,
+            "Scenario": "stopped"
+          }
+        ],
+        "Scope": "Real client/server transport; simulated completion states; own CODEX-TEST rows only, not full preparations"
+      },
+      "Artifacts": [
+        {
+          "expired": false,
+          "expires_at": "2026-10-31T09:14:21Z",
+          "id": 12555351782,
+          "name": "chrome-amd-windows-preview",
+          "size_in_bytes": 2749703
+        }
+      ]
+    },
+    "holyonefr/LDLC-Preparation": {
+      "Run": 40080908459,
+      "Job": 120834090855,
+      "Conclusion": "success",
+      "SourceCommit": "3e21c92ad414b7a02a1d835ca26f2b9c0bb31a2b",
+      "OfficeChecks": [
+        {
+          "Mode": "simulated installed products, real OEM selectors and no-target cleanup; actual source/delivery AST",
+          "ProtectedProductNames": 14,
+          "Assertions": 37,
+          "CleanupModesTested": 3,
+          "Historical": false,
+          "AnyInstallerExecuted": false,
+          "DeliveredScriptsVerified": 2,
+          "OfficeUninstallerExecuted": false,
+          "Result": "passed"
+        }
+      ],
+      "PreviewCount": 4,
+      "PreviewMilliseconds": [
+        1091,
+        1165,
+        1135,
+        1306
+      ],
+      "PreviewScope": "Real compiled executable Preview and Quit; no full preparation",
+      "ToolVersion": "2.6.17",
+      "Delivery": {
+        "PreviewCount": 4,
+        "RealDashboardRoundTrip": true,
+        "ExecutableSHA256": "4256682885908592B90D87A73EACF8C707C4254A709B990898420AB829FD738D",
+        "PatchSHA256": "F7535AEC27F8F1A973FD67EA08278406254DF76FE0E1A2D5923600EF02A3FF81",
+        "RealAntivirusRemoved": false,
+        "ProductionPublished": false,
+        "Repository": "holyonefr/LDLC-Preparation",
+        "TestedSource": "3e21c92ad414b7a02a1d835ca26f2b9c0bb31a2b",
+        "ReleaseSuitePassed": true
+      },
+      "DashboardTest": {
+        "Success": true,
+        "OwnTestRowsCleaned": true,
+        "Scenarios": [
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "validated",
+            "ToolVersion": "2.6.17",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "success",
+            "FinalVisible": true,
+            "Scenario": "success"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "blocked",
+            "ToolVersion": "2.6.17",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "error",
+            "FinalVisible": true,
+            "Scenario": "failed"
+          },
+          {
+            "ApplicationSource": "LDLC_PREPARATION_PC",
+            "Validation": "blocked",
+            "ToolVersion": "2.6.17",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "stopped",
+            "FinalVisible": true,
+            "Scenario": "stopped"
+          }
+        ],
+        "Scope": "Real client/server transport; simulated completion states; own CODEX-TEST rows only, not full preparations"
+      },
+      "Artifacts": [
+        {
+          "expired": false,
+          "expires_at": "2026-10-31T09:16:52Z",
+          "id": 12555890045,
+          "name": "chrome-amd-windows-preview",
+          "size_in_bytes": 6737552
+        }
+      ]
+    },
+    "holyonefr/Numerik-s-Preparation-PC": {
+      "Run": 40088688882,
+      "Job": 120856737296,
+      "Conclusion": "success",
+      "SourceCommit": "8a51c0bc4deee9ae39d895b2f88433486fd6f55f",
+      "OfficeChecks": [
+        {
+          "Mode": "simulated installed products, real OEM selectors and no-target cleanup; actual source/delivery AST",
+          "ProtectedProductNames": 14,
+          "Assertions": 37,
+          "CleanupModesTested": 3,
+          "Historical": false,
+          "AnyInstallerExecuted": false,
+          "DeliveredScriptsVerified": 2,
+          "OfficeUninstallerExecuted": false,
+          "Result": "passed"
+        }
+      ],
+      "PreviewCount": 4,
+      "PreviewMilliseconds": [
+        2105,
+        2091,
+        2057,
+        2113
+      ],
+      "PreviewScope": "Real compiled executable Preview and Quit; no full preparation",
+      "ToolVersion": "2.6.17",
+      "Delivery": {
+        "PreviewCount": 4,
+        "RealDashboardRoundTrip": true,
+        "ExecutableSHA256": "4D556F835EC8315B3ACBC3CBA2DC30940BA14FE2A95687CD1318ED9FF07A95E8",
+        "PatchSHA256": "7E08010E75BC22009E5E8830E60443DA8FA938877048B110197A493869B2D14B",
+        "RealAntivirusRemoved": false,
+        "ProductionPublished": false,
+        "Repository": "holyonefr/Numerik-s-Preparation-PC",
+        "TestedSource": "8a51c0bc4deee9ae39d895b2f88433486fd6f55f",
+        "ReleaseSuitePassed": true
+      },
+      "DashboardTest": {
+        "Success": true,
+        "OwnTestRowsCleaned": true,
+        "Scenarios": [
+          {
+            "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+            "Validation": "validated",
+            "ToolVersion": "2.6.17",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "success",
+            "FinalVisible": true,
+            "Scenario": "success"
+          },
+          {
+            "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+            "Validation": "blocked",
+            "ToolVersion": "2.6.17",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "error",
+            "FinalVisible": true,
+            "Scenario": "failed"
+          },
+          {
+            "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+            "Validation": "blocked",
+            "ToolVersion": "2.6.17",
+            "Acknowledged": true,
+            "InitialVisible": true,
+            "Status": "stopped",
+            "FinalVisible": true,
+            "Scenario": "stopped"
+          }
+        ],
+        "Scope": "Real client/server transport; simulated completion states; own CODEX-TEST rows only, not full preparations"
+      },
+      "Artifacts": [
+        {
+          "expired": false,
+          "expires_at": "2026-10-31T11:14:44Z",
+          "id": 12558595712,
+          "name": "chrome-amd-windows-preview",
+          "size_in_bytes": 17720375
+        }
+      ]
+    }
+  },
+  "PreservationChecks": {
+    "LDLC-Preparation": {
+      "UIUnchanged": true,
+      "CleanupUnchangedOutsideRemovedOfficeTail": true,
+      "RemoteMain": "3e21c92ad414b7a02a1d835ca26f2b9c0bb31a2b",
+      "ProductionNotPublished": true
+    },
+    "Numerik-s-Preparation-PC": {
+      "UIUnchanged": true,
+      "CleanupUnchangedOutsideRemovedOfficeTail": true,
+      "RemoteMain": "8a51c0bc4deee9ae39d895b2f88433486fd6f55f",
+      "ProductionNotPublished": true
+    },
+    "LDLC-Preparation-PC-test-app": {
+      "UIUnchanged": true,
+      "CleanupUnchangedOutsideRemovedOfficeTail": true,
+      "RemoteMain": "72e4979b2f1fb264c5b252064e3e8425a23462a1",
+      "ProductionNotPublished": false
+    },
+    "LDLC-Preparation-Addon": {
+      "UIUnchanged": true,
+      "CleanupUnchangedOutsideRemovedOfficeTail": true,
+      "RemoteMain": "c5f6d57eb440ee09833a2fce78ff0f7ca3f22500",
+      "ProductionNotPublished": true
+    }
+  }
+}

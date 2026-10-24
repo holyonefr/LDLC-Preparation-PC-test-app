@@ -4,8 +4,10 @@ Sur demande « enlève sur les 4 la désinstallation des office 365 », retrait 
 l'étape et des fonctions Office spécifiques, y compris fermeture des processus,
 MSI/Winget/Click-to-Run. Nettoyage OEM existant préservé ; régression avec quatorze
 noms de produits protégés et contrôle des scripts livrés. Voir
-beta/OFFICE_CONSERVE_2026-10-24.md. Validation native en cours ; seule la bêta
-peut être publiée, les candidats de production conservent les corrections en attente.
+beta/OFFICE_CONSERVE_2026-10-24.md. Les quatre validations Windows ont réussi :
+37 contrôles Office, 16 Preview/fermetures, trois statuts dashboard par candidat.
+EXE bêta publié au commit 72e4979, checksum vérifié ; seule la bêta est publiée.
+Les candidats de production conservent les corrections précédentes en attente.
 
 # Bêta 2.6.19 — retrait ciblé des avertissements et contrôle taskbar
 
