@@ -1159,7 +1159,7 @@ function Restore-PowerSettings {
 # They are intentionally embedded so the compiled exe can report issues from any PC.
 $script:LDLCTelemetryEndpointUrl = 'https://script.google.com/macros/s/AKfycbwYe2r5-y8HeyfLjslbq7wI2BdFH0sj7TLJQSiUyeRdt_z7yytyTKsPQPPcT0HUcAci3g/exec'
 $script:LDLCTelemetryApiKey = 'LDLC-PrepTool-2026-ea2653c3d8f94cad9bbe4a2fa6fe8e18'
-$script:LDLCTelemetryToolVersion = '2.6.17'
+$script:LDLCTelemetryToolVersion = '2.6.18'
 $script:LDLCTelemetrySource = 'LDLCPreparationPC'
 $script:LDLCTelemetryApplicationSource = 'LDLC_PREPARATION_PC'
 $script:LDLCTelemetryEdition = 'LDLC'
@@ -8457,6 +8457,7 @@ function Confirm-LDLCDefaultAppsFinalState {
     # Read-only final audit. A failed UI attempt is not a final configuration error.
     # Do not touch unrelated errors, earlier runs, settings, UserChoice or its hash.
     if (-not $script:LDLCDefaultAppsPendingChecks -or $script:LDLCDefaultAppsFinalAuditDone) { return }
+    Write-Section 'VERIFICATION FINALE DES APPLICATIONS PAR DEFAUT'
     $states = [ordered]@{}; $failures = New-Object 'Collections.Generic.List[string]'
     foreach ($application in @('Adobe','Chrome','Widgets')) {
         if (-not $script:LDLCDefaultAppsPendingChecks.ContainsKey($application)) { continue }
@@ -8782,8 +8783,15 @@ function Test-LDLCChromeBrowserDefaultLabel {
 function Get-LDLCChromeBrowserDefaultControl {
     param($Root)
     $controls = @(Get-LDLCDefaultAppsControls $Root)
-    $qualified = @($controls | Where-Object { $_.Enabled -and $_.ControlType -eq 'ControlType.Button' -and
-        (Test-LDLCChromeBrowserDefaultLabel -Name $_.Name -WithAction) } | Sort-Object Offscreen)
+    # UIA can expose aliases of one XAML button. Count native identities, not
+    # aliases, while still refusing two genuinely different browser actions.
+    $unique = @{}
+    foreach ($control in @($controls | Where-Object { $_.Enabled -and $_.ControlType -eq 'ControlType.Button' -and
+        (Test-LDLCChromeBrowserDefaultLabel -Name $_.Name -WithAction) } | Sort-Object Offscreen)) {
+        $identity = $control.Element.GetRuntimeId() -join '.'
+        if (-not $unique.ContainsKey($identity)) { $unique[$identity] = $control }
+    }
+    $qualified = @($unique.Values)
     $visible = @($qualified | Where-Object { -not $_.Offscreen })
     if ($visible.Count -eq 1) { return $visible[0] }
     if ($qualified.Count -eq 1) { return $qualified[0] }
@@ -8892,15 +8900,22 @@ function Invoke-LDLCDefaultAppsControl {
     }
     # Preserve the pre-compact UI behavior: XAML Invoke can return without opening
     # the picker, and SelectionItem.Select alone may not commit an app choice.
-    if (Invoke-LDLCDefaultAppsObservedClick -Control $Control) { return $true }
-    $pattern = $null
-    if ($element.TryGetCurrentPattern([System.Windows.Automation.InvokePattern]::Pattern, [ref]$pattern)) {
-        $pattern.Invoke()
-        return $true
+    try {
+        if (Invoke-LDLCDefaultAppsObservedClick -Control $Control) { return $true }
+    } catch {
+        if (Test-LDLCStopRequestError $_) { throw }
+        # The compact preparation window can cover a Settings card. Never click
+        # through it: use the exact observed control's accessibility pattern.
+        Write-Info ('[DEFAULT-APPS] Clic physique indisponible ; activation du controle UIA observe : ' + $_.Exception.Message)
     }
+    $pattern = $null
     if ($Kind -eq 'Choice' -and $element.TryGetCurrentPattern([System.Windows.Automation.SelectionItemPattern]::Pattern, [ref]$pattern)) {
         $pattern.Select()
         if (-not $pattern.Current.IsSelected) { throw "Ligne non selectionnee par Windows : $($Control.Name)" }
+        return $true
+    }
+    if ($element.TryGetCurrentPattern([System.Windows.Automation.InvokePattern]::Pattern, [ref]$pattern)) {
+        $pattern.Invoke()
         return $true
     }
     throw "Controle UIA sans pattern Invoke/SelectionItem : $($Control.Name)"
@@ -9137,6 +9152,7 @@ function Invoke-LDLCDefaultAppAttempt {
     # Windows 10 and older Windows 11 pages may not have a browser-wide button.
     # HTML alone does not configure HTTP, HTTPS and HTM.
     $associations = @($State.Missing)
+    $associationErrors = New-Object 'Collections.Generic.List[string]'
     foreach ($association in $associations) {
         Stop-IfRequested
         # Recheck before acting: an earlier choice may have changed several associations.
@@ -9155,16 +9171,29 @@ function Invoke-LDLCDefaultAppAttempt {
             $stage = 'Confirm'
             Set-LDLCDefaultAppsActionProgress -Application $Application -Association $association -Stage Validating
             if ($Application -eq 'Chrome') {
-                Complete-LDLCDefaultAppsChoice -Association $association -Application Chrome -TimeoutMilliseconds 1500
+                Complete-LDLCDefaultAppsChoice -Association $association -Application Chrome -TimeoutMilliseconds 4000
             } else { Complete-LDLCDefaultAppsChoice -Association $association -Application $Application }
         }
         catch {
+            if (Test-LDLCStopRequestError $_) { throw }
             $_.Exception.Data['DefaultAppsStage'] = $stage
+            if ($Application -eq 'Chrome') {
+                # A slow HTTP commit must not skip HTM/HTML. Each next action
+                # reopens its own observed page and rechecks the actual handler.
+                $associationErrors.Add($association + ' (' + $stage + ') : ' + $_.Exception.Message)
+                Write-Info ('[DEFAULT-APPS] Tentative ' + $association + ' non confirmee ; poursuite des autres associations Windows.')
+                continue
+            }
             throw
         }
     }
     if ($Application -eq 'Chrome') {
         if ((Get-LDLCDefaultAppState Chrome).Confirmed) { return [pscustomobject]@{ BrowserActionInvoked=$false; Confirmed=$true } }
+        if ($associationErrors.Count) {
+            $failure = New-Object InvalidOperationException ('Associations Chrome restantes : ' + ($associationErrors -join ' | '))
+            $failure.Data['DefaultAppsStage'] = 'Confirm'
+            throw $failure
+        }
         try {
             $uri = $Route.Uri
             if (-not $uri) { $uri = Get-LDLCDefaultAppUris Chrome | Select-Object -First 1 }
@@ -9373,6 +9402,8 @@ function Set-LDLCChromeDefaultBrowserWithUiAutomation {
             } catch {
                 if (Test-LDLCStopRequestError $_) { throw }
                 $errors += $_.Exception.Message
+                $verification = Wait-LDLCDefaultAppConfirmation -Application Chrome -TimeoutMilliseconds 1000
+                if ($verification.Confirmed) { Write-Info 'Chrome defini comme navigateur par defaut par Windows apres stabilisation.'; return $true }
                 if ($_.Exception.Data['DefaultAppsStage'] -in @('Choice','Confirm','BrowserDefault')) { break }
             }
         }
