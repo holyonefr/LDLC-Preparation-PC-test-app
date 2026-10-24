@@ -127,12 +127,8 @@ if ($desktop -notmatch 'AMDSoftware.exe') {
     throw 'Le raccourci AMD doit aussi chercher AMDSoftware.exe.'
 }
 
-if ($cleanup -notmatch 'Get-LDLCOfficeClickToRunExecutables' -or $cleanup -notmatch 'OutputTail') {
-    throw 'Office Click-to-Run doit journaliser executables, codes et sortie commande.'
-}
-
-if ($cleanup -notmatch 'Office Click-to-Run absent') {
-    throw 'Office Click-to-Run absent doit etre ignore proprement.'
+if ($cleanup -match '(?im)^function \S*Office\S*' -or $workflow -match '\bRemove-LDLCMicrosoftOffice\b') {
+    throw 'Office removal must remain absent from cleanup and the workflow.'
 }
 
 if ($workflow -match [regex]::Escape('Enable-ComputerRestore -Drive "C:\"')) {

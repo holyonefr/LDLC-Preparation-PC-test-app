@@ -75,6 +75,21 @@ jobs:
           $ErrorActionPreference='Stop'
           ./tools/Test-ChromeNonblockingDiagnostics.ps1
           ./tools/Test-LDLCChromeTaskbarPin.ps1
+          ./tools/Test-OfficePreservation.ps1
+      - name: Compare the old Office removal path with preservation after correction
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $revision='9fa1b9d2b5a98d4a89032326d4ffd2c8b3127a1c'
+          git fetch --depth=1 origin $revision
+          if($LASTEXITCODE -ne 0){throw 'Historical Office source unavailable'}
+          $archive=Join-Path $env:RUNNER_TEMP 'historical-office.zip'
+          $historical=Join-Path $env:RUNNER_TEMP ('historical-office-'+[guid]::NewGuid().ToString('N'))
+          git archive --format=zip --output=$archive $revision modules/50.Cleanup.ps1 modules/90.Workflow.ps1
+          if($LASTEXITCODE -ne 0){throw 'Historical Office archive failed'}
+          Expand-Archive -LiteralPath $archive -DestinationPath $historical
+          ./tools/Test-OfficePreservation.ps1 -ModuleRoot (Join-Path $historical 'modules') -Historical
+          ./tools/Test-OfficePreservation.ps1
       - name: Run the full release regression suite without installing software
         shell: powershell
         run: |

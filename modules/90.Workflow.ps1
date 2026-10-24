@@ -487,17 +487,6 @@ function Invoke-LDLCPreparation {
         }
 
         Stop-IfRequested
-        Write-ProgressFile 90 "Suppression Microsoft Office..."
-
-        try {
-            Remove-LDLCMicrosoftOffice -ProgressPercent 90 | Out-Null
-        }
-        catch {
-            if (Test-LDLCStopRequestError $_) { throw }
-            Write-Warn "Etape Microsoft Office ignoree suite a une erreur : $($_.Exception.Message)"
-        }
-
-        Stop-IfRequested
         Write-ProgressFile 90 "Preparation du pin Chrome..."
 
         try {

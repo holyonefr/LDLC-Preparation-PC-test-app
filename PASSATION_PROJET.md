@@ -1,4 +1,13 @@
-﻿# Bêta 2.6.19 — retrait ciblé des avertissements et contrôle taskbar
+﻿# Bêta 2.6.20 — Microsoft Office / Microsoft 365 conservé
+
+Sur demande « enlève sur les 4 la désinstallation des office 365 », retrait de
+l'étape et des fonctions Office spécifiques, y compris fermeture des processus,
+MSI/Winget/Click-to-Run. Nettoyage OEM existant préservé ; régression avec quatorze
+noms de produits protégés et contrôle des scripts livrés. Voir
+beta/OFFICE_CONSERVE_2026-10-24.md. Validation native en cours ; seule la bêta
+peut être publiée, les candidats de production conservent les corrections en attente.
+
+# Bêta 2.6.19 — retrait ciblé des avertissements et contrôle taskbar
 
 Nouvelle demande du 24 octobre : Chrome devient informatif sans inventer une
 association correcte ni masquer les vraies erreurs d'installation/Adobe.

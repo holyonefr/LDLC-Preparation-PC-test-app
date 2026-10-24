@@ -1,4 +1,11 @@
-# LDLC Préparation PC — bêta 2.6.19
+# LDLC Préparation PC — bêta 2.6.20
+
+Désinstallation automatique de Microsoft Office / Microsoft 365 retirée : plus
+d'étape dédiée ni de fonctions de suppression dans le principal ou le worker.
+[Périmètre et tests](beta/OFFICE_CONSERVE_2026-10-24.md). Validation Windows de
+cette nouvelle version en cours.
+
+## Historique : livraison 2.6.19
 
 Sur nouvelle demande, le réglage Chrome non confirmé reste informatif et ne
 bloque plus la validation ; les vrais échecs d'installation et Adobe restent
