@@ -1,5 +1,5 @@
 {
-  "StableSource": "d83809df83b55f66c425ceaab6a48520a736ec97",
+  "StableSource": "923a94da32d4777126b3f8da65151ea1588401e0",
   "ChromeFunctionsEqual": {
     "Invoke-LDLCDefaultAppAttempt": true,
     "Invoke-LDLCDefaultAppsControl": true,
@@ -19,5 +19,17 @@
     "CHROME_DIAGNOSTICS_TASKBAR_2026-10-24.md",
     "CHROME_HTML_2026-10-24.md",
     "OFFICE_CONSERVE_2026-10-24.md"
-  ]
+  ],
+  "StableRuntimeSource": "d83809df83b55f66c425ceaab6a48520a736ec97",
+  "StablePublishedDelivery": "8dbc6a02797dff8de83335694288cd7d6eb3d24e",
+  "StableWindows11Run": 40097204864,
+  "StableWindows11Analysis": 40099669662,
+  "StableActualAssociations": {
+    "http": "Chrome",
+    "https": "Chrome",
+    ".htm": "Chrome",
+    ".html": "Chrome",
+    ".pdf": "Adobe"
+  },
+  "BetaRuntimeAndExeUnchanged": true
 }

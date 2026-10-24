@@ -1,4 +1,12 @@
-﻿# Synchronisation après correction HTML de LDLC — 24 octobre 2026
+﻿# LDLC HTML qualifiée en VM, bêta conservée — 24 octobre 2026
+
+La source de référence est 923a94d (runtime d83809d, livraison Windows 8dbc6a0).
+VM Windows 11 40097204864 et analyse 40099669662 réussies : quatre associations
+Chrome, PDF Adobe, zéro erreur/avertissement. La bêta avait déjà ces fonctions ;
+aucun runtime, test ou EXE modifié. États de synchronisation et preuves revus,
+UI et améliorations supplémentaires conservées.
+
+# Synchronisation après correction HTML de LDLC — 24 octobre 2026
 
 Source LDLC d83809df83b55f66c425ceaab6a48520a736ec97. Les trois fonctions
 reprises depuis la bêta sont identiques ; aucun code runtime, test ou EXE bêta
