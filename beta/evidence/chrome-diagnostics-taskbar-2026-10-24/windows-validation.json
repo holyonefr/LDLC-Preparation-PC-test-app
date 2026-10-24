@@ -1,0 +1,1277 @@
+{
+  "Date": "2026-10-24",
+  "BetaVersion": "2.6.19",
+  "BetaDelivery": {
+    "Repository": "holyonefr/LDLC-Preparation-PC-test-app",
+    "PublishedExecutable": true,
+    "ExecutableSHA256": "62AB90853AE54F03E6D1A7D4A5B128AFD7206B7FB5B74413BE3408F57CE75147",
+    "DeliveryCommit": "1aebac37957054bc5b9f0497a22b986724549067",
+    "TestedSource": "b05e07b23c70acab5e478dab3370cdf9aa8115e9",
+    "VendorInstallerExecuted": false
+  },
+  "PublishedBetaChecksumVerified": true,
+  "RequestedPolicy": "Chrome preference diagnostics are informational in LDLC, ADDON and synchronized beta; normal Chocolatey bootstrap is informational in ADDON. Genuine installation/Adobe errors and stop requests are preserved. No old dashboard rows or events rewritten.",
+  "TaskbarHistoricalReference": "3aec296b7468e7634815eccec5d549fc90689c9f",
+  "TaskbarHistoricalStateDate": "Latest available commit before 25 September 2026; reference commit dated 18 July 2026",
+  "TaskbarImplementationWasAlreadyHistoricalInAllFour": true,
+  "TaskbarSourceModuleSHA256": "A34B1CB3BD5CC12A1B8C152F64A86DC86984C0CCC6045A72B283135E1436AD66",
+  "NativeWindowsHost": "GitHub Windows Server 2025",
+  "ActualExecutablePreviewAndQuitCount": 16,
+  "FreshFullWindows11PreparationsThisCampaign": 0,
+  "AssociationAndInstallerScenariosSimulated": true,
+  "RealTaskbarXMLWritesAndReadsInTemporaryDirectories": true,
+  "ActualVisibleTaskbarPinVerified": false,
+  "ActualHardwareInstallersExecuted": false,
+  "AppsScriptDeployed": false,
+  "AllFinalNativeRunsSucceeded": true,
+  "NativeResults": {
+    "holyonefr/LDLC-Preparation-PC-test-app": {
+      "Run": 40078651074,
+      "Job": 120827372173,
+      "Attempt": 1,
+      "SourceCommit": "b05e07b23c70acab5e478dab3370cdf9aa8115e9",
+      "WorkflowConclusion": "success",
+      "Evidence": {
+        "PrepTool compiled preview": [
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 1634,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 410,
+            "QuitTop": 197,
+            "QuitWidth": 57,
+            "QuitHeight": 22,
+            "QuitPreferredWidth": 57,
+            "QuitPreferredHeight": 22,
+            "QuitWhitePixels": 66,
+            "QuitGlyphTop": 8,
+            "QuitGlyphBottom": 15,
+            "ProgressPanelBottom": 192,
+            "FooterGap": 5,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 1606,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 410,
+            "QuitTop": 197,
+            "QuitWidth": 57,
+            "QuitHeight": 22,
+            "QuitPreferredWidth": 57,
+            "QuitPreferredHeight": 22,
+            "QuitWhitePixels": 66,
+            "QuitGlyphTop": 8,
+            "QuitGlyphBottom": 15,
+            "ProgressPanelBottom": 192,
+            "FooterGap": 5,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 1612,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 410,
+            "QuitTop": 197,
+            "QuitWidth": 57,
+            "QuitHeight": 22,
+            "QuitPreferredWidth": 57,
+            "QuitPreferredHeight": 22,
+            "QuitWhitePixels": 66,
+            "QuitGlyphTop": 8,
+            "QuitGlyphBottom": 15,
+            "ProgressPanelBottom": 192,
+            "FooterGap": 5,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 1909,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 410,
+            "QuitTop": 197,
+            "QuitWidth": 57,
+            "QuitHeight": 22,
+            "QuitPreferredWidth": 57,
+            "QuitPreferredHeight": 22,
+            "QuitWhitePixels": 66,
+            "QuitGlyphTop": 8,
+            "QuitGlyphBottom": 15,
+            "ProgressPanelBottom": 192,
+            "FooterGap": 5,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        ],
+        "Final default warning regression": [
+          {
+            "Mode": "simulated association and policy states, actual final audit and telemetry status code",
+            "Result": "passed",
+            "Historical": false,
+            "ProductionConfigurationChanged": false,
+            "Assertions": 41
+          },
+          {
+            "Assertions": 41,
+            "Historical": false,
+            "Result": "passed",
+            "ProductionConfigurationChanged": false,
+            "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+          },
+          {
+            "Assertions": 13,
+            "Historical": true,
+            "Result": "passed",
+            "ProductionConfigurationChanged": false,
+            "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+          },
+          {
+            "Assertions": 41,
+            "Historical": false,
+            "Result": "passed",
+            "ProductionConfigurationChanged": false,
+            "Mode": "simulated association and policy states, actual final audit and telemetry status code"
+          }
+        ],
+        "Chrome historical taskbar": [
+          {
+            "HistoricalReference": "3aec296b7468e7634815eccec5d549fc90689c9f",
+            "HistoricalBodyVerified": true,
+            "ActualUserTaskbarChanged": false,
+            "LegacyEntryPointVerified": true,
+            "Assertions": 92,
+            "EmbeddedScriptsVerified": 2,
+            "RealXMLWriteRead": true,
+            "Success": true,
+            "ExplorerActionsSimulated": true,
+            "VisualPinVerified": false,
+            "Cases": [
+              {
+                "Scenario": "normal",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "pre-existing-layout",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "missing-chrome",
+                "Result": "not_prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "layout-write-denied",
+                "Result": "not_prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "explorer-restart-denied",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "explorer-cleanup-denied",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "cancel-before-layout",
+                "Result": "cancelled",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "cancel-before-restart",
+                "Result": "cancelled",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "cancel-after-restart",
+                "Result": "cancelled",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1
+              }
+            ]
+          },
+          {
+            "Success": true,
+            "ExplorerActionsSimulated": true,
+            "ActualUserTaskbarChanged": false,
+            "HistoricalBodyVerified": true,
+            "RealXMLWriteRead": true,
+            "Cases": [
+              {
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1,
+                "Scenario": "normal",
+                "Result": "prepared"
+              },
+              {
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1,
+                "Scenario": "pre-existing-layout",
+                "Result": "prepared"
+              },
+              {
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 0,
+                "Scenario": "missing-chrome",
+                "Result": "not_prepared"
+              },
+              {
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 0,
+                "Scenario": "layout-write-denied",
+                "Result": "not_prepared"
+              },
+              {
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 1,
+                "Scenario": "explorer-restart-denied",
+                "Result": "prepared"
+              },
+              {
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 1,
+                "Scenario": "explorer-cleanup-denied",
+                "Result": "prepared"
+              },
+              {
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 0,
+                "Scenario": "cancel-before-layout",
+                "Result": "cancelled"
+              },
+              {
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 0,
+                "Scenario": "cancel-before-restart",
+                "Result": "cancelled"
+              },
+              {
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1,
+                "Scenario": "cancel-after-restart",
+                "Result": "cancelled"
+              }
+            ],
+            "EmbeddedScriptsVerified": 2,
+            "LegacyEntryPointVerified": true,
+            "HistoricalReference": "3aec296b7468e7634815eccec5d549fc90689c9f",
+            "Assertions": 92,
+            "VisualPinVerified": false
+          }
+        ],
+        "Requested nonblocking diagnostics": [
+          {
+            "ChocolateyCases": 0,
+            "HardwareInstallersExecuted": false,
+            "Result": "passed",
+            "Assertions": 12,
+            "ChromePreferenceDiagnosticOnly": true,
+            "Mode": "simulated association, transport and package installer; actual application telemetry policy",
+            "ActualConfigurationNotInvented": true,
+            "RealInstallationErrorsPreserved": true
+          },
+          {
+            "ActualConfigurationNotInvented": true,
+            "Result": "passed",
+            "ChromePreferenceDiagnosticOnly": true,
+            "ChocolateyCases": 0,
+            "RealInstallationErrorsPreserved": true,
+            "HardwareInstallersExecuted": false,
+            "Assertions": 12,
+            "Mode": "simulated association, transport and package installer; actual application telemetry policy"
+          }
+        ]
+      },
+      "Artifacts": [
+        {
+          "expired": false,
+          "expires_at": "2027-01-22T08:35:45Z",
+          "id": 12554785878,
+          "name": "ldlc-beta-windows",
+          "size_in_bytes": 6535374
+        }
+      ],
+      "FirstAttempt": null
+    },
+    "holyonefr/LDLC-Preparation": {
+      "Run": 40078654013,
+      "Job": 120828867707,
+      "Attempt": 2,
+      "SourceCommit": "3e21c92ad414b7a02a1d835ca26f2b9c0bb31a2b",
+      "WorkflowConclusion": "success",
+      "Evidence": {
+        "Transmission candidate Windows": [
+          {
+            "PreviewCount": 4,
+            "RealDashboardRoundTrip": true,
+            "ExecutableSHA256": "14547F301BED6644DAF0939650F1DFD17ABB1201899EA6E997963A70494496C3",
+            "PatchSHA256": "BDB08963BC389E6C0A9C497FABBD0CC1ABEAD22B8773940EB4CA17A85AE58631",
+            "RealAntivirusRemoved": false,
+            "ProductionPublished": false,
+            "Repository": "holyonefr/LDLC-Preparation",
+            "TestedSource": "3e21c92ad414b7a02a1d835ca26f2b9c0bb31a2b",
+            "ReleaseSuitePassed": true
+          }
+        ],
+        "PrepTool compiled preview": [
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 1340,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 1469,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 2494,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 1582,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        ],
+        "PrepTool dashboard roundtrip": [
+          {
+            "Success": true,
+            "Commit": "3e21c92ad414b7a02a1d835ca26f2b9c0bb31a2b",
+            "Checks": [
+              {
+                "ApplicationSource": "LDLC_PREPARATION_PC",
+                "Validation": "validated",
+                "ToolVersion": "2.6.16",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "success",
+                "FinalVisible": true,
+                "Scenario": "success"
+              },
+              {
+                "ApplicationSource": "LDLC_PREPARATION_PC",
+                "Validation": "blocked",
+                "ToolVersion": "2.6.16",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "error",
+                "FinalVisible": true,
+                "Scenario": "failed"
+              },
+              {
+                "ApplicationSource": "LDLC_PREPARATION_PC",
+                "Validation": "blocked",
+                "ToolVersion": "2.6.16",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "stopped",
+                "FinalVisible": true,
+                "Scenario": "stopped"
+              }
+            ],
+            "Cleaned": true,
+            "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+            "Phase": "scenario stopped",
+            "CleanupWarnings": [],
+            "ControlAttempts": [
+              {
+                "Action": "auditruns",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              },
+              {
+                "Action": "deleterun",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              },
+              {
+                "Action": "deleterun",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              },
+              {
+                "Action": "deleterun",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              }
+            ],
+            "ReadAttempts": [
+              {
+                "Stage": "preflight",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 6384
+              },
+              {
+                "Stage": "scenario_success_initial",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 4934
+              },
+              {
+                "Stage": "scenario_success_final",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 5152
+              },
+              {
+                "Stage": "scenario_failed_initial",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 5755
+              },
+              {
+                "Stage": "scenario_failed_final",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 4223
+              },
+              {
+                "Stage": "scenario_stopped_initial",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 3822
+              },
+              {
+                "Stage": "scenario_stopped_final",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 6300
+              },
+              {
+                "Stage": "cleanup_verify",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 8417
+              }
+            ]
+          }
+        ],
+        "Chrome historical taskbar": [
+          {
+            "HistoricalReference": "3aec296b7468e7634815eccec5d549fc90689c9f",
+            "HistoricalBodyVerified": true,
+            "ActualUserTaskbarChanged": false,
+            "LegacyEntryPointVerified": true,
+            "Assertions": 92,
+            "EmbeddedScriptsVerified": 2,
+            "RealXMLWriteRead": true,
+            "Success": true,
+            "ExplorerActionsSimulated": true,
+            "VisualPinVerified": false,
+            "Cases": [
+              {
+                "Scenario": "normal",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "pre-existing-layout",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "missing-chrome",
+                "Result": "not_prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "layout-write-denied",
+                "Result": "not_prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "explorer-restart-denied",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "explorer-cleanup-denied",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "cancel-before-layout",
+                "Result": "cancelled",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "cancel-before-restart",
+                "Result": "cancelled",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "cancel-after-restart",
+                "Result": "cancelled",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1
+              }
+            ]
+          }
+        ],
+        "Requested nonblocking diagnostics": [
+          {
+            "ChocolateyCases": 0,
+            "HardwareInstallersExecuted": false,
+            "Result": "passed",
+            "Assertions": 10,
+            "ChromePreferenceDiagnosticOnly": true,
+            "Mode": "simulated association, transport and package installer; actual application telemetry policy",
+            "ActualConfigurationNotInvented": true,
+            "RealInstallationErrorsPreserved": true
+          }
+        ],
+        "Transmission candidate source": [
+          {
+            "TestedSource": "3e21c92ad414b7a02a1d835ca26f2b9c0bb31a2b",
+            "ProductionPublished": false,
+            "PatchSHA256": "BDB08963BC389E6C0A9C497FABBD0CC1ABEAD22B8773940EB4CA17A85AE58631",
+            "Repository": "holyonefr/LDLC-Preparation"
+          }
+        ]
+      },
+      "Artifacts": [
+        {
+          "expired": false,
+          "expires_at": "2026-10-31T08:50:49Z",
+          "id": 12554941386,
+          "name": "chrome-amd-windows-preview",
+          "size_in_bytes": 6754411
+        },
+        {
+          "expired": false,
+          "expires_at": "2026-10-31T08:41:54Z",
+          "id": 12554615831,
+          "name": "chrome-amd-windows-preview",
+          "size_in_bytes": 6207204
+        }
+      ],
+      "FirstAttempt": {
+        "Run": 40078654013,
+        "Job": 120827381271,
+        "Conclusion": "failure",
+        "Reason": "Final acknowledgement missing in the injected failure scenario; local outbox still present. Success scenario acknowledged. Fixture cleanup confirmed."
+      }
+    },
+    "holyonefr/LDLC-Preparation-Addon": {
+      "Run": 40078656720,
+      "Job": 120827389183,
+      "Attempt": 1,
+      "SourceCommit": "c5f6d57eb440ee09833a2fce78ff0f7ca3f22500",
+      "WorkflowConclusion": "success",
+      "Evidence": {
+        "Transmission candidate Windows": [
+          {
+            "PreviewCount": 4,
+            "RealDashboardRoundTrip": true,
+            "ExecutableSHA256": "CD206E4CDC7807AA882B52896D17B0B2F3174B4235D6C5FC2D6C8547616E527E",
+            "PatchSHA256": "3CEF6237C127023EA97A6BCAB396C18BFAE569701E0063501F48913C13773F5C",
+            "RealAntivirusRemoved": false,
+            "ProductionPublished": false,
+            "Repository": "holyonefr/LDLC-Preparation-Addon",
+            "TestedSource": "c5f6d57eb440ee09833a2fce78ff0f7ca3f22500",
+            "ReleaseSuitePassed": true
+          }
+        ],
+        "PrepTool compiled preview": [
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 1014,
+            "WindowWidth": 512,
+            "WindowHeight": 236,
+            "QuitLeft": 438,
+            "QuitTop": 209,
+            "QuitWidth": 64,
+            "QuitHeight": 17,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 1013,
+            "WindowWidth": 512,
+            "WindowHeight": 236,
+            "QuitLeft": 438,
+            "QuitTop": 209,
+            "QuitWidth": 64,
+            "QuitHeight": 17,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 1020,
+            "WindowWidth": 512,
+            "WindowHeight": 236,
+            "QuitLeft": 438,
+            "QuitTop": 209,
+            "QuitWidth": 64,
+            "QuitHeight": 17,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 1331,
+            "WindowWidth": 512,
+            "WindowHeight": 236,
+            "QuitLeft": 438,
+            "QuitTop": 209,
+            "QuitWidth": 64,
+            "QuitHeight": 17,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        ],
+        "PrepTool dashboard roundtrip": [
+          {
+            "Success": true,
+            "Commit": "c5f6d57eb440ee09833a2fce78ff0f7ca3f22500",
+            "Checks": [
+              {
+                "ApplicationSource": "LDLC_PREPARATION_ADDON",
+                "Validation": "validated",
+                "ToolVersion": "2.0.5",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "success",
+                "FinalVisible": true,
+                "Scenario": "success"
+              },
+              {
+                "ApplicationSource": "LDLC_PREPARATION_ADDON",
+                "Validation": "blocked",
+                "ToolVersion": "2.0.5",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "error",
+                "FinalVisible": true,
+                "Scenario": "failed"
+              },
+              {
+                "ApplicationSource": "LDLC_PREPARATION_ADDON",
+                "Validation": "blocked",
+                "ToolVersion": "2.0.5",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "stopped",
+                "FinalVisible": true,
+                "Scenario": "stopped"
+              }
+            ],
+            "Cleaned": true,
+            "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+            "Phase": "scenario stopped",
+            "CleanupWarnings": [],
+            "ControlAttempts": [
+              {
+                "Action": "auditruns",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              },
+              {
+                "Action": "deleterun",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              },
+              {
+                "Action": "deleterun",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              },
+              {
+                "Action": "deleterun",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              }
+            ],
+            "ReadAttempts": [
+              {
+                "Stage": "preflight",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 8135
+              },
+              {
+                "Stage": "scenario_success_initial",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 5307
+              },
+              {
+                "Stage": "scenario_success_final",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 9485
+              },
+              {
+                "Stage": "scenario_failed_initial",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 6631
+              },
+              {
+                "Stage": "scenario_failed_final",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 9482
+              },
+              {
+                "Stage": "scenario_stopped_initial",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 9275
+              },
+              {
+                "Stage": "scenario_stopped_final",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 7412
+              },
+              {
+                "Stage": "cleanup_verify",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 7019
+              }
+            ]
+          }
+        ],
+        "Requested nonblocking diagnostics": [
+          {
+            "ChocolateyCases": 4,
+            "HardwareInstallersExecuted": false,
+            "Result": "passed",
+            "Assertions": 17,
+            "ChromePreferenceDiagnosticOnly": true,
+            "Mode": "simulated association, transport and package installer; actual application telemetry policy",
+            "ActualConfigurationNotInvented": true,
+            "RealInstallationErrorsPreserved": true
+          }
+        ],
+        "Transmission candidate source": [
+          {
+            "TestedSource": "c5f6d57eb440ee09833a2fce78ff0f7ca3f22500",
+            "ProductionPublished": false,
+            "PatchSHA256": "3CEF6237C127023EA97A6BCAB396C18BFAE569701E0063501F48913C13773F5C",
+            "Repository": "holyonefr/LDLC-Preparation-Addon"
+          }
+        ]
+      },
+      "Artifacts": [
+        {
+          "expired": false,
+          "expires_at": "2026-10-31T08:41:39Z",
+          "id": 12554326640,
+          "name": "chrome-amd-windows-preview",
+          "size_in_bytes": 2757898
+        }
+      ],
+      "FirstAttempt": null
+    },
+    "holyonefr/Numerik-s-Preparation-PC": {
+      "Run": 40078659440,
+      "Job": 120827397830,
+      "Attempt": 1,
+      "SourceCommit": "8a51c0bc4deee9ae39d895b2f88433486fd6f55f",
+      "WorkflowConclusion": "success",
+      "Evidence": {
+        "Transmission candidate Windows": [
+          {
+            "PreviewCount": 4,
+            "RealDashboardRoundTrip": true,
+            "ExecutableSHA256": "5A096923F0DEC63772E886A71968E4967919819BAB0C4CB37DEA812D38C176B2",
+            "PatchSHA256": "629ABB12D4B295CD048FFFA85FC5D7B10D02253AF92FA3703F4AFC0192DEFBD3",
+            "RealAntivirusRemoved": false,
+            "ProductionPublished": false,
+            "Repository": "holyonefr/Numerik-s-Preparation-PC",
+            "TestedSource": "8a51c0bc4deee9ae39d895b2f88433486fd6f55f",
+            "ReleaseSuitePassed": true
+          }
+        ],
+        "PrepTool compiled preview": [
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 2153,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 2199,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 2172,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          },
+          {
+            "Visible": true,
+            "MillisecondsToPreview": 2194,
+            "WindowWidth": 481,
+            "WindowHeight": 222,
+            "QuitLeft": 417,
+            "QuitTop": 204,
+            "QuitWidth": 50,
+            "QuitHeight": 14,
+            "Scope": "Entree reelle EXE en Preview; aucune installation. Temps depuis EntryPoint, hors UAC/clic utilisateur."
+          }
+        ],
+        "PrepTool dashboard roundtrip": [
+          {
+            "Success": true,
+            "Commit": "8a51c0bc4deee9ae39d895b2f88433486fd6f55f",
+            "Checks": [
+              {
+                "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+                "Validation": "validated",
+                "ToolVersion": "2.6.15",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "success",
+                "FinalVisible": true,
+                "Scenario": "success"
+              },
+              {
+                "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+                "Validation": "blocked",
+                "ToolVersion": "2.6.15",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "error",
+                "FinalVisible": true,
+                "Scenario": "failed"
+              },
+              {
+                "ApplicationSource": "NUMERIKS_PREPARATION_PC",
+                "Validation": "blocked",
+                "ToolVersion": "2.6.15",
+                "Acknowledged": true,
+                "InitialVisible": true,
+                "Status": "stopped",
+                "FinalVisible": true,
+                "Scenario": "stopped"
+              }
+            ],
+            "Cleaned": true,
+            "Scope": "Rapports CODEX-TEST uniquement; client reel, dashboard permanent, aucun historique modifie.",
+            "Phase": "scenario stopped",
+            "CleanupWarnings": [],
+            "ControlAttempts": [
+              {
+                "Action": "auditruns",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              },
+              {
+                "Action": "deleterun",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              },
+              {
+                "Action": "deleterun",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              },
+              {
+                "Action": "deleterun",
+                "Attempt": 1,
+                "Transient": false,
+                "Success": true,
+                "NetworkStatus": "OK",
+                "HttpStatus": 200
+              }
+            ],
+            "ReadAttempts": [
+              {
+                "Stage": "preflight",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 8376
+              },
+              {
+                "Stage": "scenario_success_initial",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 7011
+              },
+              {
+                "Stage": "scenario_success_final",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 7305
+              },
+              {
+                "Stage": "scenario_failed_initial",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 5781
+              },
+              {
+                "Stage": "scenario_failed_final",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 9327
+              },
+              {
+                "Stage": "scenario_stopped_initial",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 7408
+              },
+              {
+                "Stage": "scenario_stopped_final",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 5726
+              },
+              {
+                "Stage": "cleanup_verify",
+                "Attempt": 1,
+                "Success": true,
+                "HttpStatus": 200,
+                "NetworkStatus": "OK",
+                "Transient": false,
+                "Milliseconds": 8668
+              }
+            ]
+          }
+        ],
+        "Chrome historical taskbar": [
+          {
+            "HistoricalReference": "3aec296b7468e7634815eccec5d549fc90689c9f",
+            "HistoricalBodyVerified": true,
+            "ActualUserTaskbarChanged": false,
+            "LegacyEntryPointVerified": true,
+            "Assertions": 92,
+            "EmbeddedScriptsVerified": 2,
+            "RealXMLWriteRead": true,
+            "Success": true,
+            "ExplorerActionsSimulated": true,
+            "VisualPinVerified": false,
+            "Cases": [
+              {
+                "Scenario": "normal",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "pre-existing-layout",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "missing-chrome",
+                "Result": "not_prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "layout-write-denied",
+                "Result": "not_prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "explorer-restart-denied",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "explorer-cleanup-denied",
+                "Result": "prepared",
+                "VisualPinVerified": false,
+                "Warnings": 1,
+                "ExplorerRestartRequests": 1
+              },
+              {
+                "Scenario": "cancel-before-layout",
+                "Result": "cancelled",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "cancel-before-restart",
+                "Result": "cancelled",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 0
+              },
+              {
+                "Scenario": "cancel-after-restart",
+                "Result": "cancelled",
+                "VisualPinVerified": false,
+                "Warnings": 0,
+                "ExplorerRestartRequests": 1
+              }
+            ]
+          }
+        ],
+        "Transmission candidate source": [
+          {
+            "TestedSource": "8a51c0bc4deee9ae39d895b2f88433486fd6f55f",
+            "ProductionPublished": false,
+            "PatchSHA256": "629ABB12D4B295CD048FFFA85FC5D7B10D02253AF92FA3703F4AFC0192DEFBD3",
+            "Repository": "holyonefr/Numerik-s-Preparation-PC"
+          }
+        ]
+      },
+      "Artifacts": [
+        {
+          "expired": false,
+          "expires_at": "2026-10-31T08:42:31Z",
+          "id": 12554875604,
+          "name": "chrome-amd-windows-preview",
+          "size_in_bytes": 17735649
+        }
+      ],
+      "FirstAttempt": null
+    }
+  },
+  "RepositoryPublicationAndUI": {
+    "LDLC-Preparation": {
+      "RemoteMain": "3e21c92ad414b7a02a1d835ca26f2b9c0bb31a2b",
+      "OriginalRemoteMain": "3e21c92ad414b7a02a1d835ca26f2b9c0bb31a2b",
+      "ExistingUIUnchanged": true,
+      "ProductionNotPublished": true
+    },
+    "Numerik-s-Preparation-PC": {
+      "RemoteMain": "8a51c0bc4deee9ae39d895b2f88433486fd6f55f",
+      "OriginalRemoteMain": "8a51c0bc4deee9ae39d895b2f88433486fd6f55f",
+      "ExistingUIUnchanged": true,
+      "ProductionNotPublished": true
+    },
+    "LDLC-Preparation-Addon": {
+      "RemoteMain": "c5f6d57eb440ee09833a2fce78ff0f7ca3f22500",
+      "OriginalRemoteMain": "c5f6d57eb440ee09833a2fce78ff0f7ca3f22500",
+      "ExistingUIUnchanged": true,
+      "ProductionNotPublished": true
+    },
+    "LDLC-Preparation-PC-test-app": {
+      "RemoteMain": "1aebac37957054bc5b9f0497a22b986724549067",
+      "OriginalRemoteMain": "987e38860c8cc3a316dd7bbc7b9781686afd7742",
+      "ExistingUIUnchanged": true
+    }
+  },
+  "FirstLDLCAttempt": {
+    "Run": 40078654013,
+    "Attempt": 1,
+    "Job": 120827381271,
+    "Conclusion": "failure",
+    "FailedStep": "Verify real dashboard acknowledgement for success error and cancellation",
+    "Reason": "Fin non acquittee, file locale encore presente",
+    "SuccessScenarioAcknowledged": true,
+    "FailureScenarioFinalAcknowledgementMissing": true,
+    "OwnFixtureRowsCleaned": true,
+    "ExactUnderlyingTransportCauseNotProven": true,
+    "Followup": "Same source and candidate patch rerun after the other live tests ended; attempt 2 passed success/error/stopped acknowledgements and four actual Preview/quit launches."
+  },
+  "CanceledHistoricalDispatch": {
+    "Run": 40078593661,
+    "Source": "987e38860c8cc3a316dd7bbc7b9781686afd7742",
+    "Conclusion": "cancelled",
+    "Reason": "Dispatch before the corrected beta source was available; not counted as correction validation."
+  },
+  "ProductionDeliveryRequiresExplicitPublicationAuthorization": true
+}

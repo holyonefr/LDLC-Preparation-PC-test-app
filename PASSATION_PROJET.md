@@ -7,6 +7,9 @@ ADDON. Ancienne méthode d'épinglage déjà présente dans les quatre éditions
 désormais vérifiée jusqu'aux deux scripts livrés. Voir
 beta/CHROME_DIAGNOSTICS_TASKBAR_2026-10-24.md. Publications de production interdites
 par l'instruction actuelle ; candidats séparés, UI locales préexistantes intactes.
+Validation native réussie sur les quatre éditions, 16 Preview/fermetures ;
+LDLC réussi au deuxième passage après un accusé manquant au premier essai.
+Bêta publiée au commit 1aebac3, checksum vérifié ; preuves dans la note liée.
 
 # Bêta 2.6.18 — corrections après VM Windows 11, 24 octobre
 

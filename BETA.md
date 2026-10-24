@@ -5,8 +5,11 @@ bloque plus la validation ; les vrais échecs d'installation et Adobe restent
 signalés. L'ancienne méthode taskbar est confirmée dans les quatre éditions,
 avec contrôle des scripts embarqués. Voir
 [le périmètre et les tests](beta/CHROME_DIAGNOSTICS_TASKBAR_2026-10-24.md).
-Validation Windows de cette nouvelle livraison en cours ; les résultats 2.6.18
-ci-dessous restent ceux de l'EXE précédent.
+Validation native Windows 40078651074 réussie, EXE 2.6.19 publié et checksum
+vérifié. Les résultats Windows 11 de la livraison précédente sont conservés
+ci-dessous.
+
+## Historique : livraison 2.6.18
 
 Correction ciblée après les vrais essais Windows 11 : la fenêtre compacte pouvait
 recouvrir la carte PDF des Paramètres et empêcher son activation. Repli sur le
