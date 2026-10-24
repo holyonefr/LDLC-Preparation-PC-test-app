@@ -9,6 +9,7 @@ function Write-Warn($Text){$script:Warnings.Add($Text)}
 function Write-Info($Text){$script:Information.Add($Text)}
 function Write-Ok($Text){}
 function Write-Step($Text){}
+function Write-Section($Text){$script:FinalSection=$Text}
 function Start-Sleep{}
 function Stop-IfRequested{}
 function Test-LDLCStopRequestError($ErrorRecord){$ErrorRecord.Exception.Message -match 'LDLC_STOP_REQUESTED'}
@@ -31,6 +32,7 @@ if(Get-Command Confirm-LDLCDefaultAppsFinalState -ErrorAction SilentlyContinue){
     $script:LDLCDefaultAppsPendingChecks=@{Widgets=$true};$script:LDLCDefaultAppsFinalAuditDone=$false
     $audit=Confirm-LDLCDefaultAppsFinalState
     Assert ($audit.Confirmed -and $script:Warnings.Count -eq 0) 'The beta final audit reintroduced the removed Widgets warning.'
+    Assert ($script:FinalSection -eq 'VERIFICATION FINALE DES APPLICATIONS PAR DEFAUT') 'Final audit warnings would still be attributed to the preceding power-settings step.'
 }
 $script:WidgetReadFailure='LDLC_STOP_REQUESTED';$stopped=$false
 try{$null=Set-LDLCTaskbarOptionsWithRegistry}catch{$stopped=Test-LDLCStopRequestError $_}
