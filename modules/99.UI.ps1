@@ -880,6 +880,8 @@ function Update-LDLCMainUiLayout {
     if (-not $PSBoundParameters.ContainsKey('WorkingArea')) {
         $WorkingArea = [System.Windows.Forms.Screen]::FromHandle($Form.Handle).WorkingArea
     }
+    # Create the HWND before sizing so native tracking limits are already applied.
+    [void]$Form.Handle
     if ($DisplayDpi -le 0) { Initialize-LDLCUiPixelBuffer; $DisplayDpi = [LDLCUiPixelBuffer]::GetDisplayDpi($Form.Handle) }
     $signature = "$WorkingArea|$DisplayDpi|$($Form.ClientSize)|$($Picture.Bounds)|$($Overlay.Bounds)|$($CloseButton.Bounds)|$($CloseButton.Text)"
     if ($Form.Tag -is [hashtable] -and $Form.Tag.DisplaySignature -eq $signature) { return $false }
@@ -890,6 +892,19 @@ function Update-LDLCMainUiLayout {
         [int]($WorkingArea.Height * 0.47) / $OriginalImage.Height))
     $width = [Math]::Max(1, [int]($OriginalImage.Width * $scale))
     $height = [Math]::Max(1, [int]($OriginalImage.Height * $scale))
+    $Form.Location = New-Object System.Drawing.Point ($WorkingArea.Left + 20), ([Math]::Max($WorkingArea.Top, ($WorkingArea.Bottom - $height - 20)))
+    $Form.ClientSize = New-Object System.Drawing.Size $width, $height
+    # Main forms are borderless; Size reflects clamping before WinForms refreshes
+    # its cached ClientSize during layout.
+    $acceptedSize = $Form.Size
+    if ($acceptedSize.Width -ne $width -or $acceptedSize.Height -ne $height) {
+        # Remote/smaller desktops may clamp the request. Fit to the accepted size,
+        # not the stale requested size, without stretching the source image.
+        $acceptedScale = [Math]::Min($acceptedSize.Width / $OriginalImage.Width, $acceptedSize.Height / $OriginalImage.Height)
+        $width = [Math]::Max(1, [int][Math]::Floor($OriginalImage.Width * $acceptedScale))
+        $height = [Math]::Max(1, [int][Math]::Floor($OriginalImage.Height * $acceptedScale))
+        $Form.ClientSize = New-Object System.Drawing.Size $width, $height
+    }
     $script:scaleX = $width / $OriginalImage.Width
     $script:scaleY = $height / $OriginalImage.Height
 

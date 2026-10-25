@@ -2,7 +2,7 @@
     "SchemaVersion":  1,
     "Repository":  "holyonefr/LDLC-Preparation-PC-test-app",
     "StableRepository":  "holyonefr/LDLC-Preparation",
-    "SourceCommit":  "b65cda2907bb7396047435d1ea90106e836b5eb1",
+    "SourceCommit":  "acadfe216e36858af6c8fd5f88b600e0f2798ffa",
     "SourceWorkingTreeDirty":  false,
     "OverlayPaths":  [
                          ".gitattributes",

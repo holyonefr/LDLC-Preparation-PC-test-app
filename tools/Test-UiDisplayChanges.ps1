@@ -88,6 +88,14 @@ try {
             $scenarios++
         }
     }
+    # Win32 can clamp an HWND's requested size on a smaller/remote desktop.
+    $form.MaximumSize = New-Object Drawing.Size 700, 400
+    $form.Tag = $null
+    [void](Update-LDLCMainUiLayout $form $picture $overlay $button $source -WorkingArea (New-Object Drawing.Rectangle 0, 0, 2560, 1392) -DisplayDpi 192)
+    Assert-True ($form.ClientSize -eq $picture.Image.Size) "Native size clamping left an uncovered or stretched canvas: client=$($form.ClientSize), image=$($picture.Image.Size), max=$($form.MaximumSize)."
+    Assert-True ([Math]::Abs($form.Width / $form.Height - $source.Width / $source.Height) -lt 0.01) 'Native size clamping changed background proportions.'
+    Assert-True ($form.ClientRectangle.Contains($button.Bounds)) 'Native size clamping hid the Quit button.'
+    $form.MaximumSize = [Drawing.Size]::Empty
     $image = $picture.Image
     $form.WindowState = 'Minimized'
     Assert-True (-not (Update-LDLCMainUiLayout $form $picture $overlay $button $source)) 'Compact/minimized UI must not be restored by layout polling.'

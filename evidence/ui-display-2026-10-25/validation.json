@@ -4,17 +4,17 @@
   "BaseCommit": "4e3263b98202de74abd2f949a99909d8621e1a43",
   "ToolVersion": "2.6.21",
   "Executable": "LDLCPreparationPC.exe",
-  "ExecutableSHA256": "03850141BD037677D575B11F9256E72D2669E1CDD8380A6140115C8B54581681",
+  "ExecutableSHA256": "D7DE8D07982525F5AE2BE630E67E7F33BE9652D5A5B866981ACD68C0908CA57F",
   "Host": "Windows 11 desktop, Windows PowerShell 5.1",
   "ReleaseSuite": "54 PowerShell tests, 3 JavaScript suites, launcher bootstrap/selftest/worker",
   "ReleaseSuitePassed": true,
-  "DisplayAssertions": 835,
+  "DisplayAssertions": 838,
   "DisplayScenarios": 32,
   "AdditionalAddonWorkerAssertions": 0,
   "CompiledPreviewPassed": true,
   "CompiledPreviewGeometry": {
     "Visible": true,
-    "MillisecondsToPreview": 1081,
+    "MillisecondsToPreview": 1036,
     "WindowWidth": 802,
     "WindowHeight": 370,
     "QuitLeft": 696,
@@ -70,5 +70,19 @@
   "CanvasAssertions": 5355,
   "CanvasGdiRenders": 105,
   "PhysicalMonitorCount": 1,
-  "CrossMonitorCoverage": "Simulated working areas including negative screen coordinates; no physical second monitor available."
+  "CrossMonitorCoverage": "Simulated working areas including negative screen coordinates; no physical second monitor available.",
+  "PublishedCodeCommit": "d3238815be84f908f72e9e98aac373f8555d4329",
+  "PublishedExecutableFetchedWithIsolatedLfsStorage": false,
+  "PublishedExecutableHashMatchesTestedBuild": false,
+  "QuitButtonLiveClickPassed": true,
+  "LiveZoomCycleExecutableSHA256": "03850141BD037677D575B11F9256E72D2669E1CDD8380A6140115C8B54581681",
+  "NativeClampingRegression": {
+    "BeforeFailed": true,
+    "AfterPassed": true,
+    "SimulatedMaximum": "700x400",
+    "PriorGithubRun": "https://github.com/holyonefr/LDLC-Preparation-PC-test-app/actions/runs/40173825998",
+    "PriorGithubConclusion": "failure",
+    "Reason": "Windows clamped HWND; ClientSize was temporarily stale; final canvas now uses accepted borderless Form.Size",
+    "Retry": "pending"
+  }
 }
