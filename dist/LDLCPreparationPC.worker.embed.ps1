@@ -1159,7 +1159,7 @@ function Restore-PowerSettings {
 # They are intentionally embedded so the compiled exe can report issues from any PC.
 $script:LDLCTelemetryEndpointUrl = 'https://script.google.com/macros/s/AKfycbwYe2r5-y8HeyfLjslbq7wI2BdFH0sj7TLJQSiUyeRdt_z7yytyTKsPQPPcT0HUcAci3g/exec'
 $script:LDLCTelemetryApiKey = 'LDLC-PrepTool-2026-ea2653c3d8f94cad9bbe4a2fa6fe8e18'
-$script:LDLCTelemetryToolVersion = '2.6.20'
+$script:LDLCTelemetryToolVersion = '2.6.21'
 $script:LDLCTelemetrySource = 'LDLCPreparationPC'
 $script:LDLCTelemetryApplicationSource = 'LDLC_PREPARATION_PC'
 $script:LDLCTelemetryEdition = 'LDLC'
@@ -12019,7 +12019,7 @@ if (-not $Preview -and -not $WorkerLauncher -and -not (Test-Path $installScript)
 }
 
 # ===== MUTEX =====
-$mutexName = if ($Preview) { 'LDLC_PREPTOOL_PREVIEW_MUTEX' } else { 'LDLC_PREPTOOL_MUTEX' }
+$mutexName = if ($Preview) { 'LDLC_PREPTOOL_PREVIEW_MUTEX_' + $PID } else { 'LDLC_PREPTOOL_MUTEX' }
 $created = $false
 $mutex = New-Object System.Threading.Mutex($true, $mutexName, [ref]$created)
 if (-not $created) { return }
@@ -12098,7 +12098,10 @@ function Convert-FontSize {
     )
 
     $scale = [Math]::Min($script:scaleX, $script:scaleY)
-    return [single][Math]::Max($Minimum, ($Value * $scale * 0.72))
+    # Pixel fonts follow the canvas once, instead of Windows applying DPI again.
+    # Preserve the approved 150% reference and scale the minimum with small canvases.
+    $minimumScale = [Math]::Min(1.0, ($scale / 0.72))
+    return [single](2.0 * [Math]::Max(($Minimum * $minimumScale), ($Value * $scale * 0.72)))
 }
 
 function Limit-LDLCText {
@@ -12491,6 +12494,15 @@ using System.Collections.Generic;
 
 public static class LDLCUiPixelBuffer
 {
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern uint GetDpiForWindow(IntPtr window);
+    public static int GetDisplayDpi(IntPtr window) {
+        try { uint dpi = GetDpiForWindow(window); if (dpi > 0) return (int)dpi; }
+        catch (DllNotFoundException) { }
+        catch (EntryPointNotFoundException) { }
+        return 96;
+    }
+
     public static void RemoveFringe(byte[] pixels, int width, int height, int stride,
         int cutoff, byte red, byte green, byte blue, bool preserveZeroAlpha)
     {
@@ -12726,6 +12738,88 @@ function New-StagePath {
     return $path
 }
 
+function Update-LDLCMainUiLayout {
+    param(
+        [System.Windows.Forms.Form]$Form,
+        [System.Windows.Forms.PictureBox]$Picture,
+        [System.Windows.Forms.Panel]$Overlay,
+        [System.Windows.Forms.Button]$CloseButton,
+        [System.Drawing.Image]$OriginalImage,
+        [System.Drawing.Rectangle]$WorkingArea,
+        [int]$DisplayDpi = 0
+    )
+
+    if ($Form.IsDisposed -or $Form.Disposing -or $Form.WindowState -eq 'Minimized') { return $false }
+    if (-not $PSBoundParameters.ContainsKey('WorkingArea')) {
+        $WorkingArea = [System.Windows.Forms.Screen]::FromHandle($Form.Handle).WorkingArea
+    }
+    if ($DisplayDpi -le 0) { Initialize-LDLCUiPixelBuffer; $DisplayDpi = [LDLCUiPixelBuffer]::GetDisplayDpi($Form.Handle) }
+    $signature = "$WorkingArea|$DisplayDpi|$($Form.ClientSize)|$($Picture.Bounds)|$($Overlay.Bounds)|$($CloseButton.Bounds)|$($CloseButton.Text)"
+    if ($Form.Tag -is [hashtable] -and $Form.Tag.DisplaySignature -eq $signature) { return $false }
+
+    # Keep the same compact footprint; DPI changes must not enlarge the window.
+    $scale = [Math]::Min(1.0, [Math]::Min(
+        [int]($WorkingArea.Width * 0.47) / $OriginalImage.Width,
+        [int]($WorkingArea.Height * 0.47) / $OriginalImage.Height))
+    $width = [Math]::Max(1, [int]($OriginalImage.Width * $scale))
+    $height = [Math]::Max(1, [int]($OriginalImage.Height * $scale))
+    $script:scaleX = $width / $OriginalImage.Width
+    $script:scaleY = $height / $OriginalImage.Height
+
+    # Windows can resize the HWND on a DPI change without resizing our pixel canvas.
+    # Rebuild the image, region and controls together from the original, never a scaled copy.
+    $key = $Form.TransparencyKey
+    $image = Resize-LDLCBackgroundBitmap -Image $OriginalImage -Width $width -Height $height
+    Apply-LDLCBitmapRoundedWindowMask -Bitmap $image -Radius (Convert-X 72) -TransparentColor $key
+    Remove-LDLCBitmapAlphaFringe -Bitmap $image -AlphaCutoff 254 -TransparentColor $key
+    $region = New-LDLCBitmapAlphaRegion -Bitmap $image -AlphaThreshold 254
+    if (-not $region) { $region = New-LDLCRoundedWindowRegion -Width $width -Height $height }
+    $previousImage = $Picture.Image
+    $previousRegion = $Form.Region
+    $previousFont = $CloseButton.Font
+    $Form.SuspendLayout()
+    try {
+        $Form.ClientSize = New-Object System.Drawing.Size $width, $height
+        $Picture.Bounds = $Form.ClientRectangle
+        $Overlay.Bounds = $Picture.ClientRectangle
+        $Picture.Image = $image
+        $Form.Region = $region
+        $Form.Left = $WorkingArea.Left + 20
+        $Form.Top = [Math]::Max($WorkingArea.Top, ($WorkingArea.Bottom - $Form.Height - 20))
+        $nextFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 17 7.5), [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
+        $CloseButton.Font = $nextFont
+        if (-not [object]::ReferenceEquals($CloseButton.Font, $nextFont)) { $nextFont.Dispose() }
+        if ($CloseButton.AutoSize) {
+            $CloseButton.MinimumSize = New-Object System.Drawing.Size([Math]::Max(50, (Convert-X 174)), [Math]::Max(18, (Convert-Y 34)))
+            $CloseButton.Size = $CloseButton.GetPreferredSize([System.Drawing.Size]::Empty)
+            $CloseButton.Left = [Math]::Min((Convert-X 1450), ($width - $CloseButton.Width - [Math]::Max(12, (Convert-X 48))))
+            $CloseButton.Top = $height - $CloseButton.Height - [Math]::Max(3, (Convert-Y 6))
+        }
+        else {
+            $CloseButton.Width = [Math]::Max(50, (Convert-X 174))
+            $CloseButton.Height = [Math]::Max(14, (Convert-Y 34))
+            while ($CloseButton.Font.Size -gt 5.5 -and
+                [System.Windows.Forms.TextRenderer]::MeasureText($CloseButton.Text, $CloseButton.Font).Height -gt ($CloseButton.Height - 2)) {
+                $font = $CloseButton.Font
+                $CloseButton.Font = New-Object System.Drawing.Font('Segoe UI', ($font.Size - 0.5), [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
+                $font.Dispose()
+            }
+            $CloseButton.Left = [Math]::Min((Convert-X 1450), ($width - $CloseButton.Width - 2))
+            $CloseButton.Top = [Math]::Min((Convert-Y 725), ($height - $CloseButton.Height - [Math]::Max(2, (Convert-Y 13))))
+        }
+        $CloseButton.TextAlign = [System.Drawing.ContentAlignment]::MiddleCenter
+        $Form.Tag = @{ DisplaySignature = "$WorkingArea|$DisplayDpi|$($Form.ClientSize)|$($Picture.Bounds)|$($Overlay.Bounds)|$($CloseButton.Bounds)|$($CloseButton.Text)" }
+    }
+    finally {
+        $Form.ResumeLayout($true)
+        if ($previousImage) { $previousImage.Dispose() }
+        if ($previousRegion) { $previousRegion.Dispose() }
+        if ($previousFont -and -not $previousFont.IsSystemFont -and -not [object]::ReferenceEquals($previousFont, $CloseButton.Font) -and -not [object]::ReferenceEquals($previousFont, $Overlay.Font)) { $previousFont.Dispose() }
+    }
+    $Form.Invalidate($true)
+    return $true
+}
+
 function Draw-LDLCStageList {
     param(
         [System.Drawing.Graphics]$Graphics,
@@ -12739,9 +12833,9 @@ function Draw-LDLCStageList {
     $overlayBrush.Dispose()
     $overlayPath.Dispose()
 
-    $fontTitle = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 20 7), [System.Drawing.FontStyle]::Bold)
-    $fontDetail = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 13 6.5), [System.Drawing.FontStyle]::Regular)
-    $fontNumber = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 22 7), [System.Drawing.FontStyle]::Bold)
+    $fontTitle = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 20 7), [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
+    $fontDetail = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 13 6.5), [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Pixel)
+    $fontNumber = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 22 7), [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
     $textFormat = New-Object System.Drawing.StringFormat
     $textFormat.Trimming = [System.Drawing.StringTrimming]::EllipsisCharacter
     $textFormat.FormatFlags = [System.Drawing.StringFormatFlags]::NoWrap
@@ -12814,10 +12908,10 @@ function Draw-LDLCStageList {
 function Draw-LDLCProgressArea {
     param([System.Drawing.Graphics]$Graphics)
 
-    $statusFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 27 8), [System.Drawing.FontStyle]::Bold)
-    $detailFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 18 8.5), [System.Drawing.FontStyle]::Regular)
-    $percentFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 34 10), [System.Drawing.FontStyle]::Bold)
-    $metaFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 14 7.5), [System.Drawing.FontStyle]::Regular)
+    $statusFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 27 8), [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
+    $detailFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 18 8.5), [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Pixel)
+    $percentFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 34 10), [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
+    $metaFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 14 7.5), [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Pixel)
     $textFormat = New-Object System.Drawing.StringFormat
     $textFormat.Trimming = [System.Drawing.StringTrimming]::EllipsisCharacter
     $textFormat.FormatFlags = [System.Drawing.StringFormatFlags]::NoWrap
@@ -12830,7 +12924,9 @@ function Draw-LDLCProgressArea {
     $detail = Limit-LDLCText -Text $script:message -MaxLength 82
     $meta = if ($Preview) { 'MODE PREVISUALISATION - aucune installation lancee' } else { 'Progression en temps reel' }
 
-    $statusRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 552), (Convert-X 790), (Convert-Y 50))
+    # GDI line spacing can exceed a rounded scaled box by a pixel.
+    $statusHeight = [Math]::Max((Convert-Y 50), [Math]::Ceiling($statusFont.GetHeight($Graphics)))
+    $statusRect = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 552), (Convert-X 790), $statusHeight)
     # Minimum font sizes stay readable even when the entire window is scaled
     # down. Reserve their real pixel height instead of scaling the text box
     # below the font height (notably on the small GitHub runner desktop).
@@ -12840,7 +12936,7 @@ function Draw-LDLCProgressArea {
     $metaTop = [Math]::Max((Convert-Y 684), $detailRect.Bottom + 1)
     $metaRect = New-Object System.Drawing.RectangleF((Convert-X 548), $metaTop, (Convert-X 805), $metaHeight)
     $barBounds = New-Object System.Drawing.RectangleF((Convert-X 548), (Convert-Y 608), (Convert-X 832), (Convert-Y 35))
-    $percentRect = New-Object System.Drawing.RectangleF((Convert-X 1410), (Convert-Y 584), (Convert-X 135), (Convert-Y 70))
+    $percentRect = New-Object System.Drawing.RectangleF((Convert-X 1410), (Convert-Y 584), (Convert-X 190), (Convert-Y 70))
 
     # Reserve the footer first. Move the progress content up as one block when
     # minimum font heights need more room than the scaled background provides.
@@ -12919,7 +13015,7 @@ function Draw-LDLCProgressArea {
 function Draw-LDLCVersionOverlay {
     param([System.Drawing.Graphics]$Graphics)
 
-    $versionFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 12 7), [System.Drawing.FontStyle]::Regular)
+    $versionFont = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 12 7), [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Pixel)
     $format = New-Object System.Drawing.StringFormat
     $format.Alignment = 'Center'
     $format.LineAlignment = 'Center'
@@ -13020,7 +13116,7 @@ try {
     $closeButton.FlatAppearance.MouseDownBackColor = [System.Drawing.Color]::FromArgb(170, 20, 20)
     $closeButton.BackColor = [System.Drawing.Color]::FromArgb(215, 35, 35)
     $closeButton.ForeColor = 'White'
-    $closeButton.Font = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 17 7.5), [System.Drawing.FontStyle]::Bold)
+    $closeButton.Font = New-Object System.Drawing.Font('Segoe UI', (Convert-FontSize 17 7.5), [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
     $closeButton.Cursor = 'Hand'
     $closeButton.TabStop = $false
     $overlay.Controls.Add($closeButton)
@@ -13030,6 +13126,8 @@ try {
     $closeButton.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Right
     $script:LDLCQuitButton = $closeButton
     $script:LDLCUiOverlay = $overlay
+    $script:mainUiLayoutReady = $true
+    [void](Update-LDLCMainUiLayout -Form $form -Picture $picture -Overlay $overlay -CloseButton $closeButton -OriginalImage $bgOriginal)
 
     $script:closeMouseArmedUntil = [datetime]::MinValue
     $script:allowFormClose = [bool]$Preview
@@ -13112,6 +13210,9 @@ try {
     $timer = New-Object System.Windows.Forms.Timer
     $timer.Interval = 250
     $timer.Add_Tick({
+        if ($script:mainUiLayoutReady) {
+            [void](Update-LDLCMainUiLayout -Form $form -Picture $picture -Overlay $overlay -CloseButton $closeButton -OriginalImage $bgOriginal)
+        }
         $previousDisplay = "$($script:percent)|$($script:message)"
         if ($Preview) {
             Update-LDLCPreviewProgress
@@ -13261,10 +13362,13 @@ try {
     [System.Windows.Forms.Application]::Run($form)
 }
 finally {
+    $script:mainUiLayoutReady = $false
     if ($form -and $script:LDLCCompactUiState) { Set-LDLCCompactUiState -MainForm $form -Active $false }
     if ($timer) { $timer.Stop(); $timer.Dispose() }
     if ($workerStartTimer) { $workerStartTimer.Stop(); $workerStartTimer.Dispose() }
     if ($bgOriginal) { $bgOriginal.Dispose() }
+    if ($picture -and $picture.Image) { $picture.Image.Dispose() }
+    if ($form -and $form.Region) { $form.Region.Dispose() }
     if ($bg) { $bg.Dispose() }
     if ($mutex) { $mutex.ReleaseMutex() | Out-Null }
 }

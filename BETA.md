@@ -1,3 +1,9 @@
+# Beta 2.6.21 - affichage compact et DPI - 25 octobre 2026
+
+Voir UI_DISPLAY_2026-10-25.md. Fenetre compacte conservee a 200 %, textes en
+pixels sans double application du DPI, recalcul du fond/region/bouton. Les
+integrations beta existantes sont conservees. Les notes ci-dessous sont historiques.
+
 > Synchronisation HTML du 24 octobre : les trois fonctions Chrome reprises dans
 > LDLC 2.6.18 sont déjà présentes, identiques, dans cette bêta 2.6.20.
 > Les références de source sont actualisées sans remplacer ses autres correctifs

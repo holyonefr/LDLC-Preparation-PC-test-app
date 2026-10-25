@@ -18,7 +18,7 @@ try {
         'Test-WindowsUpdateTrigger', 'Test-LDLCSecurityBootstrap', 'Test-SecurityInteractiveUninstall', 'Test-McAfeeHistoricalRollback', 'Test-LDLCEmbeddedAssets',
         'Test-LDLCErrorReportFixes', 'Test-LDLCInstallRobustness', 'Test-LDLCOfficialInstallerFlow',
         'Test-LDLCUIBranding', 'Test-ProgressTextRendering', 'Test-LDLCLauncherPackaging', 'Test-PreparationCoreSync', 'Test-PreparationDelivery', 'Test-PreparationTelemetryEdition',
-        'Test-PreparationStartup', 'Test-BootstrapFirstPaint', 'Test-UiFirstPaint', 'Test-UiLazyInterop', 'Test-UiPixelBuffer'
+        'Test-PreparationStartup', 'Test-BootstrapFirstPaint', 'Test-UiFirstPaint', 'Test-UiLazyInterop', 'Test-UiPixelBuffer', 'Test-UiDisplayChanges', 'Test-UiCanvasGeometry'
     )
     foreach ($test in $tests) {
         $env:LDLC_TELEMETRY_DISABLED = if ($test -eq 'Test-LDLCTelemetryStatus') { '0' } else { '1' }

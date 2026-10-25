@@ -1,4 +1,11 @@
-﻿# LDLC HTML qualifiée en VM, bêta conservée — 24 octobre 2026
+﻿# Affichage dynamique - 2.6.21 - 25 octobre 2026
+
+Voir UI_DISPLAY_2026-10-25.md : recalcul DPI/resolution, tests Windows passes,
+EXE regenere et preuves locales. Pas de preparation complete ni changement
+des visuels/metier/Google. Publication des quatre editions demandee explicitement.
+Les notes plus anciennes ci-dessous restent historiques.
+
+# LDLC HTML qualifiée en VM, bêta conservée — 24 octobre 2026
 
 La source de référence est 923a94d (runtime d83809d, livraison Windows 8dbc6a0).
 VM Windows 11 40097204864 et analyse 40099669662 réussies : quatre associations
